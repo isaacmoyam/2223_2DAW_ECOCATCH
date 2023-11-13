@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap');
 
-
 body{
     background-color: #488531;
     padding:20px;
+}
+
+#logo {
+    text-align: center;
+}
+
+#logo > img{
+    width:200px;
+    margin:0 auto 20px;
 }
 
 #gestor{
@@ -30,6 +38,42 @@ body{
     padding-bottom: 60px;
     width:1000px;
     margin:0 auto;
+}
+
+#ranking{
+    background-color:#326F1E;
+    color:#EDC713;
+    font-family: Fredoka;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 60px;
+    width:1000px;
+    margin:0 auto;
+}
+
+#ranking > table {
+    background-color:#6D3916;
+    margin:0 auto 40px;
+    border:solid 1px black;
+    width:500px;
+    border-collapse: collapse;
+}
+
+#ranking th,td{
+    border: solid 1px black;
+    padding:8px;
+    text-align:center;
+}
+
+#ranking > a{
+    text-decoration: none;
+    padding:5px;
+    border:solid 1px black;
+    border-radius: 9px;
+    color: #EDC713;
+    background-color: #6D3916;
 }
 
 #formulario > a{
