@@ -1,7 +1,10 @@
 /* Estilos generales de la página */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap');
+
 body {
     background-color: #488531;
     padding: 20px;
+    font-family: Fredoka;
 }
 
 /* Estilos del formulario de datos del ranking */
@@ -27,7 +30,6 @@ form > input[type=submit] {
     color: #EDC713;
     background-color: #6D3916;
     padding: 10px;
-    font-family: Fredoka;
     cursor: pointer;
     font-size: 20px;
 }
@@ -49,7 +51,6 @@ form > input[type=submit] {
 #formulario {
     background-color: #326F1E;
     color: #EDC713;
-    font-family: Fredoka;
     font-size: 20px;
     text-align: center;
     border-radius: 30px;
