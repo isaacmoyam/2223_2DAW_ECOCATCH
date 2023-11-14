@@ -2,6 +2,7 @@
     require '../controladores/basura_con.php';
     $control = $_GET['control'];
     $metodo = $_GET['metodo'];
+    echo $control;
 
     switch ($metodo) {
         case 'crear':
@@ -14,8 +15,7 @@
             borrar();
             break;
         default:
-            echo 'No he entrado en ninguno';
-            break;
+            return;
     }
 
     function crear(){

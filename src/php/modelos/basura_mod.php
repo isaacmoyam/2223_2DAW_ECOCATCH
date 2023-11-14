@@ -3,11 +3,11 @@
 class Basura_Mod {
     private $mysqli;
 
-    public function __construct($host, $usuario, $contrasena, $baseDeDatos) {
-        $this->mysqli = new mysqli($host, $usuario, $contrasena, $baseDeDatos);
+    public function __construct($host, $usuario, $passwd, $bdname) {
+        $this->mysqli = new mysqli($host, $usuario, $passwd, $bdname);
 
         if ($this->mysqli->connect_error) {
-            die("Error de conexión: " . $this->mysqli->connect_error);
+            die ("Error de conexión: " . $this->mysqli->connect_error);
         }
     }
 
@@ -24,20 +24,20 @@ class Basura_Mod {
         return $basuras;
     }
 
-    /*public function obtenerBasuraId($id) {
-        $sql = "SELECT * FROM usuarios WHERE id = ?";
-        $stmt = $this->mysqli->prepare($sql);
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_assoc();
-    }*/
-
-
     public function crear($nombre, $imagen, $valor) {
         $sql = "INSERT INTO item (nombre, nombreImagen) VALUES ($nombre, $imagen)";
         $result = $this->mysqli->query($sql);
+        $id = $this->mysqli->insert_id;
+        if($result->affected_rows = 0)
+            return 'Algo ha salido mal';
+        else{
+            
+            $sql = "INSERT INTO basura (id, valor) VALUES ($id, $valor)";
+            $result = $this->mysqli->query($sql);
+            if($result->affected_rows = 0)
+                return 'Algo ha salido mal';
+        } 
         return 'Insertado correctamente';
     }
 }
+
