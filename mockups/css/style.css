@@ -3,8 +3,12 @@
 
 body {
     background-color: #488531;
-    padding: 20px;
+    padding: 1%;
     font-family: Fredoka;
+    color: #EDC713;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 /* Estilos del formulario de datos del ranking */
@@ -32,16 +36,19 @@ form > input[type=submit] {
     padding: 10px;
     cursor: pointer;
     font-size: 20px;
+    font-family: Fredoka;
 }
 
 /* Estilos del logo */
 #logo {
     text-align: center;
+    margin: 0 auto;
+    width:50%;
 }
 
 #logo > img {
     width: 200px;
-    margin: 0 auto 20px;
+    margin: 0 auto 1%;
 }
 
 /* Estilos de las secciones de la página */
@@ -50,13 +57,12 @@ form > input[type=submit] {
 #ranking,
 #formulario {
     background-color: #326F1E;
-    color: #EDC713;
-    font-size: 20px;
+    font-size: 1.4em;
     text-align: center;
     border-radius: 30px;
     border: solid 2px;
-    padding-bottom: 60px;
-    width: 1000px;
+    padding-bottom: 3%;
+    width: 55%;
     margin: 0 auto;
 }
 
@@ -66,7 +72,7 @@ form > input[type=submit] {
 #ranking > a,
 #formulario > a {
     text-decoration: none;
-    padding: 5px;
+    padding: 0.6%;
     border: solid 1px black;
     border-radius: 9px;
     color: #EDC713;
@@ -75,7 +81,7 @@ form > input[type=submit] {
 
 /* Estilos específicos para enlaces en la sección "gestor" */
 #gestor > a:nth-child(2) {
-    left: 275px;
+    left: 28.5%;
 }
 
 /* Posicionamiento relativo para los enlaces de las diferentes secciones */
@@ -89,23 +95,27 @@ form > input[type=submit] {
 
 /* Posicionamiento específico de enlaces en la sección "gestor" */
 #gestor > a {
-    right: 230px;
+    right: 22%;
     bottom: 20px;
 }
 
+#gestor > table a {
+    text-decoration: none;
+}
+
 #gestorM > a {
-    right: 335px;
-    top: 25px;
+    right: 42%;
+    top: 45px;
 }
 
 /* Estilos de tablas en las secciones "ranking" y "gestor" */
 #ranking > table,
 #gestor table {
     background-color: #6D3916;
-    margin: 0 auto 40px;
+    margin: 0 auto 5%;
     border: solid 1px black;
     border-collapse: collapse;
-    width: 500px;
+    width: 50%;
 }
 
 /* Estilos para celdas de tablas en "ranking" y "gestor" */
@@ -114,6 +124,39 @@ form > input[type=submit] {
 #gestor th,
 #gestor td {
     border: solid 1px black;
-    padding: 8px;
+    padding: 2%;
     text-align: center;
+}
+
+@media only screen and (max-width: 1352px) {
+    #logo > img {
+        width: 180px;
+    }
+    #gestor {
+        font-size: 1.1em;
+    }
+}
+
+@media only screen and (max-width: 1206px) {
+    #logo > img {
+        width: 120px;
+    }
+    #gestor {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (max-width: 844px) {
+    #logo > img {
+        width: 80px;
+    }
+    #gestor {
+        font-size: 0.5em;
+    }
+    #gestorM > a {
+        right: 30%;
+    }
+    #gestorM {
+        font-size: 1em;
+    }
 }
