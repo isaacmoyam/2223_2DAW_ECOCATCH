@@ -1,5 +1,5 @@
 <?php
-    require '../controladores/basura_con.php';
+    require './php/controladores/basura_con.php';
     $control = $_GET['control'];
     $metodo = $_GET['metodo'];
     echo $control;
