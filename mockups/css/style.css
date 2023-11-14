@@ -1,0 +1,119 @@
+/* Estilos generales de la página */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap');
+
+body {
+    background-color: #488531;
+    padding: 20px;
+    font-family: Fredoka;
+}
+
+/* Estilos del formulario de datos del ranking */
+form {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > input {
+    margin-bottom: 10px;
+}
+
+form > input[type=number] {
+    width: 85px;
+}
+
+form > input[type=submit] {
+    margin-top: 60px;
+    border: solid 1px black;
+    border-radius: 9px;
+    color: #EDC713;
+    background-color: #6D3916;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Estilos del logo */
+#logo {
+    text-align: center;
+}
+
+#logo > img {
+    width: 200px;
+    margin: 0 auto 20px;
+}
+
+/* Estilos de las secciones de la página */
+#gestor,
+#gestorM,
+#ranking,
+#formulario {
+    background-color: #326F1E;
+    color: #EDC713;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 60px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* Estilos de los enlaces en las secciones */
+#gestor > a,
+#gestorM > a,
+#ranking > a,
+#formulario > a {
+    text-decoration: none;
+    padding: 5px;
+    border: solid 1px black;
+    border-radius: 9px;
+    color: #EDC713;
+    background-color: #6D3916;
+}
+
+/* Estilos específicos para enlaces en la sección "gestor" */
+#gestor > a:nth-child(2) {
+    left: 275px;
+}
+
+/* Posicionamiento relativo para los enlaces de las diferentes secciones */
+
+#gestor > a,
+#gestorM > a,
+#ranking > a,
+#formulario > a {
+    position: relative;
+}
+
+/* Posicionamiento específico de enlaces en la sección "gestor" */
+#gestor > a {
+    right: 230px;
+    bottom: 20px;
+}
+
+#gestorM > a {
+    right: 335px;
+    top: 25px;
+}
+
+/* Estilos de tablas en las secciones "ranking" y "gestor" */
+#ranking > table,
+#gestor table {
+    background-color: #6D3916;
+    margin: 0 auto 40px;
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 500px;
+}
+
+/* Estilos para celdas de tablas en "ranking" y "gestor" */
+#ranking th,
+#ranking td,
+#gestor th,
+#gestor td {
+    border: solid 1px black;
+    padding: 8px;
+    text-align: center;
+}
