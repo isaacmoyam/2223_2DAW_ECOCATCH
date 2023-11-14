@@ -13,7 +13,7 @@ CREATE TABLE partida(
     correo varchar(75) NULL,
     puntuacion smallint unsigned NOT NULL,
     idNivel tinyint unsigned NOT NULL,
-    FOREIGN KEY (idNivel) REFERENCES nivel(id)
+    CONSTRAINT nivelEnPartida FOREIGN KEY (idNivel) REFERENCES nivel(id)
 )ENGINE=InnoDB;
 
 -- Creación de la tabla "mensaje"
@@ -23,7 +23,7 @@ CREATE TABLE mensaje(
     contenido varchar(500) NOT NULL,
     puntosHasta smallint unsigned NOT NULL,
     idNivel tinyint unsigned NOT NULL,
-    FOREIGN KEY (idNivel) REFERENCES nivel(id)
+    CONSTRAINT nivelEnMensaje FOREIGN KEY (idNivel) REFERENCES nivel(id)
 )ENGINE=InnoDB;
 
 -- Creación de la tabla "item"
@@ -37,12 +37,12 @@ CREATE TABLE item(
 CREATE TABLE basura(
     id tinyint unsigned NOT NULL PRIMARY KEY,
     valor tinyint unsigned NOT NULL,
-    FOREIGN KEY (id) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT itemEnBasura FOREIGN KEY (id) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 -- Creación de la tabla "aumento" (supongo que es lo que deseas llamar a esta tabla)
 CREATE TABLE powerup(
     id tinyint unsigned NOT NULL PRIMARY KEY,
     aumento tinyint unsigned NOT NULL,
-    FOREIGN KEY (id) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT itemEnPowerup FOREIGN KEY (id) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=InnoDB;
