@@ -11,7 +11,9 @@
         </div>
         <div id="gestorM">
             <a href="gestionbasura.html">Volver</a>
-            <form action="" method="POST">
+            <form action="../../src/php/vistas/index.php" method="GET">
+                <input type="hidden" value="basura" name="control">
+                <input type="hidden" value="crear" name="metodo">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" value="Basura1" placeholder="Nombre basura">
                 <label for="valor">Valor:</label>

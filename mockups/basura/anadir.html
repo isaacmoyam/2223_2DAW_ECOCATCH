@@ -11,11 +11,13 @@
         </div>
         <div id="gestorM">
             <a href="gestionbasura.html">Volver</a>
-            <form action="" method="POST">
+            <form action="../../src/php/vistas/index.php" method="GET">
+                <input type="hidden" value="basura" name="control">
+                <input type="hidden" value="crear" name="metodo">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" placeholder="Nombre basura">
                 <label for="valor">Valor:</label>
-                <input type="number" name="nombre" placeholder="Puntuación">
+                <input type="number" name="valor" placeholder="Puntuación">
                 <label for="imagen">Imagen:</label>
                 <input type="file" name="imagen">
                 <input type="submit" value="Añadir basura">

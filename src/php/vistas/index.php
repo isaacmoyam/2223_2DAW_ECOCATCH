@@ -1,5 +1,5 @@
 <?php
-    require 'basura.php';
+    require '../controladores/basura_con.php';
     $control = $_GET['control'];
     $metodo = $_GET['metodo'];
 
@@ -19,14 +19,25 @@
     }
 
     function crear(){
-        return 'Funcion crear';
+        echo 'Funcion crear<br>';
+        $nombre = $_GET['nombre'];
+        $imagen = $_GET['imagen'];
+        $valor = $_GET['valor'];
+        $obj = new Basura_Con();
+        $obj->crear($nombre,$imagen,$valor);
     }
 
     function modificar(){
-        return 'Funcion modificar';
+        //echo 'Funcion modificar<br>';
+        $id = $_GET['id'];
+        $obj = new Basura_Con();
+        $obj->modificar($id);
     }
 
     function borrar(){
-        return 'Funcion borrar';
+        //echo 'Funcion borrar<br>';
+        $id = $_GET['id'];
+        $obj = new Basura_Con();
+        $obj->borrar($id);
     }
 ?>
