@@ -10,23 +10,7 @@ export class Vista6 extends Vista {
 
     eventos() {
         // Obtener la referencia del contenedor del juego
-        this.gameContainer = document.getElementById('gameContainer');
-
-        // Obtener la referencia de la imagen del barco
-        this.barco = document.querySelector('#gameContainer img');
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                // Mover la imagen hacia la izquierda
-                this.x -= 8;
-            } else if (e.key === 'ArrowRight') {
-                // Mover la imagen hacia la derecha
-                this.x += 8;
-            }
-
-            // Actualizar la posición de la imagen
-            this.barco.style.left = this.x + 'px';
-        });
+        this.eventoBarco()
 
         // Asociar el evento de cambio de vista
         this.btnSiguienteVista7 = this.base.querySelector('a');
@@ -37,4 +21,29 @@ export class Vista6 extends Vista {
         };
     }
 
+    eventoBarco(){
+        this.gameContainer = document.getElementById('gameContainer');
+
+        // Obtener la referencia de la imagen del barco
+        this.barco = document.querySelector('#gameContainer img');
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                this.x -= 8;
+            } else if (e.key === 'ArrowRight') {
+                this.x += 8;
+            }
+
+            // Actualizar la posición de la imagen con un movimiento más suave
+            this.moveBarco(this.barco, this.x);
+        });
+    }
+
+
+    moveBarco(barco, x) {
+        // Utilizar setTimeout para crear un movimiento más suave
+        setTimeout(() => {
+            barco.style.left = x + 'px';
+        }, 10);
+    }
 }
