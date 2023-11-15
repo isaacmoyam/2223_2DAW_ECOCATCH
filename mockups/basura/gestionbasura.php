@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                 <?php 
-                    require '../../src/php/controladores/basura_con.php';
+                    require_once ('../../src/php/controladores/basura_con.php');
                     $obj = new Basura_Con();
                     $datos = $obj->mostrar();
 
@@ -32,7 +32,7 @@
                     echo '<td>'.$fila['nombre'].'</td>';
                     echo '<td>'.$fila['valor'].'</td>';
                     echo '<td>'.$fila['nombreImagen'].'</td>';
-                    echo '<td><a href="../../src/index.php?control=basura&metodo=borrar&id='.$fila['id'].'">🗑️</a><a href="modificar.html">✏️</a></td>';
+                    echo '<td><a href="../../src/index.php?control=Basura_Con&metodo=borrar&id='.$fila['id'].'">🗑️</a><a href="modificar.php?control=Basura_Con&metodo=borrar&id='.$fila['id'].'">✏️</a></td>';
                     echo '</tr>';
                     }
                 ?>

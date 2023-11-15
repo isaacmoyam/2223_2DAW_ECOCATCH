@@ -17,16 +17,16 @@
         }
         public function modificar($id){
             //echo 'id de la basura a modificar: '.$id;
-            require_once (getcwd().'/php/modelos/basura_mod.php');
+            require_once ($_SERVER['DOCUMENT_ROOT'] . '/basura_mod.php');
             require_once (getcwd().'/php/config/configdb.php');
             $obj = new Basura_Mod($host, $username, $passwd, $bdname);
 
-            $resultado = $obj->modificar($id);
+            $resultado = $obj->buscarModificar($id);
             return $resultado;
         }
         public function borrar($id){
             //echo 'id de la basura a borrar: '.$id;
-            require_once (getcwd().'/php/modelos/basura_mod.php');
+            require_once ('/2223_2DAW_ECOCATCH/src/php/modelos/basura_mod.php');
             require_once (getcwd().'/php/config/configdb.php');
             $obj = new Basura_Mod($host, $username, $passwd, $bdname);
 

@@ -31,7 +31,8 @@
         //echo 'Funcion modificar<br>';
         $id = $_GET['id'];
         $obj = new Basura_Con();
-        $obj->modificar($id);
+        $fila = $obj->modificar($id);
+        return $fila;
     }
 
     function borrar(){

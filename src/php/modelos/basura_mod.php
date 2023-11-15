@@ -46,7 +46,10 @@ class Basura_Mod {
                 return 'Algo ha salido mal'; 
         }
     }
-    public function modificar($id) {
+
+    
+
+    public function buscarModificar($id) {
         $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id";
         $result = $this->mysqli->query($sql);
         $fila = $result->fetch_assoc();
