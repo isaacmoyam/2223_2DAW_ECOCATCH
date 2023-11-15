@@ -115,7 +115,7 @@ form > input[type=submit] {
     margin: 0 auto 5%;
     border: solid 1px black;
     border-collapse: collapse;
-    width: 50%;
+    width: 60%;
 }
 
 /* Estilos para celdas de tablas en "ranking" y "gestor" */

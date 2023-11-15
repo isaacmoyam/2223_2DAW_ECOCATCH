@@ -1,5 +1,5 @@
 <?php
-    require './php/controladores/basura_con.php';
+    require 'php/controladores/basura_con.php';
     $control = $_GET['control'];
     $metodo = $_GET['metodo'];
     echo $control;
@@ -39,5 +39,6 @@
         $id = $_GET['id'];
         $obj = new Basura_Con();
         $obj->borrar($id);
+        header("Location: ../mockups/basura/gestionbasura.php");
     }
 ?>
