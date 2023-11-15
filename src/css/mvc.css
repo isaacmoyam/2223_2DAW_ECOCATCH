@@ -23,10 +23,10 @@
 body > div{
 	display: none;
 }
-#divVista1 > a{
+a{
 	cursor: pointer;
 }
-#divVista1 > a:hover{
+a:hover{
 	color: blue;
 	text-decoration: underline;
 }

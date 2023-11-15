@@ -8,12 +8,16 @@ export class Vista4 extends Vista{
     }
 
     crearInterfaz(){
-        //Creacion del boton
-        this.btnVerVista5 = document.createElement('button')
-        this.base.appendChild(this.btnVerVista5)
-        this.btnVerVista5.textContent = 'Siguiente'
-        this.btnVerVista5.onclick = () => {
+        //Coger referencias del interfaz
+        this.btnJugar = this.base.querySelectorAll('a')[3]
+        this.btnVolverVista1= document.getElementsByClassName('volverAVista1')[2]
+
+        //Asociar eventos
+        this.btnJugar.onclick = () => {
             this.controlador.verVista(Vista.VISTA5)
+        }
+        this.btnVolverVista1.onclick = () =>{
+            this.controlador.verVista(Vista.VISTA1)
         }
     }
 

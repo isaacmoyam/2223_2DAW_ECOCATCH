@@ -4,15 +4,16 @@ export class Vista6 extends Vista{
 
     constructor(controlador, base){
         super(controlador, base)
-        this.crearInterfaz()
+        this.eventos()
     }
 
-    crearInterfaz(){
-        //Creacion del boton
-        this.btnVerVista7 = document.createElement('button')
-        this.base.appendChild(this.btnVerVista7)
-        this.btnVerVista7.textContent = 'Siguiente'
-        this.btnVerVista7.onclick = () => {
+    eventos(){
+        //Coger referencias del interfaz
+        console.log(this.base.querySelectorAll('a'))
+        this.btnSiguienteVista7 = this.base.querySelectorAll('a')[0]
+
+        //Asociar eventos
+        this.btnSiguienteVista7.onclick = () => {
             this.controlador.verVista(Vista.VISTA7)
         }
     }
