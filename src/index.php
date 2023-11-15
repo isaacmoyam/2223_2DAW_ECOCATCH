@@ -2,7 +2,6 @@
     require 'php/controladores/basura_con.php';
     $control = $_GET['control'];
     $metodo = $_GET['metodo'];
-    echo $control;
 
     switch ($metodo) {
         case 'crear':
@@ -19,12 +18,13 @@
     }
 
     function crear(){
-        echo 'Funcion crear<br>';
-        $nombre = $_GET['nombre'];
-        $imagen = $_GET['imagen'];
-        $valor = $_GET['valor'];
+        //echo 'Funcion crear<br>';
+        $nombre = $_POST['nombre'];
+        $imagen = $_POST['imagen'];
+        $valor = $_POST['valor'];
         $obj = new Basura_Con();
         $obj->crear($nombre,$imagen,$valor);
+        header("Location: ../mockups/basura/gestionbasura.php");
     }
 
     function modificar(){
