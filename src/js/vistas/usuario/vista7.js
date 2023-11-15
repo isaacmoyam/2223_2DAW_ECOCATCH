@@ -18,21 +18,18 @@ export class Vista7 extends Vista{
     }
 
     comprobarNombre(evento){
-        console.log('111111111')
         let regExp =/^[A-z|áéíóúÁÉÍÓÚñÑüÜçÇ]{3,}\w{1,}$/
 
         this.validarCampo(evento, regExp, 'NICK')
     }
 
     comprobarCorreo(evento){
-        console.log('2222222222')
         let regExp = /^(\w{3,}\.?)*(\w{3,})@(\w{3,}\.?)*(\w{3,})\.[A-z]{2,}$/
 
         this.validarCampo(evento, regExp,'CORREO')
     }
 
     validarCampo(evento,regExp,nombreCampo){
-        console.log('Denada por el saludo')
         let input = evento.target
 
         let pMensaje = document.getElementById('msgCampos')

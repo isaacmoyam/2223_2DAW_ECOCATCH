@@ -1,21 +1,40 @@
-import {Vista} from './vista.js'
+import { Vista } from './vista.js';
 
-export class Vista6 extends Vista{
+export class Vista6 extends Vista {
 
-    constructor(controlador, base){
-        super(controlador, base)
-        this.eventos()
+    constructor(controlador, base) {
+        super(controlador, base);
+        this.x = 325; // Posición inicial en el eje X
+        this.eventos();
     }
 
-    eventos(){
-        //Coger referencias del interfaz
-        console.log(this.base.querySelectorAll('a'))
-        this.btnSiguienteVista7 = this.base.querySelectorAll('a')[0]
+    eventos() {
+        // Obtener la referencia del contenedor del juego
+        this.gameContainer = document.getElementById('gameContainer');
 
-        //Asociar eventos
+        // Obtener la referencia de la imagen del barco
+        this.barco = document.querySelector('#gameContainer img');
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                // Mover la imagen hacia la izquierda
+                this.x -= 8;
+            } else if (e.key === 'ArrowRight') {
+                // Mover la imagen hacia la derecha
+                this.x += 8;
+            }
+
+            // Actualizar la posición de la imagen
+            this.barco.style.left = this.x + 'px';
+        });
+
+        // Asociar el evento de cambio de vista
+        this.btnSiguienteVista7 = this.base.querySelector('a');
+
+        // Asociar eventos
         this.btnSiguienteVista7.onclick = () => {
-            this.controlador.verVista(Vista.VISTA7)
-        }
+            this.controlador.verVista(Vista.VISTA7);
+        };
     }
 
 }

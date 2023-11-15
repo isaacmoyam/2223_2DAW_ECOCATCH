@@ -30,3 +30,7 @@ a:hover{
 	color: blue;
 	text-decoration: underline;
 }
+
+#gameContainer img {
+	position: absolute;
+}
