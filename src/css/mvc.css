@@ -1,0 +1,32 @@
+#divVista1{
+	background-color: pink;
+}
+#divVista2{
+	background-color: blue;
+}
+#divVista3{
+	background-color: darkgray;
+}
+#divVista4{
+	background-color: yellow;
+}
+#divVista5{
+	background-color: green;
+}
+#divVista6{
+	background-color: cyan;
+}
+#divVista7{
+	background-color: orange;
+}
+
+body > div{
+	display: none;
+}
+#divVista1 > a{
+	cursor: pointer;
+}
+#divVista1 > a:hover{
+	color: blue;
+	text-decoration: underline;
+}
