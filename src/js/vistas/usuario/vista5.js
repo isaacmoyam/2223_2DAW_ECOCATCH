@@ -1,13 +1,24 @@
 import {Vista} from './vista.js'
 
+/**
+ * Clase encargada de la Vista 5
+ */
 export class Vista5 extends Vista{
 
+    /**
+     * Constructor de la clase. Inicializa los atributos correspondientes
+     * @param controlador {ControladorUsuario} Controlador del Usuario
+     * @param base {Object} Objeto que es una referencia del interfaz
+     */
     constructor(controlador, base){
         super(controlador, base)
-        this.crearInterfaz()
+        this.eventosInterfaz()
     }
 
-    crearInterfaz(){
+    /**
+     * Asocia los eventos de la interfaz
+     */
+    eventosInterfaz(){
         //Coger referencias del interfaz
         this.enlaceVolverVista4= document.getElementById('volverAVista4')
         this.btnNivel1 = document.querySelectorAll('button')[0]

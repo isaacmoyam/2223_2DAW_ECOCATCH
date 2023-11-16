@@ -35,7 +35,7 @@ export class Vista7 extends Vista{
     }
 
     /**
-     * LLama a una función encargada de comprobar si se valida el campo Nombre mediante una expresion regular determinada.
+     * LLama a una función encargada de comprobar si se valida el campo Nombre mediante una expresión regular determinada.
      * Se ejecuta con un evento onblur en el campoNombre
      * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
      */
@@ -67,7 +67,7 @@ export class Vista7 extends Vista{
      * Se encarga de validar el campo mediante una Expresion Regular.
      * Si es correcta el borde se pone de color amarillo, rojo en caso contrario
      * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
-     * @param regExp {Object} Expresion Regular
+     * @param regExp {Object} Expresión Regular
      * @param nombreCampo {String} String del nombre del campo que se ha validado
      */
     validarCampo(evento,regExp,nombreCampo){
