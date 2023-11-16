@@ -9,14 +9,14 @@ export class Vista4 extends Vista{
 
     crearInterfaz(){
         //Coger referencias del interfaz
-        this.btnJugar = this.base.querySelectorAll('a')[3]
-        this.btnVolverVista1= document.getElementsByClassName('volverAVista1')[2]
+        this.enlaceJugar = this.base.querySelectorAll('a')[3]
+        this.enlaceVolverVista1= document.getElementsByClassName('volverAVista1')[2]
 
         //Asociar eventos
-        this.btnJugar.onclick = () => {
+        this.enlaceJugar.onclick = () => {
             this.controlador.verVista(Vista.VISTA5)
         }
-        this.btnVolverVista1.onclick = () =>{
+        this.enlaceVolverVista1.onclick = () =>{
             this.controlador.verVista(Vista.VISTA1)
         }
     }

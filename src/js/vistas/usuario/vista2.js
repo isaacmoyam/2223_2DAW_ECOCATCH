@@ -7,10 +7,10 @@ export class Vista2 extends Vista{
 	}
 	crearInterfaz(){
 		//Coger referencias del interfaz
-		this.btnVolverVista1= document.getElementsByClassName('volverAVista1')[0]
+		this.enlaceVolverVista1= document.getElementsByClassName('volverAVista1')[0]
 
 		//Asociar eventos
-		this.btnVolverVista1.onclick = () =>{
+		this.enlaceVolverVista1.onclick = () =>{
 			this.controlador.verVista(Vista.VISTA1)
 		}
 	}

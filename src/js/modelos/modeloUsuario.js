@@ -2,7 +2,7 @@ export class ModeloUsuario{
 	constructor(){
 		this.mapa = new Map()
 	}
-	guardar(clave, valor){
+	guardarNivelJuego(clave, valor){
 		this.mapa.set(clave, valor)
 	}
 	ver(clave){

@@ -18,13 +18,20 @@ export class Vista7 extends Vista{
     }
 
     comprobarNombre(evento){
-        let regExp =/^[A-z|áéíóúÁÉÍÓÚñÑüÜçÇ]{3,}\w{1,}$/
+        let regExp =/^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/
 
         this.validarCampo(evento, regExp, 'NICK')
     }
 
     comprobarCorreo(evento){
-        let regExp = /^(\w{3,}\.?)*(\w{3,})@(\w{3,}\.?)*(\w{3,})\.[A-z]{2,}$/
+        //La expresion regular esta puesto entre parentesis con un simbolo ? para que admita campo vacio.
+        /*
+            Solo admite los correos:
+            @gmail.com,
+            .guadalupe@alumnado.fundacionloyola.net
+            .guadalupe@alumnado.fundacionloyola.es
+         */
+        let regExp = /^(\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))?$/
 
         this.validarCampo(evento, regExp,'CORREO')
     }

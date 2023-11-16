@@ -13,10 +13,10 @@ export class Vista6 extends Vista {
         this.eventoBarco()
 
         // Asociar el evento de cambio de vista
-        this.btnSiguienteVista7 = this.base.querySelector('a');
+        this.enlaceSiguienteVista7 = this.base.querySelector('a');
 
         // Asociar eventos
-        this.btnSiguienteVista7.onclick = () => {
+        this.enlaceSiguienteVista7.onclick = () => {
             this.controlador.verVista(Vista.VISTA7);
         };
     }
@@ -26,6 +26,7 @@ export class Vista6 extends Vista {
 
         // Obtener la referencia de la imagen del barco
         this.barco = document.querySelector('#gameContainer img');
+        this.pNivel = document.getElementById('nivelSeleccionado')
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
@@ -45,5 +46,11 @@ export class Vista6 extends Vista {
         setTimeout(() => {
             barco.style.left = x + 'px';
         }, 10);
+    }
+
+    mostrar(ver){
+        let nivel = this.controlador.getNivelJuego()
+        this.pNivel.textContent = 'Has escogido el nivel ' + nivel
+        super.mostrar(ver)
     }
 }

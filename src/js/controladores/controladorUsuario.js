@@ -51,12 +51,14 @@ class ControladorUsuario{
         for(let vista of this.vistas.values())
             vista.mostrar(false)
     }
-    setVidas(vidas){
-        this.modelo.guardar('vidas',vidas)
+
+    setNivelJuego(vidas){
+        this.modelo.guardarNivelJuego('vidas',vidas)
     }
-    getVidas(){
-        this.modelo.ver('vidas')
+    getNivelJuego(){
+        return this.modelo.ver('vidas')
     }
+
 }
 
 window.onload = () => {new ControladorUsuario()}

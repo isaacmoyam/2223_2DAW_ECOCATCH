@@ -2,7 +2,7 @@
 	background-color: pink;
 }
 #divVista2{
-	background-color: blue;
+	background-color: deepskyblue;
 }
 #divVista3{
 	background-color: darkgray;
@@ -33,4 +33,8 @@ a:hover{
 
 #gameContainer img {
 	position: absolute;
+}
+
+img{
+	width: 10%;
 }
