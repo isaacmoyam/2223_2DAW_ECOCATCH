@@ -7,6 +7,7 @@ export class Vista{
 		Vista.VISTA5 = Symbol('seleccionNivel')
 		Vista.VISTA6 = Symbol('Jugar')
 		Vista.VISTA7 = Symbol('Formulario')
+		Vista.VISTA8 = Symbol('PruebaAJAX')
 	}
 
 	constructor(controlador, base){

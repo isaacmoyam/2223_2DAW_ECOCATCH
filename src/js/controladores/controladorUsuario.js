@@ -7,6 +7,7 @@ import {Vista4} from "../vistas/usuario/vista4.js";
 import {Vista5} from "../vistas/usuario/vista5.js";
 import {Vista6} from "../vistas/usuario/vista6.js";
 import {Vista7} from "../vistas/usuario/vista7.js";
+import {Vista8} from "../vistas/usuario/vista8.js";
 
 class ControladorUsuario{
     vistas = new Map()
@@ -25,6 +26,7 @@ class ControladorUsuario{
         const divVista5 = document.getElementById('divVista5')
         const divVista6 = document.getElementById('divVista6')
         const divVista7 = document.getElementById('divVista7')
+        const divVista8 = document.getElementById('divVista8')
 
         //Creo las vistas
         this.vistas.set(Vista.VISTA1, new Vista1(this, divVista1))
@@ -34,6 +36,8 @@ class ControladorUsuario{
         this.vistas.set(Vista.VISTA5, new Vista5(this, divVista5))
         this.vistas.set(Vista.VISTA6, new Vista6(this, divVista6))
         this.vistas.set(Vista.VISTA7, new Vista7(this, divVista7))
+        this.vistas.set(Vista.VISTA8, new Vista8(this, divVista8))
+
 
         this.verVista(Vista.VISTA1)
     }

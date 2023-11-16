@@ -50,7 +50,7 @@ export class Vista6 extends Vista {
 
     mostrar(ver){
         let nivel = this.controlador.getNivelJuego()
-        this.pNivel.textContent = 'Has escogido el nivel ' + nivel
+        this.pNivel.textContent = 'Nivel: ' + nivel
         super.mostrar(ver)
     }
 }
