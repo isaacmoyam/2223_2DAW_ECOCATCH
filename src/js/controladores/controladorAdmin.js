@@ -144,6 +144,7 @@ class ControladorAdmin{
             pMensaje.innerHTML = `Has introducido un campo con valores no validos`
         }else{
             input.style.borderColor = 'yellow'
+            pMensaje.innerHTML = ''
         }
     }
 
