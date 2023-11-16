@@ -3,11 +3,11 @@
 
 body {
     background-color: #488531;
-    padding: 1%;
+    padding: 1% 0;
     font-family: Fredoka;
     color: #EDC713;
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
@@ -39,14 +39,18 @@ form > input[type=submit] {
     font-family: Fredoka;
 }
 
+form > input[type=submit]:hover {
+    background-color: #85471f;
+}
+
 /* Estilos del logo */
-#logo {
+header {
     text-align: center;
     margin: 0 auto;
     width:50%;
 }
 
-#logo > img {
+header > img {
     width: 200px;
     margin: 0 auto 1%;
 }
@@ -54,8 +58,7 @@ form > input[type=submit] {
 /* Estilos de las secciones de la página */
 #gestor,
 #gestorM,
-#ranking,
-#formulario {
+#ranking {
     background-color: #326F1E;
     font-size: 1.4em;
     text-align: center;
@@ -64,13 +67,25 @@ form > input[type=submit] {
     padding-bottom: 3%;
     width: 55%;
     margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#formulario {
+    background-color: #326F1E;
+    font-size: 1.3em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 3%;
+    width: 55%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
 
 /* Estilos de los enlaces en las secciones */
 #gestor > a,
 #gestorM > a,
-#ranking > a,
-#formulario > a {
+#ranking > a {
     text-decoration: none;
     padding: 0.6%;
     border: solid 1px black;
@@ -81,21 +96,30 @@ form > input[type=submit] {
 
 /* Estilos específicos para enlaces en la sección "gestor" */
 #gestor > a:nth-child(2) {
-    left: 28.5%;
+    left: 32.5%;
+    width:4%;
+    display: inline-block;
 }
 
 /* Posicionamiento relativo para los enlaces de las diferentes secciones */
 
 #gestor > a,
 #gestorM > a,
-#ranking > a,
-#formulario > a {
+#ranking > a {
     position: relative;
+}
+
+/* Estilo al pasar el cursor por encima de los enlaces */
+
+#ranking > a:hover,
+#gestor > a:hover,
+#gestorM > a:hover {
+    background-color: #85471f;
 }
 
 /* Posicionamiento específico de enlaces en la sección "gestor" */
 #gestor > a {
-    right: 22%;
+    right: 28.3%;
     bottom: 20px;
 }
 
@@ -115,7 +139,7 @@ form > input[type=submit] {
     margin: 0 auto 5%;
     border: solid 1px black;
     border-collapse: collapse;
-    width: 50%;
+    width: 60%;
 }
 
 /* Estilos para celdas de tablas en "ranking" y "gestor" */

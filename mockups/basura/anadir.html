@@ -3,23 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Añadir basura</title>
     </head>
     <body>
-        <div id="logo">
-            <img src="../img/logo.png">
-        </div>
-        <div id="gestorM">
-            <a href="gestionbasura.html">Volver</a>
-            <form action="" method="POST">
+        <header id="logo">
+            <img src="../img/logo.png" alt="Logo de la página EcoCatch">
+        </header>
+        <main id="gestorM">
+            <a id="btnVolver" href="gestionbasura.html">Volver</a>
+            <form action="" method="GET">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" placeholder="Nombre basura">
                 <label for="valor">Valor:</label>
-                <input type="number" name="nombre" placeholder="Puntuación">
+                <input type="number" name="valor" placeholder="Puntuación">
                 <label for="imagen">Imagen:</label>
                 <input type="file" name="imagen">
                 <input type="submit" value="Añadir basura">
             </form>
-        </div>
+        </main>
     </body>
 </html>
