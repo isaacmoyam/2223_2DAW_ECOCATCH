@@ -33,10 +33,10 @@ if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
     <title>Gestión de basura</title>
 </head>
 <body>
-    <div id="logo">
+    <header>
         <img src="../img/logo.png" alt="Logo de la aplicación">
-    </div>
-    <div id="gestor">
+    </header>
+    <main id="gestor">
         <h1>Basura</h1>
         <a href="anadir.html">+</a>
         <a href="">Volver</a>
@@ -45,7 +45,7 @@ if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
                 <th>Nombre</th>
                 <th>Valor</th>
                 <th>Imagen</th>
-                <th></th>
+                <th>Opción</th>
             </tr>
             <?php
             // Inclusión del controlador de basura y obtención de datos.
@@ -69,7 +69,7 @@ if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
             }
             ?>
         </table>
-    </div>
+    </main>
     <script src="expresionesRegulares.js" type="module"></script>
 </body>
 </html>

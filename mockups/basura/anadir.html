@@ -7,23 +7,23 @@
         <title>Añadir basura</title>
     </head>
     <body>
-        <div id="logo">
+        <header>
             <img src="../img/logo.png">
-        </div>
-        <div id="gestorM">
-            <a href="gestionbasura.php">Volver</a>
+        </header>
+        <main id="gestorM">
+            <a id="btnVolver" href="gestionbasura.php">Volver</a>
             <form action="../../src/index.php?control=Basura_Con&metodo=crear" method="POST">
-                <label for="nombre">(*)Nombre:</label>
+                <label for="nombre">(*) Nombre:</label>
                 <input type="text" name="nombre" placeholder="Nombre basura">
-                <label for="valor">(*)Valor:</label>
+                <label for="valor">(*) Valor:</label>
                 <input type="text" name="valor" placeholder="Puntuación">
-                <label for="imagen">(*)Imagen:</label>
+                <label for="imagen">Imagen:</label>
                 <input type="file" name="imagen">
                 <img id="imagenMiniatura">
                 <p id="msgCampos"></p>
                 <input type="submit" value="Añadir basura">
             </form>
-        </div>
+        </main>
         <script src="expresionesRegulares.js" type="module"></script>
     </body>
 </html>
