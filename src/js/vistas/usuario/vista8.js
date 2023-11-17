@@ -35,7 +35,7 @@ export class Vista8 extends Vista {
 
     /**
      * Es usado como callback en la peticion de la llamada AEMET y se encarga de mostrar por consola los datos obtenidos de esa llamada
-     * @param respuesta {Array}
+     * @param respuesta {Array} Array de la respuesta con los dato que ha dado la peticion get
      */
     verResultadosGET(respuesta){
         /*Lo que me ha devuelto la el callback en respuesta es un array en donde en la posicion 0 se encuentra un objeto con todos los datos puestos como clave, valor
