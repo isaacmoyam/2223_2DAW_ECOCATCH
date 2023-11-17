@@ -28,7 +28,7 @@
             <a href="gestionbasura.php">Volver</a>
             <?php
                 // Inclusión del archivo principal y llamada a la función buscarModificar.
-                require ($_SERVER['DOCUMENT_ROOT'].'/2324_2DAW_ECOCATCH/src/index.php');
+                require ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/index.php');
                 $fila = buscarModificar();
             ?>
             <form action="../../src/index.php?control=Basura_Con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">

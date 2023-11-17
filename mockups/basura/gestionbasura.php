@@ -49,7 +49,7 @@ if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
                 </tr>
                 <?php
                 // Inclusión del controlador de basura y obtención de datos.
-                require_once ($_SERVER['DOCUMENT_ROOT'].'/2324_2DAW_ECOCATCH/src/php/controladores/basura_con.php');
+                require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/controladores/basura_con.php');
                 $obj = new Basura_Con();
                 $datos = $obj->mostrar();
 
