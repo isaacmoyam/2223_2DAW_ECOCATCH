@@ -11,6 +11,16 @@
             <img src="../img/logo.png">
         </div>
         <div id="gestor">
+        <?php
+                if(!$_GET['mensaje']){}
+                else{
+                    if($_GET['mensaje'] == true)
+                        echo 'Todo ha salido correctamente';
+                    else{
+                        echo 'Algo ha salido mal';
+                    } 
+                }
+            ?>
             <h1>Basura</h1>
             <a href="anadir.html">+</a>
             <a href="">Volver</a>

@@ -61,15 +61,27 @@ class Basura_Mod {
     public function buscarModificar($id) {
         $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
         $result = $this->mysqli->query($sql);
+            if($result === false){
+                $errno = $this->mysqli->errno;
+                return $errno;
+            }
         $fila = $result->fetch_assoc();
         return $fila;
     }
     public function modificar($id, $nombre, $imagen, $valor) {
         $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
         $this->mysqli->query($sql);
-
+        $result = $this->mysqli->query($sql);
+            if($result === false){
+                $errno = $this->mysqli->errno;
+                return $errno;
+            }
         $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
-        $this->mysqli->query($sql);
+        $result = $this->mysqli->query($sql);
+            if($result === false){
+                $errno = $this->mysqli->errno;
+                return $errno;
+            }
     }
 }
 

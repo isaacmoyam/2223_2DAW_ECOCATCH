@@ -31,29 +31,20 @@
         }
         public function modificar($id, $nombre, $imagen, $valor){
             //echo $nombre.' | '.$imagen.' | '.$valor;
-            $this->obj->modificar($id, $nombre, $imagen, $valor);
+            $resultado = $this->obj->modificar($id, $nombre, $imagen, $valor);
+            return $resultado;
             
         }
         public function borrar($id){
             //echo 'id de la basura a borrar: '.$id;
-            if($id === '')
-                return 'Algo ha salido mal';
-            else
-                $this->obj->borrar($id);
+                $resultado = $this->obj->borrar($id);
+            return $resultado;
             
         }
         public function mostrar(){
             //echo 'llego al controlador';
             $resultado = $this->obj->mostrar();
             return $resultado;
-        }
-
-        public function manejoError($mensaje){
-            switch($mensaje){
-                case '200':
-                    return true;
-                default;
-            }
         }
     }
 ?>

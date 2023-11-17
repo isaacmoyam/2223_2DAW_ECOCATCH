@@ -25,16 +25,24 @@
         $imagen = $_POST['imagen'];
         $valor = $_POST['valor'];
         $obj = new Basura_Con();
-        $obj->crear($nombre,$imagen,$valor);
-        header("Location: ../mockups/basura/gestionbasura.php");
+        $resultado = $obj->crear($nombre,$imagen,$valor);
+        if($resultado === false){
+            header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
+        }
+        else
+            header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
     }
 
     function borrar(){
         //echo 'Funcion borrar<br>';
         $id = $_GET['id'];
         $obj = new Basura_Con();
-        $obj->borrar($id);
-        header("Location: ../mockups/basura/gestionbasura.php");
+        $resultado = $obj->borrar($id);
+        if($resultado === false){
+            header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
+        }
+        else
+            header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
     }
 
     function buscarModificar(){
@@ -52,7 +60,11 @@
         $imagen = $_POST['imagen'];
         $valor = $_POST['valor'];
         $obj = new Basura_Con();
-        $obj->modificar($id, $nombre, $imagen, $valor);
-        header("Location: ../mockups/basura/gestionbasura.php");
+        $resultado = $obj->modificar($id, $nombre, $imagen, $valor);
+        if($resultado === false){
+            header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
+        }
+        else
+            header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
     }
 ?>
