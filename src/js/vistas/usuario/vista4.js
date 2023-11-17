@@ -20,7 +20,7 @@ export class Vista4 extends Vista{
      */
     eventosInterfaz(){
         //Coger referencias del interfaz
-        this.enlaceJugar = this.base.querySelectorAll('a')[3]
+        this.enlaceJugar = this.base.querySelectorAll('a')[0]
         this.enlaceVolverVista1= document.getElementsByClassName('volverAVista1')[2]
 
         //Asociar eventos
