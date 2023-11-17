@@ -7,16 +7,18 @@
         case 'crear':
             crear();
             break;
-        case 'modificar':
-            modificar();
+        case 'buscarModificar':
+            buscarModificar();
             break;
         case 'borrar':
             borrar();
             break;
+        case 'modificar':
+            modificar();
+            break;
         default:
             return;
     }
-
     function crear(){
         //echo 'Funcion crear<br>';
         $nombre = $_POST['nombre'];
@@ -27,19 +29,30 @@
         header("Location: ../mockups/basura/gestionbasura.php");
     }
 
-    function modificar(){
-        //echo 'Funcion modificar<br>';
-        $id = $_GET['id'];
-        $obj = new Basura_Con();
-        $fila = $obj->modificar($id);
-        return $fila;
-    }
-
     function borrar(){
         //echo 'Funcion borrar<br>';
         $id = $_GET['id'];
         $obj = new Basura_Con();
         $obj->borrar($id);
+        header("Location: ../mockups/basura/gestionbasura.php");
+    }
+
+    function buscarModificar(){
+        //echo 'Funcion modificar<br>';
+        $id = $_GET['id'];
+        $obj = new Basura_Con();
+        $fila = $obj->buscarModificar($id);
+        return $fila;
+    }
+    function modificar(){
+        //echo 'Funcion crear<br>';
+        print_r($_POST);
+        $id = $_GET['id'];
+        $nombre = $_POST['nombre'];
+        $imagen = $_POST['imagen'];
+        $valor = $_POST['valor'];
+        $obj = new Basura_Con();
+        $obj->modificar($id, $nombre, $imagen, $valor);
         header("Location: ../mockups/basura/gestionbasura.php");
     }
 ?>

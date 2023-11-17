@@ -10,7 +10,7 @@ CREATE TABLE nivel(
 CREATE TABLE partida(
     id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre varchar(50) NOT NULL,
-    correo varchar(75) NULL,
+    correo varchar(100) NULL,
     puntuacion smallint unsigned NOT NULL,
     idNivel tinyint unsigned NOT NULL,
     CONSTRAINT nivelEnPartida FOREIGN KEY (idNivel) REFERENCES nivel(id)

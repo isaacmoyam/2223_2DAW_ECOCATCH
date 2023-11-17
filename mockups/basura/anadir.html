@@ -13,16 +13,17 @@
         <div id="gestorM">
             <a href="gestionbasura.php">Volver</a>
             <form action="../../src/index.php?control=Basura_Con&metodo=crear" method="POST">
-                <label for="nombre">Nombre:</label>
+                <label for="nombre">(*)Nombre:</label>
                 <input type="text" name="nombre" placeholder="Nombre basura">
-                <label for="valor">Valor:</label>
-                <input type="number" name="valor" placeholder="Puntuación">
-                <label for="imagen">Imagen:</label>
+                <label for="valor">(*)Valor:</label>
+                <input type="text" name="valor" placeholder="Puntuación">
+                <label for="imagen">(*)Imagen:</label>
                 <input type="file" name="imagen">
                 <img id="imagenMiniatura">
                 <p id="msgCampos"></p>
                 <input type="submit" value="Añadir basura">
             </form>
         </div>
+        <script src="expresionesRegulares.js" type="module"></script>
     </body>
 </html>

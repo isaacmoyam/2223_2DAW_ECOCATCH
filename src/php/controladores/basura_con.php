@@ -1,45 +1,59 @@
 <?php
         class Basura_Con{
-        private $atributo;
+        private $obj;
+        private $host;
+        private $username;
+        private $passwd;
+        private $bdname;
 
         public function __construct(){
-            $this->atributo = 'mostrar.php';
+            require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/modelos/basura_mod.php');
+            require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/config/configdb.php');
+            $this->host = HOST;
+            $this->username = USERNAME;
+            $this->passwd = PASSWD;
+            $this->bdname = BDNAME;
+            $this->obj = new Basura_Mod($this->host, $this->username, $this->passwd, $this->bdname);
         }
         public function crear($nombre, $imagen, $valor){
             //echo $nombre.' | '.$imagen.' | '.$valor;
-            require_once (getcwd().'/php/modelos/basura_mod.php');
-            require_once (getcwd().'/php/config/configdb.php');
-            $obj = new Basura_Mod($host, $username, $passwd, $bdname);
-
-            $resultado = $obj->crear($nombre, $imagen, $valor);
+            if($nombre === '' || $imagen === '' || $valor === ''){
+                return 'Rellena todos los campos obligatorios(*)';
+            }
+            $resultado =$this->obj->crear($nombre, $imagen, $valor);
             return $resultado;
 
         }
-        public function modificar($id){
+        public function buscarModificar($id){
             //echo 'id de la basura a modificar: '.$id;
-            require_once ($_SERVER['DOCUMENT_ROOT'] . '/basura_mod.php');
-            require_once (getcwd().'/php/config/configdb.php');
-            $obj = new Basura_Mod($host, $username, $passwd, $bdname);
-
-            $resultado = $obj->buscarModificar($id);
+            $resultado = $this->obj->buscarModificar($id);
             return $resultado;
+        }
+        public function modificar($id, $nombre, $imagen, $valor){
+            //echo $nombre.' | '.$imagen.' | '.$valor;
+            $this->obj->modificar($id, $nombre, $imagen, $valor);
+            
         }
         public function borrar($id){
             //echo 'id de la basura a borrar: '.$id;
-            require_once ('/2223_2DAW_ECOCATCH/src/php/modelos/basura_mod.php');
-            require_once (getcwd().'/php/config/configdb.php');
-            $obj = new Basura_Mod($host, $username, $passwd, $bdname);
-
-            $obj->borrar($id);
+            if($id === '')
+                return 'Algo ha salido mal';
+            else
+                $this->obj->borrar($id);
+            
         }
         public function mostrar(){
             //echo 'llego al controlador';
-            require ('../../src/php/modelos/basura_mod.php');
-            require ('../../src/php/config/configdb.php');
-            $obj = new Basura_Mod($host, $username, $passwd, $bdname);
-            
-            $resultado = $obj->mostrar();
+            $resultado = $this->obj->mostrar();
             return $resultado;
+        }
+
+        public function manejoError($mensaje){
+            switch($mensaje){
+                case '200':
+                    return true;
+                default;
+            }
         }
     }
 ?>

@@ -23,21 +23,27 @@
                 </tr>
                 <tr>
                 <?php 
-                    require_once ('../../src/php/controladores/basura_con.php');
+                    require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/controladores/basura_con.php');
                     $obj = new Basura_Con();
                     $datos = $obj->mostrar();
 
                     foreach ($datos as $fila){
-                    echo '<tr>';
-                    echo '<td>'.$fila['nombre'].'</td>';
-                    echo '<td>'.$fila['valor'].'</td>';
-                    echo '<td>'.$fila['nombreImagen'].'</td>';
-                    echo '<td><a href="../../src/index.php?control=Basura_Con&metodo=borrar&id='.$fila['id'].'">🗑️</a><a href="modificar.php?control=Basura_Con&metodo=borrar&id='.$fila['id'].'">✏️</a></td>';
-                    echo '</tr>';
+                ?>
+                    <tr>
+                    <td><?php echo $fila['nombre'];?></td>
+                    <td><?php echo $fila['valor'];?></td>
+                    <td><?php echo $fila['nombreImagen'];?></td>
+                    <td>
+                    <a href="../../src/index.php?control=Basura_Con&metodo=borrar&id=<?php echo $fila['id']?>">🗑️</a>
+                    <a href="modificar.php?control=Basura_Con&metodo=buscarModificar&id=<?php echo $fila['id']?>">✏️</a>
+                    </td>
+                    </tr>
+                    <?php
                     }
                 ?>
                 </tr>
             </table>
         </div>
+        <script src="expresionesRegulares.js" type="module"></script>
     </body>
 </html>

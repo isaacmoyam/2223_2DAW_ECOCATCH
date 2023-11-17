@@ -15,45 +15,61 @@ class Basura_Mod {
             die ("Error de conexión: " . $this->mysqli->connect_error);
         }
     }
-
     public function mostrar() {
         $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id";
         $result = $this->mysqli->query($sql);
+
+        if($result === false){
+            $errno = $this->mysqli->errno;
+            return $errno;
+        }
+
         $basuras = array();
         while ($row = $result->fetch_assoc()) {
             $basuras[] = $row;
         }
         return $basuras;
     }
-
     public function borrar($id) {
         $sql = 'DELETE FROM item WHERE id='.$id;
-        $this->mysqli->query($sql);
+        $result = $this->mysqli->query($sql);
+
+        if($result === false){
+            $errno = $this->mysqli->errno;
+            return $errno;
+        }
         return;
     }
-
     public function crear($nombre, $imagen, $valor) {
         $sql = 'INSERT INTO item (nombre, nombreImagen) VALUES ("'.$nombre.'", "'.$imagen.'")';
         $result = $this->mysqli->query($sql);
         $id = $this->mysqli->insert_id;
-        if(!$result)
-            echo 'Algo ha salido mal';
+            if($result === false){
+                $errno = $this->mysqli->errno;
+                return $errno;
+            }
         else{
             
             $sql = 'INSERT INTO basura (id, valor) VALUES ("'.$id.'", "'.$valor.'")';
             $result = $this->mysqli->query($sql);
-            if($result)
-                return 'Algo ha salido mal'; 
+            if($result === false){
+                $errno = $this->mysqli->errno;
+                return $errno;
+            }
         }
     }
-
-    
-
     public function buscarModificar($id) {
-        $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id";
+        $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
         $result = $this->mysqli->query($sql);
         $fila = $result->fetch_assoc();
         return $fila;
+    }
+    public function modificar($id, $nombre, $imagen, $valor) {
+        $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
+        $this->mysqli->query($sql);
+
+        $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
+        $this->mysqli->query($sql);
     }
 }
 
