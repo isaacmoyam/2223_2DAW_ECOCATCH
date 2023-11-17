@@ -1,0 +1,40 @@
+#divVista1{
+	background-color: pink;
+}
+#divVista2{
+	background-color: deepskyblue;
+}
+#divVista3{
+	background-color: darkgray;
+}
+#divVista4{
+	background-color: yellow;
+}
+#divVista5{
+	background-color: green;
+}
+#divVista6{
+	background-color: cyan;
+}
+#divVista7{
+	background-color: orange;
+}
+
+body > div{
+	display: none;
+}
+a{
+	cursor: pointer;
+}
+a:hover{
+	color: blue;
+	text-decoration: underline;
+}
+
+#gameContainer img {
+	position: absolute;
+}
+
+img{
+	width: 10%;
+}

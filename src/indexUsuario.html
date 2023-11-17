@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <meta name=viewport content="width=device-width, initial-scale=1" />
+        <meta name=author content='mjaque@fundacionloyola.es' />
+        <title>DWEC - Patrón MVC</title>
+
+        <link rel=stylesheet href="css/mvc.css" />
+        <link rel=stylesheet href="css/reset.css" />
+    </head>
+    <body>
+        <h1>Patrón MVC</h1>
+        <div id="divVista1">
+            <h2>Soy la Vista 1: Indice</h2>
+            <!-- Meteré el Mockup -->
+            <a>Empezar partida</a>
+            <br/>
+            <a>Ranking</a>
+            <br/>
+            <a>Conócenos</a>
+        </div>
+        <div id="divVista2">
+            <h2>Soy la Vista 2: Conocenos</h2>
+            <!-- En cada div aqui se mete el mockup de la vista -->
+            <a class="volverAVista1">Volver</a>
+        </div>
+        <div id="divVista3">
+            <h2>Soy la Vista 3: Ranking</h2>
+            <a class="volverAVista1">Volver</a>
+        </div>
+        <div id="divVista4">
+            <h2>Soy la Vista 4: Empezar</h2>
+            <div id="empezar">
+                <a>Jugar</a>
+                <br/>
+                <a class="volverAVista1">Volver</a>
+            </div>
+        </div>
+        <div id="divVista5">
+            <h2>Soy la Vista 5: Seleccion Nivel</h2>
+            <button>LV 1</button>
+            <button>LV 2</button>
+            <button>LV 3</button>
+            <br/>
+            <a id="volverAVista4">Volver</a>
+        </div>
+        <div id="divVista6">
+            <h2>Soy la Vista 6: Jugar</h2>
+            <p id="nivelSeleccionado"></p>
+            <div id="gameContainer">
+                <img src="img/barco.png" alt="barco">
+            </div>
+            <a>Siguiente a la vista 7</a> <!--Este enlace es para poder cambiar de vista, seguramente en el futuro no este-->
+        </div>
+        <div id="divVista7">
+            <h2>Soy la Vista 7: Formulario</h2>
+            <div id="formulario">
+                <h1>¡TU PUNTUACIÓN ES DE 302 PUNTOS!</h1>
+                <label>*NICK:</label>
+                <input type="text" name="nick">
+                <label>CORREO:</label>
+                <input type="text" name="correo">
+                <p id="msgCampos"></p>
+                <input type="submit">
+            </div>
+            <a id="irVista8">Ir a vista de Prueba AJAX</a>
+        </div>
+        <div id="divVista8">
+            <h1>Pruebas con AJAX</h1>
+            <button id="peticionAjax">Peticion GET</button>
+        </div>
+        <script type=module src="./js/controladores/controladorUsuario.js"></script>
+    </body>
+</html>
