@@ -1,6 +1,11 @@
 <?php
-    const HOST = '10.2daw.esvirgua.com';
-    const USERNAME = 'user2daw_10';
-    const PASSWD = '$d.@V+9pQ*-t';
-    const BDNAME = 'user2daw_BD2-10';
+    /* Datos de conexión */
+    define("HOST", '10.2daw.esvirgua.com');
+    define("BDNAME", 'user2daw_BD2-10');
+    define("USERNAME", 'user2daw_10');
+    define("PASSWD", '$d.@V+9pQ*-t');
+
+    /* Opciones por defecto */
+    define("CONTROLADOR_DEFAULT", "Basura");
+    define("METODO_DEFAULT", "mostrar");
 ?>

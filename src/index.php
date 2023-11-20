@@ -10,94 +10,31 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-require 'php/controladores/basura_con.php';
+require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/config/configdb.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/modelos/db.php');
 
-$control = $_GET['control'];
-$metodo = $_GET['metodo'];
+$nombreControl = $_GET['control']."_Con";
+$nombreMetodo = $_GET['metodo'];
 
-switch ($metodo) {
-    case 'crear':
-        crear();
-        break;
-    case 'buscarModificar':
-        buscarModificar();
-        break;
-    case 'borrar':
-        borrar();
-        break;
-    case 'modificar':
-        modificar();
-        break;
-    default:
-        return;
-}
+if(!isset($_GET["control"])) $_GET["control"] = constant("CONTROLADOR_DEFAULT");
+if(!isset($_GET["metodo"])) $_GET["metodo"] = constant("METODO_DEFAULT");
 
-/**
- * Función para crear una nueva basura.
- *
- * @return void
- */
-function crear()
-{
-    $nombre = $_POST['nombre'];
-    $imagen = $_POST['imagen'];
-    $valor = $_POST['valor'];
-    $obj = new Basura_Con();
-    $resultado = $obj->crear($nombre, $imagen, $valor);
-    if ($resultado === false) {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
-    } else {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
-    }
-}
+$directorioControlador = 'php/controladores/'.$nombreControl.'_con.php';
 
-/**
- * Función para borrar una basura.
- *
- * @return void
- */
-function borrar()
-{
-    $id = $_GET['id'];
-    $obj = new Basura_Con();
-    $resultado = $obj->borrar($id);
-    if ($resultado === false) {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
-    } else {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
-    }
-}
+// Comprobar si el controlador existe
+if(!file_exists($directorioControlador)) $directorioControlador = 'php/controladores/'.constant("CONTROLADOR_DEFAULT").'_con.php';
 
-/**
- * Función para buscar y obtener información de una basura para modificar.
- *
- * @return mixed Arreglo asociativo con la información de la basura o nulo.
- */
-function buscarModificar()
-{
-    $id = $_GET['id'];
-    $obj = new Basura_Con();
-    $fila = $obj->buscarModificar($id);
-    return $fila;
-}
+// Cargar controlador
+require_once $directorioControlador;
+$controlador = new $nombreControl();
 
-/**
- * Función para modificar una basura existente.
- *
- * @return void
- */
-function modificar()
-{
-    $id = $_GET['id'];
-    $nombre = $_POST['nombre'];
-    $imagen = $_POST['imagen'];
-    $valor = $_POST['valor'];
-    $obj = new Basura_Con();
-    $resultado = $obj->modificar($id, $nombre, $imagen, $valor);
-    if ($resultado === false) {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
-    } else {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
-    }
-}
+/* Ver si el método está definido */
+$datosVista["datos"] = array();
+if (method_exists($controlador, $_GET["metodo"])) 
+    $datosVista["datos"] = $controlador->{$_GET["metodo"]}();
+
+/* Cargar vistas */
+require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/vistas/templates/header.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/mockups/basura/'.$controlador->vista.'.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/vistas/templates/footer.php');
 ?>

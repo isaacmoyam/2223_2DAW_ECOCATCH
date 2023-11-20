@@ -61,8 +61,8 @@ if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
                         <td><?php echo $fila['valor']; ?></td>
                         <td><?php echo $fila['nombreImagen']; ?></td>
                         <td>
-                            <a href="../../src/index.php?control=Basura_Con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
-                            <a href="modificar.php?control=Basura_Con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
+                            <a href="../../src/index.php?control=Basura&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
+                            <a href="../../src/index.php?control=Basura&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
                         </td>
                     </tr>
                     <?php

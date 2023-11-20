@@ -10,26 +10,21 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-class Basura_Con
-{
-    private $obj;
-    private $host;
-    private $username;
-    private $passwd;
-    private $bdname;
+require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/modelos/basura_mod.php');
+
+class Basura_Con {
+    public $vista;
+    public $obj;
+    public $pagina;
 
     /**
      * Constructor de la clase Basura_Con.
      */
     public function __construct()
     {
-        require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/modelos/basura_mod.php');
-        require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/config/configdb.php');
-        $this->host = HOST;
-        $this->username = USERNAME;
-        $this->passwd = PASSWD;
-        $this->bdname = BDNAME;
-        $this->obj = new Basura_Mod($this->host, $this->username, $this->passwd, $this->bdname);
+        $this->pagina = "";        
+        $this->vista = 'gestionbasura';
+        $this->obj = new Basura_Mod();
     }
 
     /**
@@ -41,13 +36,12 @@ class Basura_Con
      *
      * @return mixed Mensaje de éxito o error.
      */
-    public function crear($nombre, $imagen, $valor)
-    {
-        if ($nombre === '' || $imagen === '' || $valor === '') {
-            return 'Rellena todos los campos obligatorios(*)';
+    public function crear() {
+        $this->vista = 'anadir';
+        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
+            $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
+            header("Location: {$_SERVER['DOCUMENT_ROOT']}/2223_2DAW_ECOCATCH/src/index.php");
         }
-        $resultado = $this->obj->crear($nombre, $imagen, $valor);
-        return $resultado;
     }
 
     /**
@@ -57,10 +51,9 @@ class Basura_Con
      *
      * @return mixed Información de la basura.
      */
-    public function buscarModificar($id)
-    {
-        $resultado = $this->obj->buscarModificar($id);
-        return $resultado;
+    public function buscarModificar()
+    { 
+        return $this->obj->buscarModificar($_GET["id"]);
     }
 
     /**
@@ -73,10 +66,12 @@ class Basura_Con
      *
      * @return mixed Mensaje de éxito o error.
      */
-    public function modificar($id, $nombre, $imagen, $valor)
-    {
-        $resultado = $this->obj->modificar($id, $nombre, $imagen, $valor);
-        return $resultado;
+    public function modificar() {
+        $this->vista = 'modificar';
+        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
+            $this->obj->modificar($_POST["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
+            header("Location: {$_SERVER['DOCUMENT_ROOT']}/2223_2DAW_ECOCATCH/src/index.php");
+        }
     }
 
     /**
@@ -86,10 +81,9 @@ class Basura_Con
      *
      * @return mixed Mensaje de éxito o error.
      */
-    public function borrar($id)
+    public function borrar()
     {
-        $resultado = $this->obj->borrar($id);
-        return $resultado;
+        $this->obj->borrar($_GET["id"]);
     }
 
     /**
@@ -99,8 +93,7 @@ class Basura_Con
      */
     public function mostrar()
     {
-        $resultado = $this->obj->mostrar();
-        return $resultado;
+        return $this->obj->mostrar();
     }
 }
 ?>
