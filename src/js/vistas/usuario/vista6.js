@@ -1,77 +1,107 @@
-import { Vista } from './vista.js'
+import { Vista } from './vista.js';
 
-/**
- * Clase encargada de la Vista 6
- */
 export class Vista6 extends Vista {
-  /**
-     * Constructor de la clase. Inicializa los atributos correspondientes
-     * @param controlador {ControladorUsuario} Controlador del Usuario
-     * @param base {Object} Objeto que es una referencia del interfaz
-     */
-  constructor (controlador, base) {
-    super(controlador, base)
-    this.x = 325 // Posición inicial en el eje X
-    this.eventos()
-  }
-
-  /**
-     * Método por el cual se obtienen las referencias de la interfaz y se le asocia eventos
-     */
-  eventos () {
-    // Obtener la referencia del contenedor del juego
-    this.eventoBarco()
-
-    // Asociar el evento de cambio de vista
-    this.enlaceSiguienteVista7 = this.base.querySelector('a')
-
-    // Asociar eventos
-    this.enlaceSiguienteVista7.onclick = () => {
-      this.controlador.verVista(Vista.VISTA7)
+    constructor(controlador, base) {
+        super(controlador, base);
+        this.x = 0;
+        this.touchStartX = null;
+        this.animationFrameId = null;
+        this.eventos();
     }
-  }
 
-  /**
-     * Obtiene referencias de la interfaz y asocia los eventos relacionados con el barco
-     */
-  eventoBarco () {
-    this.gameContainer = document.getElementById('gameContainer')
+    eventos() {
+        this.eventoBarco();
 
-    // Obtener la referencia de la imagen del barco
-    this.barco = document.querySelector('#gameContainer img')
-    this.pNivel = document.getElementById('nivelSeleccionado')
+        this.enlaceSiguienteVista7 = this.base.querySelector('a');
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        this.x -= 8
-      } else if (e.key === 'ArrowRight') {
-        this.x += 8
-      }
+        this.enlaceSiguienteVista7.onclick = () => {
+            this.controlador.verVista(Vista.VISTA7);
+        };
+    }
 
-      // Actualizar la posición de la imagen con un movimiento más suave
-      this.moveBarco(this.barco, this.x)
-    })
-  }
+    eventoBarco() {
+        this.gameContainer = document.getElementById('gameContainer');
+        this.barco = document.querySelector('#gameContainer img');
+        this.pNivel = document.getElementById('nivelSeleccionado');
 
-  /**
-     * Hace que el barco se mueva de manera fluida
-     * @param barco {Object} Objeto del elemento barco
-     * @param x {Number}
-     */
-  moveBarco (barco, x) {
-    // Utilizar setTimeout para crear un movimiento más suave
-    setTimeout(() => {
-      barco.style.left = x + 'px'
-    }, 10)
-  }
+        this.gameContainer.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+        this.gameContainer.addEventListener('touchmove', (e) => this.handleTouchMove(e));
+        this.gameContainer.addEventListener('touchend', () => this.handleTouchEnd());
 
-  /**
-     * Muestra el nivel del juego escogido por el usuario y la vista 6
-     * @param ver {Boolean} Indica si se muestra o no
-     */
-  mostrar (ver) {
-    const nivel = this.controlador.getNivelJuego()
-    this.pNivel.textContent = 'Nivel: ' + nivel
-    super.mostrar(ver)
-  }
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                this.x -= 8;
+            } else if (e.key === 'ArrowRight') {
+                this.x += 8;
+            }
+
+            this.moveBarco(this.barco, this.x);
+        });
+    }
+
+    moveBarco(barco, x) {
+        const maxX = this.gameContainer.clientWidth - barco.clientWidth;
+        // Evitar que el barco se salga por el lado derecho
+        x = Math.min(x, maxX);
+        // Evitar que el barco se salga por el lado izquierdo
+        x = Math.max(0, x);
+    
+        // Utilizar requestAnimationFrame para crear un movimiento más suave
+        this.animationFrameId = requestAnimationFrame(() => {
+            barco.style.left = x + 'px';
+        });
+    }
+
+    handleTouchStart(e) {
+        this.touchStartX = e.touches[0].clientX;
+        this.requestAnimationFrame();
+    }
+
+    handleTouchMove(e) {
+      if (this.touchStartX === null) return;
+  
+      let touchCurrentX = e.touches[0].clientX;
+      let deltaX = touchCurrentX - this.touchStartX;
+  
+      this.x += deltaX;
+  
+      const maxX = this.gameContainer.clientWidth - this.barco.clientWidth;
+      // Evitar que el barco se salga por el lado derecho
+      this.x = Math.min(this.x, maxX);
+      // Evitar que el barco se salga por el lado izquierdo
+      this.x = Math.max(0, this.x);
+  
+      this.moveBarco(this.barco, this.x);
+  
+      this.touchStartX = touchCurrentX;
+    }
+
+    handleTouchEnd() {
+        this.touchStartX = null;
+        this.cancelAnimationFrame();
+    }
+
+    requestAnimationFrame() {
+        if (!this.animationFrameId) {
+            this.animationFrameId = requestAnimationFrame(() => this.handleAnimationFrame());
+        }
+    }
+
+    cancelAnimationFrame() {
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+            this.animationFrameId = null;
+        }
+    }
+
+    handleAnimationFrame() {
+        this.moveBarco(this.barco, this.x);
+        this.requestAnimationFrame();
+    }
+
+    mostrar(ver) {
+        let nivel = this.controlador.getNivelJuego();
+        this.pNivel.textContent = 'Nivel: ' + nivel;
+        super.mostrar(ver);
+    }
 }
