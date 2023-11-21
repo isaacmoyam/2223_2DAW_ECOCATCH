@@ -15,7 +15,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/modelos/db.php');
+require_once 'php/modelos/db.php';
 
 class Basura_Mod {
     
@@ -136,7 +136,6 @@ class Basura_Mod {
         $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
         $this->mysqli->query($sql);
         $result = $this->mysqli->query($sql);
-
         if ($result === false) {
             $errno = $this->mysqli->errno;
             return $errno;

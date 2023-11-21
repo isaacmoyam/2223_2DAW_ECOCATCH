@@ -13,9 +13,14 @@
 require_once 'php/config/configdb.php';
 require_once 'php/modelos/db.php';
 
-/*
-if(!isset($_GET["control"])) $_GET["control"] = constant("CONTROLADOR_DEFAULT");
-if(!isset($_GET["metodo"])) $_GET["metodo"] = constant("METODO_DEFAULT"); */
+// Verificación de parámetro 'mensaje' en la URL para mostrar mensajes.
+if(isset($_GET['mensaje'])) {
+    if ($_GET['mensaje'] === "false") {
+        echo 'Algo ha salido mal';
+    } else {
+        echo 'Todo ha salido correctamente';
+    }
+}
 
 $nombreControl = constant("CONTROLADOR_DEFAULT")."_Con";
 $nombreMetodo = constant("METODO_DEFAULT");
@@ -36,9 +41,6 @@ $controlador = new $nombreControl();
 $datosVista["datos"] = array();
 if (method_exists($controlador, $nombreMetodo)) 
     $datosVista["datos"] = $controlador->{$nombreMetodo}();
-
-echo $nombreControl;
-echo $nombreMetodo;
 
 /* Cargar vistas */
 require_once 'php/vistas/templates/header.php';

@@ -10,9 +10,10 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/modelos/basura_mod.php');
+require_once 'php/modelos/basura_mod.php';
 
 class Basura_Con {
+
     public $vista;
     public $obj;
     public $pagina;
@@ -39,7 +40,9 @@ class Basura_Con {
     public function crear() {
         if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
             $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
-            header("Location: index.php");
+            header("Location: index.php?mensaje=true");
+        } else {
+            header("Location: index.php?mensaje=false");
         }
     }
 
@@ -67,9 +70,11 @@ class Basura_Con {
      * @return mixed Mensaje de éxito o error.
      */
     public function modificar() {
-        if(isset($_POST["id"]) && isset($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"])) {
-            $this->obj->modificar($_POST["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
-            header("Location: index.php");
+        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"])) {
+            $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
+            header("Location: index.php?mensaje=true");
+        } else {
+            header("Location: index.php?mensaje=false");
         }
     }
 

@@ -1,6 +1,6 @@
 <?php 
 
-require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/config/configdb.php');
+require_once 'php/config/configdb.php';
 
 class Db {
 

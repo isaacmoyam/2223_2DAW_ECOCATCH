@@ -10,18 +10,6 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-// Verificación de parámetro 'mensaje' en la URL para mostrar mensajes.
-if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
-    // No hay mensaje, no se muestra nada.
-} else {
-    // Se verifica si el mensaje es verdadero o falso y se muestra en consecuencia.
-    if ($_GET['mensaje'] == true) {
-        echo 'Todo ha salido correctamente';
-    } else {
-        echo 'Algo ha salido mal';
-    }
-}
-
 // Sección HTML para la interfaz de gestión de basura.
 ?>
 <main id="gestor">
@@ -36,25 +24,23 @@ if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
             <th>Opción</th>
         </tr>
         <?php
-        // Inclusión del controlador de basura y obtención de datos.
-        require_once 'php/controladores/basura_con.php';
-        $obj = new Basura_Con();
-        $datos = $obj->mostrar();
+            $obj = new Basura_Con();
+            $datos = $obj->mostrar();
 
-        // Iteración sobre los datos para mostrar en la tabla.
-        foreach ($datos as $fila) {
-            ?>
-            <tr>
-                <td><?php echo $fila['nombre']; ?></td>
-                <td><?php echo $fila['valor']; ?></td>
-                <td><?php echo $fila['nombreImagen']; ?></td>
-                <td>
-                    <a href="index.php?control=Basura&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
-                    <a href="index.php?control=Basura&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
-                </td>
-            </tr>
-            <?php
-        }
+            // Iteración sobre los datos para mostrar en la tabla.
+            foreach ($datos as $fila) {
+                ?>
+                <tr>
+                    <td><?php echo $fila['nombre']; ?></td>
+                    <td><?php echo $fila['valor']; ?></td>
+                    <td><?php echo $fila['nombreImagen']; ?></td>
+                    <td>
+                        <a href="index.php?control=Basura&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
+                        <a href="index.php?control=Basura&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
+                    </td>
+                </tr>
+                <?php
+            }
         ?>
     </table>
 </main>
