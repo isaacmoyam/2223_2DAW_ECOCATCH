@@ -37,10 +37,9 @@ class Basura_Con {
      * @return mixed Mensaje de éxito o error.
      */
     public function crear() {
-        $this->vista = 'anadir';
         if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
             $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
-            header("Location: {$_SERVER['DOCUMENT_ROOT']}/2223_2DAW_ECOCATCH/src/index.php");
+            header("Location: index.php");
         }
     }
 
@@ -53,6 +52,7 @@ class Basura_Con {
      */
     public function buscarModificar()
     { 
+        $this->vista = 'modificar';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 
@@ -67,10 +67,9 @@ class Basura_Con {
      * @return mixed Mensaje de éxito o error.
      */
     public function modificar() {
-        $this->vista = 'modificar';
-        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
+        if(isset($_POST["id"]) && isset($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"])) {
             $this->obj->modificar($_POST["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
-            header("Location: {$_SERVER['DOCUMENT_ROOT']}/2223_2DAW_ECOCATCH/src/index.php");
+            header("Location: index.php");
         }
     }
 

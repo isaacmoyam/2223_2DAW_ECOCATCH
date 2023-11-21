@@ -13,13 +13,11 @@
 // Sección HTML para la interfaz de modificación de basura.
 ?>
 <main id="gestorM">
-    <a href="gestionbasura.php">Volver</a>
+    <a href="index.php">Volver</a>
     <?php
-        // Inclusión del archivo principal y llamada a la función buscarModificar.
-        require ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/index.php');
         $fila = $datosVista["datos"];
     ?>
-    <form action="../../src/index.php?control=Basura&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
+    <form action="index.php?control=Basura&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $fila['nombre'];?>" placeholder="Nombre basura">
         <label for="valor">Valor:</label>
