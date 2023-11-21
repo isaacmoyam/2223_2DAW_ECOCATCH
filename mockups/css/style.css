@@ -185,7 +185,9 @@ header > img.darkmode {
     margin: 6% auto 0;
 }
 
+/*MAIN*/
 /* Estilos de las secciones main de la página */
+#gestionNiveles,
 #movMsg,
 #niveles,
 #gestor,
@@ -241,6 +243,8 @@ header > img.darkmode {
 }
 
 /* Estilos de los enlaces en las secciones */
+#botonMasConfigNiveles,
+#gestionNiveles > a,
 #moverMensajes > a,
 #niveles > a,
 #gestor > a,
@@ -305,9 +309,21 @@ main > a.darkmode,
     bottom: 20px;
 }
 
+/*Boton + pagina configuracionNiveles*/
+#botonMasConfigNiveles{
+    position: relative;
+    left: 32.5%;
+    width:4%;
+    display: inline-block;
+    right: 28.3%;
+    bottom: 20px;
+}
+
+/*Quitar linea de enlace de los emoticonos (papelera, lapiz...) en las tablas*/
+#gestionNiveles  table a,
 #niveles > table a,
 #gestor > table a {
-    text-decoration: none;
+    text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
 }
 
 #gestorM > a {
@@ -316,6 +332,7 @@ main > a.darkmode,
 }
 
 /* Estilos de tablas en las secciones "ranking" y "gestor" */
+
 #niveles > table,
 #ranking > table,
 #gestor table {
@@ -326,6 +343,13 @@ main > a.darkmode,
     width: 60%;
 }
 
+#gestionNiveles  table{
+    background-color: #6D3916;
+    margin: 0 auto 5%;
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 80%;
+}
 
 #ranking > table.darkmode,
 #gestor table.darkmode {
@@ -343,6 +367,7 @@ main > a.darkmode,
     text-align: center;
 }
 
+
 #niveles  th,
 #niveles  td{  /*Casillas de las tablas (th y td) con el id niveles*/
     /*Aqui le ponemos un tamaño al width de la tabla, un borde, el padding y que el texto esté centrado*/
@@ -350,6 +375,26 @@ main > a.darkmode,
     border: solid 1px black;
     padding: 2%;
     text-align: center;
+}
+
+/*Tabla de la parte de mensajes de la página configNiveles*/
+#gestionNiveles th,
+#gestionNiveles td{
+    width: 20%;
+    border: solid 1px black;
+    padding: 2%;
+    text-align: center;
+}
+
+/*Quiero que el pimer hijo de su contenedor (tr) sea un poco mas grnade puesto que como se van a ver los mensajes necesitara mas espacio*/
+#gestionNiveles th:first-child,
+#gestionNiveles td:first-child{
+    width: 30%;
+}
+/*Quiero que el tercer hijo de su contenedor (tr) sea un poco mas pequeño dado que como va a mostrar el tipo necesitara menso espacio*/
+#gestionNiveles th:nth-child(3),
+#gestionNiveles td:nth-child(3){
+    width: 10%;
 }
 
 #ranking th.darkmode,
@@ -552,6 +597,11 @@ main > div > #conocenos:nth-child(2n) > p {
         font-size: 1em; /*Cambiar tamaño de la letra*/
     }
 
+    /*Cambiar el tamaño de la letra de la tabla de gestion de niveles*/
+    #gestionNiveles  table{
+        font-size: 0.8em;
+    }
+
     #gestor {
         font-size: 1em;
     }
@@ -568,6 +618,12 @@ main > div > #conocenos:nth-child(2n) > p {
 
     #niveles {
         font-size: 0.5em; /*Cambiar tamaño de la letra*/
+    }
+
+    /*Cambiar el tamaño de la letra y ancho de la tabla de gestion de niveles*/
+    #gestionNiveles  table{
+        font-size: 0.5em;
+        width: 90%;
     }
 
     #gestor {

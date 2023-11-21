@@ -10,36 +10,36 @@
         <header id="logo">
             <img src="../img/logo.png" alt="Logo de la página EcoCatch">
         </header>
-        <main id="gestorM">
-            <h3>Configuración Nivel</h3>
-            <a id="btnVolver" href="gestionbasura.html">Volver</a>
+        <main id="gestionNiveles">
+            <h1>Configuración Nivel</h1>
+            <a href="gestionbasura.html">Volver</a>
             <form action="" method="GET">
                 <label>Nombre del Nivel:</label>
                 <input type="text" name="nombre" value="Basura1" placeholder="Nombre basura">
                 <label>Cantidad Items:</label>
-                <input type="number" name="valor" value="4" placeholder="Puntuación">
+                <input type="text" name="valor" value="4" placeholder="Puntuación">
                 <label>Velocidad Barco:</label>
                 <input type="text" name="imagen">
                 <p class="msgCampos"></p>
-                <h3>Mensajes</h3>
-                <a href="anadir.html">+</a>
+                <h2>Mensajes</h2>
+                <a id="botonMasConfigNiveles" href="anadir.html">+</a>
                 <table>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Cantidad Items</th>
-                        <th>Velocidad Barco</th>
+                        <th>Contenido</th>
+                        <th>Puntuación Mínima</th>
+                        <th>Tipo</th>
                         <th>Opción</th>
                     </tr>
                     <tr>
-                        <td>Basura1</td>
-                        <td>4</td>
-                        <td>trash.png</td>
+                        <td>Mensaje de prueba para el nivel 1.</td>
+                        <td>10</td>
+                        <td>A</td>
                         <td><a href="">🗑️</a><a href="modificar.html">✏️</a><a href="">🔄</a></td>
                     </tr>
                     <tr>
-                        <td>lata</td>
+                        <td>Mensaje de prueba para el nivel 2 aun mas largo que el primero.</td>
                         <td>1</td>
-                        <td>can.png</td>
+                        <td>B</td>
                         <td><a href="">🗑️</a><a href="modificar.html">✏️</a><a href="">🔄</a></td>
                     </tr>
                 </table>
