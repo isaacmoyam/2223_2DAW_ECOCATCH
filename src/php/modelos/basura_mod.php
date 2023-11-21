@@ -25,10 +25,18 @@ class Basura_Mod {
        
     }
     
+    // Establecer conexión con la bbdd
     public function establecerConexion(){
 		$dbObj = new Db();
 		$this->mysqli = $dbObj->mysqli;
 	}
+
+    // Cerrar la conexión con la bbdd
+    public function cerrarConexion() {
+        if ($this->mysqli) {
+            mysqli_close($this->mysqli);
+        }
+    }
 
     /**
      * Obtiene y devuelve la información de todas las basuras.
@@ -44,6 +52,9 @@ class Basura_Mod {
         while ($row = $result->fetch_assoc()) {
             $basuras[] = $row;
         }
+
+        $this->cerrarConexion();
+
         return $basuras;
     }
 
@@ -58,6 +69,8 @@ class Basura_Mod {
         $this->establecerConexion();
         $sql = 'DELETE FROM item WHERE id='.$id;
         $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
 
         return;
     }
@@ -77,6 +90,8 @@ class Basura_Mod {
         $result = $this->mysqli->query($sql);
         $id = $this->mysqli->insert_id;
 
+        $this->cerrarConexion();
+
         try {
             $sql = 'INSERT INTO basura (id, valor) VALUES ("'.$id.'", "'.$valor.'")';
             $result = $this->mysqli->query($sql); 
@@ -84,6 +99,8 @@ class Basura_Mod {
             $error = "No se pudo crear la basura";
             return $error;
         }
+
+        $this->cerrarConexion();
     }
 
     /**
@@ -97,6 +114,8 @@ class Basura_Mod {
         $this->establecerConexion();
         $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
         $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
 
         $fila = $result->fetch_assoc();
         return $fila;
@@ -115,8 +134,9 @@ class Basura_Mod {
     public function modificar($id, $nombre, $imagen, $valor) {
         $this->establecerConexion();
         $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
-        $this->mysqli->query($sql);
         $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
 
         try {
             $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
@@ -125,6 +145,8 @@ class Basura_Mod {
             $error = "No se pudo modificar la basura";
             return $error;
         }
+
+        $this->cerrarConexion();
     }
 }
 ?>
