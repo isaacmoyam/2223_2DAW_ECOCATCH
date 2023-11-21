@@ -1,6 +1,7 @@
 /* Estilos generales de la página */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap');
 
+
 body {
     background-color: #488531;
     padding: 1% 0;
@@ -9,6 +10,11 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+}
+
+body.darkmode {
+    background-color: #0a1905;
+    color: #deca65;
 }
 
 /* Estilos del formulario de datos del ranking */
@@ -39,24 +45,149 @@ form > input[type=submit] {
     font-family: Fredoka;
 }
 
+form > input[type=submit].darkmode {
+    border: solid 1px #deca65;
+    color: #deca65;
+    background-color: #0a1905;
+}
+
 form > input[type=submit]:hover {
     background-color: #85471f;
 }
 
-/* Estilos del logo */
+form > input[type=submit].darkmode:hover {
+    background-color: #253d1d;
+}
+
+/*Estilo común para los botones*/
+
+button {
+    border: solid 1px black;
+    color: #EDC713;
+    border-radius: 9px;
+    background-color: #6D3916;
+    cursor: pointer;
+    font-family: Fredoka;
+}
+
+button.darkmode {
+    border: solid 1px #deca65;
+    color: #deca65;
+    background-color: #253d1d;
+}
+
+button:hover {
+    background-color: #85471f;
+}
+
+button.darkmode:hover {
+    background-color: #16330c;
+}
+
+/* Estilo en común de los select */
+select {
+    padding: 3%;
+    font-size: 0.7em;
+    color:#EDC713;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #6D3916;
+    cursor: pointer;
+    font-family: Fredoka;
+}
+
+select:hover {
+    background-color: #85471f;
+}
+
+select.darkmode {
+    background-color: #16330c;
+    color:#deca65;
+    border: 1px solid #deca65;
+}
+
+select:hover.darkmode {
+    background-color: #253d1d;
+}
+
+option {
+    font-size: 1.5em;
+}
+
+/* Estilos del header donde va el logo */
 header {
     text-align: center;
     margin: 0 auto;
     width:50%;
 }
 
+
 header > img {
     width: 200px;
     margin: 0 auto 1%;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
+*
 
-/* Estilos de las secciones de la página */
+header > img.darkmode {
+    border:solid 2px #deca65;
+}
+
+/* Estilos del menú y pantalla de configuración antes de empezar */
+
+#menu, #empezar {
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 2%;
+    width: 45%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#menu.darkmode, #empezar.darkmode {
+    background-color: #16330c;
+}
+
+#empezar{
+    padding-top:2%;
+}
+
+#empezar > a:nth-child(4) {
+    width:68%;
+}
+
+#empezar > a:last-child {
+    position:relative;
+    bottom: 350px;
+    right: 40%;
+    width:11.3%;
+    display: inline;
+}
+
+#empezar > button {
+    margin-left:3%;
+    padding:3%;
+}
+
+/*Distribucion de los enlaces*/
+#menu > a, #empezar > a, #moverMensajes > a{
+    display: block;
+    width:40%;
+    margin: 7% auto 0;
+}
+
+#volverMoverMensaje{
+    display: block;
+    width:20%;
+    margin: 6% auto 0;
+}
+
+/* Estilos de las secciones main de la página */
+#movMsg,
+#niveles,
 #gestor,
 #gestorM,
 #ranking {
@@ -69,6 +200,28 @@ header > img {
     width: 55%;
     margin: 0 auto;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+/*Hacer una para niveles*/
+#gestor.darkmode,
+#gestorM.darkmode,
+#ranking.darkmode {
+    background-color: #16330c;
+}
+
+#selecNiveles {
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 3%;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#selecNiveles.darkmode {
+    background-color: #16330c;
 }
 
 #formulario {
@@ -83,11 +236,20 @@ header > img {
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
 
-/* Estilos de los enlaces en las secciones */
+#formulario.darkmode {
+    background-color: #16330c;
+}
 
+/* Estilos de los enlaces en las secciones */
+#moverMensajes > a,
+#niveles > a,
 #gestor > a,
 #gestorM > a,
-#ranking > a {
+#ranking > a,
+#menu > a,
+main > a,
+#empezar > a,
+#selecNiveles > a {
     text-decoration: none;
     padding: 0.6%;
     border: solid 1px black;
@@ -96,8 +258,31 @@ header > img {
     background-color: #6D3916;
 }
 
-/* Estilos específicos para enlaces en la sección "gestor" */
+#gestor > a.darkmode,
+#gestorM > a.darkmode,
+#ranking > a.darkmode,
+#formulario > a.darkmode,
+#menu > a.darkmode,
+main > a.darkmode,
+#empezar > a.darkmode,
+#selecNiveles > a.darkmode{
+    border: solid 1px #deca65;
+    color: #deca65;
+    background-color: #0a1905;
+}
 
+#selecNiveles > div {
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+
+#selecNiveles > div > button{
+    padding: 3%;
+    font-size: 1.2em;
+}
+
+/* Estilos específicos para enlaces en la sección "gestor" (boton +)*/
+#niveles > a:nth-child(2),
 #gestor > a:nth-child(2) {
     left: 32.5%;
     width:4%;
@@ -105,28 +290,22 @@ header > img {
 }
 
 /* Posicionamiento relativo para los enlaces de las diferentes secciones */
-
+#niveles > a,
 #gestor > a,
 #gestorM > a,
 #ranking > a {
     position: relative;
 }
 
-/* Estilo al pasar el cursor por encima de los enlaces */
-
-#ranking > a:hover,
-#gestor > a:hover,
-#gestorM > a:hover {
-    background-color: #85471f;
-}
-
-/* Posicionamiento específico de enlaces en la sección "gestor" */
-
+/*Boton Volver*/
+/* Posicionamiento específico de enlaces en la sección "gestor" (boton volver)*/
+#niveles > a,
 #gestor > a {
     right: 28.3%;
     bottom: 20px;
 }
 
+#niveles > table a,
 #gestor > table a {
     text-decoration: none;
 }
@@ -137,7 +316,7 @@ header > img {
 }
 
 /* Estilos de tablas en las secciones "ranking" y "gestor" */
-
+#niveles > table,
 #ranking > table,
 #gestor table {
     background-color: #6D3916;
@@ -147,8 +326,14 @@ header > img {
     width: 60%;
 }
 
-/* Estilos para celdas de tablas en "ranking" y "gestor" */
 
+#ranking > table.darkmode,
+#gestor table.darkmode {
+    background-color: #0a1905;
+    border: solid 1px #deca65;
+}
+
+/* Estilos para celdas de tablas en "ranking" y "gestor" */
 #ranking th,
 #ranking td,
 #gestor th,
@@ -158,12 +343,203 @@ header > img {
     text-align: center;
 }
 
+#niveles  th,
+#niveles  td{  /*Casillas de las tablas (th y td) con el id niveles*/
+    /*Aqui le ponemos un tamaño al width de la tabla, un borde, el padding y que el texto esté centrado*/
+    width: 20%;
+    border: solid 1px black;
+    padding: 2%;
+    text-align: center;
+}
+
+#ranking th.darkmode,
+#ranking td.darkmode,
+#gestor th.darkmode,
+#gestor td.darkmode {
+    border: solid 1px #deca65;
+}
+
+/* Borde para el frame del juego */
+
+#frame{
+    border: solid 1px black;
+    width:90%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#frame.darkmode{
+    border: solid 1px #deca65;
+}
+
+/* Estilos para el HUD del juego */
+
+#hud {
+    background-color: #326F1E;
+    display: flex;
+    gap:34%;
+    padding:1%;
+}
+
+#hud.darkmode {
+    background-color: #16330c;
+}
+
+#botones > button {
+    padding: 15px;
+    font-size: 1em;
+}
+
+/* Estilos para el juego */
+#juego {
+    background-color: rgb(54, 138, 233);
+}
+
+/* Estilos para página conócenos */
+
+main {
+    background-color: #326F1E;
+    font-size: 1.2em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 5%;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+main.darkmode {
+    background-color: #253d1d;
+}
+
+main img{
+    width:280px;
+    height:280px;
+}
+
+main > article {
+    margin:0 auto;
+    width:90%;
+    padding:5%;
+}
+
+#conocenos {
+    display: flex;
+    margin-bottom:5%;
+    gap: 3%;
+}
+/*He cambiado el section por el id conocenos, antest solo estaba puesto section*/
+#conocenos > p {
+   background-color: #6D3916; 
+   border:solid 1px black;
+   padding:2%;
+}
+
+#conocenos > p.darkmode {
+   background-color: #16330c; 
+}
+
+/* Estilo al pasar el cursor por encima de los enlaces*/
+#moverMensajes > a:hover,
+#niveles > a:hover,
+#menu > a:hover,
+#empezar > a:hover,
+main > a:hover,
+#ranking > a:hover,
+#gestor > a:hover,
+#gestorM > a:hover,
+#selecNiveles > a:hover,
+#selecNiveles > div > button:hover {
+    background-color: #85471f;
+}
+
+#menu > a.darkmode:hover,
+#empezar > a.darkmode:hover,
+main > a.darkmode:hover,
+#ranking > a.darkmode:hover,
+#gestor > a.darkmode:hover,
+#gestorM > a.darkmode:hover,
+#selecNiveles > a.darkmode:hover{
+    background-color: #253d1d;
+}
+
+/* Estilo al pasar el cursor por encima de los enlaces*/
+main > div > #conocenos:nth-child(2n+1) > p {
+    margin-left: 10%;
+}
+
+main > div > #conocenos:nth-child(2n) > p {
+    margin-right: 10%;
+}
+
+/* Media queries para diseño responsive*/
+
+@media only screen and (max-width: 1804px) {
+    header > img {
+        width: 190px;
+    }
+
+    #empezar > a:last-child {
+        bottom: 290px;
+        right: 39%;
+    }
+
+    #hud {
+        gap:32%;
+    }
+}
+
+@media only screen and (max-width: 1698px) {
+    #hud {
+        gap:29%;
+    }
+}
+
+@media only screen and (max-width: 1502px) {
+    header > img {
+        width: 185px;
+    }
+
+    #empezar > a:last-child {
+        bottom: 245px;
+        right: 39%;
+    }
+
+    #empezar {
+        font-size: 1.2em;
+        width:35%;
+    }
+
+    #hud {
+        gap:26%;
+    }
+}
+
 @media only screen and (max-width: 1352px) {
     header > img {
         width: 180px;
     }
+
+    #niveles{
+        font-size: 1.1em; /*Cambiar tamaño de la letra*/
+    }
+
     #gestor {
         font-size: 1.1em;
+    }
+
+    /*Cambios en las medidas de menu*/
+    /*
+    #menu{
+        font-size: 1.1em;
+    }*/
+    #menu > a{
+        width: 50%;
+    }
+
+    #hud {
+        gap:23%;
     }
 }
 
@@ -171,22 +547,82 @@ header > img {
     header > img {
         width: 120px;
     }
+
+    #niveles {
+        font-size: 1em; /*Cambiar tamaño de la letra*/
+    }
+
     #gestor {
         font-size: 1em;
+    }
+
+    #hud {
+        gap:17%;
     }
 }
 
-@media only screen and (max-width: 844px) {
+@media only screen and (max-width: 930px) {
     header > img {
         width: 80px;
     }
+
+    #niveles {
+        font-size: 0.5em; /*Cambiar tamaño de la letra*/
+    }
+
     #gestor {
         font-size: 0.5em;
     }
+
     #gestorM > a {
         right: 30%;
     }
-    #gestorM {
+
+    #gestorM, #menu ,#empezar, #ranking {
         font-size: 1em;
+    }
+
+    #ranking > table{
+        width:80%;
+    }
+
+    #menu > a{
+        width:70%;
+    }
+
+    #conocenos > p {
+        font-size: 0.8em;
+    }
+
+    main img {
+        width:150px;
+        height:150px;
+    }
+
+    #empezar {
+        width:60%;
+    }
+
+    #empezar > a:last-child {
+        bottom: 210px;
+        right: 39%;
+    }
+
+    #frame{
+        width: 99%;
+    }
+
+    #hud {
+        gap:15%;
+        width:98%;
+        font-size: 0.84em;
+    }
+}
+
+@media only screen and (max-width: 682px) {
+    #hud {
+        gap:9%;
+        width:98%;
+        font-size: 0.84em;
     }
 }
