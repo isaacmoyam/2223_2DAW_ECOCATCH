@@ -40,11 +40,6 @@ class Basura_Mod {
         $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
         $result = $this->mysqli->query($sql);
 
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
-
         $basuras = array();
         while ($row = $result->fetch_assoc()) {
             $basuras[] = $row;
@@ -64,10 +59,6 @@ class Basura_Mod {
         $sql = 'DELETE FROM item WHERE id='.$id;
         $result = $this->mysqli->query($sql);
 
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
         return;
     }
 
@@ -86,17 +77,12 @@ class Basura_Mod {
         $result = $this->mysqli->query($sql);
         $id = $this->mysqli->insert_id;
 
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        } else {
+        try {
             $sql = 'INSERT INTO basura (id, valor) VALUES ("'.$id.'", "'.$valor.'")';
-            $result = $this->mysqli->query($sql);
-
-            if ($result === false) {
-                $errno = $this->mysqli->errno;
-                return $errno;
-            }
+            $result = $this->mysqli->query($sql); 
+        } catch(mysqli_sql_exception) {
+            $error = "No se pudo crear la basura";
+            return $error;
         }
     }
 
@@ -111,11 +97,6 @@ class Basura_Mod {
         $this->establecerConexion();
         $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
         $result = $this->mysqli->query($sql);
-
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
 
         $fila = $result->fetch_assoc();
         return $fila;
@@ -136,17 +117,13 @@ class Basura_Mod {
         $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
         $this->mysqli->query($sql);
         $result = $this->mysqli->query($sql);
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
 
-        $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
-        $result = $this->mysqli->query($sql);
-
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
+        try {
+            $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
+            $result = $this->mysqli->query($sql);  
+        } catch(mysqli_sql_exception) {
+            $error = "No se pudo modificar la basura";
+            return $error;
         }
     }
 }

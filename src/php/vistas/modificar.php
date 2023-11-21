@@ -17,7 +17,7 @@
     <?php
         $fila = $datosVista["datos"];
     ?>
-    <form action="index.php?control=Basura&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
+    <form action="index.php?control=basura_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $fila['nombre'];?>" placeholder="Nombre basura">
         <label for="valor">Valor:</label>

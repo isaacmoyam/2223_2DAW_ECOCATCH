@@ -12,7 +12,7 @@
 
 require_once 'php/modelos/basura_mod.php';
 
-class Basura_Con {
+class Basura_con {
 
     public $vista;
     public $obj;
@@ -21,9 +21,8 @@ class Basura_Con {
     /**
      * Constructor de la clase Basura_Con.
      */
-    public function __construct()
-    {
-        $this->pagina = "";        
+    public function __construct() {
+        $this->pagina = "Gestión de basura";        
         $this->vista = 'gestionbasura';
         $this->obj = new Basura_Mod();
     }
@@ -38,6 +37,7 @@ class Basura_Con {
      * @return mixed Mensaje de éxito o error.
      */
     public function crear() {
+        $this->pagina = "Crear basura"; 
         if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
             $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
             header("Location: index.php?mensaje=true");
@@ -53,8 +53,8 @@ class Basura_Con {
      *
      * @return mixed Información de la basura.
      */
-    public function buscarModificar()
-    { 
+    public function buscarModificar() { 
+        $this->pagina = "Modificar basura"; 
         $this->vista = 'modificar';
         return $this->obj->buscarModificar($_GET["id"]);
     }
@@ -85,8 +85,7 @@ class Basura_Con {
      *
      * @return mixed Mensaje de éxito o error.
      */
-    public function borrar()
-    {
+    public function borrar() {
         $this->obj->borrar($_GET["id"]);
     }
 
@@ -95,8 +94,8 @@ class Basura_Con {
      *
      * @return mixed Información de todas las basuras.
      */
-    public function mostrar()
-    {
+    public function mostrar() {
+        $this->pagina = "Gestión de basura"; 
         return $this->obj->mostrar();
     }
 }

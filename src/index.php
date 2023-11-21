@@ -14,28 +14,33 @@ require_once 'php/config/configdb.php';
 require_once 'php/modelos/db.php';
 
 // Verificación de parámetro 'mensaje' en la URL para mostrar mensajes.
+$mensaje = "";
+
 if(isset($_GET['mensaje'])) {
     if ($_GET['mensaje'] === "false") {
-        echo 'Algo ha salido mal';
+        $mensaje = 'Algo ha salido mal';
     } else {
-        echo 'Todo ha salido correctamente';
+        $mensaje = 'Todo ha salido correctamente';
     }
 }
 
-$nombreControl = constant("CONTROLADOR_DEFAULT")."_Con";
+$nombreControl = constant("CONTROLADOR_DEFAULT");
 $nombreMetodo = constant("METODO_DEFAULT");
 
-if(isset($_GET["control"])) $nombreControl = $_GET["control"]."_Con";
+if(isset($_GET["control"])) $nombreControl = $_GET["control"];
 if(isset($_GET["metodo"])) $nombreMetodo = $_GET["metodo"];
 
-$directorioControlador = 'php/controladores/'.$nombreControl.'_con.php';
+$directorioControlador = 'php/controladores/'.$nombreControl.'.php';
 
 // Comprobar si el controlador existe
-if(!file_exists($directorioControlador)) $directorioControlador = 'php/controladores/'.constant("CONTROLADOR_DEFAULT").'_con.php';
+if(!file_exists($directorioControlador)) $directorioControlador = 'php/controladores/'.constant("CONTROLADOR_DEFAULT").'.php';
 
 // Cargar controlador
 require_once $directorioControlador;
-$controlador = new $nombreControl();
+
+// Poner la primera letra del nombre del controlador en mayúscula para referir a la clase y crear el objeto controlador
+$nombreClase = ucfirst($nombreControl);
+$controlador = new $nombreClase();
 
 /* Ver si el método está definido */
 $datosVista["datos"] = array();

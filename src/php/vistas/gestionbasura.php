@@ -35,13 +35,14 @@
                     <td><?php echo $fila['valor']; ?></td>
                     <td><?php echo $fila['nombreImagen']; ?></td>
                     <td>
-                        <a href="index.php?control=Basura&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
-                        <a href="index.php?control=Basura&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
+                        <a href="index.php?control=basura_con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
+                        <a href="index.php?control=basura_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
                     </td>
                 </tr>
                 <?php
             }
         ?>
     </table>
+    <?php echo "<p>".$mensaje."</p>" ?>
 </main>
 <script src="expresionesRegulares.js" type="module"></script>
