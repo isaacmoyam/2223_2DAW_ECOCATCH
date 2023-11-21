@@ -187,6 +187,7 @@ header > img.darkmode {
 
 /*MAIN*/
 /* Estilos de las secciones main de la página */
+  /*Main pagina anadirNiveles*/
 #configMensajes, /*Main pagina configMensajes*/
 #gestionNiveles, /*Main pagina configNiveles*/
 #movMsg,         /*Main pagina moverMEnsaje*/
@@ -205,8 +206,9 @@ header > img.darkmode {
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
 
+#anadirNiveles,
 #configMensajes{
-    width: 50%;
+    width: 50%;  /*Pongo un tamaño en específico para ocasiones determinadas como configMensajes y añadirNiveles en donde quedaba mucho espacio libre*/
 }
 
 
@@ -250,7 +252,8 @@ header > img.darkmode {
 }
 
 /* Estilos de los enlaces en las secciones */
-#botonMasConfigNiveles,
+#botonMasConfigNiveles, /*Boton + de la pagina configNiveles*/
+#anadirNiveles > a,
 #gestionNiveles > a,
 #moverMensajes > a,
 #niveles > a,
@@ -643,7 +646,7 @@ main > div > #conocenos:nth-child(2n) > p {
     }
 
     /*Reducir el tamaño de funete a 1 em*/
-    #gestorM, #menu ,#empezar, #ranking, #configMensajes, #gestionNiveles, #movMsg {
+    #gestorM, #menu ,#empezar, #ranking, #configMensajes, #gestionNiveles, #anadirNiveles, #movMsg {
         font-size: 1em;
     }
 
