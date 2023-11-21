@@ -6,6 +6,6 @@
     define("PASSWD", '$d.@V+9pQ*-t');
 
     /* Opciones por defecto */
-    define("CONTROLADOR_DEFAULT", "basura_con");
+    define("CONTROLADOR_DEFAULT", "nivel_con");
     define("METODO_DEFAULT", "mostrar");
 ?>
