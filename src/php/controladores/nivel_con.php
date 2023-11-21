@@ -98,5 +98,11 @@ class Nivel_con {
         $this->pagina = "Gestión de niveles"; 
         return $this->obj->mostrar();
     }
+
+    public function mostrarMensajes() {
+        $this->pagina = "Modificar nivel"; 
+        $this->vista = 'modificarNivel';
+        return $this->obj->mostrarMensajes($_GET["id"]);
+    }
 }
 ?>

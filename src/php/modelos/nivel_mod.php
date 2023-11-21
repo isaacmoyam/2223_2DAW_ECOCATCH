@@ -58,6 +58,21 @@ class Nivel_Mod {
         return $niveles;
     }
 
+    public function mostrarMensajes($id) {
+        $this->establecerConexion();
+        $sql = "SELECT mensaje.id,tipo,contenido,puntosHasta,idNivel FROM mensaje INNER JOIN nivel ON idNivel = nivel.id WHERE idNivel=" .$id;
+        $result = $this->mysqli->query($sql);
+
+        $mensajes = array();
+        while ($row = $result->fetch_assoc()) {
+            $mensajes[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return $mensajes;
+    }
+
     /**
      * Borra una basura específica de la base de datos.
      *

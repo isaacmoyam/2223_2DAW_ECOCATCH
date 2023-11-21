@@ -11,6 +11,10 @@ body {
     box-sizing: border-box;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* Estilos del formulario de datos del ranking */
 form {
     margin-top: 50px;
@@ -59,7 +63,8 @@ header > img {
 /* Estilos de las secciones de la página */
 #gestor,
 #gestorM,
-#ranking {
+#ranking,
+#gestorN {
     background-color: #326F1E;
     font-size: 1.4em;
     text-align: center;
@@ -87,7 +92,9 @@ header > img {
 
 #gestor > a,
 #gestorM > a,
-#ranking > a {
+#ranking > a,
+#gestorN > a,
+#gestorN > form > a {
     text-decoration: none;
     padding: 0.6%;
     border: solid 1px black;
@@ -98,7 +105,8 @@ header > img {
 
 /* Estilos específicos para enlaces en la sección "gestor" */
 
-#gestor > a:nth-child(2) {
+#gestor > a:nth-child(2),
+#gestorN > form > a {
     left: 32.5%;
     width:4%;
     display: inline-block;
@@ -108,7 +116,9 @@ header > img {
 
 #gestor > a,
 #gestorM > a,
-#ranking > a {
+#ranking > a,
+#gestorN > a,
+#gestorN > form > a {
     position: relative;
 }
 
@@ -116,7 +126,9 @@ header > img {
 
 #ranking > a:hover,
 #gestor > a:hover,
-#gestorM > a:hover {
+#gestorM > a:hover,
+#gestorN > a:hover,
+#gestorN > form > a:hover {
     background-color: #85471f;
 }
 
@@ -127,13 +139,23 @@ header > img {
     bottom: 20px;
 }
 
-#gestor > table a {
+#gestor > table a,
+#gestorN > table a {
     text-decoration: none;
 }
 
 #gestorM > a {
     right: 42%;
     top: 45px;
+}
+
+#gestorN > a {
+    right: 42%;
+    top: 45px;
+}
+
+#gestorN > form > a {
+    bottom:15px;
 }
 
 /* Estilos de tablas en las secciones "ranking" y "gestor" */
@@ -147,12 +169,22 @@ header > img {
     width: 60%;
 }
 
+#gestorN table {
+    background-color: #6D3916;
+    margin: 0 auto 5%;
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 80%;
+}
+
 /* Estilos para celdas de tablas en "ranking" y "gestor" */
 
 #ranking th,
 #ranking td,
 #gestor th,
-#gestor td {
+#gestor td,
+#gestorN th,
+#gestorN td {
     border: solid 1px black;
     padding: 2%;
     text-align: center;
