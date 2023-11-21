@@ -80,7 +80,7 @@ class Basura_Mod {
         try {
             $sql = 'INSERT INTO basura (id, valor) VALUES ("'.$id.'", "'.$valor.'")';
             $result = $this->mysqli->query($sql); 
-        } catch(mysqli_sql_exception) {
+        } catch(mysqli_sql_exception $e) {
             $error = "No se pudo crear la basura";
             return $error;
         }
@@ -121,7 +121,7 @@ class Basura_Mod {
         try {
             $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
             $result = $this->mysqli->query($sql);  
-        } catch(mysqli_sql_exception) {
+        } catch(mysqli_sql_exception $e) {
             $error = "No se pudo modificar la basura";
             return $error;
         }
