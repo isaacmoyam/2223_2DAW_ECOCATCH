@@ -10,94 +10,45 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-require 'php/controladores/basura_con.php';
+require_once 'php/config/configdb.php';
+require_once 'php/modelos/db.php';
 
-$control = $_GET['control'];
-$metodo = $_GET['metodo'];
+// Verificación de parámetro 'mensaje' en la URL para mostrar mensajes.
+$mensaje = "";
 
-switch ($metodo) {
-    case 'crear':
-        crear();
-        break;
-    case 'buscarModificar':
-        buscarModificar();
-        break;
-    case 'borrar':
-        borrar();
-        break;
-    case 'modificar':
-        modificar();
-        break;
-    default:
-        return;
-}
-
-/**
- * Función para crear una nueva basura.
- *
- * @return void
- */
-function crear()
-{
-    $nombre = $_POST['nombre'];
-    $imagen = $_POST['imagen'];
-    $valor = $_POST['valor'];
-    $obj = new Basura_Con();
-    $resultado = $obj->crear($nombre, $imagen, $valor);
-    if ($resultado === false) {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
+if(isset($_GET['mensaje'])) {
+    if ($_GET['mensaje'] === "false") {
+        $mensaje = 'Algo ha salido mal';
     } else {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
+        $mensaje = 'Todo ha salido correctamente';
     }
 }
 
-/**
- * Función para borrar una basura.
- *
- * @return void
- */
-function borrar()
-{
-    $id = $_GET['id'];
-    $obj = new Basura_Con();
-    $resultado = $obj->borrar($id);
-    if ($resultado === false) {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
-    } else {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
-    }
-}
+$nombreControl = constant("CONTROLADOR_DEFAULT");
+$nombreMetodo = constant("METODO_DEFAULT");
 
-/**
- * Función para buscar y obtener información de una basura para modificar.
- *
- * @return mixed Arreglo asociativo con la información de la basura o nulo.
- */
-function buscarModificar()
-{
-    $id = $_GET['id'];
-    $obj = new Basura_Con();
-    $fila = $obj->buscarModificar($id);
-    return $fila;
-}
+if(isset($_GET["control"])) $nombreControl = $_GET["control"];
+if(isset($_GET["metodo"])) $nombreMetodo = $_GET["metodo"];
 
-/**
- * Función para modificar una basura existente.
- *
- * @return void
- */
-function modificar()
-{
-    $id = $_GET['id'];
-    $nombre = $_POST['nombre'];
-    $imagen = $_POST['imagen'];
-    $valor = $_POST['valor'];
-    $obj = new Basura_Con();
-    $resultado = $obj->modificar($id, $nombre, $imagen, $valor);
-    if ($resultado === false) {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=false");
-    } else {
-        header("Location: ../mockups/basura/gestionbasura.php?mensaje=true");
-    }
-}
+$directorioControlador = 'php/controladores/'.$nombreControl.'.php';
+
+// Comprobar si el controlador existe
+if(!file_exists($directorioControlador)) $directorioControlador = 'php/controladores/'.constant("CONTROLADOR_DEFAULT").'.php';
+
+// Cargar controlador
+require_once $directorioControlador;
+
+// Poner la primera letra del nombre del controlador en mayúscula para referir a la clase y crear el objeto controlador
+$nombreClase = ucfirst($nombreControl);
+$controlador = new $nombreClase();
+
+/* Ver si el método está definido */
+$datosVista["datos"] = array();
+if (method_exists($controlador, $nombreMetodo)) 
+    $datosVista["datos"] = $controlador->{$nombreMetodo}();
+
+/* Cargar vistas */
+require_once 'php/vistas/templates/header.php';
+require_once 'php/vistas/'.$controlador->vista.'.php';
+require_once 'php/vistas/templates/footer.php';
 ?>

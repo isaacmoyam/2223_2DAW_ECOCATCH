@@ -17,7 +17,7 @@ error_reporting(E_ALL);
 
 require_once 'php/modelos/db.php';
 
-class Basura_Mod {
+class Nivel_Mod {
     
     private $mysqli;
 
@@ -45,17 +45,32 @@ class Basura_Mod {
      */
     public function mostrar() {
         $this->establecerConexion();
-        $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
+        $sql = "SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel;";
         $result = $this->mysqli->query($sql);
 
-        $basuras = array();
+        $niveles = array();
         while ($row = $result->fetch_assoc()) {
-            $basuras[] = $row;
+            $niveles[] = $row;
         }
 
         $this->cerrarConexion();
 
-        return $basuras;
+        return $niveles;
+    }
+
+    public function mostrarMensajes($id) {
+        $this->establecerConexion();
+        $sql = "SELECT mensaje.id,tipo,contenido,puntosHasta,idNivel FROM mensaje INNER JOIN nivel ON idNivel = nivel.id WHERE idNivel=" .$id;
+        $result = $this->mysqli->query($sql);
+
+        $mensajes = array();
+        while ($row = $result->fetch_assoc()) {
+            $mensajes[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return $mensajes;
     }
 
     /**
@@ -67,7 +82,7 @@ class Basura_Mod {
      */
     public function borrar($id) {
         $this->establecerConexion();
-        $sql = 'DELETE FROM item WHERE id='.$id;
+        $sql = 'DELETE FROM nivel WHERE id='.$id;
         $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
@@ -84,22 +99,10 @@ class Basura_Mod {
      *
      * @return int|void Código de error o nada.
      */
-    public function crear($nombre, $imagen, $valor) {
+    public function crear($nombre, $items, $velocidad) {
         $this->establecerConexion();
-        $sql = 'INSERT INTO item (nombre, nombreImagen) VALUES ("'.$nombre.'", "'.$imagen.'")';
+        $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
         $result = $this->mysqli->query($sql);
-        $id = $this->mysqli->insert_id;
-
-        $this->cerrarConexion();
-
-        $this->establecerConexion();
-        try {
-            $sql = 'INSERT INTO basura (id, valor) VALUES ("'.$id.'", "'.$valor.'")';
-            $result = $this->mysqli->query($sql); 
-        } catch(mysqli_sql_exception $e) {
-            $error = "No se pudo crear la basura";
-            return $error;
-        }
 
         $this->cerrarConexion();
     }
@@ -113,7 +116,7 @@ class Basura_Mod {
      */
     public function buscarModificar($id) {
         $this->establecerConexion();
-        $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
+        $sql = 'SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel WHERE id='.$id;
         $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
@@ -132,21 +135,10 @@ class Basura_Mod {
      *
      * @return int|void Código de error o nada.
      */
-    public function modificar($id, $nombre, $imagen, $valor) {
+    public function modificar($id, $nombre, $items, $velocidad) {
         $this->establecerConexion();
-        $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
+        $sql = 'UPDATE nivel SET nombre = "'.$nombre.'", cantidadItems = "'.$items.'", velocidadBarco = "'.$velocidad.'" WHERE id ='.$id;
         $result = $this->mysqli->query($sql);
-
-        $this->cerrarConexion();
-
-        $this->establecerConexion();
-        try {
-            $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
-            $result = $this->mysqli->query($sql);  
-        } catch(mysqli_sql_exception $e) {
-            $error = "No se pudo modificar la basura";
-            return $error;
-        }
 
         $this->cerrarConexion();
     }

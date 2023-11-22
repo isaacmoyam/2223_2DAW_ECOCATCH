@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Añadir nivel</title>
+    </head>
+    <body>
+        <header>
+            <img src="../../img/logo.png" alt="Logo de la aplicación">
+        </header>
+        <main id="gestorM">
+            <h1>Añadir nivel</h1>
+            <a id="btnVolver" href="../../index.php">Volver</a>
+            <form action="../../index.php?control=nivel_con&metodo=crear" method="POST">
+                <label for="nombre">(*) Nombre:</label>
+                <input type="text" name="nombre" placeholder="Nombre nivel">
+                <label for="valor">(*) Items:</label>
+                <input type="text" name="cantidadItems" placeholder="Cantidad de items">
+                <label for="imagen">(*) Velocidad:</label>
+                <input type="text" name="velocidadBarco" placeholder="Velocidad del barco">
+                <p id="msgCampos"></p>
+                <input type="submit" value="Añadir nivel">
+            </form>
+        </main>
+        <script src="expresionesRegulares.js" type="module"></script>
+    </body>
+</html>

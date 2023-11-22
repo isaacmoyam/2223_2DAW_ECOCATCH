@@ -10,9 +10,9 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-require_once 'php/modelos/basura_mod.php';
+require_once 'php/modelos/nivel_mod.php';
 
-class Basura_con {
+class Nivel_con {
 
     public $vista;
     public $obj;
@@ -22,9 +22,9 @@ class Basura_con {
      * Constructor de la clase Basura_Con.
      */
     public function __construct() {
-        $this->pagina = "Gestión de basura";        
-        $this->vista = 'gestionbasura';
-        $this->obj = new Basura_Mod();
+        $this->pagina = "Gestión de niveles";        
+        $this->vista = 'gestionnivel';
+        $this->obj = new Nivel_Mod();
     }
 
     /**
@@ -37,9 +37,9 @@ class Basura_con {
      * @return mixed Mensaje de éxito o error.
      */
     public function crear() {
-        $this->pagina = "Crear basura"; 
-        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
-            $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
+        $this->pagina = "Crear nivel"; 
+        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])) {
+            $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
             header("Location: index.php?mensaje=true");
         } else {
             header("Location: index.php?mensaje=false");
@@ -54,8 +54,8 @@ class Basura_con {
      * @return mixed Información de la basura.
      */
     public function buscarModificar() { 
-        $this->pagina = "Modificar basura"; 
-        $this->vista = 'modificar';
+        $this->pagina = "Modificar nivel"; 
+        $this->vista = 'modificarNivel';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 
@@ -70,8 +70,8 @@ class Basura_con {
      * @return mixed Mensaje de éxito o error.
      */
     public function modificar() {
-        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"])) {
-            $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
+        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["cantidadItems"]) && !empty($_POST["velocidadBarco"])) {
+            $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
             header("Location: index.php?mensaje=true");
         } else {
             header("Location: index.php?mensaje=false");
@@ -95,8 +95,14 @@ class Basura_con {
      * @return mixed Información de todas las basuras.
      */
     public function mostrar() {
-        $this->pagina = "Gestión de basura"; 
+        $this->pagina = "Gestión de niveles"; 
         return $this->obj->mostrar();
+    }
+
+    public function mostrarMensajes() {
+        $this->pagina = "Modificar nivel"; 
+        $this->vista = 'modificarNivel';
+        return $this->obj->mostrarMensajes($_GET["id"]);
     }
 }
 ?>
