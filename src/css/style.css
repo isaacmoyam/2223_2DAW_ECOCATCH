@@ -71,7 +71,7 @@ header > img {
     border-radius: 30px;
     border: solid 2px;
     padding-bottom: 3%;
-    width: 55%;
+    width: 70%;
     margin: 0 auto;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
@@ -94,7 +94,8 @@ header > img {
 #gestorM > a,
 #ranking > a,
 #gestorN > a,
-#gestorN > form > a {
+#gestorN > form > a,
+#menu > a {
     text-decoration: none;
     padding: 0.6%;
     border: solid 1px black;
@@ -188,6 +189,24 @@ header > img {
     border: solid 1px black;
     padding: 2%;
     text-align: center;
+}
+
+#menu {
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 2%;
+    width: 45%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#menu > a, #moverMensajes > a{
+    display: block;
+    width:40%;
+    margin: 7% auto 0;
 }
 
 @media only screen and (max-width: 1352px) {
