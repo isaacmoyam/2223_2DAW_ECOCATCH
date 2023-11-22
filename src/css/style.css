@@ -209,6 +209,10 @@ header > img {
     margin: 7% auto 0;
 }
 
+#menu > a:hover, #moverMensajes > a:hover{
+    background-color: #85471f;
+}
+
 @media only screen and (max-width: 1352px) {
     header > img {
         width: 180px;

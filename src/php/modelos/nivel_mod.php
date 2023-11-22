@@ -84,7 +84,6 @@ class Nivel_Mod {
         $this->establecerConexion();
         $sql = 'DELETE FROM nivel WHERE id='.$id;
         $result = $this->mysqli->query($sql);
-
         $this->cerrarConexion();
 
         return;
@@ -101,8 +100,14 @@ class Nivel_Mod {
      */
     public function crear($nombre, $items, $velocidad) {
         $this->establecerConexion();
-        $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
-        $result = $this->mysqli->query($sql);
+       
+        try {
+            $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
 
         $this->cerrarConexion();
     }
@@ -137,8 +142,14 @@ class Nivel_Mod {
      */
     public function modificar($id, $nombre, $items, $velocidad) {
         $this->establecerConexion();
-        $sql = 'UPDATE nivel SET nombre = "'.$nombre.'", cantidadItems = "'.$items.'", velocidadBarco = "'.$velocidad.'" WHERE id ='.$id;
-        $result = $this->mysqli->query($sql);
+
+        try {
+            $sql = 'UPDATE nivel SET nombre = "'.$nombre.'", cantidadItems = "'.$items.'", velocidadBarco = "'.$velocidad.'" WHERE id ='.$id;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
 
         $this->cerrarConexion();
     }

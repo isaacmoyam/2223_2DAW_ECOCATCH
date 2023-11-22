@@ -38,15 +38,15 @@
             $datos = $obj->mostrarMensajes();
 
             // Iteración sobre los datos para mostrar en la tabla.
-            foreach ($datos as $fila) {
+            foreach ($datos as $mensaje) {
                 ?>
                 <tr>
-                    <td><?php echo $fila['contenido']; ?></td>
-                    <td><?php echo $fila['puntosHasta']; ?></td>
-                    <td><?php echo $fila['tipo']; ?></td>
+                    <td><?php echo $mensaje['contenido']; ?></td>
+                    <td><?php echo $mensaje['puntosHasta']; ?></td>
+                    <td><?php echo $mensaje['tipo']; ?></td>
                     <td>
-                        <a href="index.php?control=nivel_con&metodo=borrarMensaje&id=<?php echo $fila['id']; ?>">🗑️</a>
-                        <a href="index.php?control=nivel_con&metodo=buscarMensaje&id=<?php echo $fila['id']; ?>">🔄</a>
+                        <a href="index.php?control=nivel_con&metodo=borrarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🗑️</a>
+                        <a href="index.php?control=nivel_con&metodo=buscarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🔄</a>
                     </td>
                 </tr>
                 <?php

@@ -39,8 +39,12 @@ class Nivel_con {
     public function crear() {
         $this->pagina = "Crear nivel"; 
         if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])) {
-            $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
-            header("Location: index.php?control=nivel_con&mensaje=true");
+            $resultado = $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
+            if(!$resultado) {
+                header("Location: index.php?control=nivel_con&mensaje=true");
+            } else {
+                header("Location: index.php?control=nivel_con&mensaje=false");
+            }
         } else {
             header("Location: index.php?control=nivel_con&mensaje=false");
         }
@@ -71,8 +75,12 @@ class Nivel_con {
      */
     public function modificar() {
         if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["cantidadItems"]) && !empty($_POST["velocidadBarco"])) {
-            $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
-            header("Location: index.php?control=nivel_con&mensaje=true");
+            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
+            if(!$resultado) {
+                header("Location: index.php?control=nivel_con&mensaje=true");
+            } else {
+                header("Location: index.php?control=nivel_con&mensaje=false");
+            }
         } else {
             header("Location: index.php?control=nivel_con&mensaje=false");
         }
@@ -109,7 +117,7 @@ class Nivel_con {
     public function borrarMensaje() {
         $this->vista = 'gestionnivel';
         $this->obj->borrarMensaje($_GET["id"]);
-        header("Location: index.php?control=nivel_con&metodo=buscarModificar&id=".$_GET['id']);
+        header("Location: index.php?control=nivel_con&metodo=buscarModificar&id=".$_GET['idNivel']);
     }
 
     public function buscarMensaje() {
