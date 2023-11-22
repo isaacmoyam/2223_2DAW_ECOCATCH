@@ -23,7 +23,7 @@ class Mensaje_con {
      */
     public function __construct() {
         $this->pagina = "Gestión de mensajes";    
-        $this->vista = 'modificarMensaje';
+        $this->vista = 'gestionnivel';
         $this->obj = new Mensaje_Mod();
     }
 

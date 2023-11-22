@@ -40,9 +40,9 @@ class Basura_con {
         $this->pagina = "Crear basura"; 
         if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
             $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
-            header("Location: index.php?mensaje=true");
+            header("Location: index.php?control=basura_con&mensaje=true");
         } else {
-            header("Location: index.php?mensaje=false");
+            header("Location: index.php?control=basura_con&mensaje=false");
         }
     }
 
@@ -72,9 +72,9 @@ class Basura_con {
     public function modificar() {
         if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"])) {
             $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
-            header("Location: index.php?mensaje=true");
+            header("Location: index.php?control=basura_con&mensaje=true");
         } else {
-            header("Location: index.php?mensaje=false");
+            header("Location: index.php?control=basura_con&mensaje=false");
         }
     }
 

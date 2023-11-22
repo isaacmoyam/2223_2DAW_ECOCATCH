@@ -40,9 +40,9 @@ class Nivel_con {
         $this->pagina = "Crear nivel"; 
         if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])) {
             $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
-            header("Location: index.php?mensaje=true");
+            header("Location: index.php?control=nivel_con&mensaje=true");
         } else {
-            header("Location: index.php?mensaje=false");
+            header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
 
@@ -72,9 +72,9 @@ class Nivel_con {
     public function modificar() {
         if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["cantidadItems"]) && !empty($_POST["velocidadBarco"])) {
             $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
-            header("Location: index.php?mensaje=true");
+            header("Location: index.php?control=nivel_con&mensaje=true");
         } else {
-            header("Location: index.php?mensaje=false");
+            header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
 
