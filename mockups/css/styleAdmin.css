@@ -138,6 +138,23 @@ header > img.darkmode {
     border:solid 2px #deca65;
 }
 
+
+/*Navegador*/
+nav{
+    width: 50%;
+    margin: 2% auto;
+    text-align: center;
+}
+
+nav > a{ /*Estilos de los enlaces del navegador*/
+    margin: 0% 2%;
+    /*Como en lineas posteriores hay otro sitio donde aparece nav > a y este sitio tiene un padding si no le pongo el important
+    el padding que hay aqui puesto no srive para nada por que el que es valido es el otro dado que se sobreescribe pero el que me interesa es este
+    por ese motivo se ha puesto el !important, para indicar que este es el padding que tiene que tener prioridad*/
+    padding: 1% 2% !important;
+    font-size: 1.4em;
+}
+
 /* Estilos del menú y pantalla de configuración antes de empezar */
 
 #menu {
@@ -210,6 +227,7 @@ header > img.darkmode {
 #gestor > a,
 #gestorM > a,
 #menu > a,
+nav > a,
 main > a{
     text-decoration: none;
     padding: 0.6%;
@@ -371,6 +389,7 @@ main.darkmode {
 /* Estilo al pasar el cursor por encima de los enlaces*/
 #niveles > a:hover,
 #menu > a:hover,
+nav > a:hover,
 main > a:hover,
 #gestor > a:hover,
 #gestorM > a:hover {
@@ -438,6 +457,11 @@ main > a.darkmode:hover,
         width: 120px;
     }
 
+    nav > a{ /*Estilos de los enlaces del navegador*/
+        margin: 0% 1%;
+        font-size: 1em;
+    }
+
     #niveles {
         font-size: 1em; /*Cambiar tamaño de la letra*/
     }
@@ -458,6 +482,7 @@ main > a.darkmode:hover,
         width: 80px;
     }
 
+    nav > a, /*Estilos de los enlaces del navegador*/
     #niveles {
         font-size: 0.5em; /*Cambiar tamaño de la letra*/
     }
@@ -467,7 +492,6 @@ main > a.darkmode:hover,
         font-size: 0.5em;
         width: 90%;
     }
-
 
     #gestor {
         font-size: 0.5em;
