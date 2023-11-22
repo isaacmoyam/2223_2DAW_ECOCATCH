@@ -46,12 +46,12 @@ class Nivel_con {
             $input2 = $_POST['puntosHasta'];
             $input3 = $_POST['tipo'];
 
-            // Iterar sobre los valores de input1 y construir el array bidimensional
+            // Iterar sobre los valores de input y construir el array bidimensional
             foreach ($input1 as $index => $value) {
                 $arrayBidimensional[$index] = [
                     'contenido' => $input1[$index],
                     'puntosHasta' => isset($input2[$index]) ? $input2[$index] : null,
-                    'tipo' => $input3[$index],
+                    'tipo' => isset($input3[$index]) ? $input3[$index] : null,
                 ];
             }
 
@@ -63,8 +63,8 @@ class Nivel_con {
 
             $idNivel = $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
 
-             // Extraer valores para la función crearMensaje
-             foreach ($arrayBidimensional as $mensaje) {
+            // Extraer valores para la función crearMensaje
+            foreach ($arrayBidimensional as $mensaje) {
                 $tipoMensaje = $mensaje['tipo'];
                 $contenidoMensaje = $mensaje['contenido'];
                 $puntosHastaMensaje = $mensaje['puntosHasta'];
@@ -80,7 +80,7 @@ class Nivel_con {
                 header("Location: index.php?control=nivel_con&mensaje=false");
             }*/
         } else {
-           /* header("Location: index.php?control=nivel_con&mensaje=false");*/
+           header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
 

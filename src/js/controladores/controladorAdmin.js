@@ -61,7 +61,7 @@ class ControladorAdmin {
     celda = nuevaFila.insertCell();
     input = document.createElement('input');
     input.type = 'text';
-    input.name = 'puntosRequeridos[]'
+    input.name = 'puntosHasta[]'
     celda.appendChild(input);
 
     celda = nuevaFila.insertCell();
