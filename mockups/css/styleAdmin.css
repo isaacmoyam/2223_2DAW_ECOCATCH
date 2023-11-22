@@ -86,7 +86,7 @@ button.darkmode:hover {
 
 /* Estilo en común de los select */
 select {
-    padding: 3%;
+    padding: 2% 3%;
     font-size: 0.7em;
     color:#EDC713;
     border: 1px solid #000000;
@@ -94,6 +94,7 @@ select {
     background-color: #6D3916;
     cursor: pointer;
     font-family: Fredoka;
+    margin: 2% 0%;
 }
 
 select:hover {
@@ -111,6 +112,7 @@ select:hover.darkmode {
 }
 
 option {
+    font-family: Fredoka;
     font-size: 1.5em;
 }
 
@@ -152,7 +154,7 @@ header > img.darkmode {
 }
 
 /*Aspecto alargado de algunos enlaces*/
-#menu > a, #moverMensajes > a{
+#menu > a{
     display: block;
     width:40%;
     margin: 7% auto 0;
@@ -201,7 +203,6 @@ header > img.darkmode {
 #botonMasConfigNiveles, /*Boton + de la pagina configNiveles*/
 #anadirNiveles > a,
 #gestionNiveles > a,
-#moverMensajes > a,
 #niveles > a,
 #gestor > a,
 #gestorM > a,
@@ -365,7 +366,6 @@ main.darkmode {
 
 
 /* Estilo al pasar el cursor por encima de los enlaces*/
-#moverMensajes > a:hover,
 #niveles > a:hover,
 #menu > a:hover,
 main > a:hover,

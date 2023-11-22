@@ -11,12 +11,23 @@
         <img src="../../img/logo.png" alt="Logo de la página EcoCatch">
     </header>
     <main id="movMsg">
-        <h1>Niveles</h1>
-        <div id="moverMensajes">
-            <a href="">LVL 1</a>
-            <a href="">LVL 2</a>
-            <a href="">LVL 3</a>
-        </div>
+        <h1>Cambiar de nivel</h1>
+        <form action="" method="POST">
+            <label>Nivel:</label>
+            <select name="nivel">
+                <option>Nivel 1</option>
+                <option>Nivel 2</option>
+                <option>Nivel 3</option>
+            </select>
+            <label>Contenido:</label>
+            <input type="text" readonly name="contenido" value="">
+            <label>Puntos requeridos:</label>
+            <input type="text" readonly name="puntosHasta" value="">
+            <label>Tipo:</label>
+            <input type="text" readonly name="readTipo" value="">
+            <input type="hidden" readonly name="tipo" value="">
+            <input type="submit" value="Guardar cambios">
+        </form>
         <a id="volverMoverMensaje" href="">Volver</a>
     </main>
 </body>
