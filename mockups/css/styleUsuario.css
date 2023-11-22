@@ -226,7 +226,12 @@ form > input[type=submit] {
     font-size: 1em;
 }
 
-
+#ecocatch{
+    border: 2px solid black;
+    min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
+    min-height: 600px;
+    background-color: aquamarine;
+}
 
 /*
     PAGINA FORMULARIO
@@ -406,7 +411,7 @@ button.darkmode,
 @media only screen and (max-width: 1698px) {
     /*pagina jugar*/
     #hud {
-        gap:29%;
+        gap:20%;
     }
 }
 
@@ -429,7 +434,7 @@ button.darkmode,
 
     /*pagina jugar*/
     #hud {
-        gap:26%;
+        gap:18%;
     }
 }
 
