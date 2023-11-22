@@ -1,0 +1,494 @@
+/* Estilos generales de la página */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap');
+
+
+body {
+    background-color: #488531;
+    padding: 1% 0;
+    font-family: Fredoka;
+    color: #EDC713;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+body.darkmode {
+    background-color: #0a1905;
+    color: #deca65;
+}
+
+/* Estilos del formulario de datos del ranking */
+form {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > input {
+    margin-bottom: 10px;
+}
+
+form > input[type=number] {
+    width: 85px;
+}
+
+form > input[type=submit] {
+    margin-top: 60px;
+    border: solid 1px black;
+    border-radius: 9px;
+    color: #EDC713;
+    background-color: #6D3916;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: Fredoka;
+}
+
+form > input[type=submit].darkmode {
+    border: solid 1px #deca65;
+    color: #deca65;
+    background-color: #0a1905;
+}
+
+form > input[type=submit]:hover {
+    background-color: #85471f;
+}
+
+form > input[type=submit].darkmode:hover {
+    background-color: #253d1d;
+}
+
+/*Estilo común para los botones*//*botones*/
+
+button {
+    border: solid 1px black;
+    color: #EDC713;
+    border-radius: 9px;
+    background-color: #6D3916;
+    cursor: pointer;
+    font-family: Fredoka;
+}
+
+button.darkmode {
+    border: solid 1px #deca65;
+    color: #deca65;
+    background-color: #253d1d;
+}
+
+button:hover {
+    background-color: #85471f;
+}
+
+button.darkmode:hover {
+    background-color: #16330c;
+}
+
+/* Estilo en común de los select */
+select {
+    padding: 3%;
+    font-size: 0.7em;
+    color:#EDC713;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #6D3916;
+    cursor: pointer;
+    font-family: Fredoka;
+}
+
+select:hover {
+    background-color: #85471f;
+}
+
+select.darkmode {
+    background-color: #16330c;
+    color:#deca65;
+    border: 1px solid #deca65;
+}
+
+select:hover.darkmode {
+    background-color: #253d1d;
+}
+
+option {
+    font-size: 1.5em;
+}
+
+/* Estilos del header donde va el logo */
+header {
+    text-align: center;
+    margin: 0 auto;
+    width:50%;
+}
+
+
+header > img {
+    width: 200px;
+    margin: 0 auto 1%;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+*
+
+header > img.darkmode {
+    border:solid 2px #deca65;
+}
+
+/* Estilos del menú y pantalla de configuración antes de empezar */
+
+#menu {
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 2%;
+    width: 45%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#menu.darkmode {
+    background-color: #16330c;
+}
+
+/*Aspecto alargado de algunos enlaces*/
+#menu > a, #moverMensajes > a{
+    display: block;
+    width:40%;
+    margin: 7% auto 0;
+}
+
+#volverMoverMensaje{
+    display: block;
+    width:20%;
+    margin: 6% auto 0;
+}
+
+/*MAIN*/
+/* Estilos de las secciones main de la página */
+  /*Main pagina anadirNiveles*/
+#configMensajes, /*Main pagina configMensajes*/
+#gestionNiveles, /*Main pagina configNiveles*/
+#movMsg,         /*Main pagina moverMEnsaje*/
+#niveles,        /*Main pagina niveles*/
+#gestor,
+#gestorM{
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 3%;
+    width: 55%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#anadirNiveles,
+#configMensajes{
+    width: 50%;  /*Pongo un tamaño en específico para ocasiones determinadas como configMensajes y añadirNiveles en donde quedaba mucho espacio libre*/
+}
+
+
+/*Hacer una para niveles*/
+#gestor.darkmode,
+#gestorM.darkmode{
+    background-color: #16330c;
+}
+
+
+/* Estilos de los enlaces en las secciones */
+#botonMasConfigNiveles, /*Boton + de la pagina configNiveles*/
+#anadirNiveles > a,
+#gestionNiveles > a,
+#moverMensajes > a,
+#niveles > a,
+#gestor > a,
+#gestorM > a,
+#menu > a,
+main > a{
+    text-decoration: none;
+    padding: 0.6%;
+    border: solid 1px black;
+    border-radius: 9px;
+    color: #EDC713;
+    background-color: #6D3916;
+}
+
+#gestor > a.darkmode,
+#gestorM > a.darkmode,
+main > a.darkmode{
+    border: solid 1px #deca65;
+    color: #deca65;
+    background-color: #0a1905;
+}
+
+
+/* Estilos específicos para enlaces en la sección "gestor" (boton +)*/
+#niveles > a:nth-child(2),
+#gestor > a:nth-child(2) {
+    left: 32.5%;
+    width:4%;
+    display: inline-block;
+}
+
+/* Posicionamiento relativo para los enlaces de las diferentes secciones */
+#niveles > a,
+#gestor > a,
+#gestorM > a{
+    position: relative;
+}
+
+/*Boton Volver*/
+/* Posicionamiento específico de enlaces en la sección "gestor" (boton volver)*/
+#niveles > a,
+#gestor > a {
+    right: 28.3%;
+    bottom: 20px;
+}
+
+/*Boton + pagina configuracionNiveles*/
+#botonMasConfigNiveles{
+    position: relative;
+    left: 32.5%;
+    width:4%;
+    display: inline-block;
+    right: 28.3%;
+    bottom: 20px;
+}
+
+/*Quitar linea de enlace de los emoticonos (papelera, lapiz...) en las tablas*/
+#gestionNiveles  table a,
+#niveles > table a,
+#gestor > table a {
+    text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
+}
+
+#gestorM > a {
+    right: 42%;
+    top: 45px;
+}
+
+/* Estilos de tablas en las secciones "niveles" y "gestor" */
+
+#niveles > table,
+#gestor table {
+    background-color: #6D3916;
+    margin: 0 auto 5%;
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+#gestionNiveles  table{
+    background-color: #6D3916;
+    margin: 0 auto 5%;
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+#gestor table.darkmode {
+    background-color: #0a1905;
+    border: solid 1px #deca65;
+}
+
+/* Estilos para celdas de tablas en "gestor" */
+#gestor th,
+#gestor td {
+    border: solid 1px black;
+    padding: 2%;
+    text-align: center;
+}
+
+
+#niveles  th,
+#niveles  td{  /*Casillas de las tablas (th y td) con el id niveles*/
+    /*Aqui le ponemos un tamaño al width de la tabla, un borde, el padding y que el texto esté centrado*/
+    width: 20%;
+    border: solid 1px black;
+    padding: 2%;
+    text-align: center;
+}
+
+/*Tabla de la parte de mensajes de la página configNiveles*/
+#gestionNiveles th,
+#gestionNiveles td{
+    width: 20%;
+    border: solid 1px black;
+    padding: 2%;
+    text-align: center;
+}
+
+/*Quiero que el pimer hijo de su contenedor (tr) sea un poco mas grnade puesto que como se van a ver los mensajes necesitara mas espacio*/
+#gestionNiveles th:first-child,
+#gestionNiveles td:first-child{
+    width: 30%;
+}
+/*Quiero que el tercer hijo de su contenedor (tr) sea un poco mas pequeño dado que como va a mostrar el tipo necesitara menso espacio*/
+#gestionNiveles th:nth-child(3),
+#gestionNiveles td:nth-child(3){
+    width: 10%;
+}
+
+
+#gestor th.darkmode,
+#gestor td.darkmode {
+    border: solid 1px #deca65;
+}
+
+/* Borde para
+
+
+/* Estilos para el juego */
+#juego {
+    background-color: rgb(54, 138, 233);
+}
+
+/* Estilos para página conócenos */
+
+main {
+    background-color: #326F1E;
+    font-size: 1.2em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 5%;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+main.darkmode {
+    background-color: #253d1d;
+}
+
+
+/* Estilo al pasar el cursor por encima de los enlaces*/
+#moverMensajes > a:hover,
+#niveles > a:hover,
+#menu > a:hover,
+main > a:hover,
+#gestor > a:hover,
+#gestorM > a:hover {
+    background-color: #85471f;
+}
+
+#menu > a.darkmode:hover,
+main > a.darkmode:hover,
+#gestor > a.darkmode:hover,
+#gestorM > a.darkmode:hover{
+    background-color: #253d1d;
+}
+
+
+
+/* Media queries para diseño responsive*/
+
+@media only screen and (max-width: 1804px) {
+    header > img {
+        width: 190px;
+    }
+
+}
+
+
+@media only screen and (max-width: 1502px) {
+    header > img {
+        width: 185px;
+    }
+
+}
+
+@media only screen and (max-width: 1352px) {
+    header > img {
+        width: 180px;
+    }
+
+    /*pagina indice admin*/
+    #menu > a{
+        width: 50%;
+    }
+
+    #niveles{
+        font-size: 1.1em; /*Cambiar tamaño de la letra*/
+    }
+
+    #gestor {
+        font-size: 1.1em;
+    }
+
+    /*Cambios en las medidas de menu*/
+    /*
+    #menu{
+        font-size: 1.1em;
+    }*/
+    #menu > a{
+        width: 50%;
+    }
+
+
+}
+
+@media only screen and (max-width: 1206px) {
+    header > img {
+        width: 120px;
+    }
+
+    #niveles {
+        font-size: 1em; /*Cambiar tamaño de la letra*/
+    }
+
+    /*Cambiar el tamaño de la letra de la tabla de gestion de niveles*/
+    #gestionNiveles  table{
+        font-size: 0.8em;
+    }
+
+    #gestor {
+        font-size: 1em;
+    }
+
+}
+
+@media only screen and (max-width: 930px) {
+    header > img {
+        width: 80px;
+    }
+
+    #niveles {
+        font-size: 0.5em; /*Cambiar tamaño de la letra*/
+    }
+
+    /*Cambiar el tamaño de la letra y ancho de la tabla de gestion de niveles*/
+    #gestionNiveles  table{
+        font-size: 0.5em;
+        width: 90%;
+    }
+
+
+    #gestor {
+        font-size: 0.5em;
+    }
+
+    #gestorM > a {
+        right: 30%;
+    }
+
+    /*Reducir el tamaño de funete a 1 em*/
+    #gestorM, #menu, #configMensajes, #gestionNiveles, #anadirNiveles, #movMsg {
+        font-size: 1em;
+    }
+
+    #menu > a{
+        width:70%;
+    }
+
+
+    main img {
+        width:150px;
+        height:150px;
+    }
+
+
+}
+
