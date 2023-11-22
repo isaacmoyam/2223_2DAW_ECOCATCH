@@ -59,8 +59,8 @@ form > input[type=submit].darkmode:hover {
     background-color: #253d1d;
 }
 
-/*Estilo común para los botones*//*botones*/
-
+/*botones*/
+/*Estilo común para los botones*/
 button {
     border: solid 1px black;
     color: #EDC713;
@@ -68,6 +68,9 @@ button {
     background-color: #6D3916;
     cursor: pointer;
     font-family: Fredoka;
+    font-size: 1.4em;
+    width: 30%;
+    padding: 2%;
 }
 
 button.darkmode {
