@@ -37,16 +37,40 @@ class Nivel_con {
      * @return mixed Mensaje de éxito o error.
      */
     public function crear() {
+        $arrayBidimensional = [];
         $this->pagina = "Crear nivel"; 
-        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])) {
+        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])
+        && isset($_POST["contenido"]) && !empty($_POST["contenido"]) && isset($_POST["puntosHasta"]) && !empty($_POST["puntosHasta"]) && isset($_POST["tipo"]) && !empty($_POST["tipo"])) {
+            
+            $input1 = $_POST['contenido'];
+            $input2 = $_POST['puntosHasta'];
+            $input3 = $_POST['tipo'];
+
+            // Iterar sobre los valores de input1 y construir el array bidimensional
+            foreach ($input1 as $index => $value) {
+                $arrayBidimensional[$index] = [
+                    'contenido' => $input1[$index],
+                    'puntosHasta' => isset($input2[$index]) ? $input2[$index] : null,
+                    'tipo' => $input3[$index],
+                ];
+            }
+            
+            // Validar que el primer indice no esté vacío
+            if (empty($arrayBidimensional[0]['contenido']) || empty($arrayBidimensional[0]['puntosHasta']) || empty($arrayBidimensional[0]['tipo'])) {
+                header("Location: index.php?control=nivel_con&mensaje=false");
+                exit();
+            }
+
             $resultado = $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
-            if(!$resultado) {
+
+            return $arrayBidimensional;
+           /* if(!$resultado) {
                 header("Location: index.php?control=nivel_con&mensaje=true");
             } else {
                 header("Location: index.php?control=nivel_con&mensaje=false");
-            }
+            }*/
         } else {
-            header("Location: index.php?control=nivel_con&mensaje=false");
+           /* header("Location: index.php?control=nivel_con&mensaje=false");*/
         }
     }
 
