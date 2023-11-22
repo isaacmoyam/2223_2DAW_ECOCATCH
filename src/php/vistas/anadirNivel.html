@@ -21,9 +21,32 @@
                 <label for="imagen">(*) Velocidad:</label>
                 <input type="text" name="velocidadBarco" placeholder="Velocidad del barco">
                 <p id="msgCampos"></p>
+                <table id="tablaDinamica">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Contenido</th>
+                        <th>Puntos Requeridos</th>
+                        <th>Tipo</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><button type="button" class="btnQuitarFila">🗑️</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              
+                  <button type="button" id="btnAgregarFila">Agregar Fila</button>
+
                 <input type="submit" value="Añadir nivel">
             </form>
         </main>
-        <script src="expresionesRegulares.js" type="module"></script>
+        <script src="../../js/controladores/controladorAdmin.js" type="module"></script>
     </body>
 </html>

@@ -15,12 +15,16 @@ class ControladorAdmin {
   constructor() {
     const divVista1 = document.getElementById('divVista1');
     const divVista2 = document.getElementById('divVista2');
+    const contador = 2
 
     const mensaje = document.getElementById('msgCampos');
     const nombreInput = document.querySelector('input[name="nombre"]');
     const imagenInput = document.querySelector('input[name="imagen"]');
     const valorInput = document.querySelector('input[name="valor"]');
     const btnAnadirBasura = document.getElementById('anadirBasura');
+
+    const btnAgregarFila = document.getElementById('btnAgregarFila');
+    btnAgregarFila.addEventListener('click', this.agregarFila.bind(this));
     
     const imagenMiniatura = document.getElementById('imagenMiniatura');
 
@@ -35,6 +39,50 @@ class ControladorAdmin {
     });
 
     this.eventosComprobacion(mensaje, nombreInput, imagenInput, valorInput, btnAnadirBasura, imagenMiniatura);
+  }
+
+  agregarFila() {
+    const tablaDinamica = document.getElementById('tablaDinamica');
+    const nuevaFila = tablaDinamica.insertRow();
+
+    // Añade la celda con el número
+    let celdaNumero = nuevaFila.insertCell();
+    let contenedorNumero = document.createElement('div');
+    contenedorNumero.textContent = this.contador;
+    celdaNumero.appendChild(contenedorNumero);
+    this.contador++;
+
+    let celda = nuevaFila.insertCell();
+    let input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'contenido'
+    celda.appendChild(input);
+
+    celda = nuevaFila.insertCell();
+    input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'puntosRequeridos'
+    celda.appendChild(input);
+
+    celda = nuevaFila.insertCell();
+    input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'tipo'
+    celda.appendChild(input);
+
+    // Añade la nueva celda con el botón para quitar la fila
+    const celdaBoton = nuevaFila.insertCell();
+    const btnQuitar = document.createElement('button');
+    btnQuitar.type = 'button';
+    btnQuitar.classList.add('btnQuitarFila');
+    btnQuitar.textContent = '🗑️';
+    btnQuitar.addEventListener('click', this.quitarFila.bind(this, nuevaFila));
+    celdaBoton.appendChild(btnQuitar);
+  }
+
+  quitarFila(fila) {
+    const tablaDinamica = document.getElementById('tablaDinamica');
+    tablaDinamica.deleteRow(fila.rowIndex);
   }
 
   validarFormulario(event) {
