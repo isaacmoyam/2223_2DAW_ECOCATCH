@@ -40,6 +40,7 @@ require_once $directorioControlador;
 
 // Poner la primera letra del nombre del controlador en mayúscula para referir a la clase y crear el objeto controlador
 $nombreClase = ucfirst($nombreControl);
+echo $nombreClase;
 $controlador = new $nombreClase();
 
 /* Ver si el método está definido */
