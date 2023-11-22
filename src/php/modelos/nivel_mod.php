@@ -142,5 +142,36 @@ class Nivel_Mod {
 
         $this->cerrarConexion();
     }
+
+    // MODELO DE MENSAJES
+    public function borrarMensaje($id) {
+        $this->establecerConexion();
+        $sql = 'DELETE FROM mensaje WHERE id='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+
+        return;
+    }
+
+    public function buscarMensaje($id) {
+        $this->establecerConexion();
+        $sql = 'SELECT id, tipo, contenido, puntosHasta, idNivel FROM mensaje WHERE id='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+
+        $fila = $result->fetch_assoc();
+        return $fila;
+    }
+
+    public function modificarMensaje($id, $tipo, $contenido, $puntosHasta, $idNivel) {
+        $this->establecerConexion();
+        $sql = 'UPDATE mensaje SET id = "'.$id.'", tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'", idNivel = "'.$idNivel.'" WHERE id ='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+    }
+
 }
 ?>

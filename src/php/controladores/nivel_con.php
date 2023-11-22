@@ -99,10 +99,32 @@ class Nivel_con {
         return $this->obj->mostrar();
     }
 
+    // MENSAJES DE LOS NIVELES
     public function mostrarMensajes() {
         $this->pagina = "Modificar nivel"; 
         $this->vista = 'modificarNivel';
         return $this->obj->mostrarMensajes($_GET["id"]);
+    }
+
+    public function borrarMensaje() {
+        $this->vista = 'gestionnivel';
+        $this->obj->borrarMensaje($_GET["id"]);
+        header("Location: index.php?control=nivel_con&metodo=buscarModificar&id=".$_GET['id']);
+    }
+
+    public function buscarMensaje() {
+        $this->pagina = "Modificar mensaje"; 
+        $this->vista = 'modificarMensaje';
+        return $this->obj->buscarMensaje($_GET["id"]);
+    }
+
+    public function modificarMensaje() {
+        if(isset($_GET["id"]) && isset($_POST["tipo"]) && isset($_POST["contenido"]) && isset($_POST["puntosHasta"]) && isset($_POST["nivel"]) && !empty($_GET["id"]) && !empty($_POST["tipo"]) && !empty($_POST["contenido"]) && !empty($_POST["puntosHasta"]) && !empty($_POST["nivel"])) {
+            $this->obj->modificarMensaje($_GET["id"], $_POST["tipo"], $_POST["contenido"], $_POST["puntosHasta"], $_POST["nivel"]);
+            header("Location: index.php?control=nivel_con&mensaje=true");
+        } else {
+            header("Location: index.php?control=nivel_con&mensaje=false");
+        }
     }
 }
 ?>
