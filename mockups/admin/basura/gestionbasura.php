@@ -39,7 +39,7 @@ if (!isset($_GET['mensaje']) || empty($_GET['mensaje'])) {
         <main id="gestor">
             <h1>Basura</h1>
             <a href="anadir.html">+</a>
-            <a href="">Volver</a>
+            <a href="../../indexAdmin.html">Volver</a>
             <table>
                 <tr>
                     <th>Nombre</th>
