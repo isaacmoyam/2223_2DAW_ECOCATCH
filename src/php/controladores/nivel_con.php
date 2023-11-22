@@ -54,16 +54,26 @@ class Nivel_con {
                     'tipo' => $input3[$index],
                 ];
             }
-            
+
             // Validar que el primer indice no esté vacío
             if (empty($arrayBidimensional[0]['contenido']) || empty($arrayBidimensional[0]['puntosHasta']) || empty($arrayBidimensional[0]['tipo'])) {
                 header("Location: index.php?control=nivel_con&mensaje=false");
                 exit();
             }
 
-            $resultado = $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
+            $idNivel = $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
+
+             // Extraer valores para la función crearMensaje
+             foreach ($arrayBidimensional as $mensaje) {
+                $tipoMensaje = $mensaje['tipo'];
+                $contenidoMensaje = $mensaje['contenido'];
+                $puntosHastaMensaje = $mensaje['puntosHasta'];
+    
+                $this->obj->crearMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $idNivel);
+            }
 
             return $arrayBidimensional;
+
            /* if(!$resultado) {
                 header("Location: index.php?control=nivel_con&mensaje=true");
             } else {

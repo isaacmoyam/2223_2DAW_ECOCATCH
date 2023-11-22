@@ -46,15 +46,8 @@ $controlador = new $nombreClase();
 
 /* Ver si el método está definido */
 $datosVista["datos"] = array();
-if (method_exists($controlador, $nombreMetodo)) {
-    if ($nombreMetodo === 'crear') {
-        // Llamar al método y obtener el resultado (array bidimensional)
-        $arrayBidimensional = $controlador->{$nombreMetodo}();
-        var_dump($arrayBidimensional);
-    } else {
+if (method_exists($controlador, $nombreMetodo)) 
         $datosVista["datos"] = $controlador->{$nombreMetodo}();
-    }
-}
    
 
 /* Cargar vistas */

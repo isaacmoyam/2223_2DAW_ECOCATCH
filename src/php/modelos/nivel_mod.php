@@ -104,12 +104,15 @@ class Nivel_Mod {
         try {
             $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
             $result = $this->mysqli->query($sql);
+            $idNivel = $this->mysqli->insert_id;
         } catch(mysqli_sql_exception $e) {
             $error = true;
             return $error;
         }
 
         $this->cerrarConexion();
+
+        return $idNivel;
     }
 
     /**
@@ -179,6 +182,14 @@ class Nivel_Mod {
     public function modificarMensaje($id, $tipo, $contenido, $puntosHasta, $idNivel) {
         $this->establecerConexion();
         $sql = 'UPDATE mensaje SET id = "'.$id.'", tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'", idNivel = "'.$idNivel.'" WHERE id ='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+    }
+
+    public function crearMensaje($tipo, $contenido, $puntosHasta, $idNivel) {
+        $this->establecerConexion();
+        $sql = 'INSERT INTO mensaje (tipo, contenido, puntosHasta, idNivel) VALUES ("'.$tipo.'", "'.$contenido.'", "'.$puntosHasta.'", "'.$idNivel.'")';
         $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
