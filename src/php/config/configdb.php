@@ -1,9 +1,8 @@
 <?php
-    /* Datos de conexión */
-    define("HOST", '10.2daw.esvirgua.com');
-    define("BDNAME", 'user2daw_BD2-10');
-    define("USERNAME", 'user2daw_10');
-    define("PASSWD", '$d.@V+9pQ*-t');
+    define("HOST", '2daw.esvirgua.com');
+    define("BDNAME", 'user2daw_ABP_GrupoA');
+    define("USERNAME", 'user2daw_ABP');
+    define("PASSWD", 'L.=K#2AM^F7T');
 
     /* Opciones por defecto */
     define("CONTROLADOR_DEFAULT", "nivel_con");

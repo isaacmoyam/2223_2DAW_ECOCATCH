@@ -23,7 +23,7 @@ CREATE TABLE mensaje(
     contenido varchar(500) NOT NULL,
     puntosHasta smallint unsigned NOT NULL,
     idNivel tinyint unsigned NOT NULL,
-    CONSTRAINT nivelEnMensaje FOREIGN KEY (idNivel) REFERENCES nivel(id)
+    CONSTRAINT nivelEnMensaje FOREIGN KEY (idNivel) REFERENCES nivel(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 -- Creación de la tabla "item"
