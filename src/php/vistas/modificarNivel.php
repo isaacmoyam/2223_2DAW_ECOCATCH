@@ -44,7 +44,7 @@
                     foreach ($datos as $mensaje) {
                         ?>
                         <tr>
-                            <input name="idMsg" type="hidden"value="<?php echo $mensaje['id']; ?>">
+                            <input name="idMsg[]" type="hidden"value="<?php echo $mensaje['id']; ?>">
                             <td><input name="contenido[]" type="text" value="<?php echo $mensaje['contenido']; ?>"></td>
                             <td><input name="puntosHasta[]" type="text" value="<?php echo $mensaje['puntosHasta']; ?>"></td>
                             <td>

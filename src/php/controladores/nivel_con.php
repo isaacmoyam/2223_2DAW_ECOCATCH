@@ -110,6 +110,7 @@ class Nivel_con {
             $input1 = $_POST['contenido'];
             $input2 = $_POST['puntosHasta'];
             $input3 = $_POST['tipo'];
+            $input4 = $_POST['idMsg'];
 
             // Iterar sobre los valores de input y construir el array bidimensional
             foreach ($input1 as $index => $value) {
@@ -117,6 +118,7 @@ class Nivel_con {
                     'contenido' => $input1[$index],
                     'puntosHasta' => isset($input2[$index]) ? $input2[$index] : null,
                     'tipo' => isset($input3[$index]) ? $input3[$index] : null,
+                    'idMsg' => isset($input4[$index]) ? $input4[$index] : null,
                 ];
             }
 
@@ -133,10 +135,10 @@ class Nivel_con {
                 $tipoMensaje = $mensaje['tipo'];
                 $contenidoMensaje = $mensaje['contenido'];
                 $puntosHastaMensaje = $mensaje['puntosHasta'];
+                $idMsg = $mensaje['idMsg'];
     
-                $this->obj->modificarNivelMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $_POST["idMsg"]);
+                $this->obj->modificarNivelMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $idMsg);
             }
-
             return $arrayBidimensional;
 
         } else {
