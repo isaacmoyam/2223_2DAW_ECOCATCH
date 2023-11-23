@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Clase Basura_Mod para la manipulación de datos de basura en la base de datos.
+ * Clase Nivel_Mod para la manipulación de datos de niveles en la base de datos.
  *
  * PHP version 7.0
  *
- * @category Basura
- * @package  Basura_Mod
+ * @category Nivel
+ * @package  Nivel_Mod
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -21,28 +21,27 @@ class Nivel_Mod {
     
     private $mysqli;
 
+    // CONSTRUCTOR DE LA CLASE
     public function __construct() {
        
     }
     
-    // Establecer conexión con la bbdd
+    // ESTABLECER CONEXIÓN CON LA BBDD
     public function establecerConexion(){
 		$dbObj = new Db();
 		$this->mysqli = $dbObj->mysqli;
 	}
 
-    // Cerrar la conexión con la bbdd
+    // CERRAR LA CONEXIÓN CON LA BBDD
     public function cerrarConexion() {
         if ($this->mysqli) {
             mysqli_close($this->mysqli);
         }
     }
 
-    /**
-     * Obtiene y devuelve la información de todas las basuras.
-     *
-     * @return array|mixed Arreglo asociativo con la información de las basuras o código de error.
-     */
+    // METODOS DE NIVEL
+
+    //MOSTRAR NIVELES
     public function mostrar() {
         $this->establecerConexion();
         $sql = "SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel;";
@@ -58,6 +57,7 @@ class Nivel_Mod {
         return $niveles;
     }
 
+    // MOSTRAR MENSAJES DE NIVEL CON ID ESPECIFICO
     public function mostrarMensajes($id) {
         $this->establecerConexion();
         $sql = "SELECT mensaje.id,tipo,contenido,puntosHasta,idNivel FROM mensaje INNER JOIN nivel ON idNivel = nivel.id WHERE idNivel=" .$id;
@@ -73,13 +73,7 @@ class Nivel_Mod {
         return $mensajes;
     }
 
-    /**
-     * Borra una basura específica de la base de datos.
-     *
-     * @param int $id ID de la basura a borrar.
-     *
-     * @return int|void Código de error o nada.
-     */
+    // BORRAR NIVEL CON ID ESPECIFICO
     public function borrar($id) {
         $this->establecerConexion();
         $sql = 'DELETE FROM nivel WHERE id='.$id;
@@ -89,15 +83,7 @@ class Nivel_Mod {
         return;
     }
 
-    /**
-     * Crea un nuevo registro de basura en la base de datos.
-     *
-     * @param string $nombre Nombre de la basura.
-     * @param string $imagen Imagen asociada a la basura.
-     * @param int    $valor  Valor/puntuación de la basura.
-     *
-     * @return int|void Código de error o nada.
-     */
+    // CREAR NIVEL 
     public function crear($nombre, $items, $velocidad) {
         $this->establecerConexion();
        
@@ -115,13 +101,7 @@ class Nivel_Mod {
         return $idNivel;
     }
 
-    /**
-     * Busca información de basura específica para modificar.
-     *
-     * @param int $id ID de la basura a modificar.
-     *
-     * @return array|mixed Arreglo asociativo con la información de la basura o código de error.
-     */
+    // BUSCAR NIVEL CON ID ESPECIFICO
     public function buscarModificar($id) {
         $this->establecerConexion();
         $sql = 'SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel WHERE id='.$id;
@@ -133,16 +113,7 @@ class Nivel_Mod {
         return $fila;
     }
 
-    /**
-     * Modifica la información de una basura en la base de datos.
-     *
-     * @param int    $id     ID de la basura a modificar.
-     * @param string $nombre Nuevo nombre de la basura.
-     * @param string $imagen Nueva imagen asociada a la basura.
-     * @param int    $valor  Nuevo valor/puntuación de la basura.
-     *
-     * @return int|void Código de error o nada.
-     */
+    // MODIFICAR NIVEL
     public function modificar($id, $nombre, $items, $velocidad) {
         $this->establecerConexion();
 
@@ -157,7 +128,9 @@ class Nivel_Mod {
         $this->cerrarConexion();
     }
 
-    // MODELO DE MENSAJES
+    // METODOS DE MENSAJES DE NIVELES
+
+    // BORRAR MENSAJE CON ID ESPECIFICO
     public function borrarMensaje($id) {
         $this->establecerConexion();
         $sql = 'DELETE FROM mensaje WHERE id='.$id;
@@ -168,6 +141,7 @@ class Nivel_Mod {
         return;
     }
 
+    // BUSCAR MENSAJE CON ID ESPECIFICO
     public function buscarMensaje($id) {
         $this->establecerConexion();
         $sql = 'SELECT id, tipo, contenido, puntosHasta, idNivel FROM mensaje WHERE id='.$id;
@@ -179,6 +153,8 @@ class Nivel_Mod {
         return $fila;
     }
 
+
+    // MODIFICAR MENSAJE CON ID ESPECIFICO
     public function modificarMensaje($id, $tipo, $contenido, $puntosHasta, $idNivel) {
         $this->establecerConexion();
         $sql = 'UPDATE mensaje SET id = "'.$id.'", tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'", idNivel = "'.$idNivel.'" WHERE id ='.$id;
@@ -187,6 +163,7 @@ class Nivel_Mod {
         $this->cerrarConexion();
     }
 
+    // CREAR UN MENSAJE
     public function crearMensaje($tipo, $contenido, $puntosHasta, $idNivel) {
         $this->establecerConexion();
         $sql = 'INSERT INTO mensaje (tipo, contenido, puntosHasta, idNivel) VALUES ("'.$tipo.'", "'.$contenido.'", "'.$puntosHasta.'", "'.$idNivel.'")';
@@ -194,6 +171,5 @@ class Nivel_Mod {
 
         $this->cerrarConexion();
     }
-
 }
 ?>

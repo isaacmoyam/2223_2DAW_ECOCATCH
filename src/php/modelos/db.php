@@ -4,12 +4,14 @@ require_once 'php/config/configdb.php';
 
 class Db {
 
+	// DATOS DE CONEXIÓN
 	private $host;
 	private $bdname;
 	private $usuario;
 	private $passwd;
 	public $mysqli;
 
+	// CONSTRUCTOR DE LA CLASE
 	public function __construct() {		
 
 		$this->host = constant('HOST');

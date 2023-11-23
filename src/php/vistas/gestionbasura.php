@@ -14,7 +14,7 @@
 ?>
 <main id="gestor">
     <h1>Basura</h1>
-    <a href="php/vistas/anadir.html">+</a>
+    <a href="index.php?control=basura_con&metodo=vistaCrear">+</a>
     <a href="indexAdmin.html">Volver</a>
     <table>
         <tr>
@@ -24,7 +24,7 @@
             <th>Opción</th>
         </tr>
         <?php
-            $obj = new Basura_con();
+            $obj = new $controlador();
             $datos = $obj->mostrar();
 
             // Iteración sobre los datos para mostrar en la tabla.
