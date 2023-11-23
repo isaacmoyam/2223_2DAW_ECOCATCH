@@ -118,5 +118,37 @@ class Basura_Mod {
 
         $this->cerrarConexion();
     }
+
+    public function ajax() {
+        $this->establecerConexion();
+    
+        // Consulta para obtener información de basuras
+        $sqlBasura = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
+        $resultBasura = $this->mysqli->query($sqlBasura);
+    
+        $basuras = array();
+        while ($row = $resultBasura->fetch_assoc()) {
+            $basuras[] = $row;
+        }
+    
+        // Consulta para obtener información de power-ups
+        $sqlPowerup = "SELECT powerup.id, powerup.nombre, powerup.nombreImagen, powerup.aumento FROM powerup INNER JOIN item on powerup.id = item.id";
+        $resultPowerup = $this->mysqli->query($sqlPowerup);
+    
+        $powerups = array();
+        while ($row = $resultPowerup->fetch_assoc()) {
+            $powerups[] = $row;
+        }
+    
+        $this->cerrarConexion();
+    
+        // Combinar basuras y power-ups en un solo objeto
+        $resultado = array(
+            'basuras' => $basuras,
+            'powerups' => $powerups
+        );
+    
+        echo json_encode($resultado);
+    }    
 }
 ?>

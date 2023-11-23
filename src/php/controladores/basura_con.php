@@ -84,26 +84,7 @@ class Basura_con {
 
     // DATOS RECOGIDOS POR AJAX
     public function ajax() {
-
-        $metodo = $_GET['metodo'];
-
-        switch($metodo) {
-            case 'crear':
-                $this->crear();
-                break;
-            case 'buscarModificar':
-                $this->buscarModificar();
-                break;
-            case 'modificar':
-                $this->modificar();
-                break;
-            case 'borrar':
-                $this->borrar();
-                break;
-            case 'mostrar':
-                $this->mostrar();
-        }
-        echo json_encode(['resultado' => 'Datos procesados correctamente']);
+        return $this->obj->ajax();
     }
 }
 ?>
