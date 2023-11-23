@@ -13,6 +13,9 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    background-image: url("../img/fondoEcocatch.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
@@ -208,6 +211,12 @@ form > input[type=submit] {
 /*
     PAGINA JUGAR
 */
+#jugar{
+    /*Con el backgound image: none quito la imagen de fondo especificamente para esta pagina
+     dado que esta página del juego tendrá su propio fondo en un div*/
+    background-image: none;
+    background-size: auto;
+}
 #frame{
     border: solid 1px black;
     width:90%;
@@ -290,8 +299,8 @@ form > input[type=submit] {
     display: flex;
     margin-bottom:2%;
     gap: 3%;
-    width:90%;
-    padding:5%;
+    width: 90%;
+    padding: 2% 5%;
     font-size: 1em;
 }
 
@@ -401,11 +410,6 @@ button.darkmode,
     #hud {
         gap:32%;
     }
-
-    /*pagina conocenos*/
-    #conocenos>article{
-        width: 70%;
-    }
 }
 
 @media (width <= 1698px) {
@@ -465,6 +469,17 @@ button.darkmode,
     #hud {
         gap:17%;
     }
+
+    /*pagina conocenos tamaño de la fuente*/
+    #conocenos article{
+        font-size: 0.9em;
+    }
+
+    /*Página Conocenos tamaño de la imagen*/
+    #conocenos img{
+        width:200px;
+        height:200px;
+    }
 }
 
 @media (width <= 930px) {
@@ -481,12 +496,6 @@ button.darkmode,
     /*pagina indice usuario*/
     #menu > a{
         width:70%;
-    }
-
-    /*Página Conocenos*/
-    #conocenos img{
-        width:160px;
-        height:160px;
     }
 
     #conocenos  p {
