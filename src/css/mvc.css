@@ -13,30 +13,38 @@
 #divVista5{
 	background-color: green;
 }
-#divVista6{
-	background-color: cyan;
-}
 #divVista7{
 	background-color: orange;
 }
 
-body > div{
-	display: none;
-}
-a{
-	cursor: pointer;
-}
-a:hover{
-	color: blue;
-	text-decoration: underline;
-}
-#gameContainer{
-	background-color: lightblue;
-}
-#gameContainer img {
-	position: absolute;
+body > div {
+    display: none;
 }
 
-img{
-	width: 10%;
+a {
+    cursor: pointer;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+#gameContainer {
+    min-height: 300px;
+    position: relative; /* Añade posición relativa al contenedor para que el posición absoluta del barco sea relativa a este */
+    width: 80%; /* Cambia el ancho según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor */
+    height: 200px; /* Ajusta la altura según tus necesidades */
+}
+
+#gameContainer > #barco {
+    position: absolute;
+    bottom: 0; /* Posiciona el barco en la parte inferior del contenedor */
+    width: 10%;
+}
+
+.apple {
+    position: absolute;
+	z-index: 0;
 }
