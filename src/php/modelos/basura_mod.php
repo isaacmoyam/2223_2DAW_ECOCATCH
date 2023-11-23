@@ -132,7 +132,7 @@ class Basura_Mod {
         }
     
         // Consulta para obtener información de power-ups
-        $sqlPowerup = "SELECT powerup.id, powerup.nombre, powerup.nombreImagen, powerup.aumento FROM powerup INNER JOIN item on powerup.id = item.id";
+        $sqlPowerup = "SELECT powerup.id, item.nombre, item.nombreImagen, powerup.aumento FROM powerup INNER JOIN item on powerup.id = item.id";
         $resultPowerup = $this->mysqli->query($sqlPowerup);
     
         $powerups = array();

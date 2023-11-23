@@ -45,8 +45,14 @@ $controlador = new $nombreClase();
 
 /* Ver si el método está definido */
 $datosVista["datos"] = array();
-if (method_exists($controlador, $nombreMetodo)) 
-    $datosVista["datos"] = $controlador->{$nombreMetodo}();
+if (method_exists($controlador, $nombreMetodo)) {
+    if($nombreMetodo == "ajax"){
+        echo $controlador->{$nombreMetodo}();
+        return;
+    } else {
+        $datosVista["datos"] = $controlador->{$nombreMetodo}();
+    }
+}
    
 /* Cargar vistas */
 require_once 'php/vistas/templates/header.php';
