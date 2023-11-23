@@ -46,13 +46,8 @@ class ControladorAdmin {
     const nuevaFila = tablaDinamica.insertRow();
 
     // Añade la celda con el número
-    let celdaNumero = nuevaFila.insertCell();
-    let contenedorNumero = document.createElement('div');
-    contenedorNumero.textContent = this.contador;
-    celdaNumero.appendChild(contenedorNumero);
-    this.contador++;
-
     let celda = nuevaFila.insertCell();
+    celda = nuevaFila.insertCell();
     let input = document.createElement('input');
     input.type = 'text';
     input.name = 'contenido'
