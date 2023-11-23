@@ -288,19 +288,16 @@ form > input[type=submit] {
 */
 #conocenos>article {
     display: flex;
-    margin-bottom:5%;
+    margin-bottom:2%;
     gap: 3%;
+    width:90%;
+    padding:5%;
+    font-size: 1em;
 }
 
 #conocenos img{
     width:280px;
     height:280px;
-}
-
-#conocenos article {
-    margin:0 auto;
-    width:90%;
-    padding:5%;
 }
 
 #conocenos  div {
@@ -309,12 +306,9 @@ form > input[type=submit] {
     padding:2%;
 }
 
-#conocenos:nth-child(2n+1)  p {
-    margin-left: 10%;
-}
-
-#conocenos:nth-child(2n)  p {
-    margin-right: 10%;
+#conocenos > article p {
+    margin-left: 3%;
+    text-align: left;
 }
 
 
@@ -406,6 +400,11 @@ button.darkmode,
     #hud {
         gap:32%;
     }
+
+    /*pagina conocenos*/
+    #conocenos>article{
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width: 1698px) {
@@ -490,7 +489,7 @@ button.darkmode,
     }
 
     #conocenos  p {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 
     /*Pagina empezar*/

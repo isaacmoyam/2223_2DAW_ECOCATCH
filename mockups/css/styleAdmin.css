@@ -12,11 +12,6 @@ body {
     box-sizing: border-box;
 }
 
-body.darkmode {
-    background-color: #0a1905;
-    color: #deca65;
-}
-
 /* Estilos del formulario de datos del ranking */
 form {
     margin-top: 50px;
@@ -45,19 +40,11 @@ form > input[type=submit] {
     font-family: Fredoka;
 }
 
-form > input[type=submit].darkmode {
-    border: solid 1px #deca65;
-    color: #deca65;
-    background-color: #0a1905;
-}
 
 form > input[type=submit]:hover {
     background-color: #85471f;
 }
 
-form > input[type=submit].darkmode:hover {
-    background-color: #253d1d;
-}
 
 /*botones*/
 /*Estilo común para los botones*/
@@ -73,18 +60,8 @@ button {
     padding: 2%;
 }
 
-button.darkmode {
-    border: solid 1px #deca65;
-    color: #deca65;
-    background-color: #253d1d;
-}
-
 button:hover {
     background-color: #85471f;
-}
-
-button.darkmode:hover {
-    background-color: #16330c;
 }
 
 /* Estilo en común de los select */
@@ -102,16 +79,6 @@ select {
 
 select:hover {
     background-color: #85471f;
-}
-
-select.darkmode {
-    background-color: #16330c;
-    color:#deca65;
-    border: 1px solid #deca65;
-}
-
-select:hover.darkmode {
-    background-color: #253d1d;
 }
 
 option {
@@ -132,12 +99,6 @@ header > img {
     margin: 0 auto 1%;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
-*
-
-header > img.darkmode {
-    border:solid 2px #deca65;
-}
-
 
 /*Navegador*/
 nav{
@@ -167,10 +128,6 @@ nav > a{ /*Estilos de los enlaces del navegador*/
     width: 45%;
     margin: 0 auto;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
-}
-
-#menu.darkmode {
-    background-color: #16330c;
 }
 
 /*Aspecto alargado de algunos enlaces*/
@@ -211,14 +168,6 @@ nav > a{ /*Estilos de los enlaces del navegador*/
     width: 50%;  /*Pongo un tamaño en específico para ocasiones determinadas como configMensajes y añadirNiveles en donde quedaba mucho espacio libre*/
 }
 
-
-/*Hacer una para niveles*/
-#gestor.darkmode,
-#gestorM.darkmode{
-    background-color: #16330c;
-}
-
-
 /* Estilos de los enlaces en las secciones */
 #botonMasConfigNiveles, /*Boton + de la pagina configNiveles*/
 #anadirNiveles > a,
@@ -237,13 +186,6 @@ main > a{
     background-color: #6D3916;
 }
 
-#gestor > a.darkmode,
-#gestorM > a.darkmode,
-main > a.darkmode{
-    border: solid 1px #deca65;
-    color: #deca65;
-    background-color: #0a1905;
-}
 
 
 /* Estilos específicos para enlaces en la sección "gestor" (boton +)*/
@@ -310,11 +252,6 @@ main > a.darkmode{
     width: 80%;
 }
 
-#gestor table.darkmode {
-    background-color: #0a1905;
-    border: solid 1px #deca65;
-}
-
 /* Estilos para celdas de tablas en "gestor" */
 #gestor th,
 #gestor td {
@@ -354,14 +291,6 @@ main > a.darkmode{
 }
 
 
-#gestor th.darkmode,
-#gestor td.darkmode {
-    border: solid 1px #deca65;
-}
-
-/* Borde para
-
-
 /* Estilos para el juego */
 #juego {
     background-color: rgb(54, 138, 233);
@@ -381,9 +310,6 @@ main {
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
 
-main.darkmode {
-    background-color: #253d1d;
-}
 
 
 /* Estilo al pasar el cursor por encima de los enlaces*/
@@ -396,8 +322,63 @@ main > a:hover,
     background-color: #85471f;
 }
 
-#menu > a.darkmode:hover,
+
+
+/*
+    MODO OSCURO
+    Apartado en donde se pondran todos los atributos relacionados con el modo oscuro
+*/
+header > img.darkmode {
+    border: 2px solid #deca65;
+}
+
+select.darkmode,
+button.darkmode:hover,
+#gestor.darkmode,
+#gestorM.darkmode,
+#menu.darkmode {
+    background-color: #16330c;
+}
+
+main > a.darkmode,
+body.darkmode,
+select.darkmode,
+button.darkmode,
+form > input[type=submit].darkmode,
+#gestor > a.darkmode,
+#gestorM > a.darkmode{
+    color: #deca65;
+}
+
+main > a.darkmode,
+form > input[type=submit].darkmode,
+body.darkmode,
+#gestor > a.darkmode,
+#gestorM > a.darkmode,
+#gestor table.darkmode {
+    background-color: #0a1905;
+}
+
+main > a.darkmode,
+select.darkmode,
+button.darkmode,
+form > input[type=submit].darkmode,
+#gestor > a.darkmode,
+#gestorM > a.darkmode,
+#gestor table.darkmode
+#gestor th.darkmode,
+#gestor td.darkmode {
+    border: 1px solid #deca65;
+}
+
+/*Color de los enlaces cuando pasas el cursor por encima de ellos en el modo oscuro*/
 main > a.darkmode:hover,
+main.darkmode,
+nav.darkmode,
+button.darkmode,
+form > input[type=submit].darkmode:hover,
+select:hover.darkmode,
+#menu > a.darkmode:hover,
 #gestor > a.darkmode:hover,
 #gestorM > a.darkmode:hover{
     background-color: #253d1d;
@@ -405,21 +386,20 @@ main > a.darkmode:hover,
 
 
 
-/* Media queries para diseño responsive*/
 
+/**
+    MEDIAS QUERIES
+ */
 @media only screen and (max-width: 1804px) {
     header > img {
         width: 190px;
     }
-
 }
-
 
 @media only screen and (max-width: 1502px) {
     header > img {
         width: 185px;
     }
-
 }
 
 @media only screen and (max-width: 1352px) {
@@ -432,24 +412,10 @@ main > a.darkmode:hover,
         width: 50%;
     }
 
-    #niveles{
+    #niveles,
+    #gestor{
         font-size: 1.1em; /*Cambiar tamaño de la letra*/
     }
-
-    #gestor {
-        font-size: 1.1em;
-    }
-
-    /*Cambios en las medidas de menu*/
-    /*
-    #menu{
-        font-size: 1.1em;
-    }*/
-    #menu > a{
-        width: 50%;
-    }
-
-
 }
 
 @media only screen and (max-width: 1206px) {
@@ -459,11 +425,6 @@ main > a.darkmode:hover,
 
     nav > a{ /*Estilos de los enlaces del navegador*/
         margin: 0% 1%;
-        font-size: 1em;
-    }
-
-    #niveles {
-        font-size: 1em; /*Cambiar tamaño de la letra*/
     }
 
     /*Cambiar el tamaño de la letra de la tabla de gestion de niveles*/
@@ -471,10 +432,11 @@ main > a.darkmode:hover,
         font-size: 0.8em;
     }
 
-    #gestor {
-        font-size: 1em;
+    nav > a,
+    #gestor,
+    #niveles {
+        font-size: 1em; /*Cambiar tamaño de la letra*/
     }
-
 }
 
 @media only screen and (max-width: 930px) {
@@ -482,23 +444,22 @@ main > a.darkmode:hover,
         width: 80px;
     }
 
-    nav > a, /*Estilos de los enlaces del navegador*/
-    #niveles {
-        font-size: 0.5em; /*Cambiar tamaño de la letra*/
-    }
-
     /*Cambiar el tamaño de la letra y ancho de la tabla de gestion de niveles*/
     #gestionNiveles  table{
-        font-size: 0.5em;
         width: 90%;
-    }
-
-    #gestor {
-        font-size: 0.5em;
     }
 
     #gestorM > a {
         right: 30%;
+    }
+
+    #menu > a{
+        width:70%;
+    }
+
+    main img {
+        width:150px;
+        height:150px;
     }
 
     /*Reducir el tamaño de funete a 1 em*/
@@ -506,16 +467,11 @@ main > a.darkmode:hover,
         font-size: 1em;
     }
 
-    #menu > a{
-        width:70%;
+    /*Modificacion del tamaño de la fuente a 0.5 em*/
+    nav > a,
+    #gestor,
+    #niveles,
+    #gestionNiveles  table{
+        font-size: 0.5em; /*Cambiar tamaño de la letra*/
     }
-
-
-    main img {
-        width:150px;
-        height:150px;
-    }
-
-
 }
-
