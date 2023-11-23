@@ -1,16 +1,16 @@
 <?php
 /**
- * Página para la modificación de la información de basura.
+ * Página para la modificación de la información de mensaje.
  *
  * PHP version 7.0
  *
- * @category Basura
- * @package  Modificar_Basura
+ * @category Mensaje
+ * @package  Modificar_Mensaje
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-// Sección HTML para la interfaz de modificación de basura.
+// Sección HTML para la interfaz de modificación de mensaje.
 ?>
 <main id="gestorM">
     <?php

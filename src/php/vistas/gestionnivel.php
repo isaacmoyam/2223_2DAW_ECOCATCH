@@ -1,20 +1,20 @@
 <?php
 /**
- * Página principal para la gestión de basura.
+ * Página principal para la gestión de nivel.
  *
  * PHP version 7.4.3
  *
- * @category Basura
- * @package  Gestión_Basura
+ * @category Nivel
+ * @package  Gestión_Nivel
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-// Sección HTML para la interfaz de gestión de basura.
+// Sección HTML para la interfaz de gestión de niveles.
 ?>
 <main id="gestor">
     <h1>Niveles</h1>
-    <a href="php/vistas/anadirNivel.html">+</a>
+    <a href="index.php?control=nivel_con&metodo=vistaCrear">+</a>
     <a href="indexAdmin.html">Volver</a>
     <table>
         <tr>

@@ -1,4 +1,5 @@
 import { Vista } from './vista.js'
+import {Rest} from '../../servicios/rest.js'
 
 export class Vista6 extends Vista {
 
@@ -14,6 +15,7 @@ export class Vista6 extends Vista {
         this.touchStartX = null
         this.animationFrameId = null
         this.juegoEnPausa = false
+        this.recogerAjax()
         this.eventos()
         this.iniciarJuegoManzanas()
     }
@@ -103,8 +105,7 @@ export class Vista6 extends Vista {
     }
 
     recogerAjax = () => {
-        const url = '../../../index.php?control=basura_con&metodo=ajax';
-        Rest.get(url, this.mostrarResultadoAjax);
+        Rest.getJSON('../../2223_2DAW_ECOCATCH/src/index.php', {'control': 'basura_con', 'metodo': 'ajax'}, this.mostrarResultadoAjax);
     }
 
     mostrarResultadoAjax = (objeto) =>{

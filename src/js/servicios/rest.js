@@ -1,45 +1,53 @@
-/**
- * Clase de servicios para llamadas  AJAX
+/*
+ * Clase de Servicio para llamadas AJAX
  */
-export class Rest {
-  /**
-     * Método estatico de la clase donde se hace una llamada GET a la AEMET.
-     * @param apiKey {String} ApiKey proporcionada por la AEMET mediante la cual se hace la petición
-     * @param callback {Function} Funcion usada para mostrar por consola los datos devueltos por la petición
-     */
-  static AEMET (apiKey, callback) {
-    const url = 'https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key=' + apiKey
 
-    // Uso fetch para realizar la solicitud
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Cache-Control': 'no-cache'
-      }
-    })
-      .then(respuesta => {
-        if (!respuesta.ok) {
-          throw new Error(`Error en la solicitud: ${respuesta.status}`)
+export class Rest{
+	static get(url, params, callback){
+		let paramsGET = '?'
+		for(let param in params){
+			paramsGET += param + '='
+			paramsGET += params[param] + '&'
+		}
+		fetch(encodeURI(url + paramsGET.substring(0, paramsGET.length-1)))
+		.then( respuesta => respuesta.text())
+		.then( texto => {
+			if (callback)
+				callback(texto)
+		})
+	}
+    static getJSON(url, params, callback){
+		let paramsGET = '?'
+		for(let param in params){
+			paramsGET += param + '='
+			paramsGET += params[param] + '&'
+		}
+		fetch(encodeURI(url + paramsGET.substring(0, paramsGET.length-1)))
+        .then( texto => texto.json())
+		.then( objeto => {
+			if (callback)
+				callback(objeto)
+		})
+	}
+
+    static post(url, params, callback){
+		let parametros = new FormData()
+        
+		for(const param in params)
+        parametros.append(param, params[param])
+        const opciones = {
+            method: 'POST',
+            body: parametros
         }
-        return respuesta.json()
-      })
-      .then(data => {
-        // Como la respuesta que me da es una url donde se encuentran los datos voy a coger esa url
-        const datosUrl = data.datos
+        fetch(url, opciones)
+		.then( respuesta => respuesta.text())
+		.then( texto => {
+			if (callback)
+				callback(texto)
+		})
+	}
 
-        // Para despues hacer un segundo fetch para obtener los datos climatologicos
-        return fetch(datosUrl)
-      })
-      .then(response => response.json())
-      .then(datos => {
-        // Filtro los datos y obtengo los datos cuyo nombre es "BADAJOZ AEROPUERTO"
-        const datosFiltrados = datos.filter(dato => dato.nombre === 'BADAJOZ AEROPUERTO')
-
-        // Una vez cogidos los datos llamo al callback
-        callback(datosFiltrados)
-      })
-      .catch(error => {
-        console.error('Error en la solicitud:', error)
-      })
-  }
+	static consultarAEMET(){
+		const url = 'https://opendata.aemet.es/opendata/api/valores/climatologicos/diarios/datos/fechaini/2021-12-24T00:00:00UTC/fechafin/2021-12-24T23:59:59UTC/estacion/4452/?api_key=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtamFxdWVAbWlndWVsamFxdWUuY29tIiwianRpIjoiMzI1NjVlZTYtNzEyZS00ZGY1LWI1Y2MtODk0NDUxMTNlNzU3IiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2NDA2Nzc3NDUsInVzZXJJZCI6IjMyNTY1ZWU2LTcxMmUtNGRmNS1iNWNjLTg5NDQ1MTEzZTc1NyIsInJvbGUiOiIifQ.naOtp0KsRSMKt-dvbI5EURhbhMV4NbppqdiqM0i5mEY'
+	}
 }
