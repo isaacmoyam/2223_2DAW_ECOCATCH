@@ -389,20 +389,21 @@ select:hover.darkmode,
 
 /**
     MEDIAS QUERIES
+    Implementado con Media Queries Level 4
  */
-@media only screen and (max-width: 1804px) {
+@media (width <= 1804px) {
     header > img {
         width: 190px;
     }
 }
 
-@media only screen and (max-width: 1502px) {
+@media (width <= 1502px) {
     header > img {
         width: 185px;
     }
 }
 
-@media only screen and (max-width: 1352px) {
+@media (max-width <= 1352px) {
     header > img {
         width: 180px;
     }
@@ -418,7 +419,7 @@ select:hover.darkmode,
     }
 }
 
-@media only screen and (max-width: 1206px) {
+@media (width <= 1206px) {
     header > img {
         width: 120px;
     }
@@ -439,7 +440,7 @@ select:hover.darkmode,
     }
 }
 
-@media only screen and (max-width: 930px) {
+@media (width <= 930px) {
     header > img {
         width: 80px;
     }

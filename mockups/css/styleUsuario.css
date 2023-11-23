@@ -383,8 +383,9 @@ button.darkmode,
 
 /**
     MEDIAS QUERIES
+    Implementado con Media Queries Level 4
  */
-@media only screen and (max-width: 1804px) {
+@media (width <= 1804px) {
     /*Cambiar el tamaño de la imagen del header*/
     header > img {
         width: 190px;
@@ -407,14 +408,14 @@ button.darkmode,
     }
 }
 
-@media only screen and (max-width: 1698px) {
+@media (width <= 1698px) {
     /*pagina jugar*/
     #hud {
         gap:20%;
     }
 }
 
-@media only screen and (max-width: 1502px) {
+@media (width <= 1502px) {
     /*Cambiar el tamaño de la imagen del header*/
     header > img {
         width: 185px;
@@ -437,7 +438,7 @@ button.darkmode,
     }
 }
 
-@media only screen and (max-width: 1352px) {
+@media (width <= 1352px) {
     /*Cambiar el tamaño de la imagen del header*/
     header > img {
         width: 180px;
@@ -454,7 +455,7 @@ button.darkmode,
     }
 }
 
-@media only screen and (max-width: 1206px) {
+@media (width <= 1206px) {
     /*Cambiar el tamaño de la imagen del header*/
     header > img {
         width: 120px;
@@ -466,7 +467,7 @@ button.darkmode,
     }
 }
 
-@media only screen and (max-width: 930px) {
+@media (width <= 930px) {
     /*Cambiar el tamaño de la imagen del header*/
     header > img {
         width: 80px;
@@ -520,7 +521,7 @@ button.darkmode,
 }
 
 
-@media only screen and (max-width: 682px) {
+@media (width <= 682px) {
     /*pagina jugar*/
     #hud {
         gap:9%;
