@@ -104,15 +104,20 @@ class Nivel_con {
     public function modificarNivelMensaje() {
         $arrayBidimensional = [];
         $this->pagina = "Modificar nivel/mensaje"; 
-        if(isset($_GET["id"]) && !empty($_GET["id"]) && isset($_POST["idMsg"]) && !empty($_POST["idMsg"]) && isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])
+        if(isset($_GET["id"]) && !empty($_GET["id"]) && isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])
         && isset($_POST["contenido"]) && !empty($_POST["contenido"]) && isset($_POST["puntosHasta"]) && !empty($_POST["puntosHasta"]) && isset($_POST["tipo"]) && !empty($_POST["tipo"])) {
             
             $input1 = $_POST['contenido'];
             $input2 = $_POST['puntosHasta'];
             $input3 = $_POST['tipo'];
-            $input4 = $_POST['idMsg'];
 
-            // Iterar sobre los valores de input y construir el array bidimensional
+            if(isset($_POST['idMsg'])) {
+               $input4 = $_POST['idMsg']; 
+            } else {
+                $input4 = null;
+            }
+            
+            // Iterar sobre los valores de input y construir el array bidimensional 
             foreach ($input1 as $index => $value) {
                 $arrayBidimensional[$index] = [
                     'contenido' => $input1[$index],
@@ -122,22 +127,21 @@ class Nivel_con {
                 ];
             }
 
-            // Validar que el primer indice no esté vacío
-            if (empty($arrayBidimensional[0]['contenido']) || empty($arrayBidimensional[0]['puntosHasta']) || empty($arrayBidimensional[0]['tipo'])) {
-                header("Location: index.php?control=nivel_con&mensaje=false");
-                exit();
-            }
 
             $this->obj->modificar($_GET["id"],$_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
 
-            // Extraer valores para la función crearMensaje
+            // Extraer valores para la función modificarNivelMensaje
             foreach ($arrayBidimensional as $mensaje) {
                 $tipoMensaje = $mensaje['tipo'];
                 $contenidoMensaje = $mensaje['contenido'];
                 $puntosHastaMensaje = $mensaje['puntosHasta'];
                 $idMsg = $mensaje['idMsg'];
-    
-                $this->obj->modificarNivelMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $idMsg);
+
+                if ($idMsg === null) {
+                    $this->obj->crearMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $_GET["id"]);
+                } else {
+                    $this->obj->modificarNivelMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $idMsg);
+                }
             }
             return $arrayBidimensional;
 
