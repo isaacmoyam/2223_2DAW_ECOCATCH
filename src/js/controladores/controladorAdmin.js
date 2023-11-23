@@ -45,15 +45,10 @@ class ControladorAdmin {
     const tablaDinamica = document.getElementById('tablaDinamica');
     const nuevaFila = tablaDinamica.insertRow();
 
-    // Añade la celda con el número
-    let celdaNumero = nuevaFila.insertCell();
-    let contenedorNumero = document.createElement('div');
-    contenedorNumero.textContent = this.contador;
-    celdaNumero.appendChild(contenedorNumero);
-    this.contador++;
+    let input = document.createElement('input');
+    let select = document.createElement('select');
 
     let celda = nuevaFila.insertCell();
-    let input = document.createElement('input');
     input.type = 'text';
     input.name = 'contenido[]'
     celda.appendChild(input);
@@ -65,10 +60,23 @@ class ControladorAdmin {
     celda.appendChild(input);
 
     celda = nuevaFila.insertCell();
-    input = document.createElement('input');
-    input.type = 'text';
-    input.name = 'tipo[]'
-    celda.appendChild(input);
+    select = document.createElement('select');
+    select.name = 'tipo[]';
+
+    var opciones = [
+        { nombre: 'Antes del nivel', valor: 'A' },
+        { nombre: 'Durante el nivel', valor: 'B' },
+        { nombre: 'Después del nivel', valor: 'C' }
+    ];
+
+    for (var i = 0; i < opciones.length; i++) {
+        var opcion = document.createElement('option');
+        opcion.value = opciones[i].valor;
+        opcion.text = opciones[i].nombre;
+        select.appendChild(opcion);
+    }
+
+    celda.appendChild(select);
 
     // Añade la nueva celda con el botón para quitar la fila
     const celdaBoton = nuevaFila.insertCell();

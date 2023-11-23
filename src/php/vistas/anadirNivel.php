@@ -13,7 +13,6 @@
         <table id="tablaDinamica">
             <thead>
                 <tr>
-                    <th></th>
                     <th>Contenido</th>
                     <th>Puntos Requeridos</th>
                     <th>Tipo</th>
@@ -21,15 +20,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
+                <tr>                
                     <td><input name="contenido[]" type="text" placeholder="Contenido del mensaje"></td>
                     <td><input name="puntosHasta[]" type="text" placeholder="Puntos requeridos"></td>
-                    <td><input name="tipo[]" type="text" placeholder="Aparición"></td>
+                    <td>
+                        <select name="tipo[]">
+                            <option value="A">Antes del nivel</option>
+                            <option value="B">Durante el nivel</option>
+                            <option value="C">Después del nivel</option>
+                        </select>
+                    </td>
                 </tr>
             </tbody>
-            </table>
-            <button type="button" id="btnAgregarFila">Agregar Fila</button>
+        </table>
+        <button type="button" id="btnAgregarFila">Agregar mensaje</button>
         <input type="submit" value="Añadir nivel">
     </form>
 </main>

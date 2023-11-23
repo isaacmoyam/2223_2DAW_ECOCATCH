@@ -18,43 +18,56 @@
         $fila = $datosVista["datos"];
     ?>
     <h1>Configuración nivel</h1>
-    <form action="index.php?control=nivel_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
+    <form action="index.php?control=nivel_con&metodo=modificarNivelMensaje&id=<?php echo $fila['id'];?>" method="POST">
         <label for="nombre">(*) Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $fila['nombre'];?>" placeholder="Nombre nivel">
         <label for="valor">(*) Items:</label>
         <input type="text" name="cantidadItems" value="<?php echo $fila['cantidadItems'];?>" placeholder="Cantidad de items">
         <label for="imagen">(*) Velocidad:</label>
         <input type="text" name="velocidadBarco" value="<?php echo $fila['velocidadBarco'];?>" placeholder="Velocidad del barco">
-    <h1>Mensajes</h1>
-    <table>
-        <tr>
-            <th>Contenido</th>
-            <th>Puntos requeridos</th>
-            <th>Tipo</th>
-            <th>Opción</th>
-        </tr>
-        <?php
-            $obj = new $controlador;
-            $datos = $obj->mostrarMensajes();
-
-            // Iteración sobre los datos para mostrar en la tabla.
-            foreach ($datos as $mensaje) {
-                ?>
+        <h1>Mensajes</h1>
+        <table id="tablaDinamica">
+            <thead>
                 <tr>
-                    <td><?php echo $mensaje['contenido']; ?></td>
-                    <td><?php echo $mensaje['puntosHasta']; ?></td>
-                    <td><?php echo $mensaje['tipo']; ?></td>
-                    <td>
-                        <a href="index.php?control=nivel_con&metodo=borrarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🗑️</a>
-                        <a href="index.php?control=nivel_con&metodo=buscarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🔄</a>
-                    </td>
+                    <th>Contenido</th>
+                    <th>Puntos Requeridos</th>
+                    <th>Tipo</th>
+                    <th>Opción</th>
                 </tr>
+            </thead>          
+            <tbody>
                 <?php
-            }
-        ?>
-    </table>
-    <input type="submit" value="Guardar cambios">
+                    $obj = new $controlador;
+                    $datos = $obj->mostrarMensajes();
+
+                    // Iteración sobre los datos para mostrar en la tabla.
+                    foreach ($datos as $mensaje) {
+                        ?>
+                        <tr>
+                            <input name="idMsg" type="hidden"value="<?php echo $mensaje['id']; ?>">
+                            <td><input name="contenido[]" type="text" value="<?php echo $mensaje['contenido']; ?>"></td>
+                            <td><input name="puntosHasta[]" type="text" value="<?php echo $mensaje['puntosHasta']; ?>"></td>
+                            <td>
+                            <select name="tipo[]">
+                                <option value="A" <?php echo ($mensaje['tipo'] == 'A') ? 'selected' : ''; ?>>Antes del nivel</option>
+                                <option value="B" <?php echo ($mensaje['tipo'] == 'B') ? 'selected' : ''; ?>>Durante el nivel</option>
+                                <option value="C" <?php echo ($mensaje['tipo'] == 'C') ? 'selected' : ''; ?>>Después del nivel</option>
+                            </select>
+                            </td>
+                            <td>
+                                <a href="index.php?control=nivel_con&metodo=borrarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🗑️</a>
+                                <a href="index.php?control=nivel_con&metodo=buscarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🔄</a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+        <button type="button" id="btnAgregarFila">Agregar mensaje</button>
+        <input type="submit" value="Guardar cambios">
     </form>
 </main>
+<script src="js/controladores/controladorAdmin.js" type="module"></script>
 <script src="expresionesRegulares.js" type="module"></script>
 

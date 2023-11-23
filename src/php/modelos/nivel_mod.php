@@ -155,10 +155,25 @@ class Nivel_Mod {
 
 
     // MODIFICAR MENSAJE CON ID ESPECIFICO
-    public function modificarMensaje($id, $tipo, $contenido, $puntosHasta, $idNivel) {
+    public function moverMensaje($id, $idNivel) {
         $this->establecerConexion();
-        $sql = 'UPDATE mensaje SET id = "'.$id.'", tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'", idNivel = "'.$idNivel.'" WHERE id ='.$id;
+        $sql = 'UPDATE mensaje SET idNivel = "'.$idNivel.'" WHERE id ='.$id;
         $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+    }
+
+     // MODIFICAR NIVEL
+     public function modificarNivelMensaje($tipo, $contenido, $puntosHasta, $idMsg) {
+        $this->establecerConexion();
+
+        try {
+            $sql = 'UPDATE mensaje SET tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'" WHERE id ='.$idMsg;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
 
         $this->cerrarConexion();
     }
