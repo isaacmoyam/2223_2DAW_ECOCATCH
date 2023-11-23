@@ -15,7 +15,7 @@
 <main id="gestor">
     <h1>Niveles</h1>
     <a href="php/vistas/anadirNivel.html">+</a>
-    <a href="">Volver</a>
+    <a href="indexAdmin.html">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>

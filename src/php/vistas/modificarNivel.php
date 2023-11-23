@@ -13,7 +13,7 @@
 // Sección HTML para la interfaz de modificación de basura.
 ?>
 <main id="gestorN">
-    <a href="index.php">Volver</a>
+    <a href="index.php?control=nivel_con">Volver</a>
     <?php
         $fila = $datosVista["datos"];
     ?>
@@ -38,15 +38,15 @@
             $datos = $obj->mostrarMensajes();
 
             // Iteración sobre los datos para mostrar en la tabla.
-            foreach ($datos as $fila) {
+            foreach ($datos as $mensaje) {
                 ?>
                 <tr>
-                    <td><?php echo $fila['contenido']; ?></td>
-                    <td><?php echo $fila['puntosHasta']; ?></td>
-                    <td><?php echo $fila['tipo']; ?></td>
+                    <td><?php echo $mensaje['contenido']; ?></td>
+                    <td><?php echo $mensaje['puntosHasta']; ?></td>
+                    <td><?php echo $mensaje['tipo']; ?></td>
                     <td>
-                        <a href="index.php?control=mensaje_con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
-                        <a href="index.php?control=mensaje_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
+                        <a href="index.php?control=nivel_con&metodo=borrarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🗑️</a>
+                        <a href="index.php?control=nivel_con&metodo=buscarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🔄</a>
                     </td>
                 </tr>
                 <?php

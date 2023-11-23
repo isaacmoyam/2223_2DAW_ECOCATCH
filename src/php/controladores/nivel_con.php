@@ -37,12 +37,50 @@ class Nivel_con {
      * @return mixed Mensaje de éxito o error.
      */
     public function crear() {
+        $arrayBidimensional = [];
         $this->pagina = "Crear nivel"; 
-        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])) {
-            $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
-            header("Location: index.php?mensaje=true");
+        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])
+        && isset($_POST["contenido"]) && !empty($_POST["contenido"]) && isset($_POST["puntosHasta"]) && !empty($_POST["puntosHasta"]) && isset($_POST["tipo"]) && !empty($_POST["tipo"])) {
+            
+            $input1 = $_POST['contenido'];
+            $input2 = $_POST['puntosHasta'];
+            $input3 = $_POST['tipo'];
+
+            // Iterar sobre los valores de input y construir el array bidimensional
+            foreach ($input1 as $index => $value) {
+                $arrayBidimensional[$index] = [
+                    'contenido' => $input1[$index],
+                    'puntosHasta' => isset($input2[$index]) ? $input2[$index] : null,
+                    'tipo' => isset($input3[$index]) ? $input3[$index] : null,
+                ];
+            }
+
+            // Validar que el primer indice no esté vacío
+            if (empty($arrayBidimensional[0]['contenido']) || empty($arrayBidimensional[0]['puntosHasta']) || empty($arrayBidimensional[0]['tipo'])) {
+                header("Location: index.php?control=nivel_con&mensaje=false");
+                exit();
+            }
+
+            $idNivel = $this->obj->crear($_POST["nombre"],$_POST["cantidadItems"],$_POST["velocidadBarco"]);
+
+            // Extraer valores para la función crearMensaje
+            foreach ($arrayBidimensional as $mensaje) {
+                $tipoMensaje = $mensaje['tipo'];
+                $contenidoMensaje = $mensaje['contenido'];
+                $puntosHastaMensaje = $mensaje['puntosHasta'];
+    
+                $this->obj->crearMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $idNivel);
+            }
+
+            return $arrayBidimensional;
+
+           /* if(!$resultado) {
+                header("Location: index.php?control=nivel_con&mensaje=true");
+            } else {
+                header("Location: index.php?control=nivel_con&mensaje=false");
+            }*/
         } else {
-            header("Location: index.php?mensaje=false");
+           header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
 
@@ -71,10 +109,14 @@ class Nivel_con {
      */
     public function modificar() {
         if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["cantidadItems"]) && !empty($_POST["velocidadBarco"])) {
-            $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
-            header("Location: index.php?mensaje=true");
+            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
+            if(!$resultado) {
+                header("Location: index.php?control=nivel_con&mensaje=true");
+            } else {
+                header("Location: index.php?control=nivel_con&mensaje=false");
+            }
         } else {
-            header("Location: index.php?mensaje=false");
+            header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
 
@@ -99,10 +141,32 @@ class Nivel_con {
         return $this->obj->mostrar();
     }
 
+    // MENSAJES DE LOS NIVELES
     public function mostrarMensajes() {
         $this->pagina = "Modificar nivel"; 
         $this->vista = 'modificarNivel';
         return $this->obj->mostrarMensajes($_GET["id"]);
+    }
+
+    public function borrarMensaje() {
+        $this->vista = 'gestionnivel';
+        $this->obj->borrarMensaje($_GET["id"]);
+        header("Location: index.php?control=nivel_con&metodo=buscarModificar&id=".$_GET['idNivel']);
+    }
+
+    public function buscarMensaje() {
+        $this->pagina = "Modificar mensaje"; 
+        $this->vista = 'modificarMensaje';
+        return $this->obj->buscarMensaje($_GET["id"]);
+    }
+
+    public function modificarMensaje() {
+        if(isset($_GET["id"]) && isset($_POST["tipo"]) && isset($_POST["contenido"]) && isset($_POST["puntosHasta"]) && isset($_POST["nivel"]) && !empty($_GET["id"]) && !empty($_POST["tipo"]) && !empty($_POST["contenido"]) && !empty($_POST["puntosHasta"]) && !empty($_POST["nivel"])) {
+            $this->obj->modificarMensaje($_GET["id"], $_POST["tipo"], $_POST["contenido"], $_POST["puntosHasta"], $_POST["nivel"]);
+            header("Location: index.php?control=nivel_con&mensaje=true");
+        } else {
+            header("Location: index.php?control=nivel_con&mensaje=false");
+        }
     }
 }
 ?>

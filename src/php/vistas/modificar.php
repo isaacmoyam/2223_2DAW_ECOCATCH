@@ -13,7 +13,7 @@
 // Sección HTML para la interfaz de modificación de basura.
 ?>
 <main id="gestorM">
-    <a href="index.php">Volver</a>
+    <a href="index.php?control=basura_con">Volver</a>
     <?php
         $fila = $datosVista["datos"];
     ?>

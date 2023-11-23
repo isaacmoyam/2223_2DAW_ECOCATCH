@@ -8,6 +8,7 @@ console.log('hola')
 document.addEventListener('DOMContentLoaded', function () {
 class ControladorAdmin {
   
+  
   vistas = new Map()
 
   vistas = new Map();
@@ -42,28 +43,31 @@ class ControladorAdmin {
   }
 
   agregarFila() {
-    const tablaDinamica = document.getElementById('tablaDinamica');
-    const nuevaFila = tablaDinamica.insertRow();
+    const tablaDinamica = document.getElementById('tablaDinamica')
+    const nuevaFila = tablaDinamica.insertRow()
 
     // Añade la celda con el número
-    let celda = nuevaFila.insertCell();
-    celda = nuevaFila.insertCell();
-    let input = document.createElement('input');
-    input.type = 'text';
+    let celda = nuevaFila.insertCell()
+    celda = nuevaFila.insertCell()
+    let input = document.createElement('input')
+    input.type = 'text'
     input.name = 'contenido'
-    celda.appendChild(input);
+    input.placeholder = 'Contenido del mensaje'
+    celda.appendChild(input)
 
-    celda = nuevaFila.insertCell();
-    input = document.createElement('input');
-    input.type = 'text';
+    celda = nuevaFila.insertCell()
+    input = document.createElement('input')
+    input.type = 'text'
     input.name = 'puntosRequeridos'
-    celda.appendChild(input);
+    input.placeholder = 'Puntos requeridos'
+    celda.appendChild(input)
 
-    celda = nuevaFila.insertCell();
-    input = document.createElement('input');
-    input.type = 'text';
+    celda = nuevaFila.insertCell()
+    input = document.createElement('input')
+    input.type = 'text'
     input.name = 'tipo'
-    celda.appendChild(input);
+    input.placeholder = 'Aparición'
+    celda.appendChild(input)
 
     // Añade la nueva celda con el botón para quitar la fila
     const celdaBoton = nuevaFila.insertCell();
@@ -178,7 +182,31 @@ class ControladorAdmin {
       this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede estar vacío.');
     } else if (nombre.length > 20) {
       this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede ser mayor a 20 caracteres.');
+    iValor.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
+  }
+}
+
+  comprobacionNombre(evento, pMensaje) {
+    const inputNombre = evento.target;
+    const nombre = inputNombre.value;
+  
+    if (nombre.trim() === "") {
+      this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede estar vacío.');
+    } else if (nombre.length > 20) {
+      this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede ser mayor a 20 caracteres.');
     } else {
+      this.mostrarMensajeExito(inputNombre);
+    }
+  }
+  
+  comprobacionValor(evento, pMensaje) {
+    const inputValor = evento.target;
+    const valor = inputValor.value;
+  
+    if (!/^\d{1,3}$/.test(valor) || parseInt(valor) < 1 || parseInt(valor) > 254) {
+      this.mostrarMensajeError(inputValor, pMensaje, 'El valor debe ser un número entre 1 y 254.');
+    } else {
+      this.mostrarMensajeExito(inputValor);
       this.mostrarMensajeExito(inputNombre);
     }
   }
@@ -289,5 +317,6 @@ class ControladorAdmin {
     }
   }
 }
+
 window.onload = () => { new ControladorAdmin() }
 })

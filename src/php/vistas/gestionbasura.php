@@ -15,7 +15,7 @@
 <main id="gestor">
     <h1>Basura</h1>
     <a href="php/vistas/anadir.html">+</a>
-    <a href="">Volver</a>
+    <a href="indexAdmin.html">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>

@@ -43,10 +43,13 @@ $nombreClase = ucfirst($nombreControl);
 echo $nombreClase;
 $controlador = new $nombreClase();
 
+
+
 /* Ver si el método está definido */
 $datosVista["datos"] = array();
 if (method_exists($controlador, $nombreMetodo)) 
-    $datosVista["datos"] = $controlador->{$nombreMetodo}();
+        $datosVista["datos"] = $controlador->{$nombreMetodo}();
+   
 
 /* Cargar vistas */
 require_once 'php/vistas/templates/header.php';

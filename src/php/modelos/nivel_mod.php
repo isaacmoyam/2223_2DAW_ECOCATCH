@@ -84,7 +84,6 @@ class Nivel_Mod {
         $this->establecerConexion();
         $sql = 'DELETE FROM nivel WHERE id='.$id;
         $result = $this->mysqli->query($sql);
-
         $this->cerrarConexion();
 
         return;
@@ -101,10 +100,19 @@ class Nivel_Mod {
      */
     public function crear($nombre, $items, $velocidad) {
         $this->establecerConexion();
-        $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
-        $result = $this->mysqli->query($sql);
+       
+        try {
+            $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
+            $result = $this->mysqli->query($sql);
+            $idNivel = $this->mysqli->insert_id;
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
 
         $this->cerrarConexion();
+
+        return $idNivel;
     }
 
     /**
@@ -137,10 +145,55 @@ class Nivel_Mod {
      */
     public function modificar($id, $nombre, $items, $velocidad) {
         $this->establecerConexion();
-        $sql = 'UPDATE nivel SET nombre = "'.$nombre.'", cantidadItems = "'.$items.'", velocidadBarco = "'.$velocidad.'" WHERE id ='.$id;
+
+        try {
+            $sql = 'UPDATE nivel SET nombre = "'.$nombre.'", cantidadItems = "'.$items.'", velocidadBarco = "'.$velocidad.'" WHERE id ='.$id;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
+
+        $this->cerrarConexion();
+    }
+
+    // MODELO DE MENSAJES
+    public function borrarMensaje($id) {
+        $this->establecerConexion();
+        $sql = 'DELETE FROM mensaje WHERE id='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+
+        return;
+    }
+
+    public function buscarMensaje($id) {
+        $this->establecerConexion();
+        $sql = 'SELECT id, tipo, contenido, puntosHasta, idNivel FROM mensaje WHERE id='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+
+        $fila = $result->fetch_assoc();
+        return $fila;
+    }
+
+    public function modificarMensaje($id, $tipo, $contenido, $puntosHasta, $idNivel) {
+        $this->establecerConexion();
+        $sql = 'UPDATE mensaje SET id = "'.$id.'", tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'", idNivel = "'.$idNivel.'" WHERE id ='.$id;
         $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
     }
+
+    public function crearMensaje($tipo, $contenido, $puntosHasta, $idNivel) {
+        $this->establecerConexion();
+        $sql = 'INSERT INTO mensaje (tipo, contenido, puntosHasta, idNivel) VALUES ("'.$tipo.'", "'.$contenido.'", "'.$puntosHasta.'", "'.$idNivel.'")';
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+    }
+
 }
 ?>
