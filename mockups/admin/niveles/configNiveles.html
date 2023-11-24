@@ -1,56 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../css/styleAdmin.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuracion Niveles</title>
-</head>
-    <body>
-        <header id="logo">
-            <img src="../../img/logo.png" alt="Logo de la página EcoCatch">
-        </header>
-        <nav>
-            <a href="../../indexAdmin.html">Inicio</a>
-            <a href="../../niveles/niveles.html">Niveles</a>
-            <a href="../../admin/basura/gestionbasura.php">Basura</a>
-            <a href="#">PowerUp</a>
-        </nav>
-        <main id="gestionNiveles">
-            <h1>Configuración Nivel</h1>
-            <a href="niveles.html">Volver</a>
-            <form action="" method="POST">
-                <label>Nombre del Nivel:</label>
-                <input type="text" name="nombre" value="Basura1" placeholder="Nombre del nivel">
-                <label>Items:</label>
-                <input type="text" name="valor" value="4" placeholder="Cantidad de Items">
-                <label>Velocidad Barco:</label>
-                <input type="text" name="Velocidad del barco">
-                <p class="msgCampos"></p>
-                <h2>Mensajes</h2>
-                <a id="botonMasConfigNiveles" href="anadir.html">+</a>
-                <table>
-                    <tr>
-                        <th>Contenido</th>
-                        <th>Puntuación Mínima</th>
-                        <th>Tipo</th>
-                        <th>Opción</th>
-                    </tr>
-                    <tr>
-                        <td>Mensaje de prueba para el nivel 1.</td>
-                        <td>10</td>
-                        <td>A</td>
-                        <td><a href="">🗑️</a><a href="moverMensaje.html">🔄</a></td>
-                    </tr>
-                    <tr>
-                        <td>Mensaje de prueba para el nivel 2 aun mas largo que el primero.</td>
-                        <td>1</td>
-                        <td>A</td>
-                        <td><a href="">🗑️</a><a href="moverMensaje.html">🔄</a></td>
-                    </tr>
-                </table>
-                <input type="submit" value="Guardar cambios">
-            </form>
-        </main>
-    </body>
-</html>
+<main id="gestionNiveles">
+    <h1>Configuración Nivel</h1>
+    <a href="niveles.html">Volver</a>
+    <form action="" method="POST">
+        <label>Nombre del Nivel:</label>
+        <input type="text" name="nombre" value="Basura1" placeholder="Nombre del nivel">
+        <label>Items:</label>
+        <input type="text" name="valor" value="4" placeholder="Cantidad de Items">
+        <label>Velocidad Barco:</label>
+        <input type="text" name="Velocidad del barco">
+        <p class="msgCampos"></p>
+        <h2>Mensajes</h2>
+        <a id="botonMasConfigNiveles" href="anadir.html">+</a>
+        <table>
+            <tr>
+                <th>Contenido</th>
+                <th>Puntuación Mínima</th>
+                <th>Tipo</th>
+                <th>Opción</th>
+            </tr>
+            <tr>
+                <td>Mensaje de prueba para el nivel 1.</td>
+                <td>10</td>
+                <td>A</td>
+                <td><a href="">🗑️</a><a href="moverMensaje.html">🔄</a></td>
+            </tr>
+            <tr>
+                <td>Mensaje de prueba para el nivel 2 aun mas largo que el primero.</td>
+                <td>1</td>
+                <td>A</td>
+                <td><a href="">🗑️</a><a href="moverMensaje.html">🔄</a></td>
+            </tr>
+        </table>
+        <input type="submit" value="Guardar cambios">
+    </form>
+</main>
