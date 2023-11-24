@@ -1,11 +1,15 @@
 <?php
 /**
- * Archivo principal de enrutamiento y ejecución del framework.
+ * Página principal.
  *
- * Este archivo maneja la carga de controladores, la ejecución de métodos y la carga de vistas.
+ * PHP version 7.0
  *
- * @package Index
+ * @category Index
+ * @package  Index
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
+
 require_once 'php/config/configdb.php';
 require_once 'php/modelos/db.php';
 

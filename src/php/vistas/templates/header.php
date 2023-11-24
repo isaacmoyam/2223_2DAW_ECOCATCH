@@ -1,3 +1,15 @@
+<?php
+/**
+ * Cabecera para las vistas que llama el controlador en Index.
+ *
+ * PHP version 7.0
+ *
+ * @category Header
+ * @package  Header
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>

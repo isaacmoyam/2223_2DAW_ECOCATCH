@@ -1,10 +1,13 @@
 <?php
 /**
- * Página de menú administrador.
+ * Página menú del administrador.
  *
  * PHP version 7.0
  *
- * @package  Menú
+ * @category Menu
+ * @package  Menu
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 ?>
 <div id="menu">
