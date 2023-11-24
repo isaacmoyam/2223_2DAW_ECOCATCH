@@ -9,7 +9,7 @@ export class Vista1 extends Vista {
 	 * @param controlador {ControladorUsuario} Controlador del Usuario
 	 * @param base {Object} Objeto que es una referencia del interfaz
 	 */
-  constructor (controlador, base) {
+  constructor (controlador = null, base = null) {
     super(controlador, base)
     this.eventos()
   }
@@ -18,7 +18,8 @@ export class Vista1 extends Vista {
 	 * Método por el cual se obtienen las referencias de la interfaz y se le asocia eventos
 	 */
   eventos () {
-    // Coger referencias del interfaz
+    if(this.base){
+      // Coger referencias del interfaz
     this.enlaceEmpezarPartida = this.base.querySelectorAll('a')[0]
     this.enlaceRanking = this.base.querySelectorAll('a')[1]
     this.enlaceConocenos = this.base.querySelectorAll('a')[2]
@@ -27,6 +28,7 @@ export class Vista1 extends Vista {
     this.enlaceEmpezarPartida.onclick = () => this.pulsarEnlace(4)
     this.enlaceRanking.onclick = () => this.pulsarEnlace(3)
     this.enlaceConocenos.onclick = () => this.pulsarEnlace(2)
+    }
   }
 
   /**

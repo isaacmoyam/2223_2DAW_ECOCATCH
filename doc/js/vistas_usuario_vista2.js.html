@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: vistas/usuario/vista2.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,50 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: vistas/usuario/vista2.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Vista } from './vista.js'
 
+/**
+ * Clase encargada de la Vista 2
+ */
+export class Vista2 extends Vista {
+  /**
+	 * Constructor de la clase. Inicializa los atributos correspondientes
+	 * @param controlador {ControladorUsuario} Controlador del Usuario
+	 * @param base {Object} Objeto que es una referencia del interfaz
+	 */
+  constructor (controlador, base) {
+    super(controlador, base)
+    this.eventosInterfaz()
+  }
 
-    <h3> </h3>
+  /**
+	 * Asocia los eventos de la interfaz
+	 */
+  eventosInterfaz () {
+    // Coger referencias del interfaz
+    if(!this.enlaceVolverVista1){return}
+    else{
+      this.enlaceVolverVista1 = document.getElementsByClassName('volverAVista1')[0]
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+      // Asociar eventos
+      this.enlaceVolverVista1.onclick = () => {
+        this.controlador.verVista(Vista.VISTA1)
+    }
+    }
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -23,6 +23,7 @@ export class Vista8 extends Vista {
     this.botonGET = document.getElementById('peticionAjax')
 
     // Asociar eventos
+    if(!this.botonGET){return}
     this.botonGET.onclick = this.llamarGETAEMET
   }
 

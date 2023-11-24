@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Añadir basura</title>
+    </head>
+    <body>
+        <header>
+            <img src="../../img/logo.png" alt="Logo de la aplicación">
+        </header>
+        <main id="gestorM">
+            <a id="btnVolver" href="../../index.php?control=basura_con">Volver</a>
+            <form action="../../index.php?control=basura_con&metodo=crear" method="POST">
+                <label for="nombre">(*) Nombre:</label>
+                <input type="text" name="nombre" placeholder="Nombre basura">
+                <label for="valor">(*) Valor:</label>
+                <input type="text" name="valor" placeholder="Puntuación">
+                <label for="imagen">Imagen:</label>
+                <input type="file" name="imagen">
+                <img id="imagenMiniatura">
+                <p id="msgCampos"></p>
+                <input type="submit" value="Añadir basura" id="anadirBasura">
+            </form>
+        </main>
+        <script src="../../js/controladores/controladorAdmin.js" type="module"></script>
+    </body>
+</html>

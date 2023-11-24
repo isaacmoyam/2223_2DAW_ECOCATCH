@@ -18,6 +18,7 @@ export class Vista2 extends VistaAdmin {
      * Asocia los eventos de la interfaz de la vista 2 del administrador
      */
   eventos () {
+    if(!this.base){return}
     let iNombre, iImagen, iAumento, btnAnadirBasura, pMensaje
     // Coger referencias del interfaz
     this.enlaceVolverVista = this.base.querySelectorAll('a')[0]

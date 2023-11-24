@@ -31,6 +31,7 @@ export class Vista {
 	 * @param ver {Boolean} Indica si la vista debe mostrarse (true) u ocultarse (false)
 	 */
   mostrar (ver) {
+    if(!this.base){return}
     if (ver) {
       this.base.style.display = 'block'
     } else {
