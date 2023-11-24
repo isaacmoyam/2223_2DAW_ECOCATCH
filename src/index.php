@@ -56,6 +56,9 @@ if (method_exists($controlador, $nombreMetodo)) {
    
 /* Cargar vistas */
 require_once 'php/vistas/templates/header.php';
+if($controlador->vista != "menu"){
+    require_once 'php/vistas/templates/nav.php';
+}
 require_once 'php/vistas/'.$controlador->vista.'.php';
 require_once 'php/vistas/templates/footer.php';
 ?>

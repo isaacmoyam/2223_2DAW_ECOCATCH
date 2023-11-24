@@ -2,7 +2,7 @@
 /**
  * Pie de página para las vistas que llama el controlador en Index
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
  * @category Footer
  * @package  Footer
