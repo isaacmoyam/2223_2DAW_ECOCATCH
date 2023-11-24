@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Clase Nivel_Mod para la manipulación de datos de niveles en la base de datos.
+ * Modelo de Nivel
  *
  * PHP version 7.0
  *
- * @category Nivel
- * @package  Nivel_Mod
- * @author   Equipo A
+ * @category Modelo
+ * @package  Nivel
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
@@ -17,31 +16,47 @@ error_reporting(E_ALL);
 
 require_once 'php/modelos/db.php';
 
+
+/**
+ * Clase para gestionar los niveles y mensajes asociados.
+ */
 class Nivel_Mod {
     
+    /**
+     * Instancia de la conexión a la base de datos.
+     * @var mysqli
+     */
     private $mysqli;
 
-    // CONSTRUCTOR DE LA CLASE
+    /**
+     * Constructor de la clase Nivel_Mod.
+     */
     public function __construct() {
        
     }
     
-    // ESTABLECER CONEXIÓN CON LA BBDD
+    /**
+     * Establece la conexión con la base de datos.
+     */
     public function establecerConexion(){
 		$dbObj = new Db();
 		$this->mysqli = $dbObj->mysqli;
 	}
 
-    // CERRAR LA CONEXIÓN CON LA BBDD
+    /**
+     * Cierra la conexión con la base de datos.
+     */
     public function cerrarConexion() {
         if ($this->mysqli) {
             mysqli_close($this->mysqli);
         }
     }
 
-    // METODOS DE NIVEL
-
-    //MOSTRAR NIVELES
+   /**
+     * Muestra la lista de niveles.
+     *
+     * @return array Arreglo con la información de los niveles.
+     */
     public function mostrar() {
         $this->establecerConexion();
         $sql = "SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel;";
@@ -57,7 +72,12 @@ class Nivel_Mod {
         return $niveles;
     }
 
-    // MOSTRAR MENSAJES DE NIVEL CON ID ESPECIFICO
+    /**
+     * Muestra los mensajes asociados a un nivel específico.
+     *
+     * @param int $id ID del nivel.
+     * @return array Arreglo con la información de los mensajes del nivel.
+     */
     public function mostrarMensajes($id) {
         $this->establecerConexion();
         $sql = "SELECT mensaje.id,tipo,contenido,puntosHasta,idNivel FROM mensaje INNER JOIN nivel ON idNivel = nivel.id WHERE idNivel=" .$id;
@@ -73,7 +93,11 @@ class Nivel_Mod {
         return $mensajes;
     }
 
-    // BORRAR NIVEL CON ID ESPECIFICO
+    /**
+     * Borra un nivel específico.
+     *
+     * @param int $id ID del nivel a borrar.
+     */
     public function borrar($id) {
         $this->establecerConexion();
         $sql = 'DELETE FROM nivel WHERE id='.$id;
@@ -83,7 +107,14 @@ class Nivel_Mod {
         return;
     }
 
-    // CREAR NIVEL 
+    /**
+     * Crea un nuevo nivel.
+     *
+     * @param string $nombre Nombre del nivel.
+     * @param int $items Cantidad de items del nivel.
+     * @param int $velocidad Velocidad del barco en el nivel.
+     * @return int|null ID del nuevo nivel creado, o null en caso de error.
+     */ 
     public function crear($nombre, $items, $velocidad) {
         $this->establecerConexion();
        
@@ -101,7 +132,12 @@ class Nivel_Mod {
         return $idNivel;
     }
 
-    // BUSCAR NIVEL CON ID ESPECIFICO
+    /**
+     * Busca un nivel específico para su modificación.
+     *
+     * @param int $id ID del nivel a buscar.
+     * @return array|null Arreglo con la información del nivel, o null en caso de no encontrarlo.
+     */
     public function buscarModificar($id) {
         $this->establecerConexion();
         $sql = 'SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel WHERE id='.$id;
@@ -113,7 +149,15 @@ class Nivel_Mod {
         return $fila;
     }
 
-    // MODIFICAR NIVEL
+    /**
+     * Modifica un nivel específico.
+     *
+     * @param int $id ID del nivel a modificar.
+     * @param string $nombre Nuevo nombre del nivel.
+     * @param int $items Nueva cantidad de items del nivel.
+     * @param int $velocidad Nueva velocidad del barco en el nivel.
+     * @return int|null ID del nuevo nivel creado, o null en caso de error.
+     */
     public function modificar($id, $nombre, $items, $velocidad) {
         $this->establecerConexion();
 
@@ -128,9 +172,11 @@ class Nivel_Mod {
         $this->cerrarConexion();
     }
 
-    // METODOS DE MENSAJES DE NIVELES
-
-    // BORRAR MENSAJE CON ID ESPECIFICO
+    /**
+     * Borra un mensaje específico.
+     *
+     * @param int $id ID del mensaje a borrar.
+     */
     public function borrarMensaje($id) {
         $this->establecerConexion();
         $sql = 'DELETE FROM mensaje WHERE id='.$id;
@@ -141,7 +187,12 @@ class Nivel_Mod {
         return;
     }
 
-    // BUSCAR MENSAJE CON ID ESPECIFICO
+    /**
+     * Busca un mensaje específico para su modificación.
+     *
+     * @param int $id ID del mensaje a buscar.
+     * @return array|null Arreglo con la información del mensaje, o null en caso de no encontrarlo.
+     */
     public function buscarMensaje($id) {
         $this->establecerConexion();
         $sql = 'SELECT id, tipo, contenido, puntosHasta, idNivel FROM mensaje WHERE id='.$id;
@@ -154,16 +205,51 @@ class Nivel_Mod {
     }
 
 
-    // MODIFICAR MENSAJE CON ID ESPECIFICO
-    public function modificarMensaje($id, $tipo, $contenido, $puntosHasta, $idNivel) {
+    /**
+     * Mueve un mensaje a un nuevo nivel.
+     *
+     * @param int $id ID del mensaje a mover.
+     * @param int $idNivel Nuevo ID del nivel al que se mueve el mensaje.
+     */
+    public function moverMensaje($id, $idNivel) {
         $this->establecerConexion();
-        $sql = 'UPDATE mensaje SET id = "'.$id.'", tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'", idNivel = "'.$idNivel.'" WHERE id ='.$id;
+        $sql = 'UPDATE mensaje SET idNivel = "'.$idNivel.'" WHERE id ='.$id;
         $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
     }
 
-    // CREAR UN MENSAJE
+    /**
+     * Modifica un mensaje específico.
+     *
+     * @param string $tipo Nuevo tipo del mensaje.
+     * @param string $contenido Nuevo contenido del mensaje.
+     * @param int|null $puntosHasta Nuevos puntos hasta del mensaje.
+     * @param int $idMsg ID del mensaje a modificar.
+     * @return int|null ID del nuevo mensaje creado, o null en caso de error.
+     */
+     public function modificarNivelMensaje($tipo, $contenido, $puntosHasta, $idMsg) {
+        $this->establecerConexion();
+
+        try {
+            $sql = 'UPDATE mensaje SET tipo = "'.$tipo.'", contenido = "'.$contenido.'", puntosHasta = "'.$puntosHasta.'" WHERE id ='.$idMsg;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
+
+        $this->cerrarConexion();
+    }
+
+    /**
+     * Crea un nuevo mensaje asociado a un nivel.
+     *
+     * @param string $tipo Tipo del mensaje.
+     * @param string $contenido Contenido del mensaje.
+     * @param int|null $puntosHasta Puntos hasta del mensaje.
+     * @param int $idNivel ID del nivel al que se asocia el mensaje.
+     */
     public function crearMensaje($tipo, $contenido, $puntosHasta, $idNivel) {
         $this->establecerConexion();
         $sql = 'INSERT INTO mensaje (tipo, contenido, puntosHasta, idNivel) VALUES ("'.$tipo.'", "'.$contenido.'", "'.$puntosHasta.'", "'.$idNivel.'")';

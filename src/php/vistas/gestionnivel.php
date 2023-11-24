@@ -2,7 +2,7 @@
 /**
  * Página principal para la gestión de nivel.
  *
- * PHP version 7.4.3
+ * PHP version 7.0
  *
  * @category Nivel
  * @package  Gestión_Nivel
@@ -15,7 +15,7 @@
 <main id="gestor">
     <h1>Niveles</h1>
     <a href="index.php?control=nivel_con&metodo=vistaCrear">+</a>
-    <a href="indexAdmin.html">Volver</a>
+    <a href="index.php">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>

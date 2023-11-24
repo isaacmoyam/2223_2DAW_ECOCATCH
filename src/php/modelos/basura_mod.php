@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Clase Basura_Mod para la manipulación de datos de basura en la base de datos.
+ * Modelo de la basura
  *
  * PHP version 7.0
  *
- * @category Basura
+ * @category Modelo
  * @package  Basura_Mod
- * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
@@ -17,29 +16,45 @@ error_reporting(E_ALL);
 
 require_once 'php/modelos/db.php';
 
+/**
+ * Clase modelo para la gestión de basura.
+ */
 class Basura_Mod {
     
+    /**
+     * Instancia de la conexión a la base de datos.
+     * @var mysqli
+     */
     private $mysqli;
     
-    // CONSTRUCTOR DE LA CLASE
+    /**
+     * Constructor de la clase Basura_Mod.
+     */
     public function __construct() {
        
     }
     
-    // ESTABLECER CONEXIÓN CON LA BBDD
+    /**
+     * Establece la conexión con la base de datos.
+     */
     public function establecerConexion(){
 		$dbObj = new Db();
 		$this->mysqli = $dbObj->mysqli;
 	}
 
-    // CERRAR CONEXIÓN CON LA BBDD
+    /**
+     * Cierra la conexión con la base de datos.
+     */
     public function cerrarConexion() {
         if ($this->mysqli) {
             mysqli_close($this->mysqli);
         }
     }
 
-    // MOSTRAR BASURA 
+    /**
+     * Muestra la información de basura.
+     * @return array
+     */
     public function mostrar() {
         $this->establecerConexion();
         $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
@@ -55,7 +70,9 @@ class Basura_Mod {
         return $basuras;
     }
 
-    // BORRAR BASURA CON ID ESPECIFICO
+    /**
+     * Borra la basura con un ID específico.
+     */
     public function borrar($id) {
         $this->establecerConexion();
         $sql = 'DELETE FROM item WHERE id='.$id;
@@ -66,7 +83,13 @@ class Basura_Mod {
         return;
     }
 
-    // CREAR BASURA 
+    /**
+     * Crea una nueva basura.
+     * @param string $nombre
+     * @param string $imagen
+     * @param int $valor
+     * @return bool
+     */ 
     public function crear($nombre, $imagen, $valor) {
         $this->establecerConexion();
         $sql = 'INSERT INTO item (nombre, nombreImagen) VALUES ("'.$nombre.'", "'.$imagen.'")';
@@ -87,7 +110,11 @@ class Basura_Mod {
         $this->cerrarConexion();
     }
 
-    // BUSCAR BASURA CON ID ESPECIFICO
+    /**
+     * Busca la basura con un ID específico para modificar.
+     * @param int $id
+     * @return array
+     */
     public function buscarModificar($id) {
         $this->establecerConexion();
         $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
@@ -99,7 +126,14 @@ class Basura_Mod {
         return $fila;
     }
 
-    // MODIFICAR BASURA CON ID ESPECIFICO
+    /**
+     * Modifica la basura con un ID específico.
+     * @param int $id
+     * @param string $nombre
+     * @param string $imagen
+     * @param int $valor
+     * @return bool
+     */
     public function modificar($id, $nombre, $imagen, $valor) {
         $this->establecerConexion();
         $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
@@ -119,6 +153,9 @@ class Basura_Mod {
         $this->cerrarConexion();
     }
 
+    /**
+     * Recoge datos de basuras y power-ups y los retorna al controlador en json.
+     */
     public function ajax() {
         $this->establecerConexion();
     

@@ -2,7 +2,7 @@
 /**
  * Página principal para la gestión de basura.
  *
- * PHP version 7.4.3
+ * PHP version 7.0
  *
  * @category Basura
  * @package  Gestión_Basura
@@ -15,7 +15,7 @@
 <main id="gestor">
     <h1>Basura</h1>
     <a href="index.php?control=basura_con&metodo=vistaCrear">+</a>
-    <a href="indexAdmin.html">Volver</a>
+    <a href="index.php">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>

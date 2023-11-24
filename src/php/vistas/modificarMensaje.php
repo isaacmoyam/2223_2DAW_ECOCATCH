@@ -5,7 +5,7 @@
  * PHP version 7.0
  *
  * @category Mensaje
- * @package  Modificar_Mensaje
+ * @package  Gestión_Mensaje
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
@@ -18,7 +18,7 @@
     ?>
     <a href="index.php?control=nivel_con&metodo=buscarModificar&id=<?php echo $fila['idNivel']; ?>">Volver</a>
     <h1>Cambiar de nivel</h1>
-    <form action="index.php?control=nivel_con&metodo=modificarMensaje&id=<?php echo $fila['id'];?>" method="POST">
+    <form action="index.php?control=nivel_con&metodo=moverMensaje&id=<?php echo $fila['id'];?>" method="POST">
         <label for="nivel">Nivel:</label>
         <select name="nivel">
             <option disabled>Selecciona un nivel...</option>

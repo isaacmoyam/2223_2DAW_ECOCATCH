@@ -1,17 +1,55 @@
 <?php 
 
+/**
+ * Creación del objeto conexión con la base de datos
+ *
+ * PHP version 7.0
+ *
+ * @category Conexión
+ * @package  ConexionBD
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+
 require_once 'php/config/configdb.php';
 
+/**
+ * Clase para gestionar la conexión a la base de datos.
+ */
 class Db {
 
-	// DATOS DE CONEXIÓN
+	/**
+     * Dirección del host de la base de datos.
+     * @var string
+     */
 	private $host;
+
+	/**
+     * Nombre de la base de datos.
+     * @var string
+     */
 	private $bdname;
+
+	/**
+     * Nombre de usuario para la conexión a la base de datos.
+     * @var string
+     */
 	private $usuario;
+
+	/**
+     * Contraseña para la conexión a la base de datos.
+     * @var string
+     */
 	private $passwd;
+
+	/**
+     * Instancia de la conexión a la base de datos.
+     * @var mysqli
+     */
 	public $mysqli;
 
-	// CONSTRUCTOR DE LA CLASE
+	/**
+     * Constructor de la clase Db.
+     */
 	public function __construct() {		
 
 		$this->host = constant('HOST');

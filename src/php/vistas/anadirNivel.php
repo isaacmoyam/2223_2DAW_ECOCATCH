@@ -1,3 +1,15 @@
+<?php
+/**
+ * Página principal para añadir niveles.
+ *
+ * PHP version 7.0
+ *
+ * @category Nivel
+ * @package  Gestión_Nivel
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+?>
 <main id="gestorM">
     <h1>Añadir nivel</h1>
     <a id="btnVolver" href="index.php?control=nivel_con">Volver</a>
@@ -13,7 +25,6 @@
         <table id="tablaDinamica">
             <thead>
                 <tr>
-                    <th></th>
                     <th>Contenido</th>
                     <th>Puntos Requeridos</th>
                     <th>Tipo</th>
@@ -21,15 +32,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
+                <tr>                
                     <td><input name="contenido[]" type="text" placeholder="Contenido del mensaje"></td>
                     <td><input name="puntosHasta[]" type="text" placeholder="Puntos requeridos"></td>
-                    <td><input name="tipo[]" type="text" placeholder="Aparición"></td>
+                    <td>
+                        <select name="tipo[]">
+                            <option value="A">Antes del nivel</option>
+                            <option value="B">Durante el nivel</option>
+                            <option value="C">Después del nivel</option>
+                        </select>
+                    </td>
                 </tr>
             </tbody>
-            </table>
-            <button type="button" id="btnAgregarFila">Agregar Fila</button>
+        </table>
+        <button type="button" id="btnAgregarFila">Agregar mensaje</button>
         <input type="submit" value="Añadir nivel">
     </form>
 </main>

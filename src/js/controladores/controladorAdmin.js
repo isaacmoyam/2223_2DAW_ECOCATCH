@@ -46,28 +46,38 @@ class ControladorAdmin {
     const tablaDinamica = document.getElementById('tablaDinamica')
     const nuevaFila = tablaDinamica.insertRow()
 
-    // Añade la celda con el número
-    let celda = nuevaFila.insertCell()
-    celda = nuevaFila.insertCell()
-    let input = document.createElement('input')
-    input.type = 'text'
-    input.name = 'contenido'
-    input.placeholder = 'Contenido del mensaje'
-    celda.appendChild(input)
+    let input = document.createElement('input');
+    let select = document.createElement('select');
 
-    celda = nuevaFila.insertCell()
-    input = document.createElement('input')
-    input.type = 'text'
-    input.name = 'puntosRequeridos'
-    input.placeholder = 'Puntos requeridos'
-    celda.appendChild(input)
+    let celda = nuevaFila.insertCell();
+    input.type = 'text';
+    input.name = 'contenido[]'
+    celda.appendChild(input);
 
-    celda = nuevaFila.insertCell()
-    input = document.createElement('input')
-    input.type = 'text'
-    input.name = 'tipo'
-    input.placeholder = 'Aparición'
-    celda.appendChild(input)
+    celda = nuevaFila.insertCell();
+    input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'puntosHasta[]'
+    celda.appendChild(input);
+
+    celda = nuevaFila.insertCell();
+    select = document.createElement('select');
+    select.name = 'tipo[]';
+
+    var opciones = [
+        { nombre: 'Antes del nivel', valor: 'A' },
+        { nombre: 'Durante el nivel', valor: 'B' },
+        { nombre: 'Después del nivel', valor: 'C' }
+    ];
+
+    for (var i = 0; i < opciones.length; i++) {
+        var opcion = document.createElement('option');
+        opcion.value = opciones[i].valor;
+        opcion.text = opciones[i].nombre;
+        select.appendChild(opcion);
+    }
+
+    celda.appendChild(select);
 
     // Añade la nueva celda con el botón para quitar la fila
     const celdaBoton = nuevaFila.insertCell();
