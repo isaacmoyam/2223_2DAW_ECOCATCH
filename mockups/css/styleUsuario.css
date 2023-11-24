@@ -394,6 +394,13 @@ button.darkmode,
     MEDIAS QUERIES
     Implementado con Media Queries Level 4
  */
+@media (width <= 2500px) {
+    /*pagina jugar*/
+    #hud {
+        gap: 24%;
+    }
+}
+
 @media (width <= 1804px) {
     /*Cambiar el tamaño de la imagen del header*/
     header > img {
@@ -405,17 +412,12 @@ button.darkmode,
         bottom: 290px;
         right: 39%;
     }
-
-    /*pagina jugar*/
-    #hud {
-        gap:32%;
-    }
 }
 
 @media (width <= 1698px) {
     /*pagina jugar*/
     #hud {
-        gap:20%;
+        gap: 20%;
     }
 }
 
@@ -438,7 +440,7 @@ button.darkmode,
 
     /*pagina jugar*/
     #hud {
-        gap:18%;
+        gap: 18%;
     }
 }
 
@@ -455,7 +457,7 @@ button.darkmode,
 
     /*pagina jugar*/
     #hud {
-        gap:23%;
+        gap:23%; /*Cambia el espacio */
     }
 }
 
