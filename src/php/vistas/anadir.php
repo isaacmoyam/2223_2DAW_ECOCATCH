@@ -12,7 +12,7 @@
 ?>
 <main id="gestorM">
     <a id="btnVolver" href="index.php?control=basura_con">Volver</a>
-    <form action="index.php?control=basura_con&metodo=crear" method="POST">
+    <form action="index.php?control=basura_con&metodo=crear" method="POST" id="formBasura">
         <label for="nombre">(*) Nombre:</label>
         <input type="text" name="nombre" placeholder="Nombre basura">
         <label for="valor">(*) Valor:</label>
@@ -24,4 +24,4 @@
         <input type="submit" value="Añadir basura">
     </form>
 </main>
-<script src="expresionesRegulares.js" type="module"></script>
+<script src="js/controladores/controladorAdmin.js" type="module"></script>

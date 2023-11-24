@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ControladorAdmin<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ControladorAdmin<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h2>
         
-            <div class="class-description">Clase controlador del usuario. Se encarga de controlar las vistas del usuario</div>
+            <div class="class-description">Controlador para las vistas del administrador.</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="ControladorAdmin"><span class="type-signature"></span>new ControladorAdmin<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ControladorAdmin"><span class="type-signature"></span>new ControladorAdmin<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    Inicializa los atributos del Controlador del administrador. Coge las referencias del interfaz. Y muestra la primera Vista
+    Constructor de la clase ControladorAdmin.
 </div>
 
 
@@ -97,7 +97,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line10">line 10</a>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -122,6 +122,24 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -143,6 +161,82 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="vistas"><span class="type-signature"></span>vistas<span class="type-signature"> :Map.&lt;Symbol, <a href="Vista.html">Vista</a>></span></h4>
+
+
+
+
+<div class="description">
+    Mapa que almacena las instancias de las vistas.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Map.&lt;Symbol, <a href="Vista.html">Vista</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -153,7 +247,7 @@
     
 
     
-    <h4 class="name" id="comprobacionNombre"><span class="type-signature"></span>comprobacionNombre<span class="signature">(evento, pMensaje)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="agregarFila"><span class="type-signature"></span>agregarFila<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -161,7 +255,113 @@
 
 
 <div class="description">
-    LLama a una función encargada de comprobar si se valida el campo Nombre mediante una expresión regular determinada.Se ejecuta con un evento onblur en el campoNombre
+    Agrega una nueva fila a la tabla dinámica.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="comprobacionNombre"><span class="type-signature"></span>comprobacionNombre<span class="signature">(evento, pMensaje)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Valida el campo de nombre con una expresión regular.
 </div>
 
 
@@ -203,7 +403,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Event</span>
 
 
             
@@ -213,7 +413,7 @@
 
             
 
-            <td class="description last">Objeto de evento que desencadenó la llamada a la función.</td>
+            <td class="description last">Objeto de evento asociado al campo de nombre.</td>
         </tr>
 
     
@@ -226,7 +426,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">HTMLParagraphElement</span>
 
 
             
@@ -236,7 +436,7 @@
 
             
 
-            <td class="description last">Objeto del lugar donde se va a introducir los mensajes necesarios</td>
+            <td class="description last">Elemento para mostrar mensajes.</td>
         </tr>
 
     
@@ -277,7 +477,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line116">line 116</a>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -302,6 +502,24 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -313,7 +531,7 @@
     
 
     
-    <h4 class="name" id="comprobacionValor"><span class="type-signature"></span>comprobacionValor<span class="signature">(evento, pMensaje)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="comprobacionValor"><span class="type-signature"></span>comprobacionValor<span class="signature">(evento, pMensaje)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -321,7 +539,7 @@
 
 
 <div class="description">
-    LLama a una función encargada de comprobar si se valida el campo Valor mediante una expresión regular determinada.Se ejecuta con un evento onblur en el campoNombre
+    Valida el campo de valor con una expresión regular.
 </div>
 
 
@@ -363,7 +581,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Event</span>
 
 
             
@@ -373,7 +591,7 @@
 
             
 
-            <td class="description last">Objeto de evento que desencadenó la llamada a la función.</td>
+            <td class="description last">Objeto de evento asociado al campo de valor.</td>
         </tr>
 
     
@@ -386,7 +604,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">HTMLParagraphElement</span>
 
 
             
@@ -396,7 +614,7 @@
 
             
 
-            <td class="description last">Objeto del lugar donde se va a introducir los mensajes necesarios</td>
+            <td class="description last">Elemento para mostrar mensajes.</td>
         </tr>
 
     
@@ -437,7 +655,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line127">line 127</a>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -462,6 +680,24 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -473,7 +709,7 @@
     
 
     
-    <h4 class="name" id="eventosComprobacion"><span class="type-signature"></span>eventosComprobacion<span class="signature">(pMensaje, iNombre, iImagen, iValor, btnAnadirBasura, imagenMiniatura)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="eventosComprobacion"><span class="type-signature"></span>eventosComprobacion<span class="signature">(pMensaje, iNombre, iImagen, iValor, btnAnadirBasura, imagenMiniatura)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -481,7 +717,7 @@
 
 
 <div class="description">
-    Asocia eventos a los objetos pasados por parámetro
+    Asocia eventos a los objetos pasados por parámetro.
 </div>
 
 
@@ -533,7 +769,7 @@
 
             
 
-            <td class="description last">Objeto del lugar donde se va a introducir los mensajes necesarios</td>
+            <td class="description last">Objeto del lugar donde se introducirán los mensajes necesarios.</td>
         </tr>
 
     
@@ -556,7 +792,7 @@
 
             
 
-            <td class="description last">Objeto correspondiente al campo nombre</td>
+            <td class="description last">Objeto correspondiente al campo nombre.</td>
         </tr>
 
     
@@ -579,7 +815,7 @@
 
             
 
-            <td class="description last">Objeto correspondiente al campo de la imágen</td>
+            <td class="description last">Objeto correspondiente al campo de la imagen.</td>
         </tr>
 
     
@@ -602,7 +838,7 @@
 
             
 
-            <td class="description last">Objeto correspondiente al campo valor</td>
+            <td class="description last">Objeto correspondiente al campo valor.</td>
         </tr>
 
     
@@ -625,7 +861,7 @@
 
             
 
-            <td class="description last">Objeto correspondiende del boton de añadir basura</td>
+            <td class="description last">Objeto correspondiente al botón de añadir basura.</td>
         </tr>
 
     
@@ -648,7 +884,7 @@
 
             
 
-            <td class="description last">Objeto de la imagen en miniatura</td>
+            <td class="description last">Objeto de la imagen en miniatura.</td>
         </tr>
 
     
@@ -689,7 +925,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line54">line 54</a>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line147">line 147</a>
     </li></ul></dd>
     
 
@@ -714,6 +950,24 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -725,7 +979,7 @@
     
 
     
-    <h4 class="name" id="mostrarMiniatura"><span class="type-signature"></span>mostrarMiniatura<span class="signature">(event, imagenMiniatura)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="mostrarMensajeError"><span class="type-signature"></span>mostrarMensajeError<span class="signature">(input, mensaje)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -733,7 +987,340 @@
 
 
 <div class="description">
-    Muestra la imagen en miniatura introducido en el input type="file" del html
+    Muestra un mensaje de error en el campo especificado.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLInputElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Campo de entrada.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mensaje</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Mensaje de error.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="mostrarMensajeExito"><span class="type-signature"></span>mostrarMensajeExito<span class="signature">(input)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Muestra un mensaje de éxito en el campo especificado.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLInputElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Campo de entrada.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line84">line 84</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="mostrarMiniatura"><span class="type-signature"></span>mostrarMiniatura<span class="signature">(event, imagenMiniatura)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Muestra la imagen en miniatura seleccionada en el input type="file".
 </div>
 
 
@@ -775,7 +1362,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Event</span>
 
 
             
@@ -785,7 +1372,7 @@
 
             
 
-            <td class="description last">Objeto de evento que desencadenó la llamada a la función.</td>
+            <td class="description last">Objeto de evento asociado a la selección de la imagen.</td>
         </tr>
 
     
@@ -798,7 +1385,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">HTMLImageElement</span>
 
 
             
@@ -808,7 +1395,7 @@
 
             
 
-            <td class="description last">Objeto de la imagen en miniatura</td>
+            <td class="description last">Elemento de imagen en miniatura.</td>
         </tr>
 
     
@@ -849,144 +1436,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line156">line 156</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="nombreArchivo"><span class="type-signature"></span>nombreArchivo<span class="signature">(iImagen)</span><span class="type-signature"> &rarr; {null|string}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Método por el cual se obtiene el nombre del archivo de la imágen sin la extensión
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>iImagen</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Objeto correspondiente al campo de la imágen</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line85">line 85</a>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1014,10 +1464,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    Devuelve null si no se ha introducido una imagen o String: nombre del archivo de la imagen
-</div>
-
 
 
 <dl>
@@ -1026,10 +1472,7 @@
     </dt>
     <dd>
         
-<span class="param-type">null</span>
-|
-
-<span class="param-type">string</span>
+<span class="param-type">void</span>
 
 
     </dd>
@@ -1047,7 +1490,7 @@
     
 
     
-    <h4 class="name" id="ocultarVistas"><span class="type-signature"></span>ocultarVistas<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ocultarVistas"><span class="type-signature"></span>ocultarVistas<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -1055,7 +1498,7 @@
 
 
 <div class="description">
-    Método por el cual se ocultan todas las vistas.
+    Oculta todas las vistas.
 </div>
 
 
@@ -1099,506 +1542,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line40">line 40</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="pruebaClick"><span class="type-signature"></span>pruebaClick<span class="signature">(pMensaje, iImagen, iNombre)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Compara si son iguales los valores de el archivo de la imagen y del nombre
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>pMensaje</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Objeto del lugar donde se va a introducir los mensajes necesarios</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>iImagen</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Objeto correspondiente al campo de la imágen</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>iNombre</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Objeto correspondiente al campo nombre</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line69">line 69</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="validarCampo"><span class="type-signature"></span>validarCampo<span class="signature">(evento, pMensaje, regExp)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>evento</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Objeto de evento que desencadenó la llamada a la función.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>pMensaje</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Objeto del lugar donde se va a introducir los mensajes necesarios</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>regExp</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Expresión Regular</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line138">line 138</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="valorCampoNombre"><span class="type-signature"></span>valorCampoNombre<span class="signature">(iNombre)</span><span class="type-signature"> &rarr; {String}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Devuelve el valor guardado en el objeto del campo nombre
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>iNombre</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Objeto del campo nombre</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line106">line 106</a>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line133">line 133</a>
     </li></ul></dd>
     
 
@@ -1626,10 +1570,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    Valor guardado en el campo nombre
-</div>
-
 
 
 <dl>
@@ -1638,7 +1578,7 @@
     </dt>
     <dd>
         
-<span class="param-type">String</span>
+<span class="param-type">void</span>
 
 
     </dd>
@@ -1656,7 +1596,7 @@
     
 
     
-    <h4 class="name" id="verVista"><span class="type-signature"></span>verVista<span class="signature">(vista)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="quitarFila"><span class="type-signature"></span>quitarFila<span class="signature">(fila)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -1664,7 +1604,317 @@
 
 
 <div class="description">
-    Muestra una vista.
+    Elimina una fila de la tabla dinámica.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fila</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLTableRowElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Fila a eliminar.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="validarFormulario"><span class="type-signature"></span>validarFormulario<span class="signature">(event)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Valida el formulario antes de enviarlo al servidor.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Event</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Objeto de evento asociado al envío del formulario.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="verVista"><span class="type-signature"></span>verVista<span class="signature">(vista)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Muestra una vista específica.
 </div>
 
 
@@ -1757,7 +2007,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controladorAdmin.js.html">controladorAdmin.js</a>, <a href="controladorAdmin.js.html#line32">line 32</a>
+        <a href="controladores_controladorAdmin.js.html">controladores/controladorAdmin.js</a>, <a href="controladores_controladorAdmin.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
@@ -1782,6 +2032,24 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1803,13 +2071,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ControladorAdmin.html">ControladorAdmin</a></li><li><a href="ControladorUsuario.html">ControladorUsuario</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ControladorAdmin.html">ControladorAdmin</a></li><li><a href="ControladorUsuario.html">ControladorUsuario</a></li><li><a href="ModeloUsuario.html">ModeloUsuario</a></li><li><a href="Rest.html">Rest</a></li><li><a href="Vista.html">Vista</a></li><li><a href="Vista1.html">Vista1</a></li><li><a href="Vista2.html">Vista2</a></li><li><a href="Vista3.html">Vista3</a></li><li><a href="Vista4.html">Vista4</a></li><li><a href="Vista5.html">Vista5</a></li><li><a href="Vista7.html">Vista7</a></li><li><a href="Vista8.html">Vista8</a></li><li><a href="VistaAdmin.html">VistaAdmin</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 17 2023 12:35:56 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 24 2023 13:16:16 GMT+0100 (hora estándar de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

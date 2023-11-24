@@ -26,85 +26,239 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { Vista } from './vista.js';
+            <pre class="prettyprint source linenums"><code>import { Vista } from './vista.js'
+import {Rest} from '../../servicios/rest.js'
 
 /**
- * Clase encargada de la Vista 6
+ * Clase que representa la vista 6 del juego.
+ * @extends Vista
  */
 export class Vista6 extends Vista {
 
     /**
-     * Constructor de la clase. Inicializa los atributos correspondientes
-     * @param controlador {ControladorUsuario} Controlador del Usuario
-     * @param base {Object} Objeto que es una referencia del interfaz
+     * Puntuación actual del juego.
+     * @type {number}
+     * @private
+     */
+    #score = 0;
+
+    /**
+     * Elemento HTML que muestra la puntuación.
+     * @type {HTMLElement}
+     * @private
+     */
+    #scoreElement = document.getElementById('scoreValue');
+
+    /**
+     * Puntuación máxima posible.
+     * @type {number}
+     * @private
+     */
+    #maxScore = 1000;
+
+    /**
+     * Número máximo de manzanas que pueden aparecer.
+     * @type {number}
+     * @private
+     */
+    #maxApples = 10;
+
+    /**
+     * Número de manzanas creadas.
+     * @type {number}
+     * @private
+     */
+    #applesCreated = 0;
+
+    /**
+     * Constructor de la clase Vista6.
+     * @param {Controlador} controlador - Objeto controlador del juego.
+     * @param {Base} base - Objeto base del juego.
+     * @returns {void}
      */
     constructor(controlador, base) {
         super(controlador, base);
-        this.x = 325; // Posición inicial en el eje X
+        this.x = 0;
+        this.touchStartX = null;
+        this.animationFrameId = null;
+        this.juegoEnPausa = false;
+        this.recogerAjax();
         this.eventos();
+        this.iniciarJuegoManzanas();
     }
 
     /**
-     * Método por el cual se obtienen las referencias de la interfaz y se le asocia eventos
+     * Método para crear una nueva manzana y añadirla al juego.
+     * @returns {void}
+     */
+    crearManzana() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Método para mover las manzanas en el juego.
+     * @returns {void}
+     */
+    moverManzanas() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Método para verificar la colisión de una manzana con el barco.
+     * @param {HTMLElement} apple - Elemento HTML que representa una manzana.
+     * @returns {void}
+     */
+    verificarColisionManzana(apple) {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Método para aumentar la puntuación cuando se recoge una manzana.
+     * @returns {void}
+     */
+    aumentarPuntuacion() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Método para iniciar el juego de las manzanas.
+     * @returns {void}
+     */
+    iniciarJuegoManzanas() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Método para realizar una solicitud AJAX y mostrar el resultado.
+     * @returns {void}
+     */
+    recogerAjax = () => {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Método para mostrar el resultado de la solicitud AJAX.
+     * @param {Object} objeto - Objeto con el resultado de la solicitud AJAX.
+     * @returns {void}
+     */
+    mostrarResultadoAjax = (objeto) => {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Configura los eventos asociados a la vista.
+     * @returns {void}
      */
     eventos() {
-        //Obtener la referencia del contenedor del juego
-        this.eventoBarco()
-
-        //Asociar el evento de cambio de vista
-        this.enlaceSiguienteVista7 = this.base.querySelector('a');
-
-        //Asociar eventos
-        this.enlaceSiguienteVista7.onclick = () => {
-            this.controlador.verVista(Vista.VISTA7);
-        };
+        // ... (código omitido para mayor claridad)
     }
 
     /**
-     * Obtiene referencias de la interfaz y asocia los eventos relacionados con el barco
+     * Crea el botón de pausa y configura su evento asociado.
+     * @returns {void}
      */
-    eventoBarco(){
-        this.gameContainer = document.getElementById('gameContainer');
-
-        // Obtener la referencia de la imagen del barco
-        this.barco = document.querySelector('#gameContainer img');
-        this.pNivel = document.getElementById('nivelSeleccionado')
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                this.x -= 8;
-            } else if (e.key === 'ArrowRight') {
-                this.x += 8;
-            }
-
-            // Actualizar la posición de la imagen con un movimiento más suave
-            this.moveBarco(this.barco, this.x);
-        });
+    crearBotonPausa() {
+        // ... (código omitido para mayor claridad)
     }
 
     /**
-     * Hace que el barco se mueva de manera fluida
-     * @param barco {Object} Objeto del elemento barco
-     * @param x {Number}
+     * Pausa el juego.
+     * @returns {void}
+     */
+    pausarJuego() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Reanuda el juego después de pausarlo.
+     * @returns {void}
+     */
+    reanudarJuego() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Configura los eventos asociados al movimiento del barco.
+     * @returns {void}
+     */
+    eventoBarco() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Mueve el barco en la pantalla.
+     * @param {HTMLElement} barco - Elemento HTML que representa el barco.
+     * @param {number} x - Posición horizontal del barco.
+     * @returns {void}
      */
     moveBarco(barco, x) {
-        // Utilizar setTimeout para crear un movimiento más suave
-        setTimeout(() => {
-            barco.style.left = x + 'px';
-        }, 10);
+        // ... (código omitido para mayor claridad)
     }
 
     /**
-     * Muestra el nivel del juego escogido por el usuario y la vista 6
-     * @param ver {Boolean} Indica si se muestra o no
+     * Maneja el movimiento táctil en la pantalla.
+     * @param {TouchEvent} e - Evento táctil.
+     * @returns {void}
      */
-    mostrar(ver){
-        let nivel = this.controlador.getNivelJuego()
-        this.pNivel.textContent = 'Nivel: ' + nivel
-        super.mostrar(ver)
+    handleTouchMove(e) {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Maneja el inicio del toque en la pantalla.
+     * @param {TouchEvent} e - Evento táctil.
+     * @returns {void}
+     */
+    handleTouchStart(e) {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Maneja el final del toque en la pantalla.
+     * @returns {void}
+     */
+    handleTouchEnd() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Maneja la animación de fotogramas en la pantalla.
+     * @returns {void}
+     */
+    handleAnimationFrame() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Verifica la colisión del barco con los límites de la pantalla.
+     * @returns {void}
+     */
+    checkCollisionBoundary() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Cancela la animación de fotogramas actual.
+     * @returns {void}
+     */
+    cancelAnimationFrame() {
+        // ... (código omitido para mayor claridad)
+    }
+
+    /**
+     * Muestra u oculta la vista actual.
+     * @param {boolean} ver - Indica si se debe mostrar o ocultar la vista.
+     * @returns {void}
+     */
+    mostrar(ver) {
+        // ... (código omitido para mayor claridad)
     }
 }
-</code></pre>
+
+/**
+ * Evento que se ejecuta cuando la ventana ha cargado completamente.
+ */
+window.onload = () => { new Vista6() };</code></pre>
         </article>
     </section>
 
@@ -120,7 +274,7 @@ export class Vista6 extends Vista {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 17 2023 12:32:40 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 24 2023 13:01:56 GMT+0100 (hora estándar de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>
