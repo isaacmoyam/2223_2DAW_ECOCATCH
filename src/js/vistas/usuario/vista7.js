@@ -24,6 +24,7 @@ export class Vista7 extends Vista {
     iNick = document.querySelectorAll('input')[0]
     iCorreo = document.querySelectorAll('input')[1]
     this.enlaceSiguienteVista8 = document.getElementById('irVista8')
+    if(!iNick){return}
 
     // Asociar eventos
     iNick.onblur = this.comprobarNombre.bind(this) // Le tengo que pasar el contexto del this, por eso uso el bind

@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../css/styleUsuario.css">
+        <link rel="stylesheet" href="../../../src/css/styleUsuario.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EcoCatch</title>
     </head>
@@ -12,8 +12,8 @@
                 <div id="mensaje">
                     <p>¡Sigue  así!, ¡lo estás haciendo genial!</p>
                 </div>
-                <div id="puntos">
-                    <p>Puntuación: 123</p>
+                <div id="score">
+                    <p>Puntuación: <span id="scoreValue">0</span></p>
                 </div>
                 <div id="nivel">
                     <p>Nivel 1</p>
@@ -24,8 +24,11 @@
                 </div>
             </div>
             <div id="ecocatch">
-                hola
+                <div id="gameContainer">
+                    <img src="../../../src/img/barco.png" alt="barco" id="barco">
+                </div>
             </div>
         </div>
+        <script src="../../../src/js/controladores/controladorUsuario.js" type="module"></script>
     </body>
 </html>

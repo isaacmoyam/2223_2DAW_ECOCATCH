@@ -19,11 +19,14 @@ export class Vista2 extends Vista {
 	 */
   eventosInterfaz () {
     // Coger referencias del interfaz
-    this.enlaceVolverVista1 = document.getElementsByClassName('volverAVista1')[0]
+    if(!this.enlaceVolverVista1){return}
+    else{
+      this.enlaceVolverVista1 = document.getElementsByClassName('volverAVista1')[0]
 
-    // Asociar eventos
-    this.enlaceVolverVista1.onclick = () => {
-      this.controlador.verVista(Vista.VISTA1)
+      // Asociar eventos
+      this.enlaceVolverVista1.onclick = () => {
+        this.controlador.verVista(Vista.VISTA1)
+    }
     }
   }
 }

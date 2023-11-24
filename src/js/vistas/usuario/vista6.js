@@ -25,7 +25,7 @@ export class Vista6 extends Vista {
         if (this.#applesCreated < this.#maxApples && this.#score < this.#maxScore) {
             let apple = document.createElement('div');
             let imagenApple = document.createElement('img');
-            imagenApple.src = "../src/img/basura.png";
+            imagenApple.src = "../../../src/img/basura.png";
             imagenApple.style.width = "50px";
             imagenApple.style.height = "50px";
             apple.appendChild(imagenApple);
@@ -115,7 +115,7 @@ export class Vista6 extends Vista {
     eventos() {
         this.eventoBarco()
         this.crearBotonPausa()
-
+        if(!this.base){return}
         this.enlaceSiguienteVista7 = this.base.querySelector('a')
 
         this.enlaceSiguienteVista7.onclick = () => {
@@ -127,6 +127,7 @@ export class Vista6 extends Vista {
         const botonPausa = document.createElement('button')
         botonPausa.textContent = 'Pausar'
         botonPausa.onclick = () => this.pausarJuego()
+        if(!this.base){return}
         this.base.appendChild(botonPausa)
     }
 
@@ -237,6 +238,7 @@ export class Vista6 extends Vista {
 
     mostrar(ver) {
         let nivel = this.controlador.getNivelJuego()
+        if(!this.pNivel){return}
         this.pNivel.textContent = 'Nivel: ' + nivel
         super.mostrar(ver)
     }

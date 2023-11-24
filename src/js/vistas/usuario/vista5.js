@@ -19,6 +19,7 @@ export class Vista5 extends Vista {
      */
   eventosInterfaz () {
     // Coger referencias del interfaz
+    if (!this.enlaceVolverVista4) {return}
     this.enlaceVolverVista4 = document.getElementById('volverAVista4')
     this.btnNivel1 = document.querySelectorAll('button')[0]
     this.btnNivel2 = document.querySelectorAll('button')[1]
