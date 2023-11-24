@@ -5,7 +5,7 @@
  * PHP version 7.0
  *
  * @category Basura
- * @package  Modificar_Basura
+ * @package  Gestión_Basura
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

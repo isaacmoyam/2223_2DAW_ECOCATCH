@@ -1,15 +1,11 @@
 <?php
 /**
- * Controlador principal para la gestión de basura.
+ * Archivo principal de enrutamiento y ejecución del framework.
  *
- * PHP version 7.0
+ * Este archivo maneja la carga de controladores, la ejecución de métodos y la carga de vistas.
  *
- * @category EcoCatch
- * @package  Gestion_Basura_Controlador
- * @author   EquipoA
- * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @package Index
  */
-
 require_once 'php/config/configdb.php';
 require_once 'php/modelos/db.php';
 

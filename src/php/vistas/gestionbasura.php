@@ -2,7 +2,7 @@
 /**
  * Página principal para la gestión de basura.
  *
- * PHP version 7.4.3
+ * PHP version 7.0
  *
  * @category Basura
  * @package  Gestión_Basura

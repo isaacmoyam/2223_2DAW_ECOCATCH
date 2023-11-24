@@ -5,7 +5,7 @@
  * PHP version 7.0
  *
  * @category Mensaje
- * @package  Modificar_Mensaje
+ * @package  Gestión_Mensaje
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

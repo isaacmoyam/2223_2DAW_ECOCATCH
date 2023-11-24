@@ -1,35 +1,53 @@
 <?php
+
 /**
- * Clase Basura_Con para la gestión de basura.
+ * Controlador para las páginas de nivel
  *
  * PHP version 7.0
  *
- * @category Basura
- * @package  Basura_Con
+ * @category Controlador
+ * @package  Nivel
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
+
 require_once 'php/modelos/nivel_mod.php';
 
+/**
+ * Clase controladora para la gestión de niveles.
+ */
 class Nivel_con {
 
-    /* VARIABLES PÚBLICAS QUE CONTROLAN LA VISTA A MOSTRAR Y EL TÍTULO DE LA PÁGINA,
-    ADEMÁS DE UN OBJETO QUE SE ENCARGA DE HACER LA CONEXIÓN CON EL MODELO */
+    /**
+     * Vista actual que se mostrará en la página.
+     * @var string
+     */
     public $vista;
+    /**
+     * Objeto encargado de la conexión con el modelo de nivel.
+     * @var Nivel_Mod
+     */
     public $obj;
+     /**
+     * Título de la página.
+     * @var string
+     */
     public $pagina;
 
-    // CONSTRUCTOR DE LA CLASE
+    /**
+     * Constructor de la clase Nivel_con.
+     */
     public function __construct() {
         $this->pagina = "Gestión de niveles";        
         $this->vista = 'gestionnivel';
         $this->obj = new Nivel_Mod();
     }
 
-    // NIVELES
-
-    // CREAR NIVEL CON SU MENSAJE/MENSAJES
+    /**
+     * Crea un nuevo nivel con sus mensajes asociados.
+     * @return array
+     */
     public function crear() {
         $arrayBidimensional = [];
         $this->pagina = "Crear nivel"; 
@@ -73,20 +91,27 @@ class Nivel_con {
         }
     }
 
-    // MOVER A LA VISTA DE CREAR NIVEL
+    /**
+     * Muestra la vista para crear un nivel.
+     */
     public function vistaCrear() { 
         $this->pagina = "Crear nivel"; 
         $this->vista = 'anadirNivel';
     }
 
-    // BUSCAR UN NIVEL
+    /**
+     * Busca un nivel para modificar y muestra la vista de modificación.
+     * @return mixed
+     */
     public function buscarModificar() { 
         $this->pagina = "Modificar nivel"; 
         $this->vista = 'modificarNivel';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 
-   // MODIFICAR NIVEL
+    /**
+     * Modifica un nivel existente.
+     */
     public function modificar() {
         if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["cantidadItems"]) && !empty($_POST["velocidadBarco"])) {
             $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
@@ -100,7 +125,10 @@ class Nivel_con {
         }
     }
 
-    // MODIFICAR NIVEL/NIVELES DE MENSAJE
+    /**
+     * Modifica niveles y mensajes asociados.
+     * @return array
+     */
     public function modificarNivelMensaje() {
         $arrayBidimensional = [];
         $this->pagina = "Modificar nivel/mensaje"; 
@@ -150,41 +178,54 @@ class Nivel_con {
         }
     }
 
-   // BORRAR NIVEL
+    /**
+     * Borra un nivel con un ID específico.
+     */
     public function borrar() {
         $this->obj->borrar($_GET["id"]);
     }
 
-    // MOSTRAR NIVELES
+    /**
+     * Muestra la gestión de niveles.
+     * @return mixed
+     */
     public function mostrar() {
         $this->pagina = "Gestión de niveles"; 
         return $this->obj->mostrar();
     }
 
-    // MENSAJES DE LOS NIVELES
-
-    // MOSTRAR NIVELES DE LOS MENSAJES
+    /**
+     * Muestra los mensajes asociados a un nivel.
+     * @return mixed
+     */
     public function mostrarMensajes() {
         $this->pagina = "Modificar nivel"; 
         $this->vista = 'modificarNivel';
         return $this->obj->mostrarMensajes($_GET["id"]);
     }
 
-    // BORRAR MENSAJE
+    /**
+     * Borra un mensaje asociado a un nivel.
+     */
     public function borrarMensaje() {
         $this->vista = 'gestionnivel';
         $this->obj->borrarMensaje($_GET["id"]);
         header("Location: index.php?control=nivel_con&metodo=buscarModificar&id=".$_GET['idNivel']);
     }
 
-    // BUSCAR MENSAJE
+    /**
+     * Busca un mensaje para modificar.
+     * @return mixed
+     */
     public function buscarMensaje() {
         $this->pagina = "Modificar mensaje"; 
         $this->vista = 'modificarMensaje';
         return $this->obj->buscarMensaje($_GET["id"]);
     }
 
-    // MOVER MENSAJE
+    /**
+     * Mueve un mensaje a otro nivel.
+     */
     public function moverMensaje() {
         if(isset($_GET["id"]) && isset($_POST["nivel"]) && !empty($_GET["id"]) && !empty($_POST["nivel"])) {
             $this->obj->moverMensaje($_GET["id"], $_POST["nivel"]);

@@ -1,3 +1,15 @@
+<?php
+/**
+ * Página principal para añadir niveles.
+ *
+ * PHP version 7.0
+ *
+ * @category Nivel
+ * @package  Gestión_Nivel
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+?>
 <main id="gestorM">
     <h1>Añadir nivel</h1>
     <a id="btnVolver" href="index.php?control=nivel_con">Volver</a>

@@ -5,7 +5,7 @@
  * PHP version 7.0
  *
  * @category Nivel
- * @package  Modificar_Nivel
+ * @package  Gestión_Nivel
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
