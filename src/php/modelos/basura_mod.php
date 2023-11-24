@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Clase Basura_Mod para la manipulación de datos de basura en la base de datos.
+ * Modelo de la basura
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
- * @category Basura
+ * @category Modelo
  * @package  Basura_Mod
- * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
@@ -15,141 +14,178 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require_once 'php/modelos/db.php';
+
+/**
+ * Clase modelo para la gestión de basura.
+ */
 class Basura_Mod {
     
+    /**
+     * Instancia de la conexión a la base de datos.
+     * @var mysqli
+     */
     private $mysqli;
-
+    
     /**
      * Constructor de la clase Basura_Mod.
-     *
-     * @param string $host     Dirección del servidor de base de datos.
-     * @param string $username Nombre de usuario de la base de datos.
-     * @param string $passwd   Contraseña de la base de datos.
-     * @param string $dbname   Nombre de la base de datos.
      */
-    public function __construct($host, $username, $passwd, $dbname) {
-        mysqli_report(MYSQLI_REPORT_ERROR);
-        $this->mysqli = new mysqli($host, $username, $passwd, $dbname);
+    public function __construct() {
+       
+    }
+    
+    /**
+     * Establece la conexión con la base de datos.
+     */
+    public function establecerConexion(){
+		$dbObj = new Db();
+		$this->mysqli = $dbObj->mysqli;
+	}
 
-        if ($this->mysqli->connect_error) {
-            die ("Error de conexión: " . $this->mysqli->connect_error);
+    /**
+     * Cierra la conexión con la base de datos.
+     */
+    public function cerrarConexion() {
+        if ($this->mysqli) {
+            mysqli_close($this->mysqli);
         }
     }
 
     /**
-     * Obtiene y devuelve la información de todas las basuras.
-     *
-     * @return array|mixed Arreglo asociativo con la información de las basuras o código de error.
+     * Muestra la información de basura.
+     * @return array
      */
     public function mostrar() {
-        $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id";
+        $this->establecerConexion();
+        $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
         $result = $this->mysqli->query($sql);
-
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
 
         $basuras = array();
         while ($row = $result->fetch_assoc()) {
             $basuras[] = $row;
         }
+
+        $this->cerrarConexion();
+
         return $basuras;
     }
 
     /**
-     * Borra una basura específica de la base de datos.
-     *
-     * @param int $id ID de la basura a borrar.
-     *
-     * @return int|void Código de error o nada.
+     * Borra la basura con un ID específico.
      */
     public function borrar($id) {
+        $this->establecerConexion();
         $sql = 'DELETE FROM item WHERE id='.$id;
         $result = $this->mysqli->query($sql);
 
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
+        $this->cerrarConexion();
+
         return;
     }
 
     /**
-     * Crea un nuevo registro de basura en la base de datos.
-     *
-     * @param string $nombre Nombre de la basura.
-     * @param string $imagen Imagen asociada a la basura.
-     * @param int    $valor  Valor/puntuación de la basura.
-     *
-     * @return int|void Código de error o nada.
-     */
+     * Crea una nueva basura.
+     * @param string $nombre
+     * @param string $imagen
+     * @param int $valor
+     * @return bool
+     */ 
     public function crear($nombre, $imagen, $valor) {
+        $this->establecerConexion();
         $sql = 'INSERT INTO item (nombre, nombreImagen) VALUES ("'.$nombre.'", "'.$imagen.'")';
         $result = $this->mysqli->query($sql);
         $id = $this->mysqli->insert_id;
 
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        } else {
-            $sql = 'INSERT INTO basura (id, valor) VALUES ("'.$id.'", "'.$valor.'")';
-            $result = $this->mysqli->query($sql);
+        $this->cerrarConexion();
 
-            if ($result === false) {
-                $errno = $this->mysqli->errno;
-                return $errno;
-            }
+        $this->establecerConexion();
+        try {
+            $sql = 'INSERT INTO basura (id, valor) VALUES ("'.$id.'", "'.$valor.'")';
+            $result = $this->mysqli->query($sql); 
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
         }
+
+        $this->cerrarConexion();
     }
 
     /**
-     * Busca información de basura específica para modificar.
-     *
-     * @param int $id ID de la basura a modificar.
-     *
-     * @return array|mixed Arreglo asociativo con la información de la basura o código de error.
+     * Busca la basura con un ID específico para modificar.
+     * @param int $id
+     * @return array
      */
     public function buscarModificar($id) {
+        $this->establecerConexion();
         $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
         $result = $this->mysqli->query($sql);
 
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
+        $this->cerrarConexion();
 
         $fila = $result->fetch_assoc();
         return $fila;
     }
 
     /**
-     * Modifica la información de una basura en la base de datos.
-     *
-     * @param int    $id     ID de la basura a modificar.
-     * @param string $nombre Nuevo nombre de la basura.
-     * @param string $imagen Nueva imagen asociada a la basura.
-     * @param int    $valor  Nuevo valor/puntuación de la basura.
-     *
-     * @return int|void Código de error o nada.
+     * Modifica la basura con un ID específico.
+     * @param int $id
+     * @param string $nombre
+     * @param string $imagen
+     * @param int $valor
+     * @return bool
      */
     public function modificar($id, $nombre, $imagen, $valor) {
+        $this->establecerConexion();
         $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
-        $this->mysqli->query($sql);
         $result = $this->mysqli->query($sql);
 
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
+        $this->cerrarConexion();
+
+        $this->establecerConexion();
+        try {
+            $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
+            $result = $this->mysqli->query($sql);  
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
         }
 
-        $sql = 'UPDATE basura SET valor = '.$valor.' WHERE id = '.$id;
-        $result = $this->mysqli->query($sql);
-
-        if ($result === false) {
-            $errno = $this->mysqli->errno;
-            return $errno;
-        }
+        $this->cerrarConexion();
     }
+
+    /**
+     * Recoge datos de basuras y power-ups y los retorna al controlador en json.
+     */
+    public function ajax() {
+        $this->establecerConexion();
+    
+        // Consulta para obtener información de basuras
+        $sqlBasura = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
+        $resultBasura = $this->mysqli->query($sqlBasura);
+    
+        $basuras = array();
+        while ($row = $resultBasura->fetch_assoc()) {
+            $basuras[] = $row;
+        }
+    
+        // Consulta para obtener información de power-ups
+        $sqlPowerup = "SELECT powerup.id, item.nombre, item.nombreImagen, powerup.aumento FROM powerup INNER JOIN item on powerup.id = item.id";
+        $resultPowerup = $this->mysqli->query($sqlPowerup);
+    
+        $powerups = array();
+        while ($row = $resultPowerup->fetch_assoc()) {
+            $powerups[] = $row;
+        }
+    
+        $this->cerrarConexion();
+    
+        // Combinar basuras y power-ups en un solo objeto
+        $resultado = array(
+            'basuras' => $basuras,
+            'powerups' => $powerups
+        );
+    
+        echo json_encode($resultado);
+    }    
 }
 ?>

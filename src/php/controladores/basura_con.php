@@ -1,106 +1,121 @@
 <?php
+
 /**
- * Clase Basura_Con para la gestión de basura.
+ * Controlador de las páginas de basura
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
- * @category Basura
- * @package  Basura_Con
+ * @category Controlador
+ * @package  Basura
  * @author   Equipo A
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-class Basura_Con
-{
-    private $obj;
-    private $host;
-    private $username;
-    private $passwd;
-    private $bdname;
+require_once 'php/modelos/basura_mod.php';
 
-    /**
-     * Constructor de la clase Basura_Con.
-     */
-    public function __construct()
-    {
-        require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/modelos/basura_mod.php');
-        require_once ($_SERVER['DOCUMENT_ROOT'].'/2223_2DAW_ECOCATCH/src/php/config/configdb.php');
-        $this->host = HOST;
-        $this->username = USERNAME;
-        $this->passwd = PASSWD;
-        $this->bdname = BDNAME;
-        $this->obj = new Basura_Mod($this->host, $this->username, $this->passwd, $this->bdname);
+/**
+ * Clase controladora para la gestión de basura.
+ */
+class Basura_con {
+
+   /**
+    * Vista actual que se mostrará en la página.
+    * @var string
+    */
+    public $vista;
+   /**
+    * Objeto encargado de la conexión con el modelo de basura.
+    * @var Basura_Mod
+    */
+    public $obj;
+   /**
+    * Título de la página.
+    * @var string
+    */
+    public $pagina;
+
+   /**
+    * Constructor de la clase Basura_con.
+    */
+    public function __construct() {
+        $this->pagina = "Gestión de basura";        
+        $this->vista = 'gestionbasura';
+        $this->obj = new Basura_Mod();
     }
 
-    /**
-     * Crea un nuevo registro de basura.
-     *
-     * @param string $nombre Nombre de la basura.
-     * @param string $imagen Imagen asociada a la basura.
-     * @param int    $valor  Valor/puntuación de la basura.
-     *
-     * @return mixed Mensaje de éxito o error.
-     */
-    public function crear($nombre, $imagen, $valor)
-    {
-        if ($nombre === '' || $imagen === '' || $valor === '') {
-            return 'Rellena todos los campos obligatorios(*)';
+   /**
+    * Crea una nueva basura.
+    */
+    public function crear() {
+        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
+            $resultado = $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
+            if(!$resultado) {
+                header("Location: index.php?control=basura_con&mensaje=true");
+            } else {
+                header("Location: index.php?control=basura_con&mensaje=false");
+            }
+        } else {
+            header("Location: index.php?control=basura_con&mensaje=false");
         }
-        $resultado = $this->obj->crear($nombre, $imagen, $valor);
-        return $resultado;
+
     }
 
-    /**
-     * Busca información de basura para modificar.
-     *
-     * @param int $id ID de la basura a modificar.
-     *
-     * @return mixed Información de la basura.
-     */
-    public function buscarModificar($id)
-    {
-        $resultado = $this->obj->buscarModificar($id);
-        return $resultado;
+   /**
+    * Muestra la vista para crear basura.
+    */
+    public function vistaCrear() { 
+        $this->pagina = "Crear basura"; 
+        $this->vista = 'anadirBasura';
     }
 
-    /**
-     * Modifica la información de una basura.
-     *
-     * @param int    $id     ID de la basura a modificar.
-     * @param string $nombre Nuevo nombre de la basura.
-     * @param string $imagen Nueva imagen asociada a la basura.
-     * @param int    $valor  Nuevo valor/puntuación de la basura.
-     *
-     * @return mixed Mensaje de éxito o error.
-     */
-    public function modificar($id, $nombre, $imagen, $valor)
-    {
-        $resultado = $this->obj->modificar($id, $nombre, $imagen, $valor);
-        return $resultado;
+   /**
+    * Busca una basura para modificar y muestra la vista de modificación.
+    * @return mixed
+    */
+    public function buscarModificar() { 
+        $this->pagina = "Modificar basura"; 
+        $this->vista = 'modificarBasura';
+        return $this->obj->buscarModificar($_GET["id"]);
     }
 
-    /**
-     * Borra una basura específica.
-     *
-     * @param int $id ID de la basura a borrar.
-     *
-     * @return mixed Mensaje de éxito o error.
-     */
-    public function borrar($id)
-    {
-        $resultado = $this->obj->borrar($id);
-        return $resultado;
+   /**
+    * Modifica una basura existente.
+    */
+    public function modificar() {
+        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"])) {
+            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
+            if(!$resultado) {
+                header("Location: index.php?control=basura_con&mensaje=true");
+            } else {
+                header("Location: index.php?control=basura_con&mensaje=false");
+            }
+        } else {
+            header("Location: index.php?control=basura_con&mensaje=false");
+        }
     }
 
-    /**
-     * Muestra la información de todas las basuras.
-     *
-     * @return mixed Información de todas las basuras.
-     */
-    public function mostrar()
-    {
-        $resultado = $this->obj->mostrar();
-        return $resultado;
+   /**
+    * Borra una basura con un ID específico.
+    */
+    public function borrar() {
+        $this->obj->borrar($_GET["id"]);
+    }
+
+   /**
+    * Muestra la gestión de basura con todas las basura.
+    * @return mixed
+    */
+    public function mostrar() {
+        $this->pagina = "Gestión de basura"; 
+        return $this->obj->mostrar();
+    }
+
+   /**
+    * Manda datos a través de AJAX.
+    * @return mixed
+    */
+    public function ajax() {
+        return $this->obj->ajax();
     }
 }
 ?>
