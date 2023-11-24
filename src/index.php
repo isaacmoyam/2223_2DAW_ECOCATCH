@@ -2,7 +2,7 @@
 /**
  * Página principal.
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
  * @category Index
  * @package  Index

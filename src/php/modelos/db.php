@@ -3,7 +3,7 @@
 /**
  * Creación del objeto conexión con la base de datos
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
  * @category Conexión
  * @package  ConexionBD

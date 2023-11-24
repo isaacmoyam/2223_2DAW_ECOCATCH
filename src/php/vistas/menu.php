@@ -2,7 +2,7 @@
 /**
  * Página menú del administrador.
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
  * @category Menu
  * @package  Menu

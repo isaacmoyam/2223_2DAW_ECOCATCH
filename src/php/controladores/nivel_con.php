@@ -3,7 +3,7 @@
 /**
  * Controlador para las páginas de nivel
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
  * @category Controlador
  * @package  Nivel
@@ -107,22 +107,6 @@ class Nivel_con {
         $this->pagina = "Modificar nivel"; 
         $this->vista = 'modificarNivel';
         return $this->obj->buscarModificar($_GET["id"]);
-    }
-
-    /**
-     * Modifica un nivel existente.
-     */
-    public function modificar() {
-        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["cantidadItems"]) && !empty($_POST["velocidadBarco"])) {
-            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["cantidadItems"], $_POST["velocidadBarco"]);
-            if(!$resultado) {
-                header("Location: index.php?control=nivel_con&mensaje=true");
-            } else {
-                header("Location: index.php?control=nivel_con&mensaje=false");
-            }
-        } else {
-            header("Location: index.php?control=nivel_con&mensaje=false");
-        }
     }
 
     /**

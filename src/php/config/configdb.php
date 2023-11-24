@@ -2,7 +2,7 @@
     /**
      * Archivo de configuración
      *
-     * PHP version 7.0
+     * PHP version 8.2
      *
      * @category Configuración
      * @package  ConexionBD

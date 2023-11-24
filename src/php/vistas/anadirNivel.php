@@ -2,7 +2,7 @@
 /**
  * Página principal para añadir niveles.
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
  * @category Nivel
  * @package  Gestión_Nivel

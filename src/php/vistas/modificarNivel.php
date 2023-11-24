@@ -2,7 +2,7 @@
 /**
  * Página para la modificación de la información de nivel.
  *
- * PHP version 7.0
+ * PHP version 8.2
  *
  * @category Nivel
  * @package  Gestión_Nivel
