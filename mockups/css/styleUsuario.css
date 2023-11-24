@@ -239,7 +239,9 @@ form > input[type=submit] {
     border: 2px solid black;
     min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
     min-height: 600px;
-    background-color: aquamarine;
+    background-image: url("../img/fondoJuego.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #gameContainer {
@@ -418,6 +420,10 @@ button.darkmode,
     #hud {
         gap: 24%;
     }
+
+    #ecocatch{
+        min-height: 900px;
+    }
 }
 
 @media (width <= 1804px) {
@@ -478,6 +484,9 @@ button.darkmode,
     #hud {
         gap:23%; /*Cambia el espacio */
     }
+    #ecocatch{
+        min-height: 500px;
+    }
 }
 
 @media (width <= 1206px) {
@@ -489,6 +498,9 @@ button.darkmode,
     /*pagina jugar*/
     #hud {
         gap:17%;
+    }
+    #botones > button{
+        padding: 10%;
     }
 
     /*pagina conocenos tamaño de la fuente*/
@@ -540,13 +552,18 @@ button.darkmode,
 
     /*pagina jugar*/
     #frame{
-        width: 99%;
+        width: 98%;
     }
-
     #hud {
         gap:15%;
         width:98%;
         font-size: 0.84em;
+    }
+    #ecocatch{
+        min-height: 400px;
+    }
+    #botones > button{
+        padding: 5%;
     }
 }
 
@@ -556,6 +573,9 @@ button.darkmode,
     #hud {
         gap:9%;
         width:98%;
-        font-size: 0.84em;
+        font-size: 0.8em;
+    }
+    #ecocatch{
+        min-height: 300px;
     }
 }
