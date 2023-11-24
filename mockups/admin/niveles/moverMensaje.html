@@ -1,40 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../css/styleAdmin.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuracion Niveles</title>
-</head>
-<body>
-    <header>
-        <img src="../../img/logo.png" alt="Logo de la página EcoCatch">
-    </header>
-    <nav>
-        <a href="../../indexAdmin.html">Inicio</a>
-        <a href="niveles.html">Niveles</a>
-        <a href="../../admin/basura/gestionbasura.php">Basura</a>
-        <a href="#">PowerUp</a>
-    </nav>
-    <main id="movMsg">
-        <h1>Cambiar de nivel</h1>
-        <form action="" method="POST">
-            <label>Nivel:</label>
-            <select name="nivel">
-                <option>Nivel 1</option>
-                <option>Nivel 2</option>
-                <option>Nivel 3</option>
-            </select>
-            <label>Contenido:</label>
-            <input type="text" readonly name="contenido" value="">
-            <label>Puntos requeridos:</label>
-            <input type="text" readonly name="puntosHasta" value="">
-            <label>Tipo:</label>
-            <input type="text" readonly name="readTipo" value="">
-            <input type="hidden" readonly name="tipo" value="">
-            <input type="submit" value="Guardar cambios">
-        </form>
-        <a id="volverMoverMensaje" href="configNiveles.html">Volver</a>
-    </main>
-</body>
-</html>
+<main id="movMsg">
+    <h1>Cambiar de nivel</h1>
+    <form action="" method="POST">
+        <label>Nivel:</label>
+        <select name="nivel">
+            <option>Nivel 1</option>
+            <option>Nivel 2</option>
+            <option>Nivel 3</option>
+        </select>
+        <label>Contenido:</label>
+        <input type="text" readonly name="contenido" value="">
+        <label>Puntos requeridos:</label>
+        <input type="text" readonly name="puntosHasta" value="">
+        <label>Tipo:</label>
+        <input type="text" readonly name="readTipo" value="">
+        <input type="hidden" readonly name="tipo" value="">
+        <input type="submit" value="Guardar cambios">
+    </form>
+    <a id="volverMoverMensaje" href="configNiveles.html">Volver</a>
+</main>
