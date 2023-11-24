@@ -263,6 +263,21 @@ form > input[type=submit] {
     z-index: 0;
 }
 
+/*Boton pausar*/
+#botonSilencio,
+#botonPausa{
+    background-image: url("../img/iconos/pausa.png");
+    background-repeat: no-repeat;
+    width: 42px;
+    height: 50px;
+    border: none;
+    background-color: transparent; /*Para quitar el color de fondo*/
+}
+
+#botonSilencio{
+    background-image: url("../img/iconos/musicaOn.png");
+}
+
 /*
     PAGINA FORMULARIO
 */
