@@ -42,5 +42,4 @@
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
-<script src="expresionesRegulares.js" type="module"></script>
 

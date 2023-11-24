@@ -84,3 +84,5 @@ export class Vista7 extends Vista {
     }
   }
 }
+
+window.onload = () => { new Vista7() }

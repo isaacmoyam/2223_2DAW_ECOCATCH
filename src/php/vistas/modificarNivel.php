@@ -13,7 +13,6 @@
 // Sección HTML para la interfaz de modificación de nivel.
 ?>
 <main id="gestionNiveles">
-    <a href="index.php?control=nivel_con">Volver</a>
     <?php
         $fila = $datosVista["datos"];
     ?>
@@ -69,5 +68,4 @@
     </form>
 </main>
 <script src="js/controladores/controladorAdmin.js" type="module"></script>
-<script src="expresionesRegulares.js" type="module"></script>
 

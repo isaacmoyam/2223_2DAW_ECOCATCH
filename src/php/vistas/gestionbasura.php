@@ -45,4 +45,3 @@
     </table>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>
-<script src="expresionesRegulares.js" type="module"></script>

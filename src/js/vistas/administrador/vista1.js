@@ -21,7 +21,6 @@ export class Vista1 extends VistaAdmin {
    * @returns {void}
    */
   eventos() {
-    if (!this.base) { return }
 
     let iNombre, iImagen, iValor, btnAnadirBasura, pMensaje
 
@@ -46,3 +45,5 @@ export class Vista1 extends VistaAdmin {
     }
   }
 }
+
+window.onload = () => { new Vista1() }

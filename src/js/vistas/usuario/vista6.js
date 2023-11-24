@@ -159,7 +159,6 @@ export class Vista6 extends Vista {
      */
     crearBotonPausa() {
         const botonPausa = document.getElementById('botonPausa')
-        botonPausa.textContent = 'Pausar'
         botonPausa.onclick = () => this.pausarJuego()
     }
 

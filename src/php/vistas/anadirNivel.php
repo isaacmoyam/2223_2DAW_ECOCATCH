@@ -13,7 +13,7 @@
 <main id="anadirNiveles">
     <h1>Añadir nivel</h1>
     <a id="btnVolver" href="index.php?control=nivel_con">Volver</a>
-    <form action="index.php?control=nivel_con&metodo=crear" method="POST">
+    <form id="formBasura" action="index.php?control=nivel_con&metodo=crear" method="POST">
         <label for="nombre">(*) Nombre:</label>
         <input type="text" name="nombre" placeholder="Nombre nivel">
         <label for="valor">(*) Items:</label>
