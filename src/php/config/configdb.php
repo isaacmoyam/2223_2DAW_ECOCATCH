@@ -6,6 +6,6 @@
     define("PASSWD", 'L.=K#2AM^F7T');
 
     // OPCIONES POR DEFECTO
-    define("CONTROLADOR_DEFAULT", "nivel_con");
-    define("METODO_DEFAULT", "mostrar");
+    define("CONTROLADOR_DEFAULT", "menu_con");
+    define("METODO_DEFAULT", "");
 ?>

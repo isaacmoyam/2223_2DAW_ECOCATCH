@@ -15,7 +15,7 @@
 <main id="gestor">
     <h1>Basura</h1>
     <a href="index.php?control=basura_con&metodo=vistaCrear">+</a>
-    <a href="indexAdmin.html">Volver</a>
+    <a href="index.php">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>
