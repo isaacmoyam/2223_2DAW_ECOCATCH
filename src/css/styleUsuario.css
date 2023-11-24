@@ -1,0 +1,540 @@
+/* Estilos generales de la página */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap');
+
+
+/*
+    BODY
+*/
+body {
+    background-color: #488531;
+    padding: 1% 0;
+    font-family: Fredoka;
+    color: #EDC713;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-image: url("../img/fondoEcocatch.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
+/*
+    HEADER
+    El logo va aqui, en el header
+*/
+header {
+    text-align: center;
+    margin: 0 auto;
+    width:50%;
+}
+
+header > img {
+    width: 200px;
+    margin: 0 auto 1%;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+
+
+/*
+    MAIN
+*/
+main {
+    background-color: #326F1E;
+    font-size: 1.2em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 5%;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+
+
+/*
+    Estilos de diferentes elementos
+ */
+/*ENLACES*/
+#menu > a,
+main > a{
+    text-decoration: none;
+    padding: 0.6%;
+    border: solid 1px black;
+    border-radius: 9px;
+    color: #EDC713;
+    background-color: #6D3916;
+}
+
+#menu > a:hover,
+#empezar > a:hover,
+button:hover,
+select:hover,
+form > input[type=submit]:hover,
+main > a:hover { /*Cambio de color para cuando pase el cursor del raton por encima de un enlace a */
+    background-color: #85471f;
+}
+
+/*SELECT*/
+select {
+    padding: 3%;
+    font-size: 0.7em;
+    color:#EDC713;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #6D3916;
+    cursor: pointer;
+    font-family: Fredoka;
+}
+
+
+/*BOTONES*/
+button {
+    border: solid 1px black;
+    color: #EDC713;
+    border-radius: 9px;
+    background-color: #6D3916;
+    cursor: pointer;
+    font-family: Fredoka;
+}
+
+
+/*FORMULARIOS*/
+form {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > input {
+    margin-bottom: 10px;
+}
+
+form > input[type=number] {
+    width: 85px;
+}
+
+form > input[type=submit] {
+    margin-top: 60px;
+    border: solid 1px black;
+    border-radius: 9px;
+    color: #EDC713;
+    background-color: #6D3916;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: Fredoka;
+}
+
+
+
+/*
+    PAGINA INDICE USUARIO
+*/
+#menu {
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 2%;
+    width: 45%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+
+
+/*
+    PAGINA EMPEZAR
+*/
+#empezar{
+    padding-top:2%;
+}
+
+#menu > a, #empezar > a{
+    display: block;
+    width:40%;
+    margin: 7% auto 0;
+}
+
+#empezar > a:nth-child(4) {
+    width:68%;
+}
+
+#empezar > a:last-child {
+    position:relative;
+    bottom: 350px;
+    right: 40%;
+    width:11.3%;
+    display: inline;
+}
+
+#empezar > button {
+    margin-left:3%;
+    padding:3%;
+}
+
+
+
+/*
+    PAGINA SELECCION NIVELES
+*/
+#selecNiveles {
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 3%;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#selecNiveles > div {
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+
+#selecNiveles > div > button{
+    padding: 3%;
+    font-size: 1.2em;
+}
+
+
+
+/*
+    PAGINA JUGAR
+*/
+#jugar{
+    /*Con el backgound image: none quito la imagen de fondo especificamente para esta pagina
+     dado que esta página del juego tendrá su propio fondo en un div*/
+    background-image: none;
+    background-size: auto;
+}
+#frame{
+    border: solid 1px black;
+    width:90%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+#hud {
+    background-color: #326F1E;
+    display: flex;
+    gap:34%;
+    padding:1%;
+}
+
+#botones > button {
+    padding: 15px;
+    font-size: 1em;
+}
+
+#ecocatch{
+    border: 2px solid black;
+    min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
+    min-height: 600px;
+    background-color: aquamarine;
+}
+
+/*
+    PAGINA FORMULARIO
+*/
+#formulario {
+    background-color: #326F1E;
+    font-size: 1.3em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 3%;
+    width: 55%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+/*El resto de elementos de la pagina formularios se ven afectados por el css para las etiquetas form*/
+
+
+
+/*
+    PAGINA RANKING
+*/
+#ranking {
+    background-color: #326F1E;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px;
+    padding-bottom: 3%;
+    width: 55%;
+    margin: 0 auto;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+}
+
+#ranking > table{
+    background-color: #6D3916;
+    margin: 0 auto 5%;
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+#ranking th,
+#ranking td{
+    border: solid 1px black;
+    padding: 2%;
+    text-align: center;
+}
+
+
+
+/*
+    PAGINA CONOCENOS
+*/
+#conocenos>article {
+    display: flex;
+    margin-bottom:2%;
+    gap: 3%;
+    width: 90%;
+    padding: 2% 5%;
+    font-size: 1em;
+}
+
+#conocenos img{
+    width:280px;
+    height:280px;
+}
+
+#conocenos  div {
+    background-color: #6D3916;
+    border:solid 1px black;
+    padding:2%;
+}
+
+#conocenos > article p {
+    margin-left: 3%;
+    text-align: left;
+}
+
+
+
+/*
+    MODO OSCURO
+*/
+/*Header*/
+header > img.darkmode {
+    border:solid 2px #deca65;
+}
+
+/*Select*/
+select.darkmode {
+    color:#deca65;
+    border: 1px solid #deca65;
+}
+
+/*A partir de aqui las propiedades css que se repiten mucho en el apartado de modo oscuro*/
+/*Cambio de color de fondo*/
+#menu.darkmode,   /*De la pagina indice usuario*/
+#hud.darkmode,   /*De la pagina jugar*/
+#selecNiveles.darkmode, /*de la pagina Seleccinar niveles*/
+#formulario.darkmode,  /*De la pagina formulario*/
+#ranking.darkmode,     /*De la pagina ranking*/
+#empezar.darkmode,    /*De la pagina empezar*/
+#conocenos  p.darkmode,  /*De la pagina conocenos*/
+button.darkmode:hover,
+select.darkmode{
+    background-color: #16330c;
+}
+
+#empezar > a.darkmode:hover,
+#menu > a.darkmode:hover,
+#empezar > a.darkmode:hover,
+main.darkmode,
+main > a.darkmode:hover,
+select:hover.darkmode,
+button.darkmode {
+    background-color: #253d1d;
+}
+
+body.darkmode,
+#empezar > a.darkmode,
+main > a.darkmode,
+button.darkmode,
+#menu > a.darkmode{
+    color: #deca65;
+}
+
+body.darkmode,
+#empezar > a.darkmode,
+main > a.darkmode,
+#menu > a.darkmode,
+#ranking > table.darkmode{
+    background-color: #0a1905;
+}
+
+/*El mismo borde en diferentes situaciones*/
+main > a.darkmode,
+button.darkmode,
+#empezar > a.darkmode,
+#menu > a.darkmode,
+#frame.darkmode,
+#ranking > table.darkmode,
+#ranking th.darkmode,
+#ranking td.darkmode{
+    border: solid 1px #deca65;
+}
+
+
+
+/**
+    MEDIAS QUERIES
+    Implementado con Media Queries Level 4
+ */
+@media (width <= 1804px) {
+    /*Cambiar el tamaño de la imagen del header*/
+    header > img {
+        width: 190px;
+    }
+
+    /*Pagina Empezar*/
+    #empezar > a:last-child {
+        bottom: 290px;
+        right: 39%;
+    }
+
+    /*pagina jugar*/
+    #hud {
+        gap:32%;
+    }
+}
+
+@media (width <= 1698px) {
+    /*pagina jugar*/
+    #hud {
+        gap:20%;
+    }
+}
+
+@media (width <= 1502px) {
+    /*Cambiar el tamaño de la imagen del header*/
+    header > img {
+        width: 185px;
+    }
+
+    /*Pagina Empezar*/
+    #empezar > a:last-child {
+        bottom: 245px;
+        right: 39%;
+    }
+
+    #empezar {
+        font-size: 1.2em;
+        width:35%;
+    }
+
+    /*pagina jugar*/
+    #hud {
+        gap:18%;
+    }
+}
+
+@media (width <= 1352px) {
+    /*Cambiar el tamaño de la imagen del header*/
+    header > img {
+        width: 180px;
+    }
+
+    /*pagina indice usuario*/
+    #menu > a{
+        width: 50%; /*cambio de tamaño del enlace*/
+    }
+
+    /*pagina jugar*/
+    #hud {
+        gap:23%;
+    }
+}
+
+@media (width <= 1206px) {
+    /*Cambiar el tamaño de la imagen del header*/
+    header > img {
+        width: 120px;
+    }
+
+    /*pagina jugar*/
+    #hud {
+        gap:17%;
+    }
+
+    /*pagina conocenos tamaño de la fuente*/
+    #conocenos article{
+        font-size: 0.9em;
+    }
+
+    /*Página Conocenos tamaño de la imagen*/
+    #conocenos img{
+        width:200px;
+        height:200px;
+    }
+}
+
+@media (width <= 930px) {
+    /*Cambiar el tamaño de la imagen del header*/
+    header > img {
+        width: 80px;
+    }
+
+    /*Cambio de fuentes a 1em*/
+    #menu, #empezar, ranking{
+    font-size: 1em;
+    }
+
+    /*pagina indice usuario*/
+    #menu > a{
+        width:70%;
+    }
+
+    #conocenos  p {
+        font-size: 0.7em;
+    }
+
+    /*Pagina empezar*/
+    #empezar {
+        width:60%;
+    }
+
+    #empezar > a:last-child {
+        bottom: 210px;
+        right: 39%;
+    }
+
+    /*pagina ranking*/
+    #ranking > table{
+        width:80%;
+    }
+
+    /*pagina jugar*/
+    #frame{
+        width: 99%;
+    }
+
+    #hud {
+        gap:15%;
+        width:98%;
+        font-size: 0.84em;
+    }
+}
+
+
+@media (width <= 682px) {
+    /*pagina jugar*/
+    #hud {
+        gap:9%;
+        width:98%;
+        font-size: 0.84em;
+    }
+}

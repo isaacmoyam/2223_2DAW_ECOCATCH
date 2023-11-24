@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/styleAdmin.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Añadir Nivel</title>
+    </head>
+    <body>
+        <header id="logo">
+            <img src="../../img/logo.png" alt="Logo de la página EcoCatch">
+        </header>
+        <nav>
+            <a href="../../indexAdmin.html">Inicio</a>
+            <a href="niveles.html">Niveles</a>
+            <a href="../../admin/basura/gestionbasura.php">Basura</a>
+            <a href="#">PowerUp</a>
+        </nav>
+        <main id="anadirNiveles">
+            <h1>Añadir Nivel</h1>
+            <a href="niveles.html">Volver</a>
+            <form action="" method="POST">
+                <label>Nombre:</label>
+                <input type="text" name="nombre"  placeholder="Nombre del Nivel">
+                <label>Items:</label>
+                <input type="text" name="valor"  placeholder="Cantidad Items">
+                <label>Velocidad Barco:</label>
+                <input type="text" name="contenido" placeholder="Velocidad del barco">
+                <h2>Configuración Mensaje</h2>
+                <!--Ver como va a ser esto, si submit o button-->
+                <button id="btnAgregarFila" type="button">Añadir Mensaje</button>
+                <input type="submit" value="Añadir Nivel">
+            </form>
+        </main>
+    </body>
+</html>
