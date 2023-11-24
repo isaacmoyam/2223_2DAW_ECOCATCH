@@ -52,13 +52,13 @@ export class Vista6 extends Vista {
     moverManzanas() {
         let apples = document.getElementsByClassName('apple')
         for (let apple of apples) {
-            let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'));
+            let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
             if (appleTop >= this.gameContainer.clientHeight-20) {
                 this.gameContainer.removeChild(apple)
                 this.#applesCreated--
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                apple.style.top = appleTop + 2 + 'px'; // Ajusta la velocidad de caída aquí
+                apple.style.top = appleTop + 2 + 'px' // Ajusta la velocidad de caída aquí
                 this.verificarColisionManzana(apple)
             }
         }
@@ -76,8 +76,8 @@ export class Vista6 extends Vista {
         let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'))
         let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
     
-        let barcoWidth = this.barco.clientWidth;
-        let barcoHeight = this.barco.clientHeight;
+        let barcoWidth = this.barco.clientWidth
+        let barcoHeight = this.barco.clientHeight
     
         // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
         let distanciaColision = 30
@@ -117,7 +117,7 @@ export class Vista6 extends Vista {
                 this.moverManzanas()
             }
             requestAnimationFrame(update)
-        };
+        }
         update()
     }
 
@@ -126,7 +126,7 @@ export class Vista6 extends Vista {
      * @returns {void}
      */
     recogerAjax = () => {
-        Rest.getJSON('../../2223_2DAW_ECOCATCH/src/index.php', {'control': 'basura_con', 'metodo': 'ajax'}, this.mostrarResultadoAjax);
+        Rest.getJSON('../../2223_2DAW_ECOCATCH/src/index.php', {'control': 'basura_con', 'metodo': 'ajax'}, this.mostrarResultadoAjax)
     }
 
     /**

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
        * Mapa que almacena las instancias de las vistas.
        * @type {Map<Symbol, Vista>}
        */
-      vistas = new Map();
+      vistas = new Map()
 
       /**
        * Constructor de la clase ControladorAdmin.
@@ -27,17 +27,17 @@ document.addEventListener('DOMContentLoaded', function () {
       constructor() {
           // ... (código omitido para mayor claridad)
 
-          this.vistas.set(VistaAdmin.VISTA1, new Vista1(this, divVista1));
-          this.vistas.set(VistaAdmin.VISTA2, new Vista2(this, divVista2));
+          this.vistas.set(VistaAdmin.VISTA1, new Vista1(this, divVista1))
+          this.vistas.set(VistaAdmin.VISTA2, new Vista2(this, divVista2))
 
-          this.verVista(VistaAdmin.VISTA1);
+          this.verVista(VistaAdmin.VISTA1)
 
           // Agregamos la validación del formulario al evento submit
           document.getElementById('formBasura').addEventListener('submit', (event) => {
-              this.validarFormulario(event);
-          });
+              this.validarFormulario(event)
+          })
 
-          this.eventosComprobacion(mensaje, nombreInput, imagenInput, valorInput, btnAnadirBasura, imagenMiniatura);
+          this.eventosComprobacion(mensaje, nombreInput, imagenInput, valorInput, btnAnadirBasura, imagenMiniatura)
       }
 
       /**
@@ -154,5 +154,5 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
    * Evento que se ejecuta cuando la ventana ha cargado completamente.
    */
-  window.onload = () => { new ControladorAdmin() };
-});
+  window.onload = () => { new ControladorAdmin() }
+})
