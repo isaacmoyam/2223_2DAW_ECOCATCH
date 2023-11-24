@@ -242,6 +242,25 @@ form > input[type=submit] {
     background-color: aquamarine;
 }
 
+#gameContainer {
+    min-height: 300px;
+    position: relative; /* Añade posición relativa al contenedor para que el posición absoluta del barco sea relativa a este */
+    width: 80%; /* Cambia el ancho según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor */
+    height: 200px; /* Ajusta la altura según tus necesidades */
+}
+
+#gameContainer > #barco {
+    position: absolute;
+    bottom: 0; /* Posiciona el barco en la parte inferior del contenedor */
+    width: 10%;
+}
+
+.apple {
+    position: absolute;
+    z-index: 0;
+}
+
 /*
     PAGINA FORMULARIO
 */
