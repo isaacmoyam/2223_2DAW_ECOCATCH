@@ -3,11 +3,11 @@ import {Rest} from '../../servicios/rest.js'
 
 export class Vista6 extends Vista {
 
-    #score = 0;
-    #scoreElement = document.getElementById('scoreValue');
+    #score = 0
+    #scoreElement = document.getElementById('scoreValue')
     #maxScore = 10
-    #maxApples = 10;
-    #applesCreated = 0;
+    #maxApples = 10
+    #applesCreated = 0
 
     constructor(controlador, base) {
         super(controlador, base)
@@ -21,55 +21,55 @@ export class Vista6 extends Vista {
     }
 
     crearManzana() {
-        console.log('Creando manzana');
+        console.log('Creando manzana')
         if (this.#applesCreated < this.#maxApples && this.#score < this.#maxScore) {
-            let apple = document.createElement('div');
-            let imagenApple = document.createElement('img');
-            imagenApple.src = "../../../src/img/basura.png";
-            imagenApple.style.width = "50px";
-            imagenApple.style.height = "50px";
-            apple.appendChild(imagenApple);
-            apple.classList.add('apple');
-            apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px';
-            apple.style.top = '-50px'; // Posición inicial arriba del todo
-            apple.style.width = '50px'; 
-            apple.style.height = '50px'; 
-            apple.style.zIndex = '1';
-            this.gameContainer.appendChild(apple);
+            let apple = document.createElement('div')
+            let imagenApple = document.createElement('img')
+            imagenApple.src = "../../../src/img/basura.png"
+            imagenApple.style.width = "50px"
+            imagenApple.style.height = "50px"
+            apple.appendChild(imagenApple)
+            apple.classList.add('apple')
+            apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
+            apple.style.top = '-50px' // Posición inicial arriba del todo
+            apple.style.width = '50px' 
+            apple.style.height = '50px' 
+            apple.style.zIndex = '1'
+            this.gameContainer.appendChild(apple)
     
-            this.#applesCreated++;
+            this.#applesCreated++
         }
     }
 
     // Método para mover las manzanas
     moverManzanas() {
-        let apples = document.getElementsByClassName('apple');
+        let apples = document.getElementsByClassName('apple')
         for (let apple of apples) {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'));
             if (appleTop >= this.gameContainer.clientHeight-20) {
-                this.gameContainer.removeChild(apple);
-                this.#applesCreated--;
+                this.gameContainer.removeChild(apple)
+                this.#applesCreated--
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 2 + 'px'; // Ajusta la velocidad de caída aquí
-                this.verificarColisionManzana(apple);
+                this.verificarColisionManzana(apple)
             }
         }
     }
 
     // Método para verificar la colisión con el barco
     verificarColisionManzana(apple) {
-        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'));
-        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'));
+        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'))
+        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'))
     
-        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'));
-        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'));
+        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'))
+        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
     
         let barcoWidth = this.barco.clientWidth;
         let barcoHeight = this.barco.clientHeight;
     
         // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
-        let distanciaColision = 30;
+        let distanciaColision = 30
     
         if (
             appleLeft < barcoLeft + barcoWidth - distanciaColision &&
@@ -77,16 +77,16 @@ export class Vista6 extends Vista {
             appleTop < barcoTop + barcoHeight - distanciaColision &&
             appleTop + 50 > barcoTop + distanciaColision
         ) {
-            this.gameContainer.removeChild(apple);
-            this.aumentarPuntuacion();
+            this.gameContainer.removeChild(apple)
+            this.aumentarPuntuacion()
         }
     }
 
     // Método para aumentar la puntuación
     aumentarPuntuacion() {
-        this.#score++;
+        this.#score++
         console.log(this.#score)
-        this.#scoreElement.textContent = this.#score;
+        this.#scoreElement.textContent = this.#score
     }
 
     // Método para iniciar el juego de las manzanas
@@ -95,13 +95,13 @@ export class Vista6 extends Vista {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
                 if (Math.random() < 0.01) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
-                    this.crearManzana();
+                    this.crearManzana()
                 }
-                this.moverManzanas();
+                this.moverManzanas()
             }
-            requestAnimationFrame(update);
+            requestAnimationFrame(update)
         };
-        update();
+        update()
     }
 
     recogerAjax = () => {
@@ -124,11 +124,9 @@ export class Vista6 extends Vista {
     }
 
     crearBotonPausa() {
-        const botonPausa = document.createElement('button')
+        const botonPausa = document.getElementById('botonPausa')
         botonPausa.textContent = 'Pausar'
         botonPausa.onclick = () => this.pausarJuego()
-        if(!this.base){return}
-        this.base.appendChild(botonPausa)
     }
 
     pausarJuego() {
@@ -179,6 +177,7 @@ export class Vista6 extends Vista {
     }
 
     handleTouchMove(e) {
+        e.preventDefault()
         if (!this.juegoEnPausa) {
             let touchCurrentX = e.touches[0].clientX
             let deltaX = touchCurrentX - this.touchStartX
@@ -197,6 +196,7 @@ export class Vista6 extends Vista {
     }
 
     handleTouchStart(e) {
+        e.preventDefault()
         this.touchStartX = e.touches[0].clientX
         this.requestAnimationFrame
     }
@@ -243,3 +243,5 @@ export class Vista6 extends Vista {
         super.mostrar(ver)
     }
 }
+
+window.onload = () => { new Vista6() }
