@@ -10,7 +10,7 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 ?>
-<main id="gestorM">
+<main id="anadirNiveles">
     <h1>Añadir nivel</h1>
     <a id="btnVolver" href="index.php?control=nivel_con">Volver</a>
     <form action="index.php?control=nivel_con&metodo=crear" method="POST">
