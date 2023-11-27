@@ -13,7 +13,7 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    background-image: url("../img/fondoEcocatch.png");
+    background-image: url("../../src/img/fondoEcocatch.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -64,9 +64,10 @@ main > a{
     text-decoration: none;
     padding: 0.6%;
     border: solid 1px black;
-    border-radius: 9px;
+    border-radius: 7px;
     color: #EDC713;
     background-color: #6D3916;
+    transition: 0.5s;
 }
 
 #menu > a:hover,
@@ -88,6 +89,7 @@ select {
     background-color: #6D3916;
     cursor: pointer;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
 
@@ -95,10 +97,12 @@ select {
 button {
     border: solid 1px black;
     color: #EDC713;
-    border-radius: 9px;
+    border-radius: 7px;
     background-color: #6D3916;
+    padding: 10px;
     cursor: pointer;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
 
@@ -128,6 +132,7 @@ form > input[type=submit] {
     cursor: pointer;
     font-size: 20px;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
 
@@ -294,7 +299,9 @@ form > input[type=submit] {
 }
 /*El resto de elementos de la pagina formularios se ven afectados por el css para las etiquetas form*/
 
-
+/*
+    PAGINA NIVELES
+*/
 
 /*
     PAGINA RANKING
