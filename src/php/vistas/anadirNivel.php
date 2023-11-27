@@ -13,12 +13,12 @@
 <main id="anadirNiveles">
     <h1>Añadir nivel</h1>
     <a id="btnVolver" href="index.php?control=nivel_con">Volver</a>
-    <form id="formBasura" action="index.php?control=nivel_con&metodo=crear" method="POST">
+    <form id="formNivel" action="index.php?control=nivel_con&metodo=crear" method="POST">
         <label for="nombre">(*) Nombre:</label>
         <input type="text" name="nombre" placeholder="Nombre nivel">
-        <label for="valor">(*) Items:</label>
+        <label for="cantidadItems">(*) Items:</label>
         <input type="text" name="cantidadItems" placeholder="Cantidad de items">
-        <label for="imagen">(*) Velocidad:</label>
+        <label for="velocidadBarco">(*) Velocidad:</label>
         <input type="text" name="velocidadBarco" placeholder="Velocidad del barco">
         <p id="msgCampos"></p>
         <h1>Añadir mensaje</h1>
@@ -50,3 +50,4 @@
     </form>
 </main>
 <script src="js/vistas/administrador/tablamensajes.js" type="module"></script>
+<script src="js/vistas/administrador/validarnivel.js" type="module"></script>

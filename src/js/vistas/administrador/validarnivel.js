@@ -4,7 +4,7 @@ import { VistaAdmin } from '../administrador/vistaAdmin.js'
  * Clase encargada de la Vista 1 del administrador.
  * @extends VistaAdmin
  */
-export class Validarbasura extends VistaAdmin {
+export class Validarnivel extends VistaAdmin {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -24,16 +24,15 @@ export class Validarbasura extends VistaAdmin {
 
     const mensaje = document.getElementById('msgCampos');
     const nombreInput = document.querySelector('input[name="nombre"]');
-    const imagenInput = document.querySelector('input[name="imagen"]');
-    const valorInput = document.querySelector('input[name="valor"]');
-    const imagenMiniatura = document.getElementById('imagenMiniatura');
+    const itemsInput = document.querySelector('input[name="cantidadItems"]');
+    const velocidadInput = document.querySelector('input[name="velocidadBarco"]');
 
     // Agregamos la validación del formulario al evento submit
-    document.getElementById('formBasura').addEventListener('submit', (event) => {
+    document.getElementById('formNivel').addEventListener('submit', (event) => {
       this.validarFormulario(event);
     });
 
-    this.eventosComprobacion(mensaje, nombreInput, imagenInput, valorInput, imagenMiniatura);
+    this.eventosComprobacion(mensaje, nombreInput, itemsInput, velocidadInput);
 
   }
 
@@ -41,41 +40,39 @@ export class Validarbasura extends VistaAdmin {
     event.preventDefault();
   
     const nombreInput = document.querySelector('input[name="nombre"]');
-    const valorInput = document.querySelector('input[name="valor"]');
-    const imagenInput = document.querySelector('input[name="imagen"]');
-    const formBasura = document.getElementById('formBasura')
+    const itemsInput = document.querySelector('input[name="cantidadItems"]');
+    const velocidadInput = document.querySelector('input[name="velocidadBarco"]');
+    const formNivel = document.getElementById('formNivel')
 
     const nombre = nombreInput.value;
-    const valor = valorInput.value;
-    const imagen = imagenInput.value;
+    const items = itemsInput.value;
+    const velocidad = velocidadInput.value;
 
     let mensajeError = null;
     
     if (!nombre) {
-      mensajeError = 'Por favor, rellena el campo nombre';
-      this.mostrarMensajeError(nombreInput, mensajeError);
+        mensajeError = 'Por favor, rellena el campo nombre';
+        this.mostrarMensajeError(nombreInput, mensajeError);
     }
     
-    if (!valor) {
-      mensajeError = 'Por favor, rellena el campo valor';
-      this.mostrarMensajeError(valorInput, mensajeError);
+    if (!items) {
+        mensajeError = 'Por favor, rellena el campo items';
+        this.mostrarMensajeError(itemsInput, mensajeError);
     }
     
-    if (!imagen || this.nombreArchivoValido(imagenInput,nombre) == false) {
-      
-      this.mostrarMensajeError(imagenInput, mensajeError);
-    } else {
-      imagenInput.style.backgroundColor = ''
+    if (!velocidad) {
+        mensajeError = 'Por favor, rellena el campo items';
+        this.mostrarMensajeError(velocidadInput, mensajeError);
     }
 
-    let urlForm = formBasura.action
+    let urlForm = formNivel.action
 
     // Realiza la lógica de validación aquí
-    if (this.validarNombre(nombre) && this.validarValor(valor) && this.nombreArchivoValido(imagenInput,nombre)) {
-      formBasura.action = urlForm // Habilitar el botón
+    if (this.validarNombre(nombre) && this.validarItems(items) && this.validarVelocidad(velocidad)) {
+        /*formBasura.action = urlForm // Habilitar el botón
   
-      // Envía el formulario al servidor
-      document.getElementById('formBasura').submit();
+        // Envía el formulario al servidor
+        document.getElementById('formBasura').submit();
     }
   }
   
