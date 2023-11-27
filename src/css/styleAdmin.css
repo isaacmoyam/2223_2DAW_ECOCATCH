@@ -322,30 +322,6 @@ main > a:hover,
     background-color: #85471f;
 }
 
-#powerup table {
-    /* Estilos para la tabla dentro del elemento con el ID powerup */
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 200px;
-    background-color: #6D3916;
-    margin: 0 auto 5%;
-    border: solid 1px black;
-    width: 60%;
-}
-
-#powerup th, #powerup td {
-    /* Estilos para las celdas de la tabla dentro del elemento con el ID powerup */
-    border: 1px solid black;
-    padding: 10px;
-    text-align: center;
-    color: #EDC713;
-}
-
-#powerup > a{
-    padding: 10px;
-    
-}
-
 
 /*
     MODO OSCURO
