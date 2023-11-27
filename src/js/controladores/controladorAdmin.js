@@ -5,6 +5,8 @@ import { Vista2 } from '../vistas/administrador/vista2.js'
 /**
  * Clase controlador del usuario. Se encarga de controlar las vistas del usuario
  */
+
+//TODO CREAR VISTAS NUEVAS
 document.addEventListener('DOMContentLoaded', function () {
 class ControladorAdmin {
   
@@ -13,32 +15,17 @@ class ControladorAdmin {
   constructor() {
     const divVista1 = document.getElementById('divVista1');
     const divVista2 = document.getElementById('divVista2');
-    const contador = 2
-
-    const mensaje = document.getElementById('msgCampos');
-    const nombreInput = document.querySelector('input[name="nombre"]');
-    const imagenInput = document.querySelector('input[name="imagen"]');
-    const valorInput = document.querySelector('input[name="valor"]');
-    const btnAnadirBasura = document.getElementById('anadirBasura');
 
     const btnAgregarFila = document.getElementById('btnAgregarFila');
     if (!btnAgregarFila){}
     else
       btnAgregarFila.addEventListener('click', this.agregarFila.bind(this));
-    
-    const imagenMiniatura = document.getElementById('imagenMiniatura');
 
     this.vistas.set(VistaAdmin.VISTA1, new Vista1(this, divVista1));
     this.vistas.set(VistaAdmin.VISTA2, new Vista2(this, divVista2));
 
     this.verVista(VistaAdmin.VISTA1);
 
-    // Agregamos la validación del formulario al evento submit
-    document.getElementById('formBasura').addEventListener('submit', (event) => {
-      this.validarFormulario(event);
-    });
-
-    this.eventosComprobacion(mensaje, nombreInput, imagenInput, valorInput, btnAnadirBasura, imagenMiniatura);
   }
 
   agregarFila() {
@@ -93,68 +80,6 @@ class ControladorAdmin {
     tablaDinamica.deleteRow(fila.rowIndex);
   }
 
-  validarFormulario(event) {
-    event.preventDefault();
-  
-    const nombreInput = document.querySelector('input[name="nombre"]');
-    const valorInput = document.querySelector('input[name="valor"]');
-    const formBasura = document.getElementById('formBasura')
-  
-    const nombre = nombreInput.value;
-    if(!valorInput.value){
-        return
-    }
-    const valor = valorInput.value;
-    let mensajeError = null;
-  
-    // Realiza la lógica de validación aquí
-    if (this.validarNombre(nombre) && this.validarValor(valor)) {
-      // Si la validación es exitosa, puedes enviar el formulario
-      mensajeError = 'Formulario válido. Puedes enviar los datos al servidor';
-      this.mostrarMensajeExito(nombreInput);
-      this.mostrarMensajeExito(valorInput);
-      formBasura.action = '../../index.php?control=basura_con&metodo=crear' // Habilitar el botón
-  
-      // Envía el formulario al servidor
-      document.getElementById('formBasura').submit();
-    } else {
-      // Si la validación falla, puedes mostrar un mensaje de error o realizar otra acción
-      mensajeError = 'Por favor, completa todos los campos correctamente.';
-      this.mostrarMensajeError(nombreInput, mensajeError);
-      this.mostrarMensajeError(valorInput, mensajeError);
-      formBasura.action = ''; // Deshabilitar el botón
-    }
-  }    
-
-  mostrarMensajeError(input, mensaje) {
-    const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
-    if (pMensaje) {
-      input.style.borderColor = 'red';
-      pMensaje.style.color = 'red';
-      pMensaje.innerHTML = mensaje;
-    }
-  }
-
-  mostrarMensajeExito(input) {
-    input.style.borderColor = 'green';
-    const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
-    if (pMensaje) {
-      pMensaje.innerHTML = '';
-    }
-  }
-
-  validarNombre(nombre) {
-    // Agrega tu lógica de validación para el campo de nombre
-    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/;
-    return regExp.test(nombre);
-  }
-
-  validarValor(valor) {
-    // Agrega tu lógica de validación para el campo de valor
-    const regExp = /^\d{1,}$/;
-    return regExp.test(valor);
-  }
-
   /**
      * Muestra una vista.
      * @param vista {Symbol} Símbolo que identifica a la vista.
@@ -180,11 +105,6 @@ class ControladorAdmin {
      * @param btnAnadirBasura {Object} Objeto correspondiende del boton de añadir basura
      * @param imagenMiniatura {Object} Objeto de la imagen en miniatura
      */
-  eventosComprobacion (pMensaje, iNombre, iImagen, iValor, btnAnadirBasura, imagenMiniatura) {
-    iImagen.addEventListener('change', (event) => this.mostrarMiniatura(event, imagenMiniatura))
-    iNombre.onblur = (evento) => this.comprobacionNombre(evento, pMensaje)
-    iValor.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
-  }
 
   comprobacionNombre(evento, pMensaje) {
     const inputNombre = evento.target;
