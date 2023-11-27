@@ -14,13 +14,13 @@
 ?>
 <main id="gestor">
     <h1>PowerUps</h1>
-    <a href="#">+</a>
     <a href="index.php">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>
-            <th>Nombre Imagen</th>
             <th>Aumento</th>
+            <th>Nombre Imagen</th>
+            <th>Descripcion</th>
             <th>Opción</th>
         </tr>
         <?php
@@ -32,8 +32,9 @@
             ?>
             <tr>
                 <td><?php echo $fila['nombre']; ?></td>
-                <td><?php echo $fila['valor']; ?></td>
+                <td><?php echo $fila['aumento']; ?></td>
                 <td><?php echo $fila['nombreImagen']; ?></td>
+                <td><?php echo $fila['descripcion']; ?></td>
                 <td>
                     <a href="#">✏️</a>
                 </td>
