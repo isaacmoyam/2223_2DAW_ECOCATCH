@@ -44,37 +44,50 @@ export class Validarformulario extends VistaAdmin {
     const valorInput = document.querySelector('input[name="valor"]');
     const imagenInput = document.querySelector('input[name="imagen"]');
     const formBasura = document.getElementById('formBasura')
-  
+
     const nombre = nombreInput.value;
-    if(!valorInput.value){
-        return
-    }
     const valor = valorInput.value;
+    const imagen = imagenInput.value;
+
     let mensajeError = null;
+    
+    if (!nombre) {
+      mensajeError = 'Por favor, rellena el campo nombre';
+      this.mostrarMensajeError(nombreInput, mensajeError);
+    }
+    
+    if (!valor) {
+      mensajeError = 'Por favor, rellena el campo valor';
+      this.mostrarMensajeError(valorInput, mensajeError);
+    }
+    
+    if (!imagen || this.nombreArchivoValido(imagenInput,nombre) == false) {
+      
+      this.mostrarMensajeError(imagenInput, mensajeError);
+    } else {
+      imagenInput.style.backgroundColor = ''
+    }
 
     let urlForm = formBasura.action
 
     // Realiza la lógica de validación aquí
-    if (this.validarNombre(nombre) && this.validarValor(valor) && this.nombreArchivoValido(imagenInput,nombreInput.value)) {
+    if (this.validarNombre(nombre) && this.validarValor(valor) && this.nombreArchivoValido(imagenInput,nombre)) {
       formBasura.action = urlForm // Habilitar el botón
   
       // Envía el formulario al servidor
       document.getElementById('formBasura').submit();
-    } else {
-      // Si la validación falla, puedes mostrar un mensaje de error o realizar otra acción
-      mensajeError = 'Por favor, completa todos los campos correctamente.';
-      this.mostrarMensajeError(nombreInput, mensajeError);
-      this.mostrarMensajeError(valorInput, mensajeError);
     }
   }
   
   mostrarMensajeError(input, mensaje) {
     const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
-    if (pMensaje) {
-      input.style.borderColor = 'red';
+    if (pMensaje && (input.name==="nombre" || input.name==="valor")) {
       pMensaje.style.color = 'red';
-      pMensaje.innerHTML = mensaje;
+      input.style.borderColor = 'red';
+    } else {
+      input.style.backgroundColor = 'red'
     }
+    pMensaje.innerHTML = mensaje;
   }
 
   validarNombre(nombre) {
@@ -85,7 +98,7 @@ export class Validarformulario extends VistaAdmin {
 
   validarValor(valor) {
     // Agrega tu lógica de validación para el campo de valor
-    const regExp = /^\d{1,}$/;
+    const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
     return regExp.test(valor);
   }
 
@@ -95,36 +108,12 @@ export class Validarformulario extends VistaAdmin {
     iValor.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
   }
 
-  comprobacionNombre(evento, pMensaje) {
-    const inputNombre = evento.target;
-    const nombre = inputNombre.value;
-
-    if (nombre.trim() === "") {
-        this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede estar vacío.');
-    } else if (nombre.length > 20) {
-        this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede ser mayor a 20 caracteres.');
-    } else {
-        this.mostrarMensajeExito(inputNombre);
-    }
-  }
-
-  comprobacionValor(evento, pMensaje) {
-      const inputValor = evento.target;
-      const valor = inputValor.value;
-
-      if (!/^\d{1,3}$/.test(valor) || parseInt(valor) < 1 || parseInt(valor) > 254) {
-          this.mostrarMensajeError(inputValor, pMensaje, 'El valor debe ser un número entre 1 y 254.');
-      } else {
-          this.mostrarMensajeExito(inputValor);
-      }
-  }
-
   /**
      * Método por el cual se obtiene el nombre del archivo de la imágen sin la extensión
      * @param iImagen {Object} Objeto correspondiente al campo de la imágen
      * @returns {null|string} Devuelve null si no se ha introducido una imagen o String: nombre del archivo de la imagen
      */
-  nombreArchivoValido(iImagen,nombreInput) {
+  nombreArchivoValido(iImagen, nombreInput) {
     if (iImagen && iImagen.files && iImagen.files.length > 0) {
         // iImagen no es nulo por lo que se ha seleccionado un archivo
         // Cogemos el archivo introducido del input type file
@@ -144,10 +133,18 @@ export class Validarformulario extends VistaAdmin {
 
         const extensionesPermitidas = ['.jpg', '.jpeg', '.png'];
 
-        if (extensionesPermitidas.includes(extensionArchivo) && nombreArchivo === nombreInput) {
+        if (extensionesPermitidas.includes(extensionArchivo)) {
+          if(nombreArchivo === nombreInput) {
             return true;
-        } else {
+          } else {
+            let mensajeError = 'La imagen no tiene el mismo nombre que el item.';
+            this.mostrarMensajeError(iImagen, mensajeError);
             return false;
+          }
+        } else {
+          let mensajeError = 'La imagen no tiene una extensión valida.';
+          this.mostrarMensajeError(iImagen, mensajeError);
+          return false;
         }
     } else {
         return false;
@@ -162,7 +159,8 @@ export class Validarformulario extends VistaAdmin {
      */
   comprobacionNombre (evento, pMensaje) {
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/
-    this.validarCampo(evento, pMensaje, regExp)
+    let mensaje = "El nombre debe tener máximo 20 caracteres"
+    this.validarCampo(evento, pMensaje, mensaje, regExp)
   }
 
   /**
@@ -172,8 +170,9 @@ export class Validarformulario extends VistaAdmin {
      * @param pMensaje {Object} Objeto del lugar donde se va a introducir los mensajes necesarios
      */
   comprobacionValor (evento, pMensaje) {
-    const regExp = /^\d{1,}$/
-    this.validarCampo(evento, pMensaje, regExp)
+    const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
+    let mensaje = "El valor tiene que ser un número entre 1 y 254"
+    this.validarCampo(evento, pMensaje, mensaje, regExp)
   }
 
   /**
@@ -182,16 +181,13 @@ export class Validarformulario extends VistaAdmin {
      * @param pMensaje {Object} Objeto del lugar donde se va a introducir los mensajes necesarios
      * @param regExp {Object} Expresión Regular
      */
-  validarCampo (evento, pMensaje, regExp) {
-    const input = evento.target // Hay fallo aqui
-
+  validarCampo (evento, pMensaje, mensaje, regExp) {
+    const input = evento.target 
     if (!regExp.test(input.value)) {
-      input.style.borderColor = 'red'
-      pMensaje.style.color = 'red'
-      pMensaje.innerHTML = 'Has introducido un campo con valores no validos'
+      this.mostrarMensajeError(input,mensaje)
     } else {
       input.style.borderColor = 'yellow'
-      pMensaje.innerHTML = ''
+      pMensaje.innerHTML = ""
     }
   }
 
