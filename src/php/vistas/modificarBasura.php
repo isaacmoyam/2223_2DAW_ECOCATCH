@@ -17,14 +17,17 @@
     <?php
         $fila = $datosVista["datos"];
     ?>
-    <form action="index.php?control=basura_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
+    <form action="index.php?control=basura_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST" id="formBasura">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $fila['nombre'];?>" placeholder="Nombre basura">
         <label for="valor">Valor:</label>
         <input type="text" name="valor" value="<?php echo $fila['valor'];?>" placeholder="Puntuación">
         <label for="imagen">Imagen:</label>
         <input type="file" name="imagen" value="<?php echo $fila['nombreImagen'];?>">
+        <img id="imagenMiniatura">
+        <p id="msgCampos"></p>
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
+<script src="js/vistas/administrador/validarbasura.js" type="module"></script>
 

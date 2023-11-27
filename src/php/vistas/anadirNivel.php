@@ -49,4 +49,4 @@
         <input type="submit" value="Añadir nivel">
     </form>
 </main>
-<script src="js/controladores/controladorAdmin.js" type="module"></script>
+<script src="js/vistas/administrador/tablamensajes.js" type="module"></script>

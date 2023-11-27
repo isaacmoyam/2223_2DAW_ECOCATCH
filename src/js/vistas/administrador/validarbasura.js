@@ -4,7 +4,7 @@ import { VistaAdmin } from '../administrador/vistaAdmin.js'
  * Clase encargada de la Vista 1 del administrador.
  * @extends VistaAdmin
  */
-export class Vista1 extends VistaAdmin {
+export class Validarformulario extends VistaAdmin {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -42,6 +42,7 @@ export class Vista1 extends VistaAdmin {
   
     const nombreInput = document.querySelector('input[name="nombre"]');
     const valorInput = document.querySelector('input[name="valor"]');
+    const imagenInput = document.querySelector('input[name="imagen"]');
     const formBasura = document.getElementById('formBasura')
   
     const nombre = nombreInput.value;
@@ -50,15 +51,12 @@ export class Vista1 extends VistaAdmin {
     }
     const valor = valorInput.value;
     let mensajeError = null;
-    //TODO MIRAR VALIDACIONES Y MENSAJES
+
+    let urlForm = formBasura.action
+
     // Realiza la lógica de validación aquí
-    if (this.validarNombre(nombre) && this.validarValor(valor)) {
-      console.log(nombre,valor)
-      // Si la validación es exitosa, puedes enviar el formulario
-      mensajeError = 'Formulario válido. Puedes enviar los datos al servidor';
-      this.mostrarMensajeExito(nombreInput);
-      this.mostrarMensajeExito(valorInput);
-      formBasura.action = 'index.php?control=basura_con&metodo=crear' // Habilitar el botón
+    if (this.validarNombre(nombre) && this.validarValor(valor) && this.nombreArchivoValido(imagenInput,nombreInput.value)) {
+      formBasura.action = urlForm // Habilitar el botón
   
       // Envía el formulario al servidor
       document.getElementById('formBasura').submit();
@@ -67,7 +65,6 @@ export class Vista1 extends VistaAdmin {
       mensajeError = 'Por favor, completa todos los campos correctamente.';
       this.mostrarMensajeError(nombreInput, mensajeError);
       this.mostrarMensajeError(valorInput, mensajeError);
-      formBasura.action = ''; // Deshabilitar el botón
     }
   }
   
@@ -77,14 +74,6 @@ export class Vista1 extends VistaAdmin {
       input.style.borderColor = 'red';
       pMensaje.style.color = 'red';
       pMensaje.innerHTML = mensaje;
-    }
-  }
-
-  mostrarMensajeExito(input) {
-    input.style.borderColor = 'green';
-    const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
-    if (pMensaje) {
-      pMensaje.innerHTML = '';
     }
   }
 
@@ -109,71 +98,61 @@ export class Vista1 extends VistaAdmin {
   comprobacionNombre(evento, pMensaje) {
     const inputNombre = evento.target;
     const nombre = inputNombre.value;
-  
+
     if (nombre.trim() === "") {
-      this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede estar vacío.');
+        this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede estar vacío.');
     } else if (nombre.length > 20) {
-      this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede ser mayor a 20 caracteres.');
-    iValor.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
+        this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede ser mayor a 20 caracteres.');
+    } else {
+        this.mostrarMensajeExito(inputNombre);
     }
   }
 
-  comprobacionNombre(evento, pMensaje) {
-    const inputNombre = evento.target;
-    const nombre = inputNombre.value;
-  
-    if (nombre.trim() === "") {
-      this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede estar vacío.');
-    } else if (nombre.length > 20) {
-      this.mostrarMensajeError(inputNombre, pMensaje, 'El nombre no puede ser mayor a 20 caracteres.');
-    } else {
-      this.mostrarMensajeExito(inputNombre);
-    }
-  }
-  
   comprobacionValor(evento, pMensaje) {
-    const inputValor = evento.target;
-    const valor = inputValor.value;
-  
-    if (!/^\d{1,3}$/.test(valor) || parseInt(valor) < 1 || parseInt(valor) > 254) {
-      this.mostrarMensajeError(inputValor, pMensaje, 'El valor debe ser un número entre 1 y 254.');
-    } else {
-      this.mostrarMensajeExito(inputValor);
-      this.mostrarMensajeExito(inputNombre);
-    }
+      const inputValor = evento.target;
+      const valor = inputValor.value;
+
+      if (!/^\d{1,3}$/.test(valor) || parseInt(valor) < 1 || parseInt(valor) > 254) {
+          this.mostrarMensajeError(inputValor, pMensaje, 'El valor debe ser un número entre 1 y 254.');
+      } else {
+          this.mostrarMensajeExito(inputValor);
+      }
   }
-  
-  comprobacionValor(evento, pMensaje) {
-    const inputValor = evento.target;
-    const valor = inputValor.value;
-  
-    if (!/^\d{1,3}$/.test(valor) || parseInt(valor) < 1 || parseInt(valor) > 254) {
-      this.mostrarMensajeError(inputValor, pMensaje, 'El valor debe ser un número entre 1 y 254.');
-    } else {
-      this.mostrarMensajeExito(inputValor);
-    }
-  }  
 
   /**
      * Método por el cual se obtiene el nombre del archivo de la imágen sin la extensión
      * @param iImagen {Object} Objeto correspondiente al campo de la imágen
      * @returns {null|string} Devuelve null si no se ha introducido una imagen o String: nombre del archivo de la imagen
      */
-  nombreArchivo (iImagen) {
+  nombreArchivoValido(iImagen,nombreInput) {
     if (iImagen && iImagen.files && iImagen.files.length > 0) {
-      // iImage no es nulo por lo que se ha seleccionado un archivo
-      // Cogemos el archivo introducido del input type file
-      const files = iImagen.files
-      const selectedFile = files[0]
+        // iImagen no es nulo por lo que se ha seleccionado un archivo
+        // Cogemos el archivo introducido del input type file
+        const files = iImagen.files;
+        const selectedFile = files[0];
 
-      // Cogemos el nombre del archivo
-      const nombreArchivo = selectedFile.name.split('.').slice(0, -1).join('.')
+        // Obtenemos el nombre del archivo
+        const nombreArchivoExtension = selectedFile.name
+        
+        const partes = nombreArchivoExtension.split(".")
 
-      return nombreArchivo
+        const nombreArchivo = partes[0]
+
+        // Validamos la extensión del archivo
+
+        const extensionArchivo = "." + partes[1]
+
+        const extensionesPermitidas = ['.jpg', '.jpeg', '.png'];
+
+        if (extensionesPermitidas.includes(extensionArchivo) && nombreArchivo === nombreInput) {
+            return true;
+        } else {
+            return false;
+        }
     } else {
-      return null
+        return false;
     }
-  }
+}
 
   /**
      * LLama a una función encargada de comprobar si se valida el campo Nombre mediante una expresión regular determinada.
@@ -242,4 +221,4 @@ export class Vista1 extends VistaAdmin {
 
 }
 
-window.onload = () => { new Vista1() }
+window.onload = () => { new Validarformulario() }

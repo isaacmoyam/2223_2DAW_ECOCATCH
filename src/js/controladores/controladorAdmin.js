@@ -16,68 +16,11 @@ class ControladorAdmin {
     const divVista1 = document.getElementById('divVista1');
     const divVista2 = document.getElementById('divVista2');
 
-    const btnAgregarFila = document.getElementById('btnAgregarFila');
-    if (!btnAgregarFila){}
-    else
-      btnAgregarFila.addEventListener('click', this.agregarFila.bind(this));
-
     this.vistas.set(VistaAdmin.VISTA1, new Vista1(this, divVista1));
     this.vistas.set(VistaAdmin.VISTA2, new Vista2(this, divVista2));
 
     this.verVista(VistaAdmin.VISTA1);
 
-  }
-
-  agregarFila() {
-    const tablaDinamica = document.getElementById('tablaDinamica')
-    const nuevaFila = tablaDinamica.insertRow()
-
-    let input = document.createElement('input');
-    let select = document.createElement('select');
-
-    let celda = nuevaFila.insertCell();
-    input.type = 'text';
-    input.name = 'contenido[]'
-    celda.appendChild(input);
-
-    celda = nuevaFila.insertCell();
-    input = document.createElement('input');
-    input.type = 'text';
-    input.name = 'puntosHasta[]'
-    celda.appendChild(input);
-
-    celda = nuevaFila.insertCell();
-    select = document.createElement('select');
-    select.name = 'tipo[]';
-
-    var opciones = [
-        { nombre: 'Antes del nivel', valor: 'A' },
-        { nombre: 'Durante el nivel', valor: 'B' },
-        { nombre: 'Después del nivel', valor: 'C' }
-    ];
-
-    for (var i = 0; i < opciones.length; i++) {
-        var opcion = document.createElement('option');
-        opcion.value = opciones[i].valor;
-        opcion.text = opciones[i].nombre;
-        select.appendChild(opcion);
-    }
-
-    celda.appendChild(select);
-
-    // Añade la nueva celda con el botón para quitar la fila
-    const celdaBoton = nuevaFila.insertCell();
-    const btnQuitar = document.createElement('button');
-    btnQuitar.type = 'button';
-    btnQuitar.classList.add('btnQuitarFila');
-    btnQuitar.textContent = '🗑️';
-    btnQuitar.addEventListener('click', this.quitarFila.bind(this, nuevaFila));
-    celdaBoton.appendChild(btnQuitar);
-  }
-
-  quitarFila(fila) {
-    const tablaDinamica = document.getElementById('tablaDinamica');
-    tablaDinamica.deleteRow(fila.rowIndex);
   }
 
   /**

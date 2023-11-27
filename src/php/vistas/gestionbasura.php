@@ -45,4 +45,4 @@
     </table>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>
-<script src="js/vistas/administrador/borrar.js" type="module"></script>
+<script src="js/vistas/administrador/preguntarborrar.js" type="module"></script>
