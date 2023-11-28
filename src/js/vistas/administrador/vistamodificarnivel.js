@@ -4,7 +4,7 @@ import { VistaAdmin } from '../administrador/vistaAdmin.js'
  * Clase encargada de la Vista 1 del administrador.
  * @extends VistaAdmin
  */
-export class Vistanivel extends VistaAdmin {
+export class Vistamodificarnivel extends VistaAdmin {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -62,7 +62,7 @@ export class Vistanivel extends VistaAdmin {
     } else {
         // Si el usuario hace clic en "Cancelar", no hacemos nada.
     }
-}
+  }
 
   agregarFila() {
     const tablaDinamica = document.getElementById('tablaDinamica')
@@ -297,4 +297,4 @@ export class Vistanivel extends VistaAdmin {
   }
 }
 
-window.onload = () => { new Vistanivel() }
+window.onload = () => { new Vistamodificarnivel() }

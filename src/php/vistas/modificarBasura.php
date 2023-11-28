@@ -29,5 +29,5 @@
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
-<script src="js/vistas/administrador/validarbasura.js" type="module"></script>
+<script src="js/vistas/administrador/vistabasura.js" type="module"></script>
 

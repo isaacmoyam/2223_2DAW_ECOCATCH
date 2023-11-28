@@ -4,7 +4,7 @@ import { VistaAdmin } from '../administrador/vistaAdmin.js'
  * Clase encargada de la Vista 1 del administrador.
  * @extends VistaAdmin
  */
-export class Validarbasura extends VistaAdmin {
+export class Vistabasura extends VistaAdmin {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -34,7 +34,6 @@ export class Validarbasura extends VistaAdmin {
     });
 
     this.eventosComprobacion(mensaje, nombreInput, imagenInput, valorInput, imagenMiniatura);
-
   }
 
   validarFormulario(event) {
@@ -72,9 +71,8 @@ export class Validarbasura extends VistaAdmin {
 
     // Realiza la lógica de validación aquí
     if (this.validarNombre(nombre) && this.validarValor(valor) && this.nombreArchivoValido(imagenInput,nombre)) {
-      formBasura.action = urlForm // Habilitar el botón
-  
       // Envía el formulario al servidor
+      formBasura.action = urlForm
       document.getElementById('formBasura').submit();
     }
   }
@@ -217,4 +215,4 @@ export class Validarbasura extends VistaAdmin {
 
 }
 
-window.onload = () => { new Validarbasura() }
+window.onload = () => { new Vistabasura() }
