@@ -133,5 +133,7 @@ class Powerup_Mod
         }
 
         $this->cerrarConexion();
+
+        return json_encode($powerups);
     }
 }

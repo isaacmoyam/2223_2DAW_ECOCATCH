@@ -274,6 +274,8 @@ class Nivel_Mod {
         }
 
         $this->cerrarConexion();
+
+        return json_encode($nivel);
     }
 
     /**
@@ -292,6 +294,8 @@ class Nivel_Mod {
         }
 
         $this->cerrarConexion();
+
+        return json_encode($nombreNivel);
     }
 }
 ?>

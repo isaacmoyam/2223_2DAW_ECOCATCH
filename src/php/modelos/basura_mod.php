@@ -175,7 +175,7 @@ class Basura_Mod {
             'basuras' => $basuras
         );
     
-        echo json_encode($resultado);
+        return json_encode($resultado);
     }    
 }
 ?>
