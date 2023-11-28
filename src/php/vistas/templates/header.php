@@ -22,7 +22,7 @@
     </head>
     <body>
     <header>
-        <img src="img/logo.png" alt="Logo de la aplicación"><br>
+        <img src="img/logo_fondo_transparente.png" alt="Logo de la aplicación"><br>
         <!-- <input class="side-menu" type="checkbox" id="side-menu"/>
         <label class="hamb" for="side-menu"><span class="hamb-line"></span></label> -->
         

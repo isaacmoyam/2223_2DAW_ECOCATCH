@@ -12,9 +12,8 @@
 
 // Sección HTML para la interfaz de gestión de powerup.
 ?>
-<main id="gestor">
+<main id="gestorPowerup">
     <h1>PowerUps</h1>
-    <a href="index.php">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>
@@ -36,7 +35,7 @@
                 <td><?php echo $fila['nombreImagen']; ?></td>
                 <td><?php echo $fila['descripcion']; ?></td>
                 <td>
-                    <a href="#">✏️</a>
+                    <a href="index.php?control=powerup_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>"">✏️</a>
                 </td>
             </tr>
             <?php

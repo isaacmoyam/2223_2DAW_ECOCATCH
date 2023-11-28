@@ -13,12 +13,10 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    background-image: url("../img/fondoEcocatch.png");
+    background-image: url("../../src/img/fondoEcocatch.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
-
-
 
 /*
     HEADER
@@ -33,7 +31,7 @@ header {
 header > img {
     width: 200px;
     margin: 0 auto 1%;
-    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+    /* box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28); */
 }
 
 
@@ -46,7 +44,7 @@ main {
     font-size: 1.2em;
     text-align: center;
     border-radius: 30px;
-    border: solid 2px;
+    border: solid 2px transparent;
     padding-bottom: 5%;
     width: 80%;
     margin: 0 auto;
@@ -64,9 +62,11 @@ main > a{
     text-decoration: none;
     padding: 0.6%;
     border: solid 1px black;
-    border-radius: 9px;
+    font-size: 1.7em;
+    border-radius: 7px;
     color: #EDC713;
     background-color: #6D3916;
+    transition: 0.5s;
 }
 
 #menu > a:hover,
@@ -81,26 +81,34 @@ main > a:hover { /*Cambio de color para cuando pase el cursor del raton por enci
 /*SELECT*/
 select {
     padding: 3%;
-    font-size: 0.7em;
+    font-size: 1.7em;
     color:#EDC713;
     border: 1px solid #000000;
     border-radius: 5px;
     background-color: #6D3916;
     cursor: pointer;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
 
 /*BOTONES*/
 button {
     border: solid 1px black;
+    font-size: 1.7em;
     color: #EDC713;
-    border-radius: 9px;
+    border-radius: 7px;
     background-color: #6D3916;
+    padding: 10px;
     cursor: pointer;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
+/*TITULOS*/
+h3{
+    font-size: 2em;
+}
 
 /*FORMULARIOS*/
 form {
@@ -128,6 +136,7 @@ form > input[type=submit] {
     cursor: pointer;
     font-size: 20px;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
 
@@ -239,7 +248,7 @@ form > input[type=submit] {
     border: 2px solid black;
     min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
     min-height: 600px;
-    background-image: url("../img/fondoJuego.png");
+    background-image: url("../img/fondo_juego2.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -294,7 +303,9 @@ form > input[type=submit] {
 }
 /*El resto de elementos de la pagina formularios se ven afectados por el css para las etiquetas form*/
 
-
+/*
+    PAGINA NIVELES
+*/
 
 /*
     PAGINA RANKING
@@ -342,7 +353,7 @@ form > input[type=submit] {
 
 #conocenos img{
     width:280px;
-    height:280px;
+    border-radius: 20px;
 }
 
 #conocenos  div {
@@ -441,6 +452,20 @@ button.darkmode,
 .apple {
     position: absolute;
 	z-index: 0;
+    animation: rotate 5s infinite linear;
+}
+
+/*
+    KEYFRAMES
+*/
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
 }
 
 /**

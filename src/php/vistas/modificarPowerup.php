@@ -1,5 +1,4 @@
 <main id="gestor">
-    <a id="btnVolver" href="index.php?control=powerup_con">Volver</a>
     <form action="" method="POST" id="formPowerup">
         <label>(*) Nombre:</label>
         <input type="text" name="nombre" placeholder="Nombre Powerup">

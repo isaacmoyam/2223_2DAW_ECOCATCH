@@ -16,7 +16,6 @@
     <?php
         $fila = $datosVista["datos"];
     ?>
-    <a href="index.php?control=nivel_con&metodo=buscarModificar&id=<?php echo $fila['idNivel']; ?>">Volver</a>
     <h1>Cambiar de nivel</h1>
     <form action="index.php?control=nivel_con&metodo=moverMensaje&id=<?php echo $fila['id'];?>" method="POST">
         <label for="nivel">Nivel:</label>

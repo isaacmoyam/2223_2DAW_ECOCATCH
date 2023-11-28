@@ -15,7 +15,6 @@
 <main id="niveles">
     <h1>Niveles</h1>
     <a href="index.php?control=nivel_con&metodo=vistaCrear">+</a>
-    <a href="index.php">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>

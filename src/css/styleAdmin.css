@@ -100,7 +100,7 @@ header {
 header > img {
     width: 200px;
     margin: 0 auto 1%;
-    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+    /* box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28); */
 }
 
 /*Navegador*/
@@ -118,6 +118,7 @@ nav > a{ /*Estilos de los enlaces del navegador*/
     padding: 1% 2% !important;
     font-size: 1.4em;
     transition: 0.5s;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
 
 /* Estilos del menú y pantalla de configuración antes de empezar */
@@ -154,6 +155,7 @@ nav > a{ /*Estilos de los enlaces del navegador*/
 #gestionNiveles, /*Main pagina configNiveles*/
 #movMsg,         /*Main pagina moverMEnsaje*/
 #niveles,        /*Main pagina niveles*/
+#gestorPowerup,       
 #gestor,
 #gestorM{
     background-color: #326F1E;
@@ -179,6 +181,7 @@ nav > a{ /*Estilos de los enlaces del navegador*/
 #niveles > a,
 #gestor > a,
 #gestorM > a,
+#gestorPowerup >a,
 #menu > a,
 nav > a,
 main > a{
@@ -189,7 +192,6 @@ main > a{
     color: #EDC713;
     background-color: #6D3916;
 }
-
 
 
 /* Estilos específicos para enlaces en la sección "gestor" (boton +)*/
@@ -203,6 +205,7 @@ main > a{
 /* Posicionamiento relativo para los enlaces de las diferentes secciones */
 #niveles > a,
 #gestor > a,
+#gestorPowerup >a,
 #gestorM > a{
     position: relative;
 }
@@ -210,6 +213,7 @@ main > a{
 /*Boton Volver*/
 /* Posicionamiento específico de enlaces en la sección "gestor" (boton volver)*/
 #niveles > a,
+#gestorPowerup >a,
 #gestor > a {
     right: 28.3%;
     bottom: 20px;
@@ -228,6 +232,7 @@ main > a{
 /*Quitar linea de enlace de los emoticonos (papelera, lapiz...) en las tablas*/
 #gestionNiveles  table a,
 #niveles > table a,
+#gestorPowerup > table a,
 #gestor > table a {
     text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
 }
@@ -245,7 +250,16 @@ main > a{
     margin: 0 auto 5%;
     border: solid 1px black;
     border-collapse: collapse;
-    width: 60%;
+    width: 70%;
+}
+
+#gestorPowerup > table{
+    background-color: #6D3916;
+    margin: 0 auto 5%;
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 85%;
+    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
 
 #gestionNiveles  table{
@@ -253,14 +267,16 @@ main > a{
     margin: 0 auto 5%;
     border: solid 1px black;
     border-collapse: collapse;
-    width: 80%;
+    width: 90%;
 }
 
 /* Estilos para celdas de tablas en "gestor" */
 #gestor th,
+#gestorPowerup th,
+#gestorPowerup td,
 #gestor td {
     border: solid 1px black;
-    padding: 2%;
+    padding: 1.5%;
     text-align: center;
 }
 
@@ -268,32 +284,48 @@ main > a{
 #niveles  th,
 #niveles  td{  /*Casillas de las tablas (th y td) con el id niveles*/
     /*Aqui le ponemos un tamaño al width de la tabla, un borde, el padding y que el texto esté centrado*/
-    width: 20%;
     border: solid 1px black;
-    padding: 2%;
+    padding: 1.5%;
     text-align: center;
 }
 
 /*Tabla de la parte de mensajes de la página configNiveles*/
 #gestionNiveles th,
 #gestionNiveles td{
-    width: 20%;
     border: solid 1px black;
-    padding: 2%;
+    padding: 1%;
     text-align: center;
 }
 
-/*Quiero que el pimer hijo de su contenedor (tr) sea un poco mas grnade puesto que como se van a ver los mensajes necesitara mas espacio*/
-#gestionNiveles th:first-child,
-#gestionNiveles td:first-child{
-    width: 30%;
+#gestorPowerup th:first-child{
+    width: 15%;
 }
-/*Quiero que el tercer hijo de su contenedor (tr) sea un poco mas pequeño dado que como va a mostrar el tipo necesitara menso espacio*/
-#gestionNiveles th:nth-child(3),
-#gestionNiveles td:nth-child(3){
-    width: 10%;
+#gestorPowerup th:nth-child(2){
+    width: 15%;
+}
+#gestorPowerup th:nth-child(3){
+    width: 25%;
+}
+#gestorPowerup th:nth-child(5){
+    width: 15%;
 }
 
+/*Quiero que el pimer hijo de su contenedor (tr) sea un poco mas grnade puesto que como se van a ver los mensajes necesitara mas espacio*/
+#gestionNiveles th:first-child{
+    width: 45%;
+}
+/*Quiero que el tercer hijo de su contenedor (tr) sea un poco mas pequeño dado que como va a mostrar el tipo necesitara menso espacio*/
+#gestionNiveles th:nth-child(3){
+    width: 20%;
+}
+
+#gestionNiveles th:nth-child(4){
+    width: 15%;
+}
+
+#gestionNiveles td:nth-child(3) > input{
+    width: 30%;
+}
 
 /* Estilos para el juego */
 #juego {
@@ -309,7 +341,6 @@ main {
     border-radius: 30px;
     border: solid 2px;
     padding-bottom: 5%;
-    width: 80%;
     margin: 0 auto;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
@@ -322,6 +353,7 @@ main {
 nav > a:hover,
 main > a:hover,
 #gestor > a:hover,
+#gestorPowerup > a:hover,
 #gestorM > a:hover {
     background-color: #85471f;
 }
@@ -338,6 +370,7 @@ header > img.darkmode {
 select.darkmode,
 button.darkmode:hover,
 #gestor.darkmode,
+#gestorPowerup.darkmode,
 #gestorM.darkmode,
 #menu.darkmode {
     background-color: #16330c;
@@ -349,6 +382,7 @@ select.darkmode,
 button.darkmode,
 form > input[type=submit].darkmode,
 #gestor > a.darkmode,
+#gestorPowerup > a.darkmode,
 #gestorM > a.darkmode{
     color: #deca65;
 }
