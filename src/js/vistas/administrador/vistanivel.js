@@ -30,8 +30,8 @@ export class Vistanivel extends VistaAdmin {
     const nombreInput = document.querySelector('input[name="nombre"]');
     const itemsInput = document.querySelector('input[name="cantidadItems"]');
     const velocidadInput = document.querySelector('input[name="velocidadBarco"]');
-    const contenidoInput = document.querySelector('input[name="contenido[]"]');
-    const puntosInput = document.querySelector('input[name="puntosHasta[]"]');
+    /*const contenidoInput = document.querySelectorAll('input[name="contenido[]"]');
+    const puntosInput = document.querySelectorAll('input[name="puntosHasta[]"]');*/
 
     // Botones para borrar filas añadidas
     botonesBorrar.forEach((boton) => {
@@ -70,7 +70,7 @@ export class Vistanivel extends VistaAdmin {
 
     let input = document.createElement('input');
     let select = document.createElement('select');
-
+    
     let celda = nuevaFila.insertCell();
     input.type = 'text';
     input.name = 'contenido[]'
