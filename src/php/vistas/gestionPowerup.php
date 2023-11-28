@@ -36,7 +36,7 @@
                 <td><?php echo $fila['nombreImagen']; ?></td>
                 <td><?php echo $fila['descripcion']; ?></td>
                 <td>
-                    <a href="#">✏️</a>
+                    <a href="index.php?control=powerup_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
                 </td>
             </tr>
             <?php

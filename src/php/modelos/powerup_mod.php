@@ -54,14 +54,63 @@ class Powerup_Mod
         $sql = "SELECT p.id, i.nombre, i.nombreImagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id = i.id";
         $result = $this->mysqli->query($sql);
 
-        $basuras = array();
+        $powerups = array();
         while ($row = $result->fetch_assoc()) {
-            $basuras[] = $row;
+            $powerups[] = $row;
         }
 
         $this->cerrarConexion();
 
-        return $basuras;
+        return $powerups;
+    }
+
+    /**
+     * Busca un powerup con un ID específico para modificar.
+     * @param int $id
+     * @return array
+     */
+    public function buscarModificar($id) {
+        $this->establecerConexion();
+        $sql = 'SELECT p.id, i.nombre, i.nombreImagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id=i.id WHERE i.id='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+
+        $fila = $result->fetch_assoc();
+        return $fila;
+    }
+
+    /**
+     * Modifica un powerup con un ID específico.
+     * @param int $id
+     * @param string $nombre
+     * @param string $imagen
+     * @param int $aumento
+     * @return bool
+     */
+    public function modificar($id, $nombre, $imagen, $aumento, $descripcion) {
+        $this->establecerConexion();
+        $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+
+        $this->establecerConexion();
+        try {
+            /*
+             * Se ha usado una expresion ternaria. En esta expresion se comprueba la condicion
+             * $descripcion === "" que evalua si descripcion es una cadena vacia.
+             * Esto esta separado por el caracter :, el cual separa
+             * si la condicion es verdadera devuelve null y en casso contrario devuelve '"'.$descripcion.'"'
+             * */
+            $sql = 'UPDATE powerup SET aumento = '.$aumento.' ,descripcion = '.($descripcion === "" ? 'NULL' : '"'.$descripcion.'"').'  WHERE id = '.$id;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
+
+        $this->cerrarConexion();
     }
 
 }
