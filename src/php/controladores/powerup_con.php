@@ -61,10 +61,12 @@ class Powerup_con
          * Controla si existen o estan vacios los diferentes campos.
          * Si algun campo esta vacio o no existe no se hará la consulta y mostrara un mensaje por pantalla.
          * El campo descripcion no se comprueba si está empty dado que dicho campo admite nulos en la base de datos.
-         * Con strlen($_POST["descripcion"]) <= 300 verifico que la variable descripcion tenga como maximo 300 caracteres
+         * Con strlen($_POST["descripcion"]) <= 300 verifico que la variable descripcion tenga como maximo 300 caracteres.
+         * Con strlen($_POST["nombre"]) <= 20 compruebo que el nombre no sea mayor de 20
+         * Y con $_POST["aumento"] <= 255 verifico que el numero introducido en aumento sea menor o igual que 255
          * Si esta todo correcto se realiza la consulta. Si se ha introducido un dato incorrecto mostrara un mensaje dado que no puede hacer la consulta
          *  */
-        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["aumento"]) && isset($_POST["descripcion"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["aumento"] && strlen($_POST["descripcion"]) <= 300)) {
+        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["aumento"]) && isset($_POST["descripcion"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["aumento"] && strlen($_POST["descripcion"]) <= 300) && strlen($_POST["nombre"]) <= 20 && $_POST["aumento"] <= 255) {
             $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["aumento"], $_POST["descripcion"]);
             /*
              * La funcion modificar solo devuelve true al ocurrir un error en el query.
