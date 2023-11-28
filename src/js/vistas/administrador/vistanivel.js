@@ -30,8 +30,8 @@ export class Vistanivel extends VistaAdmin {
     const nombreInput = document.querySelector('input[name="nombre"]');
     const itemsInput = document.querySelector('input[name="cantidadItems"]');
     const velocidadInput = document.querySelector('input[name="velocidadBarco"]');
-    /*const contenidoInput = document.querySelectorAll('input[name="contenido[]"]');
-    const puntosInput = document.querySelectorAll('input[name="puntosHasta[]"]');*/
+    const contenidoInput = document.querySelector('input[name="contenido[]"]');
+    const puntosInput = document.querySelector('input[name="puntosHasta[]"]');
 
     // Botones para borrar filas añadidas
     botonesBorrar.forEach((boton) => {
@@ -109,6 +109,13 @@ export class Vistanivel extends VistaAdmin {
     btnQuitar.textContent = '🗑️';
     btnQuitar.addEventListener('click', this.quitarFila.bind(this, nuevaFila));
     celdaBoton.appendChild(btnQuitar);
+
+    const contenidoInput = nuevaFila.querySelector('input[name="contenido[]"]');
+    const puntosInput = nuevaFila.querySelector('input[name="puntosHasta[]"]');
+
+    const mensaje = document.getElementById("msgCampos")
+    contenidoInput.onblur = (evento) => this.comprobacionContenido(evento, mensaje);
+    puntosInput.onblur = (evento) => this.comprobacionPuntos(evento, mensaje);
   }
 
   quitarFila(fila) {
@@ -161,18 +168,49 @@ export class Vistanivel extends VistaAdmin {
 
     let urlForm = formNivel.action
 
-    // Realiza la lógica de validación aquí
-    if (this.validarNombre(nombre) && this.validarValor(items) && this.validarValor(velocidad) 
-    && this.validarContenido(contenido) && this.validarPuntos(puntos)) {
-      // Habilitar el botón
-      formNivel.action = urlForm
-      // Envía el formulario al servidor
-      document.getElementById('formNivel').submit();
+    if (this.validarNombre(nombre) && this.validarValor(items) && this.validarValor(velocidad) && this.validarContenido(contenido) && this.validarPuntos(puntos)) {
+      // Muestra errores y cambia estilos si están mal las filas y también retorna el array validacionesFilas lleno con las filas validadas para luego comprobar si están bien en su conjunto
+      const validacionesFilas = this.validarFilas()
+      // Verifica si todas las filas son válidas
+      if (validacionesFilas.every((validacion) => validacion)) {
+        // Enviar formulario si está correcto
+        formNivel.action = urlForm;
+        document.getElementById('formNivel').submit();
+      } else {
+        // Muestra errores y cambia estilos si están mal las filas
+        this.validarFilas()
+      }
+    } else {
+      // Muestra errores y cambia estilos si están mal las filas
+      this.validarFilas()
     }
+  }
+
+  validarFilas() {
+      const filas = document.querySelectorAll('#tablaDinamica tbody tr');
+      const validacionesFilas = [];
+    
+      filas.forEach((fila) => {
+        const contenidoInput = fila.querySelector('input[name="contenido[]"]');
+        const puntosInput = fila.querySelector('input[name="puntosHasta[]"]');
+        
+        // Realiza la validación para cada campo en la fila
+        const validacionFila =
+          this.validarContenido(contenidoInput.value) &&
+          this.validarPuntos(puntosInput.value);
+    
+        validacionesFilas.push(validacionFila);
+
+        if (!validacionFila) {
+          this.mostrarMensajeError(contenidoInput, 'El campo contenido de uno de los mensajes está vacío');
+          this.mostrarMensajeError(puntosInput, 'El campo puntos requeridos de uno de los mensajes está vacío');
+        }
+      });
+      return validacionesFilas;
   }
   
   mostrarMensajeError(input, mensaje) {
-    const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
+    const pMensaje = document.getElementById('msgCampos');
     if (pMensaje) {
       pMensaje.style.color = 'red';
       input.style.borderColor = 'red';
