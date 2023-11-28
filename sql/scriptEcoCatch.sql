@@ -44,5 +44,6 @@ CREATE TABLE basura(
 CREATE TABLE powerup(
     id tinyint unsigned NOT NULL PRIMARY KEY,
     aumento tinyint unsigned NOT NULL,
+    descripcion varchar(300) DEFAULT NULL,
     CONSTRAINT itemEnPowerup FOREIGN KEY (id) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=InnoDB;
