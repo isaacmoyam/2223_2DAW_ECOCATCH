@@ -33,7 +33,6 @@ export class Validarnivel extends VistaAdmin {
     });
 
     this.eventosComprobacion(mensaje, nombreInput, itemsInput, velocidadInput);
-
   }
 
   validarFormulario(event) {
@@ -69,94 +68,43 @@ export class Validarnivel extends VistaAdmin {
 
     // Realiza la lógica de validación aquí
     if (this.validarNombre(nombre) && this.validarItems(items) && this.validarVelocidad(velocidad)) {
-        /*formBasura.action = urlForm // Habilitar el botón
+        formNivel.action = urlForm // Habilitar el botón
   
         // Envía el formulario al servidor
-        document.getElementById('formBasura').submit();
+        document.getElementById('formNivel').submit();
     }
   }
   
   mostrarMensajeError(input, mensaje) {
     const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
-    if (pMensaje && (input.name==="nombre" || input.name==="valor")) {
+    if (pMensaje) {
       pMensaje.style.color = 'red';
       input.style.borderColor = 'red';
-    } else {
-      input.style.backgroundColor = 'red'
+      pMensaje.innerHTML = mensaje;
     }
-    pMensaje.innerHTML = mensaje;
   }
 
   validarNombre(nombre) {
     // Agrega tu lógica de validación para el campo de nombre
-    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/;
+    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/;
     return regExp.test(nombre);
   }
 
-  validarValor(valor) {
-    // Agrega tu lógica de validación para el campo de valor
+  validarItems(items) {
+    // Agrega tu lógica de validación para el campo de items
     const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
-    return regExp.test(valor);
+    return regExp.test(items);
   }
 
-  eventosComprobacion (pMensaje, iNombre, iImagen, iValor, imagenMiniatura) {
-    iImagen.addEventListener('change', (event) => this.mostrarMiniatura(event, imagenMiniatura))
-    iNombre.onblur = (evento) => this.comprobacionNombre(evento, pMensaje)
-    iValor.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
+  eventosComprobacion (pMensaje, nombreInput, itemsInput, velocidadInput) {
+    nombreInput.onblur = (evento) => this.comprobacionNombre(evento, pMensaje)
+    itemsInput.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
+    velocidadInput.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
   }
 
-  /**
-     * Método por el cual se obtiene el nombre del archivo de la imágen sin la extensión
-     * @param iImagen {Object} Objeto correspondiente al campo de la imágen
-     * @returns {null|string} Devuelve null si no se ha introducido una imagen o String: nombre del archivo de la imagen
-     */
-  nombreArchivoValido(iImagen, nombreInput) {
-    if (iImagen && iImagen.files && iImagen.files.length > 0) {
-        // iImagen no es nulo por lo que se ha seleccionado un archivo
-        // Cogemos el archivo introducido del input type file
-        const files = iImagen.files;
-        const selectedFile = files[0];
-
-        // Obtenemos el nombre del archivo
-        const nombreArchivoExtension = selectedFile.name
-        
-        const partes = nombreArchivoExtension.split(".")
-
-        const nombreArchivo = partes[0]
-
-        // Validamos la extensión del archivo
-
-        const extensionArchivo = "." + partes[1]
-
-        const extensionesPermitidas = ['.jpg', '.jpeg', '.png'];
-
-        if (extensionesPermitidas.includes(extensionArchivo)) {
-          if(nombreArchivo === nombreInput) {
-            return true;
-          } else {
-            let mensajeError = 'La imagen no tiene el mismo nombre que el item.';
-            this.mostrarMensajeError(iImagen, mensajeError);
-            return false;
-          }
-        } else {
-          let mensajeError = 'La imagen no tiene una extensión valida.';
-          this.mostrarMensajeError(iImagen, mensajeError);
-          return false;
-        }
-    } else {
-        return false;
-    }
-}
-
-  /**
-     * LLama a una función encargada de comprobar si se valida el campo Nombre mediante una expresión regular determinada.
-     * Se ejecuta con un evento onblur en el campoNombre
-     * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
-     * @param pMensaje {Object} Objeto del lugar donde se va a introducir los mensajes necesarios
-     */
   comprobacionNombre (evento, pMensaje) {
-    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/
-    let mensaje = "El nombre debe tener máximo 20 caracteres"
+    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/
+    let mensaje = "El nombre debe tener máximo 50 caracteres"
     this.validarCampo(evento, pMensaje, mensaje, regExp)
   }
 
@@ -168,7 +116,7 @@ export class Validarnivel extends VistaAdmin {
      */
   comprobacionValor (evento, pMensaje) {
     const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
-    let mensaje = "El valor tiene que ser un número entre 1 y 254"
+    let mensaje = "Los valores numéricos deben ser un número entre 1 y 254"
     this.validarCampo(evento, pMensaje, mensaje, regExp)
   }
 
@@ -187,31 +135,6 @@ export class Validarnivel extends VistaAdmin {
       pMensaje.innerHTML = ""
     }
   }
-
-  /**
-     * Muestra la imagen en miniatura introducido en el input type="file" del html
-     * @param event {Object} Objeto de evento que desencadenó la llamada a la función.
-     * @param imagenMiniatura {Object} Objeto de la imagen en miniatura
-     */
-  mostrarMiniatura (event, imagenMiniatura) {
-    const file = event.target.files[0]
-
-    if (file) {
-      // Mostrar miniatura
-      const reader = new FileReader()
-
-      reader.onload = (e) => {
-        imagenMiniatura.src = e.target.result
-        imagenMiniatura.style.display = 'block'
-      }
-
-      reader.readAsDataURL(file)
-    } else {
-      // Ocultar miniatura si no se selecciona ningún archivo
-      imagenMiniatura.style.display = 'none'
-    }
-  }
-
 }
 
-window.onload = () => { new Validarbasura() }
+window.onload = () => { new Validarnivel() }
