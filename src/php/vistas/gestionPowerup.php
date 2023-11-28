@@ -14,7 +14,6 @@
 ?>
 <main id="gestor">
     <h1>PowerUps</h1>
-    <a href="index.php">Volver</a>
     <table>
         <tr>
             <th>Nombre</th>

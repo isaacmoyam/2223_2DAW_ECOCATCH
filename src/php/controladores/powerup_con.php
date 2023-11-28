@@ -61,10 +61,15 @@ class Powerup_con
          * Controla si existen o estan vacios los diferentes campos.
          * Si algun campo esta vacio o no existe no se hará la consulta y mostrara un mensaje por pantalla.
          * El campo descripcion no se comprueba si está empty dado que dicho campo admite nulos en la base de datos.
+         * Con strlen($_POST["descripcion"]) <= 300 verifico que la variable descripcion tenga como maximo 300 caracteres
          * Si esta todo correcto se realiza la consulta. Si se ha introducido un dato incorrecto mostrara un mensaje dado que no puede hacer la consulta
          *  */
-        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["aumento"]) && isset($_POST["descripcion"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["aumento"])) {
+        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["aumento"]) && isset($_POST["descripcion"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["aumento"] && strlen($_POST["descripcion"]) <= 300)) {
             $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["aumento"], $_POST["descripcion"]);
+            /*
+             * La funcion modificar solo devuelve true al ocurrir un error en el query.
+             * Si no hay error la funcion devuelve null por lo que la condicion !resultado la da como verdadera
+             * */
             if(!$resultado) {
                 header("Location: index.php?control=powerup_con&mensaje=true");
             } else {

@@ -96,6 +96,7 @@ class Powerup_Mod
         $this->cerrarConexion();
 
         $this->establecerConexion();
+
         try {
             /*
              * Se ha usado una expresion ternaria. En esta expresion se comprueba la condicion
@@ -107,7 +108,7 @@ class Powerup_Mod
             $result = $this->mysqli->query($sql);
         } catch(mysqli_sql_exception $e) {
             $error = true;
-            return $error;
+            return $error; //Si hay un error devulve true
         }
 
         $this->cerrarConexion();
