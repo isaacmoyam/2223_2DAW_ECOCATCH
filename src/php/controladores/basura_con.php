@@ -114,8 +114,8 @@ class Basura_con {
     * Manda datos a través de AJAX.
     * @return mixed
     */
-    public function ajax() {
-        return $this->obj->ajax();
+    public function ajaxBasura() {
+        return $this->obj->ajaxDatosBasura();
     }
 }
 ?>

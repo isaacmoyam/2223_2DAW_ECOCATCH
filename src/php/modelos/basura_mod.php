@@ -154,9 +154,9 @@ class Basura_Mod {
     }
 
     /**
-     * Recoge datos de basuras y power-ups y los retorna al controlador en json.
+     * Recoge datos de basura y los retorna al controlador en json.
      */
-    public function ajax() {
+    public function ajaxDatosBasura() {
         $this->establecerConexion();
     
         // Consulta para obtener información de basuras
@@ -168,21 +168,11 @@ class Basura_Mod {
             $basuras[] = $row;
         }
     
-        // Consulta para obtener información de power-ups
-        $sqlPowerup = "SELECT powerup.id, item.nombre, item.nombreImagen, powerup.aumento FROM powerup INNER JOIN item on powerup.id = item.id";
-        $resultPowerup = $this->mysqli->query($sqlPowerup);
-    
-        $powerups = array();
-        while ($row = $resultPowerup->fetch_assoc()) {
-            $powerups[] = $row;
-        }
-    
         $this->cerrarConexion();
     
         // Combinar basuras y power-ups en un solo objeto
         $resultado = array(
-            'basuras' => $basuras,
-            'powerups' => $powerups
+            'basuras' => $basuras
         );
     
         echo json_encode($resultado);

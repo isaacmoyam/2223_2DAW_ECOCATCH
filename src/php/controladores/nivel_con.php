@@ -218,5 +218,21 @@ class Nivel_con {
             header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
+
+    /**
+     * Manda los datos de nivel a través de AJAX.
+     * @return mixed
+     */
+    public function ajaxNivel() {
+        return $this->obj->ajaxDatosNivel();
+    }
+
+    /**
+     * Manda los datos de los nombres de los niveles a través de AJAX.
+     * @return mixed
+     */
+    public function ajaxNombreNivel() {
+        return $this->obj->ajaxNombreNiveles();
+    }
 }
 ?>

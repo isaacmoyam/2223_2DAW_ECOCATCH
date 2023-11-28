@@ -87,4 +87,13 @@ class Powerup_con
             header("Location: index.php?control=powerup_con&mensaje=false");
         }
     }
+
+
+    /**
+     * Manda los datos de powerup a través de AJAX.
+     * @return mixed
+     */
+    public function ajaxPowerup() {
+        return $this->obj->ajaxDatosPowerup();
+    }
 }

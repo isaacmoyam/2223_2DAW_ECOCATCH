@@ -114,4 +114,24 @@ class Powerup_Mod
         $this->cerrarConexion();
     }
 
+    /**
+     * Recoge datos de power-ups y los retorna al controlador en json.
+     */
+    public function ajaxDatosPowerup() {
+        $this->establecerConexion();
+
+        /*
+         * Consulta para obtener información de power-ups
+         * Descripcion no se manda dado que no e necesitara para nada
+         * */
+        $sqlPowerup = "SELECT p.id, i.nombre, i.nombreImagen, p.aumento FROM powerup p INNER JOIN item i on p.id = i.id";
+        $resultPowerup = $this->mysqli->query($sqlPowerup);
+
+        $powerups = array();
+        while ($row = $resultPowerup->fetch_assoc()) {
+            $powerups[] = $row;
+        }
+
+        $this->cerrarConexion();
+    }
 }

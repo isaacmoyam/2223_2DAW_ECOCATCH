@@ -257,5 +257,41 @@ class Nivel_Mod {
 
         $this->cerrarConexion();
     }
+
+    /**
+     * Recoge datos de nivel y los retorna al controlador en json.
+     */
+    public function ajaxDatosNivel() {
+        $this->establecerConexion();
+
+        //Consulta para obtener información de niveles
+        $sqlNivel = "SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel;";
+        $resultNivel = $this->mysqli->query($sqlNivel);
+
+        $nivel = array();
+        while ($row = $resultNivel->fetch_assoc()) {
+            $nivel[] = $row;
+        }
+
+        $this->cerrarConexion();
+    }
+
+    /**
+     * Recoge datos del campo nombre del nivel y los retorna al controlador en json.
+     */
+    public function ajaxNombreNiveles() {
+        $this->establecerConexion();
+
+        //Consulta para obtener la informacion del campo de nombre en la tabla niveles
+        $sqlNombreNivel = "SELECT nombre FROM nivel;";
+        $resultNombreNivel = $this->mysqli->query($sqlNombreNivel);
+
+        $nombreNivel = array();
+        while ($row = $resultNombreNivel->fetch_assoc()) {
+            $nombreNivel[] = $row;
+        }
+
+        $this->cerrarConexion();
+    }
 }
 ?>
