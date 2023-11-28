@@ -46,11 +46,14 @@ main {
     font-size: 1.2em;
     text-align: center;
     border-radius: 30px;
-    border: solid 2px;
+    border: solid 2px transparent;
     padding-bottom: 5%;
     width: 80%;
     margin: 0 auto;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+    border-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+    border-image-slice: 1;
+    animation: rainbow-border 5s linear infinite;
 }
 
 
@@ -349,7 +352,11 @@ form > input[type=submit] {
 
 #conocenos img{
     width:280px;
-    height:280px;
+    border-radius: 20px;
+}
+
+#conocenos img:hover{
+    animation: rotate 5s infinite linear;
 }
 
 #conocenos  div {
@@ -449,6 +456,25 @@ button.darkmode,
     position: absolute;
 	z-index: 0;
 }
+
+/*
+    KEYFRAMES
+*/
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+@keyframes rainbow-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
 /**
     MEDIAS QUERIES
