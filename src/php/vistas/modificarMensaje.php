@@ -34,7 +34,7 @@
         </select>
         <label for="contenido">Contenido:</label>
         <input type="text" readonly name="contenido" value="<?php echo $fila['contenido'];?>">
-        <label for="contenido">Puntos requeridos:</label>
+        <label for="puntosHasta">Puntos requeridos:</label>
         <input type="text" readonly name="puntosHasta" value="<?php echo $fila['puntosHasta'];?>">
         <label for="readTipo">Tipo:</label>
         <input type="text" readonly name="readTipo" value="<?php if ($fila['tipo'] === 'A') echo "Antes del nivel"; if ($fila['tipo'] === 'B') echo "Durante el nivel"; if ($fila['tipo'] === 'C') echo "Después del nivel";?>">
