@@ -1,6 +1,6 @@
-import { Vista } from './vista.js';
+import { Vistausuario } from './vistausuario.js';
 
-export class Vistamenu extends Vista {
+export class Vistamenu extends Vistausuario {
   constructor(controlador, base) {
     super(controlador, base);
     this.eventos();

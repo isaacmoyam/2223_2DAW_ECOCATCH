@@ -1,7 +1,6 @@
-import { Vista } from './vista.js'
-import { Rest } from '../../servicios/rest.js'
+import { Vistausuario } from './vistausuario.js'
 
-export class Vista6 extends Vista {
+export class Vistajugar extends Vistausuario {
 
     #score = 0
     #scoreElement = document.getElementById('scoreValue')
@@ -15,7 +14,6 @@ export class Vista6 extends Vista {
         this.touchStartX = null
         this.animationFrameId = null
         this.juegoEnPausa = false
-        this.recogerAjax()
         this.eventos()
         this.iniciarJuegoManzanas()
     }
@@ -25,7 +23,6 @@ export class Vista6 extends Vista {
      * @returns {void}
      */
     crearManzana() {
-        console.log('Creando manzana')
         if (this.#applesCreated < this.#maxApples && this.#score < this.#maxScore) {
             let apple = document.createElement('div')
             let imagenApple = document.createElement('img')
@@ -99,7 +96,6 @@ export class Vista6 extends Vista {
      */
     aumentarPuntuacion() {
         this.#score++
-        console.log(this.#score)
         this.#scoreElement.textContent = this.#score
     }
 
@@ -122,35 +118,12 @@ export class Vista6 extends Vista {
     }
 
     /**
-     * Recoge datos mediante una llamada AJAX.
-     * @returns {void}
-     */
-    recogerAjax = () => {
-        Rest.getJSON('../../2223_2DAW_ECOCATCH/src/index.php', {'control': 'basura_con', 'metodo': 'ajax'}, this.mostrarResultadoAjax)
-    }
-
-    /**
-     * Muestra el resultado obtenido mediante AJAX.
-     * @param {object} objeto - Objeto obtenido mediante la llamada AJAX.
-     * @returns {void}
-     */
-    mostrarResultadoAjax = (objeto) => {
-        console.log(objeto)
-    }
-
-    /**
      * Asocia eventos a elementos del juego.
      * @returns {void}
      */
     eventos() {
         this.eventoBarco()
         this.crearBotonPausa()
-        if(!this.base){return}
-        this.enlaceSiguienteVista7 = this.base.querySelector('a')
-
-        this.enlaceSiguienteVista7.onclick = () => {
-            this.controlador.verVista(Vista.VISTA7)
-        }
     }
 
     /**
@@ -326,4 +299,4 @@ export class Vista6 extends Vista {
     }
 }
 
-window.onload = () => { new Vista6() }
+window.onload = () => { new Vistajugar() }

@@ -1,19 +1,18 @@
 /**
  * Clase encargada de la Vista
  */
-export class Vista {
+export class Vistausuario {
   /**
 	 * Creacion de Simbolos de las vistas
 	 */
   static {
-    Vista.VISTA1 = Symbol('Index')
-    Vista.VISTA2 = Symbol('Ranking')
-    Vista.VISTA3 = Symbol('Conoceos')
-    Vista.VISTAEMPEZAR = Symbol('Empezar')
-    Vista.VISTANIVELES = Symbol('seleccionNivel')
-    Vista.VISTA6 = Symbol('Jugar')
-    Vista.VISTA7 = Symbol('Formulario')
-    Vista.VISTA8 = Symbol('PruebaAJAX')
+    Vistausuario.VISTAMENU = Symbol('Index')
+    Vistausuario.VISTARANKING = Symbol('Ranking')
+    Vistausuario.VISTACONOCENOS = Symbol('Conocenos')
+    Vistausuario.VISTAEMPEZAR = Symbol('Empezar')
+    Vistausuario.VISTANIVELES = Symbol('seleccionNivel')
+    Vistausuario.VISTAJUGAR = Symbol('Jugar')
+    Vistausuario.VISTAFORMULARIO = Symbol('Formulario')
   }
 
   /**

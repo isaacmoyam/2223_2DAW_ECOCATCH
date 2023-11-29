@@ -1,9 +1,9 @@
-import { Vista } from './vista.js'
+import { Vistausuario } from './vistausuario.js'
 
 /**
  * Clase encargada de la Vista 3
  */
-export class Vista3 extends Vista {
+export class Vistaconocenos extends Vistausuario {
   /**
      * Constructor de la clase. Inicializa los atributos correspondientes
      * @param controlador {ControladorUsuario} Controlador del Usuario
@@ -18,15 +18,8 @@ export class Vista3 extends Vista {
      * Asocia los eventos de la interfaz
      */
   eventos () {
-    // Coger referencias del interfaz
-    if(!this.enlaceVolverVista1){return}
-    else{
-      this.enlaceVolverVista1 = document.getElementsByClassName('volverAVista1')[1]
-
-      // Asociar eventos
-      this.enlaceVolverVista1.onclick = () => {
-        this.controlador.verVista(Vista.VISTA1)
-      }
-    }
+    super.modoOscuro()
   }
 }
+
+window.onload = () => { new Vistaconocenos() }

@@ -1,10 +1,10 @@
-import { Vista } from './vista.js'
+import { Vistausuario } from './vistausuario.js'
 import { Rest } from '../../servicios/rest.js'
 
 /**
  * Clase encargada de la Vista niveles
  */
-export class Vistaniveles extends Vista {
+export class Vistaniveles extends Vistausuario {
   /**
      * Constructor de la clase. Inicializa los atributos correspondientes
      * @param controlador {ControladorUsuario} Controlador del Usuario
