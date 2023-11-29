@@ -1,4 +1,4 @@
-import { Vistaadmin } from '../administrador/vistaAdmin.js'
+import { Vistaadmin } from '../administrador/vistaadmin.js'
 
 /**
  * Clase encargada de la Vista 1 del administrador.
