@@ -117,15 +117,10 @@ class Nivel_Mod {
      */ 
     public function crear($nombre, $items, $velocidad) {
         $this->establecerConexion();
-       
-        try {
-            $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
-            $result = $this->mysqli->query($sql);
-            $idNivel = $this->mysqli->insert_id;
-        } catch(mysqli_sql_exception $e) {
-            $error = true;
-            return $error;
-        }
+
+        $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
+        $result = $this->mysqli->query($sql);
+        $idNivel = $this->mysqli->insert_id;
 
         $this->cerrarConexion();
 
