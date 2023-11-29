@@ -189,13 +189,7 @@ class Basura_Mod {
     
         $this->cerrarConexion();
     
-        // Combinar basuras y power-ups en un solo objeto
-        //PENDIENTE DE ELIMINAR
-        $resultado = array(
-            'basuras' => $basuras
-        );
-    
-        return json_encode($resultado);
+        return json_encode($basuras);
     }    
 }
 ?>
