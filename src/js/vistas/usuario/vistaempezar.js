@@ -1,34 +1,28 @@
-import { Vista } from './vista.js'
+import { Vista } from './vista.js';
 
-/**
- * Clase encargada de la Vista 4
- */
-export class Vista4 extends Vista {
-  /**
-     * Constructor de la clase. Inicializa los atributos correspondientes
-     * @param controlador {ControladorUsuario} Controlador del Usuario
-     * @param base {Object} Objeto que es una referencia del interfaz
-     */
-  constructor (controlador, base) {
-    super(controlador, base)
-    this.eventosInterfaz()
+export class Vistaempezar extends Vista {
+  constructor(controlador, base) {
+    super(controlador, base);
+    this.inicializarModoOscuro();
   }
 
-  /**
-     * Obtiene las referencias de la interfaz y les asocia eventos
-     */
-  eventosInterfaz () {
-    // Coger referencias del interfaz
-    if(!this.base){return}
-    this.enlaceJugar = this.base.querySelectorAll('a')[0]
-    this.enlaceVolverVista1 = document.getElementsByClassName('volverAVista1')[2]
+  inicializarModoOscuro() {
+    super.modoOscuro()
+    const body = document.body
+    const cambiarModo = document.getElementById('dark');
 
-    // Asociar eventos
-    this.enlaceJugar.onclick = () => {
-      this.controlador.verVista(Vista.VISTA5)
-    }
-    this.enlaceVolverVista1.onclick = () => {
-      this.controlador.verVista(Vista.VISTA1)
+    if (cambiarModo) {
+      cambiarModo.addEventListener('click', () => {
+        // Toggle del modo oscuro
+        const enableDarkMode = !body.classList.contains('darkmode');
+        body.classList.toggle('darkmode', enableDarkMode);
+        super.elementosHijos(enableDarkMode);
+
+        // Guardar el estado del modo oscuro en el almacenamiento local
+        localStorage.setItem('darkmode', enableDarkMode ? 'enabled' : 'disabled');
+      });
     }
   }
 }
+
+window.onload = () => { new Vistaempezar() }

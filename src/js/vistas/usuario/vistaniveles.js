@@ -12,10 +12,11 @@ export class Vistaniveles extends Vista {
      */
   constructor (controlador, base) {
     super(controlador, base)
-    this.eventosInterfaz()
+    this.eventos()
   }
 
-  eventosInterfaz () {
+  eventos () {
+    super.modoOscuro()
     this.llamarGET()
   }
 

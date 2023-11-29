@@ -26,10 +26,6 @@ export class Vista {
     this.base = base
   }
 
-  /**
-	 * Muestra u oculta tu consulta
-	 * @param ver {Boolean} Indica si la vista debe mostrarse (true) u ocultarse (false)
-	 */
   mostrar (ver) {
     if(!this.base){return}
     if (ver) {
@@ -38,4 +34,21 @@ export class Vista {
       this.base.style.display = 'none'
     }
   }
+
+  modoOscuro() {
+    const body = document.body;
+    const isDarkModeEnabled = localStorage.getItem('darkmode') === 'enabled';
+    if (isDarkModeEnabled) {
+      body.classList.add('darkmode');
+      this.elementosHijos(true);
+    }
+  }
+
+  elementosHijos(enableDarkMode) {
+    const elementos = document.querySelectorAll('*');
+    elementos.forEach((elemento) => {
+      elemento.classList.toggle('darkmode', enableDarkMode);
+    });
+  }
 }
+
