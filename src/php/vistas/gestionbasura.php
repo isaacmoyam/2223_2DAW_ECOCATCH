@@ -45,4 +45,4 @@
     </table>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>
-<script src="js/vistas/administrador/vistamostrar.js" type="module"></script>
+<script src="js/vistas/administrador/vistamostrarbasura.js" type="module"></script>

@@ -1,10 +1,10 @@
-import { VistaAdmin } from '../administrador/vistaAdmin.js'
+import { Vistaadmin } from '../administrador/vistaAdmin.js'
 
 /**
  * Clase encargada de la Vista 1 del administrador.
  * @extends VistaAdmin
  */
-export class Vistamostrar extends VistaAdmin {
+export class Vistamostrarbasura extends Vistaadmin {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -25,22 +25,11 @@ export class Vistamostrar extends VistaAdmin {
     const botonesBorrar = document.querySelectorAll("#botonBorrar");
 
     botonesBorrar.forEach((boton) => {
-      boton.addEventListener('click', (event) => this.emergenteBorrar(event));
+      boton.addEventListener('click', (event) => super.emergenteBorrar(event));
     });
   }
 
-  emergenteBorrar(event) {
-    event.preventDefault();
-
-    const confirmacion = window.confirm("¿Estás seguro de que quieres borrar el elemento?");
-
-    if (confirmacion) {
-        let urlRedireccion = event.target.getAttribute("href");
-        window.location.href = urlRedireccion;
-    } else {
-        // Si el usuario hace clic en "Cancelar", no hacemos nada.
-    }
-  }
+  
 }
 
-window.onload = () => { new Vistamostrar() }
+window.onload = () => { new Vistamostrarbasura() }
