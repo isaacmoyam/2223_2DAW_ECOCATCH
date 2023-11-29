@@ -128,16 +128,18 @@ export class Vistajugar extends Vistausuario {
     }
 
     audio() {
-        var miAudio = document.getElementById('miAudio');
-        var botonSilencio = document.getElementById('botonSilencio');
+        const miAudio = document.getElementById('miAudio');
+        const botonSilencio = document.getElementById('botonSilencio');
 
         // Evento de clic para el botón de silencio
         botonSilencio.addEventListener('click', function() {
             if (miAudio.paused) {
                 // Si está en pausa, reanudar
+                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOn.png)"
                 miAudio.play();
             } else {
                 // Si está reproduciendo, pausar
+                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOff.png)"
                 miAudio.pause();
             }
         });
