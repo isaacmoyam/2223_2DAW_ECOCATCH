@@ -235,8 +235,8 @@ export class Vistaadmin {
 
   eventosComprobacionNivel (pMensaje, nombreInput, itemsInput, velocidadInput, contenidoInput, puntosInput) {
     nombreInput.onblur = (evento) => this.comprobacionNombreNivel(evento, pMensaje)
-    itemsInput.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
-    velocidadInput.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
+    itemsInput.onblur = (evento) => this.comprobacionValorNivel(evento, pMensaje)
+    velocidadInput.onblur = (evento) => this.comprobacionValorNivel(evento, pMensaje)
     if(contenidoInput && puntosInput) {
       contenidoInput.onblur = (evento) => this.comprobacionContenido(evento, pMensaje)
       puntosInput.onblur = (evento) => this.comprobacionPuntos(evento, pMensaje)
@@ -352,7 +352,7 @@ export class Vistaadmin {
   eventosComprobacionBasura (pMensaje, iNombre, iImagen, iValor, imagenMiniatura) {
     iImagen.addEventListener('change', (event) => this.mostrarMiniatura(event, imagenMiniatura))
     iNombre.onblur = (evento) => this.comprobacionNombreBasura(evento, pMensaje)
-    iValor.onblur = (evento) => this.comprobacionValor(evento, pMensaje)
+    iValor.onblur = (evento) => this.comprobacionValorBasura(evento, pMensaje)
   }
 
   nombreArchivoValido(iImagen, nombreInput) {
