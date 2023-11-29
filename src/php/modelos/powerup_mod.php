@@ -137,7 +137,7 @@ class Powerup_Mod
 
         /*
          * Consulta para obtener información de power-ups
-         * Descripcion no se manda dado que no e necesitara para nada
+         * Descripcion no se manda dado que no se necesitara para nada
          * */
         $sqlPowerup = "SELECT p.id, i.nombre, i.imagen, p.aumento FROM powerup p INNER JOIN item i on p.id = i.id";
         $resultPowerup = $this->mysqli->query($sqlPowerup);

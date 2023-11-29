@@ -63,7 +63,8 @@ class Powerup_con
          * El campo descripcion no se comprueba si está empty dado que dicho campo admite nulos en la base de datos.
          * Con strlen($_POST["descripcion"]) <= 300 verifico que la variable descripcion tenga como maximo 300 caracteres.
          * Con strlen($_POST["nombre"]) <= 20 compruebo que el nombre no sea mayor de 20
-         * Y con $_POST["aumento"] <= 255 verifico que el numero introducido en aumento sea menor o igual que 255
+         * Con $_POST["aumento"] <= 255 verifico que el numero introducido en aumento sea menor o igual que 255
+         * Con $_POST["aumento"] > 0 verifico que el numero introducido en aumento sea mayor que 0
          * Si esta todo correcto se realiza la consulta. Si se ha introducido un dato incorrecto mostrara un mensaje dado que no puede hacer la consulta
          *  */
         if(
@@ -76,7 +77,7 @@ class Powerup_con
 
             $extensionPermitida = 'png';
             $infoArchivo = pathinfo($_FILES['imagen']['name']);
-            $extensionArchivo = strtolower($infoArchivo['extension']);
+            $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
 
             if ($extensionArchivo == $extensionPermitida) {
                 $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["aumento"], $_POST["descripcion"]);

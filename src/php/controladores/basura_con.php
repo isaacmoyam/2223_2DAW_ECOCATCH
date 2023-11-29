@@ -53,7 +53,7 @@ class Basura_con {
 
             $extensionPermitida = 'png';
             $infoArchivo = pathinfo($_FILES['imagen']['name']);
-            $extensionArchivo = strtolower($infoArchivo['extension']);
+            $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
 
             if ($extensionArchivo == $extensionPermitida) {
                 $resultado = $this->obj->crear($_POST["nombre"],$imgEnBinario,$_POST["valor"]);
@@ -98,7 +98,7 @@ class Basura_con {
 
             $extensionPermitida = 'png';
             $infoArchivo = pathinfo($_FILES['imagen']['name']);
-            $extensionArchivo = strtolower($infoArchivo['extension']);
+            $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
 
             if ($extensionArchivo == $extensionPermitida) {
                 $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["valor"]);
@@ -132,7 +132,7 @@ class Basura_con {
     }
 
    /**
-    * Manda datos a través de AJAX.
+    * Manda los datos de basura a través de AJAX.
     * @return mixed
     */
     public function ajaxBasura() {
