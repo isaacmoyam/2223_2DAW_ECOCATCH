@@ -51,11 +51,13 @@ class Powerup_Mod
      */
     public function mostrar() {
         $this->establecerConexion();
-        $sql = "SELECT p.id, i.nombre, i.nombreImagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id = i.id";
+        $sql = "SELECT p.id, i.nombre, i.imagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id = i.id";
+
         $result = $this->mysqli->query($sql);
 
         $powerups = array();
         while ($row = $result->fetch_assoc()) {
+            $row['imagen'] = base64_encode($row['imagen']); //Para modificar los datos de la imagen en base 64
             $powerups[] = $row;
         }
 
@@ -71,12 +73,15 @@ class Powerup_Mod
      */
     public function buscarModificar($id) {
         $this->establecerConexion();
-        $sql = 'SELECT p.id, i.nombre, i.nombreImagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id=i.id WHERE i.id='.$id;
+        $sql = 'SELECT p.id, i.nombre, i.imagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id=i.id WHERE i.id='.$id;
         $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
 
         $fila = $result->fetch_assoc();
+
+        $fila['imagen'] = base64_encode($fila['imagen']); //Cambio datos recogidos de imagen en codificacion base64
+
         return $fila;
     }
 
@@ -90,8 +95,18 @@ class Powerup_Mod
      */
     public function modificar($id, $nombre, $imagen, $aumento, $descripcion) {
         $this->establecerConexion();
-        $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
-        $result = $this->mysqli->query($sql);
+
+        //Quitar comillas en la imagen
+        $img = $this->mysqli->real_escape_string($imagen);
+
+        try {
+            $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$img.'" WHERE id = '.$id;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
+
 
         $this->cerrarConexion();
 
@@ -124,11 +139,12 @@ class Powerup_Mod
          * Consulta para obtener información de power-ups
          * Descripcion no se manda dado que no e necesitara para nada
          * */
-        $sqlPowerup = "SELECT p.id, i.nombre, i.nombreImagen, p.aumento FROM powerup p INNER JOIN item i on p.id = i.id";
+        $sqlPowerup = "SELECT p.id, i.nombre, i.imagen, p.aumento FROM powerup p INNER JOIN item i on p.id = i.id";
         $resultPowerup = $this->mysqli->query($sqlPowerup);
 
         $powerups = array();
         while ($row = $resultPowerup->fetch_assoc()) {
+            $row['imagen'] = base64_encode($row['imagen']);
             $powerups[] = $row;
         }
 

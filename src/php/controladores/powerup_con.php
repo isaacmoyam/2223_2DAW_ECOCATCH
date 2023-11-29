@@ -67,13 +67,14 @@ class Powerup_con
          * Si esta todo correcto se realiza la consulta. Si se ha introducido un dato incorrecto mostrara un mensaje dado que no puede hacer la consulta
          *  */
         if(
-            isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["aumento"]) && isset($_POST["descripcion"])
-            && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["aumento"]
-                && strlen($_POST["descripcion"]) <= 300) && strlen($_POST["nombre"]) <= 20
+            isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["aumento"]) && isset($_POST["descripcion"]) && isset($_FILES['imagen']['tmp_name'])
+            && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["aumento"]) && !empty($_FILES['imagen']['tmp_name'])
+                && strlen($_POST["descripcion"]) <= 300 && strlen($_POST["nombre"]) <= 20
             && $_POST["aumento"] > 0 && $_POST["aumento"] <= 255
         ) {
+            $imgEnBinario = file_get_contents($_FILES['imagen']['tmp_name']); //Obtiene el contenido de la imagen, el cual esta en binario
 
-            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["aumento"], $_POST["descripcion"]);
+            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["aumento"], $_POST["descripcion"]);
             /*
              * La funcion modificar solo devuelve true al ocurrir un error en el query.
              * Si no hay error la funcion devuelve null por lo que la condicion !resultado la da como verdadera

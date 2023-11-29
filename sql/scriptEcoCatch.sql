@@ -30,7 +30,7 @@ CREATE TABLE mensaje(
 CREATE TABLE item(
     id tinyint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre varchar(20) NOT NULL,
-    nombreImagen varchar(30) NOT NULL
+    imagen MEDIUMBLOB NOT NULL
 )ENGINE=InnoDB;
 
 -- Creación de la tabla "basura" con la columna "valor"
