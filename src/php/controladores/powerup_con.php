@@ -74,14 +74,22 @@ class Powerup_con
         ) {
             $imgEnBinario = file_get_contents($_FILES['imagen']['tmp_name']); //Obtiene el contenido de la imagen, el cual esta en binario
 
-            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["aumento"], $_POST["descripcion"]);
-            /*
-             * La funcion modificar solo devuelve true al ocurrir un error en el query.
-             * Si no hay error la funcion devuelve null por lo que la condicion !resultado la da como verdadera
-             * */
-            if(!$resultado) {
-                header("Location: index.php?control=powerup_con&mensaje=true");
-            } else {
+            $extensionPermitida = 'png';
+            $infoArchivo = pathinfo($_FILES['imagen']['name']);
+            $extensionArchivo = strtolower($infoArchivo['extension']);
+
+            if ($extensionArchivo == $extensionPermitida) {
+                $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["aumento"], $_POST["descripcion"]);
+                /*
+                 * La funcion modificar solo devuelve true al ocurrir un error en el query.
+                 * Si no hay error la funcion devuelve null por lo que la condicion !resultado la da como verdadera
+                 * */
+                if(!$resultado) {
+                    header("Location: index.php?control=powerup_con&mensaje=true");
+                } else {
+                    header("Location: index.php?control=powerup_con&mensaje=false");
+                }
+            } else{
                 header("Location: index.php?control=powerup_con&mensaje=false");
             }
         } else {

@@ -51,10 +51,18 @@ class Basura_con {
 
             $imgEnBinario = file_get_contents($_FILES['imagen']['tmp_name']); //Obtiene el contenido de la imagen, el cual esta en binario
 
-            $resultado = $this->obj->crear($_POST["nombre"],$imgEnBinario,$_POST["valor"]);
-            if(!$resultado) {
-                header("Location: index.php?control=basura_con&mensaje=true");
-            } else {
+            $extensionPermitida = 'png';
+            $infoArchivo = pathinfo($_FILES['imagen']['name']);
+            $extensionArchivo = strtolower($infoArchivo['extension']);
+
+            if ($extensionArchivo == $extensionPermitida) {
+                $resultado = $this->obj->crear($_POST["nombre"],$imgEnBinario,$_POST["valor"]);
+                if(!$resultado) {
+                    header("Location: index.php?control=basura_con&mensaje=true");
+                } else {
+                    header("Location: index.php?control=basura_con&mensaje=false");
+                }
+            } else{
                 header("Location: index.php?control=basura_con&mensaje=false");
             }
         } else {
@@ -88,10 +96,18 @@ class Basura_con {
         if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_FILES['imagen']['tmp_name']) && isset($_POST["valor"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"]) && !empty($_FILES['imagen']['tmp_name'])) {
             $imgEnBinario = file_get_contents($_FILES['imagen']['tmp_name']); //Obtiene el contenido de la imagen, el cual esta en binario
 
-            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["valor"]);
-            if(!$resultado) {
-                header("Location: index.php?control=basura_con&mensaje=true");
-            } else {
+            $extensionPermitida = 'png';
+            $infoArchivo = pathinfo($_FILES['imagen']['name']);
+            $extensionArchivo = strtolower($infoArchivo['extension']);
+
+            if ($extensionArchivo == $extensionPermitida) {
+                $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["valor"]);
+                if(!$resultado) {
+                    header("Location: index.php?control=basura_con&mensaje=true");
+                } else {
+                    header("Location: index.php?control=basura_con&mensaje=false");
+                }
+            } else{
                 header("Location: index.php?control=basura_con&mensaje=false");
             }
         } else {
