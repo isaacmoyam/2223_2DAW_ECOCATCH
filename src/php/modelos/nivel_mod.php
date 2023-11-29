@@ -257,5 +257,22 @@ class Nivel_Mod {
 
         $this->cerrarConexion();
     }
+
+    public function ajaxNombreNiveles() {
+        $this->establecerConexion();
+
+        //Consulta para obtener la informacion del campo de nombre en la tabla niveles
+        $sqlNombreNivel = "SELECT nombre FROM nivel;";
+        $resultNombreNivel = $this->mysqli->query($sqlNombreNivel);
+
+        $nombreNivel = array();
+        while ($row = $resultNombreNivel->fetch_assoc()) {
+            $nombreNivel[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return json_encode($nombreNivel);
+    }
 }
 ?>

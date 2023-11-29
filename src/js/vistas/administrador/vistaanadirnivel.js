@@ -1,10 +1,10 @@
-import { Vistaadmin } from '../administrador/vistaadmin.js'
+import { Vistaadmins } from '../administrador/vistaadmins.js'
 
 /**
  * Clase encargada de la Vista 1 del administrador.
- * @extends Vistaadmin
+ * @extends Vistaadmins
  */
-export class Vistaanadirnivel extends Vistaadmin {
+export class Vistaanadirnivel extends Vistaadmins {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.

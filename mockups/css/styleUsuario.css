@@ -13,7 +13,7 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    background-image: url("../img/fondoEcocatch.png");
+    background-image: url("../../src/img/fondoEcocatch.png");
     background-size: cover;
     background-repeat: no-repeat;
 }

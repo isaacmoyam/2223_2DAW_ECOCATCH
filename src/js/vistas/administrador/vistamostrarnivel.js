@@ -1,10 +1,10 @@
-import { Vistaadmin } from '../administrador/vistaadmin.js'
+import { Vistaadmins } from '../administrador/vistaadmins.js'
 
 /**
  * Clase encargada de la Vista 1 del administrador.
- * @extends VistaAdmin
+ * @extends VistaAdmins
  */
-export class Vistamostrarnivel extends Vistaadmin {
+export class Vistamostrarnivel extends Vistaadmins {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -21,15 +21,12 @@ export class Vistamostrarnivel extends Vistaadmin {
    * @returns {void}
    */
   eventos() {
-
     const botonesBorrar = document.querySelectorAll("#botonBorrar");
 
     botonesBorrar.forEach((boton) => {
       boton.addEventListener('click', (event) => super.emergenteBorrar(event));
     });
   }
-
-  
 }
 
 window.onload = () => { new Vistamostrarnivel() }

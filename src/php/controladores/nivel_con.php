@@ -218,5 +218,9 @@ class Nivel_con {
             header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
+
+    public function ajaxNombreNivel() {
+        return $this->obj->ajaxNombreNiveles();
+    }
 }
 ?>

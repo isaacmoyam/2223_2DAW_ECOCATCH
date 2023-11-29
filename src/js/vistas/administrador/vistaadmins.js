@@ -1,18 +1,18 @@
 /**
  * Clase encargada de la Vista del administrador
  */
-export class Vistaadmin {
+export class Vistaadmins {
   /**
      * Creacion de Simbolos de las vistas del administrador
      */
   static {
-    Vistaadmin.VISTAMOSTRARBASURA = Symbol('Vistamostrarbasura')
-    Vistaadmin.VISTAANADIRBASURA = Symbol('Vistaanadirbasura')
-    Vistaadmin.VISTAMODIFICARBASURA = Symbol('Vistamodificarbasura')
+    Vistaadmins.VISTAMOSTRARBASURA = Symbol('Vistamostrarbasura')
+    Vistaadmins.VISTAANADIRBASURA = Symbol('Vistaanadirbasura')
+    Vistaadmins.VISTAMODIFICARBASURA = Symbol('Vistamodificarbasura')
 
-    Vistaadmin.VISTAMOSTRARNIVEL = Symbol('Vistamostrarnivel')
-    Vistaadmin.VISTAANADIRNIVEL = Symbol('Vistaanadirnivel')
-    Vistaadmin.VISTAMODIFICARNIVEL = Symbol('Vistamodificarnivel')
+    Vistaadmins.VISTAMOSTRARNIVEL = Symbol('Vistamostrarnivel')
+    Vistaadmins.VISTAANADIRNIVEL = Symbol('Vistaanadirnivel')
+    Vistaadmins.VISTAMODIFICARNIVEL = Symbol('Vistamodificarnivel')
   }
 
   /**

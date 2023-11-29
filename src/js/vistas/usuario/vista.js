@@ -10,7 +10,7 @@ export class Vista {
     Vista.VISTA2 = Symbol('Ranking')
     Vista.VISTA3 = Symbol('Conoceos')
     Vista.VISTA4 = Symbol('Empezar')
-    Vista.VISTA5 = Symbol('seleccionNivel')
+    Vista.VISTANIVELES = Symbol('seleccionNivel')
     Vista.VISTA6 = Symbol('Jugar')
     Vista.VISTA7 = Symbol('Formulario')
     Vista.VISTA8 = Symbol('PruebaAJAX')
