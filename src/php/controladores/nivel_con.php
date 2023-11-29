@@ -40,7 +40,7 @@ class Nivel_con {
      */
     public function __construct() {
         $this->pagina = "Gestión de niveles";        
-        $this->vista = 'gestionnivel';
+        $this->vista = 'gestion_nivel';
         $this->obj = new Nivel_Mod();
     }
 
@@ -96,7 +96,7 @@ class Nivel_con {
      */
     public function vistaCrear() { 
         $this->pagina = "Crear nivel"; 
-        $this->vista = 'anadirNivel';
+        $this->vista = 'anadir_nivel';
     }
 
     /**
@@ -105,7 +105,7 @@ class Nivel_con {
      */
     public function buscarModificar() { 
         $this->pagina = "Modificar nivel"; 
-        $this->vista = 'modificarNivel';
+        $this->vista = 'modificar_nivel';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 
@@ -203,7 +203,7 @@ class Nivel_con {
      */
     public function buscarMensaje() {
         $this->pagina = "Modificar mensaje"; 
-        $this->vista = 'modificarMensaje';
+        $this->vista = 'modificar_mensaje';
         return $this->obj->buscarMensaje($_GET["id"]);
     }
 

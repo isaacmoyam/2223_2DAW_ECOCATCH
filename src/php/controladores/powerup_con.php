@@ -30,7 +30,7 @@ class Powerup_con
     public function __construct()
     {
         $this->pagina = "Gestión de powerup"; //Titulo que tiene la pagina inicial
-        $this->vista = 'gestionPowerup'; //Nombre de la vista inicial
+        $this->vista = 'gestion_powerup'; //Nombre de la vista inicial
         $this->obj = new Powerup_Mod();
     }
 
@@ -49,7 +49,7 @@ class Powerup_con
      */
     public function buscarModificar() {
         $this->pagina = "Modificar powerup";
-        $this->vista = 'modificarPowerup';
+        $this->vista = 'modificar_powerup';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 

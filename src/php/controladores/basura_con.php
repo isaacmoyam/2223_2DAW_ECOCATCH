@@ -39,7 +39,7 @@ class Basura_con {
     */
     public function __construct() {
         $this->pagina = "Gestión de basura";        
-        $this->vista = 'gestionbasura';
+        $this->vista = 'gestion_basura';
         $this->obj = new Basura_Mod();
     }
 
@@ -65,7 +65,7 @@ class Basura_con {
     */
     public function vistaCrear() { 
         $this->pagina = "Crear basura"; 
-        $this->vista = 'anadirBasura';
+        $this->vista = 'anadir_basura';
     }
 
    /**
@@ -74,7 +74,7 @@ class Basura_con {
     */
     public function buscarModificar() { 
         $this->pagina = "Modificar basura"; 
-        $this->vista = 'modificarBasura';
+        $this->vista = 'modificar_basura';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 
