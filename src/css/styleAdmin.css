@@ -60,16 +60,15 @@ button {
   display: inline-block;
 }
 
-a{
-  transition: transform 0.7s ease;
+a, button, input[type=submit]{
+  transition: transform 0.7s ease-in;
 }
-a:hover{
+a:hover, button:hover, input[type=submit]:hover{
   transform: scale(1.2);
 }
 
 button:hover {
   background-color: #85471f;
-  transition: transform 0.3s ease;
 }
 
 /* Estilo en común de los select */
@@ -122,6 +121,12 @@ nav > a { /*Estilos de los enlaces del navegador*/
   padding: 1% 2% !important;
   font-size: 1.4em;
   box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
+  transition: transform 0.7s ease-in;
+
+}
+
+nav > a:hover{
+  transform: scale(1.2);
 }
 
 /* Estilos del menú y pantalla de configuración antes de empezar */
@@ -194,6 +199,21 @@ main > a {
   border-radius: 9px;
   color: #EDC713;
   background-color: #6D3916;
+  transition: transform 0.7s ease;
+}
+
+#botonMasConfigNiveles:hover,
+#anadirNiveles > a:hover,
+#gestionNiveles > a:hover,
+#niveles > a:hover,
+#gestor > a:hover,
+#gestorM > a:hover,
+#gestorPowerup > a:hover,
+#menu > a:hover,
+nav > a:hover,
+main > a:hover {
+  background-color: black;
+  transform: scale(1.2);
 }
 
 /* Estilos específicos para enlaces en la sección "gestor" (boton +)*/
@@ -514,4 +534,4 @@ select:hover.darkmode,
   #gestionNiveles table {
     font-size: 0.5em; /*Cambiar tamaño de la letra*/
   }
-}/*# sourceMappingURL=styleAdmin.css.map */
+}

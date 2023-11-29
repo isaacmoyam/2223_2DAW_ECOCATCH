@@ -31,9 +31,13 @@ header {
 header > img {
     width: 200px;
     margin: 0 auto 1%;
-    /* box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28); */
+    /* box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28); HA SIDO REEMPLAZADO AL HACER PNG EL LOGO Y NO PODER HACER LA SOMBRA ALREDEDOR DEL CANAL ALFA*/
+    transition: transform 0.5s ease;
 }
 
+header > img:active{
+    animation: imageChange 1s ease forwards;
+}
 
 
 /*
@@ -467,6 +471,12 @@ button.darkmode,
       transform: rotate(360deg);
     }
 }
+
+@keyframes imageChange {
+    to {
+        opacity: 0;
+      }
+  }
 
 /**
     MEDIAS QUERIES
