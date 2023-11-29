@@ -124,6 +124,23 @@ export class Vistajugar extends Vistausuario {
     eventos() {
         this.eventoBarco()
         this.crearBotonPausa()
+        this.audio();
+    }
+
+    audio() {
+        var miAudio = document.getElementById('miAudio');
+        var botonSilencio = document.getElementById('botonSilencio');
+
+        // Evento de clic para el botón de silencio
+        botonSilencio.addEventListener('click', function() {
+            if (miAudio.paused) {
+                // Si está en pausa, reanudar
+                miAudio.play();
+            } else {
+                // Si está reproduciendo, pausar
+                miAudio.pause();
+            }
+        });
     }
 
     /**
