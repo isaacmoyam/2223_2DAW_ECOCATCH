@@ -23,27 +23,23 @@
         <p id="msgCampos"></p>
         <h1>Añadir mensaje</h1>
         <table id="tablaDinamica">
-            <thead>
-                <tr>
-                    <th>Contenido</th>
-                    <th>Puntos Requeridos</th>
-                    <th>Tipo</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>                
-                    <td><input name="contenido[]" type="text" placeholder="Contenido del mensaje"></td>
-                    <td><input name="puntosHasta[]" type="text" placeholder="Puntos requeridos"></td>
-                    <td>
-                        <select name="tipo[]">
-                            <option value="A">Antes del nivel</option>
-                            <option value="B">Durante el nivel</option>
-                            <option value="C">Después del nivel</option>
-                        </select>
-                    </td>
-                </tr>
-            </tbody>
+            <tr>
+                <th>Contenido</th>
+                <th>Puntos Requeridos</th>
+                <th colspan="2">Tipo</th>
+                
+            </tr>
+            <tr>                
+                <td><input name="contenido[]" type="text" placeholder="Contenido del mensaje"></td>
+                <td><input name="puntosHasta[]" type="text" placeholder="Puntos requeridos"></td>
+                <td colspan="2">
+                    <select name="tipo[]">
+                        <option value="A">Antes del nivel</option>
+                        <option value="B">Durante el nivel</option>
+                        <option value="C">Después del nivel</option>
+                    </select>
+                </td>
+            </tr>
         </table>
         <button type="button" id="btnAgregarFila">Agregar mensaje</button>
         <input type="submit" value="Añadir nivel">

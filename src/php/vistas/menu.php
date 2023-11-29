@@ -10,8 +10,11 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 ?>
-<div id="menu">
-    <a href="index.php?control=nivel_con">Administrar Niveles</a>
-    <a href="index.php?control=basura_con">Administrar Basura</a>
-    <a href="index.php?control=powerup_con">Administrar PowerUps</a>
+<div id="contenedorMenu" class="bb">
+    <div id="menu">
+        <a href="index.php?control=nivel_con">Administrar Niveles</a>
+        <a href="index.php?control=basura_con">Administrar Basura</a>
+        <a href="index.php?control=powerup_con">Administrar PowerUps</a>
+    </div>
 </div>
+
