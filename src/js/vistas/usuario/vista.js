@@ -9,7 +9,7 @@ export class Vista {
     Vista.VISTA1 = Symbol('Index')
     Vista.VISTA2 = Symbol('Ranking')
     Vista.VISTA3 = Symbol('Conoceos')
-    Vista.VISTA4 = Symbol('Empezar')
+    Vista.VISTAEMPEZAR = Symbol('Empezar')
     Vista.VISTANIVELES = Symbol('seleccionNivel')
     Vista.VISTA6 = Symbol('Jugar')
     Vista.VISTA7 = Symbol('Formulario')
@@ -27,7 +27,7 @@ export class Vista {
   }
 
   /**
-	 * Muestra u oculta tu constula
+	 * Muestra u oculta tu consulta
 	 * @param ver {Boolean} Indica si la vista debe mostrarse (true) u ocultarse (false)
 	 */
   mostrar (ver) {

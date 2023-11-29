@@ -38,7 +38,7 @@ export class Vista1 extends Vista {
   pulsarEnlace (numVista) {
     switch (numVista) {
       case 4:
-        this.controlador.verVista(Vista.VISTA4)
+        this.controlador.verVista(Vista.VISTAEMPEZAR)
         break
       case 2:
         this.controlador.verVista(Vista.VISTA2)
