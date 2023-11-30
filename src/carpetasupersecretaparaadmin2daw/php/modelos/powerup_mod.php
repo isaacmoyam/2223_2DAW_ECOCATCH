@@ -45,13 +45,6 @@ class Powerup_Mod
         }
     }
 
-    /**
-     * Establece unos valores por defecto en la base de datos para los powerup
-     * @return void
-     */
-    public function valoresPorDefecto(){
-
-    }
 
     /**
      * Consulta la información del power up.
@@ -135,6 +128,14 @@ class Powerup_Mod
         }
 
         $this->cerrarConexion();
+    }
+
+    /**
+     * Establece unos valores por defecto en la base de datos para los powerup
+     * @return void
+     */
+    public function valoresPorDefecto(){
+
     }
 
     /**

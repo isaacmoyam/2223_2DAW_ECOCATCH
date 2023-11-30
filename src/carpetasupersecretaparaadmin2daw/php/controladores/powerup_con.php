@@ -98,6 +98,9 @@ class Powerup_con
         }
     }
 
+    public function restarurarValoresPowerup(){
+        $this->obj->valoresPorDefecto();
+    }
 
     /**
      * Manda los datos de powerup a través de AJAX.
