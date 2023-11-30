@@ -1,5 +1,5 @@
 <main id="gestor">
-    <a id="btnVolver" href="index.php?control=powerup_con">Volver</a>
+    <h1>Modificación Powerup</h1>
     <?php
     $fila = $datosVista["datos"];
     ?>

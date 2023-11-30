@@ -285,7 +285,7 @@ class Nivel_Mod {
     public function ajaxMensajesNiveles() {
 
     }
-
+//SELECT m.contenido FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel=2;
     /**
      * Recoge datos del campo nombre del nivel y los retorna al controlador en json.
      */

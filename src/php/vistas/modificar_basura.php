@@ -13,12 +13,12 @@
 // Sección HTML para la interfaz de modificación de basura.
 ?>
 <main id="gestorM">
-    <a href="index.php?control=basura_con">Volver</a>
+    <h1>Modificación Basura</h1>
     <?php
         $fila = $datosVista["datos"];
     ?>
     <!--enctype="multipart/form-data" es para que se pueda pasar el FILE -->
-    <form enctype="multipart/form-data" action="index.php?control=basura_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
+    <form id="formBasura" enctype="multipart/form-data" action="index.php?control=basura_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
         <label>Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $fila['nombre'];?>" placeholder="Nombre basura">
         <label>Valor:</label>
