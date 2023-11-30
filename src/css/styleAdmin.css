@@ -128,7 +128,7 @@ nav > a { /*Estilos de los enlaces del navegador*/
 #menu {
   background-color: #326F1E;
   font-size: 1.4em;
-  text-align: center;
+  text-align: justify;
   border-radius: 30px;
   border: solid 2px;
   padding: 2%;
@@ -137,6 +137,15 @@ nav > a { /*Estilos de los enlaces del navegador*/
   margin: 0 auto;
   overflow: visible;
   box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
+}
+
+#menu > p{
+  padding: 10px;
+  line-height: 1.1;
+}
+
+#menu > p > p{
+  text-align: center;
 }
 
 /*Aspecto alargado de algunos enlaces*/
@@ -306,7 +315,7 @@ label{
 }
 
 #tablaPowerup th:nth-child(5) {
-  width: 15%;
+  width: 35%;
 }
 
 #tablaDinamica th:nth-child(2) > input[type=text] {

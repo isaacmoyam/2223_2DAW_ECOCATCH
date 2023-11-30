@@ -14,8 +14,7 @@
     <p>
         Bienvenido al panel de administrador, el corazón de Ecocatch, 
         donde la magia de la gestión ambiental cobra vida. Aquí, tienes 
-        el poder de dar forma al futuro sostenible, nivel por nivel, 
-        basura por basura y powerup por powerup.
+        el poder de dar forma al futuro sostenible, paso a paso.
     </p>   
     <p>
         Gestiona con sabiduría los niveles para desafiar a nuestros 
@@ -31,7 +30,7 @@
     <p>
         Gracias por ser parte de Ecocatch y por contribuir a un 
         mundo más verde. Tu dedicación en el panel de administrador 
-        es clave para el éxito de nuestra misión. ¡Adelante, líder ambiental! 🌍💚
+        es clave para el éxito de nuestra misión. ¡Adelante, líder ambiental! <p>🌍💚</p>
     </p>
 </div>
 
