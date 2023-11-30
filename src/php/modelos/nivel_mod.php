@@ -280,8 +280,16 @@ class Nivel_Mod {
     }
 
     /**
+     * Recoge datos del contenido de los mensajes de un nivel determinado y los retorna al controlador en json.
+     */
+    public function ajaxMensajesNiveles() {
+
+    }
+
+    /**
      * Recoge datos del campo nombre del nivel y los retorna al controlador en json.
      */
+    /*PENDIENTE DE SER QUITADO
     public function ajaxNombreNiveles() {
         $this->establecerConexion();
 
@@ -297,6 +305,6 @@ class Nivel_Mod {
         $this->cerrarConexion();
 
         return json_encode($nombreNivel);
-    }
+    }*/
 }
 ?>

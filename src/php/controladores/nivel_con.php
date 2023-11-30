@@ -242,11 +242,20 @@ class Nivel_con {
     }
 
     /**
+     * Manda todos los mensajes que tiene un nivel determinado.
+     * @return mixed
+     */
+    public function ajaxMensajesNivel() {
+        return $this->obj->ajaxMensajesNiveles();
+    }
+
+    /**
      * Manda los datos de los nombres de los niveles a través de AJAX.
      * @return mixed
      */
+    /*PENDIENTE DE SER QUITADO
     public function ajaxNombreNivel() {
         return $this->obj->ajaxNombreNiveles();
-    }
+    }*/
 }
 ?>
