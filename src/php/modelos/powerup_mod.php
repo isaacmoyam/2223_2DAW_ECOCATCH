@@ -51,17 +51,105 @@ class Powerup_Mod
      */
     public function mostrar() {
         $this->establecerConexion();
-        $sql = "SELECT p.id, i.nombre, i.nombreImagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id = i.id";
+        $sql = "SELECT p.id, i.nombre, i.imagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id = i.id";
+
         $result = $this->mysqli->query($sql);
 
-        $basuras = array();
+        $powerups = array();
         while ($row = $result->fetch_assoc()) {
-            $basuras[] = $row;
+            $row['imagen'] = base64_encode($row['imagen']); //Para modificar los datos de la imagen en base 64
+            $powerups[] = $row;
         }
 
         $this->cerrarConexion();
 
-        return $basuras;
+        return $powerups;
     }
 
+    /**
+     * Busca un powerup con un ID específico para modificar.
+     * @param int $id
+     * @return array
+     */
+    public function buscarModificar($id) {
+        $this->establecerConexion();
+        $sql = 'SELECT p.id, i.nombre, i.imagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id=i.id WHERE i.id='.$id;
+        $result = $this->mysqli->query($sql);
+
+        $this->cerrarConexion();
+
+        $fila = $result->fetch_assoc();
+
+        $fila['imagen'] = base64_encode($fila['imagen']); //Cambio datos recogidos de imagen en codificacion base64
+
+        return $fila;
+    }
+
+    /**
+     * Modifica un powerup con un ID específico.
+     * @param int $id
+     * @param string $nombre
+     * @param string $imagen
+     * @param int $aumento
+     * @return bool
+     */
+    public function modificar($id, $nombre, $imagen, $aumento, $descripcion) {
+        $this->establecerConexion();
+
+        //Quitar comillas en la imagen
+        $img = $this->mysqli->real_escape_string($imagen);
+
+        try {
+            $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$img.'" WHERE id = '.$id;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
+
+
+        $this->cerrarConexion();
+
+        $this->establecerConexion();
+
+        try {
+            /*
+             * Se ha usado una expresion ternaria. En esta expresion se comprueba la condicion
+             * $descripcion === "" que evalua si descripcion es una cadena vacia.
+             * Esto esta separado por el caracter :, el cual separa
+             * si la condicion es verdadera devuelve null y en casso contrario devuelve '"'.$descripcion.'"'
+             * */
+            $sql = 'UPDATE powerup SET aumento = '.$aumento.' ,descripcion = '.($descripcion === "" ? 'NULL' : '"'.$descripcion.'"').'  WHERE id = '.$id;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error; //Si hay un error devulve true
+        }
+
+        $this->cerrarConexion();
+    }
+
+    /**
+     * Recoge datos de power-ups y los retorna al controlador en json.
+     */
+    public function ajaxDatosPowerup() {
+        $this->establecerConexion();
+
+        /*
+         * Consulta para obtener información de power-ups
+         * Descripcion no se manda dado que no se necesitara para nada
+         * */
+        $sqlPowerup = "SELECT p.id, i.nombre, i.imagen, p.aumento FROM powerup p INNER JOIN item i on p.id = i.id";
+        $resultPowerup = $this->mysqli->query($sqlPowerup);
+
+        $powerups = array();
+        while ($row = $resultPowerup->fetch_assoc()) {
+            $row['imagen'] = base64_encode($row['imagen']);
+            $powerups[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return json_encode($powerups);
+    }
 }

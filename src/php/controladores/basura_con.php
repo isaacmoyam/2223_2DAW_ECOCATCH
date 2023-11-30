@@ -39,7 +39,7 @@ class Basura_con {
     */
     public function __construct() {
         $this->pagina = "Gestión de basura";        
-        $this->vista = 'gestionbasura';
+        $this->vista = 'gestion_basura';
         $this->obj = new Basura_Mod();
     }
 
@@ -47,11 +47,22 @@ class Basura_con {
     * Crea una nueva basura.
     */
     public function crear() {
-        if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_POST["valor"])) {
-            $resultado = $this->obj->crear($_POST["nombre"],$_POST["imagen"],$_POST["valor"]);
-            if(!$resultado) {
-                header("Location: index.php?control=basura_con&mensaje=true");
-            } else {
+        if(isset($_POST["nombre"]) && isset($_FILES['imagen']['tmp_name'])  && isset($_POST["valor"]) && !empty($_POST["valor"]) && !empty($_FILES['imagen']['tmp_name'])) {
+
+            $imgEnBinario = file_get_contents($_FILES['imagen']['tmp_name']); //Obtiene el contenido de la imagen, el cual esta en binario
+
+            $extensionPermitida = 'png';
+            $infoArchivo = pathinfo($_FILES['imagen']['name']);
+            $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
+
+            if ($extensionArchivo == $extensionPermitida) {
+                $resultado = $this->obj->crear($_POST["nombre"],$imgEnBinario,$_POST["valor"]);
+                if(!$resultado) {
+                    header("Location: index.php?control=basura_con&mensaje=true");
+                } else {
+                    header("Location: index.php?control=basura_con&mensaje=false");
+                }
+            } else{
                 header("Location: index.php?control=basura_con&mensaje=false");
             }
         } else {
@@ -65,7 +76,7 @@ class Basura_con {
     */
     public function vistaCrear() { 
         $this->pagina = "Crear basura"; 
-        $this->vista = 'anadirBasura';
+        $this->vista = 'anadir_basura';
     }
 
    /**
@@ -74,7 +85,7 @@ class Basura_con {
     */
     public function buscarModificar() { 
         $this->pagina = "Modificar basura"; 
-        $this->vista = 'modificarBasura';
+        $this->vista = 'modificar_basura';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 
@@ -82,11 +93,21 @@ class Basura_con {
     * Modifica una basura existente.
     */
     public function modificar() {
-        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_POST["valor"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"])) {
-            $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $_POST["imagen"], $_POST["valor"]);
-            if(!$resultado) {
-                header("Location: index.php?control=basura_con&mensaje=true");
-            } else {
+        if(isset($_GET["id"]) && isset($_POST["nombre"]) && isset($_FILES['imagen']['tmp_name']) && isset($_POST["valor"]) && !empty($_GET["id"]) && !empty($_POST["nombre"]) && !empty($_POST["valor"]) && !empty($_FILES['imagen']['tmp_name'])) {
+            $imgEnBinario = file_get_contents($_FILES['imagen']['tmp_name']); //Obtiene el contenido de la imagen, el cual esta en binario
+
+            $extensionPermitida = 'png';
+            $infoArchivo = pathinfo($_FILES['imagen']['name']);
+            $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
+
+            if ($extensionArchivo == $extensionPermitida) {
+                $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["valor"]);
+                if(!$resultado) {
+                    header("Location: index.php?control=basura_con&mensaje=true");
+                } else {
+                    header("Location: index.php?control=basura_con&mensaje=false");
+                }
+            } else{
                 header("Location: index.php?control=basura_con&mensaje=false");
             }
         } else {
@@ -111,11 +132,11 @@ class Basura_con {
     }
 
    /**
-    * Manda datos a través de AJAX.
+    * Manda los datos de basura a través de AJAX.
     * @return mixed
     */
-    public function ajax() {
-        return $this->obj->ajax();
+    public function ajaxBasura() {
+        return $this->obj->ajaxDatosBasura();
     }
 }
 ?>
