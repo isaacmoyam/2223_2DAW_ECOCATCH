@@ -98,6 +98,7 @@ class Powerup_con
         }
     }
 
+    /**/
     public function restarurarValoresPowerup(){
         $this->obj->valoresPorDefecto();
     }

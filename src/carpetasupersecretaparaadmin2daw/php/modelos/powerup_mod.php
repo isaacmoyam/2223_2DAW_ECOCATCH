@@ -131,10 +131,11 @@ class Powerup_Mod
     }
 
     /**
-     * Establece unos valores por defecto en la base de datos para los powerup
+     * Establece unos valores por defecto en la base de datos para los powerup.
+     * Para ello primero borra las filas existentes de powerup (si hay) y despues inserta los valores por defecto.
      * @return void
      */
-    public function valoresPorDefecto(){
+    public function valoresPorDefecto($imagen){
 
     }
 

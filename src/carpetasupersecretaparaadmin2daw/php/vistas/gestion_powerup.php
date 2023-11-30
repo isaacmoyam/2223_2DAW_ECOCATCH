@@ -42,6 +42,6 @@
         }
         ?>
     </table>
-    <button>Restaurar de fábrica</button>
+    <a href="index.php?control=powerup_con&metodo=restarurarValoresPowerup">Restaurar valores por defecto</a>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>
