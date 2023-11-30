@@ -31,6 +31,7 @@ export class Vistaniveles extends Vistausuario {
       boton.textContent = elemento.nombre
       boton.style.marginRight = "2%" 
       boton.onclick = function() {
+        localStorage.setItem('id', elemento.id);
         localStorage.setItem('nombreLvl', elemento.nombre);
         localStorage.setItem('items', elemento.cantidadItems);
         localStorage.setItem('velocidad', elemento.velocidadBarco);

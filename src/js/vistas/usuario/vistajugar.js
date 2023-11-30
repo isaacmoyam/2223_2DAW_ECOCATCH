@@ -16,6 +16,7 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
         this.eventos()
         this.iniciarJuegoManzanas()
+        this.id = localStorage.getItem('id')
         this.velocidad = localStorage.getItem('velocidad')
         this.nombre = localStorage.getItem('nombreLvl')
         const nombreNivel = document.getElementById("nombreNivel")
@@ -126,6 +127,7 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     eventos() {
+        super.modoOscuro()
         this.eventoBarco()
         this.crearBotonPausa()
         this.audio()

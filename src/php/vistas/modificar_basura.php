@@ -17,17 +17,18 @@
     <?php
         $fila = $datosVista["datos"];
     ?>
-    <form action="index.php?control=basura_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST" id="formBasura">
-        <label for="nombre">Nombre:</label>
+    <!--enctype="multipart/form-data" es para que se pueda pasar el FILE -->
+    <form id="formBasura" enctype="multipart/form-data" action="index.php?control=basura_con&metodo=modificar&id=<?php echo $fila['id'];?>" method="POST">
+        <label>Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $fila['nombre'];?>" placeholder="Nombre basura">
-        <label for="valor">Valor:</label>
+        <label>Valor:</label>
         <input type="text" name="valor" value="<?php echo $fila['valor'];?>" placeholder="Puntuación">
-        <label for="imagen">Imagen:</label>
-        <input type="file" name="imagen" value="<?php echo $fila['nombreImagen'];?>">
-        <img id="imagenMiniatura">
+        <label>Imagen Actual:</label>
+        <img src="data:image/png;base64,<?php echo $fila['imagen'];?>" alt="Imagen Actual">
+        <label>(*) Imagen:</label>
+        <input type="file" name="imagen">
         <p id="msgCampos"></p>
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
 <script src="js/vistas/administrador/vistamodificarbasura.js" type="module"></script>
-

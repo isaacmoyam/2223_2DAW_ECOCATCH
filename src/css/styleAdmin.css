@@ -1,321 +1,356 @@
+@charset "UTF-8";
 /* Estilos generales de la página */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Linefont:wght@100&display=swap");
 
 body {
-    background-color: #488531;
-    padding: 1% 0;
-    font-family: Fredoka;
-    color: #EDC713;
-    width: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
+  background-color: #488531;
+  padding: 1% 0;
+  font-family: Fredoka;
+  color: #EDC713;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Estilos del formulario de datos del ranking */
 form {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form > input {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 form > input[type=number] {
-    width: 85px;
+  width: 85px;
 }
 
 form > input[type=submit] {
-    margin-top: 60px;
-    border: solid 1px black;
-    border-radius: 9px;
-    color: #EDC713;
-    background-color: #6D3916;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    font-family: Fredoka;
+  margin-top: 60px;
+  border: solid 1px black;
+  border-radius: 9px;
+  color: #EDC713;
+  background-color: #6D3916;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: Fredoka;
 }
-
 
 form > input[type=submit]:hover {
-    background-color: #85471f;
+  background-color: #85471f;
 }
-
 
 /*botones*/
 /*Estilo común para los botones*/
+
+a, button, input[type=submit] {
+  text-decoration: none;
+  padding: 0.6%;
+  border: solid 1px black;
+  border-radius: 9px;
+  color: #EDC713;
+  background-color: #6D3916;
+  transition: transform 0.7s ease;
+  font-family: Fredoka;
+}
+
 button {
-    border: solid 1px black;
-    color: #EDC713;
-    border-radius: 9px;
-    background-color: #6D3916;
-    cursor: pointer;
-    font-family: Fredoka;
-    font-size: 1.4em;
-    width: 30%;
-    padding: 2%;
+  cursor: pointer;
+  font-size: 1.4em;
+  width: 30%;
+  padding: 2%;
+  display: inline-block;
+}
+a:hover, button:hover, input[type=submit]:hover{
+  transform: scale(1.1);
 }
 
 button:hover {
-    background-color: #85471f;
+  background-color: #85471f;
 }
 
 /* Estilo en común de los select */
 select {
-    padding: 2% 3%;
-    font-size: 0.7em;
-    color:#EDC713;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    background-color: #6D3916;
-    cursor: pointer;
-    font-family: Fredoka;
-    margin: 2% 0%;
+  padding: 2% 3%;
+  font-size: 0.7em;
+  color: #EDC713;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #6D3916;
+  cursor: pointer;
+  font-family: Fredoka;
+  margin: 2% 0%;
 }
 
 select:hover {
-    background-color: #85471f;
+  background-color: #85471f;
 }
 
 option {
-    font-family: Fredoka;
-    font-size: 1.5em;
+  font-family: Fredoka;
+  font-size: 1.5em;
 }
 
 /* Estilos del header donde va el logo */
 header {
-    text-align: center;
-    margin: 0 auto;
-    width:50%;
+  text-align: center;
+  margin: 0 auto;
+  width: 50%;
 }
 
-
 header > img {
-    width: 200px;
-    margin: 0 auto 1%;
-    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+  width: 200px;
+  margin: 0 auto 1%;
+  /* box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28); */
 }
 
 /*Navegador*/
-nav{
-    width: 50%;
-    margin: 2% auto;
-    text-align: center;
+nav {
+  width: 50%;
+  margin: 2% auto;
+  text-align: center;
 }
 
-nav > a{ /*Estilos de los enlaces del navegador*/
-    margin: 0% 2%;
-    /*Como en lineas posteriores hay otro sitio donde aparece nav > a y este sitio tiene un padding si no le pongo el important
-    el padding que hay aqui puesto no srive para nada por que el que es valido es el otro dado que se sobreescribe pero el que me interesa es este
-    por ese motivo se ha puesto el !important, para indicar que este es el padding que tiene que tener prioridad*/
-    padding: 1% 2% !important;
-    font-size: 1.4em;
+nav > a { /*Estilos de los enlaces del navegador*/
+  margin: 0% 2%;
+  padding: 1% 2%;
+  font-size: 1.4em;
+  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
+
 }
 
 /* Estilos del menú y pantalla de configuración antes de empezar */
-
 #menu {
-    background-color: #326F1E;
-    font-size: 1.4em;
-    text-align: center;
-    border-radius: 30px;
-    border: solid 2px;
-    padding-bottom: 2%;
-    width: 45%;
-    margin: 0 auto;
-    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+  background-color: #326F1E;
+  font-size: 1.4em;
+  text-align: center;
+  border-radius: 30px;
+  border: solid 2px;
+  padding-bottom: 2%;
+  width: 45%;
+  margin: 0 auto;
+  overflow: visible;
+  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
 }
 
 /*Aspecto alargado de algunos enlaces*/
-#menu > a{
-    display: block;
-    width:40%;
-    margin: 7% auto 0;
+#menu > a {
+  display: block;
+  width: 40%;
+  margin: 7% auto 0;
 }
 
-#volverMoverMensaje{
-    display: block;
-    width:20%;
-    margin: 6% auto 0;
+#volverMoverMensaje {
+  display: block;
+  width: 20%;
+  margin: 6% auto 0;
 }
 
 /*MAIN*/
 /* Estilos de las secciones main de la página */
-  /*Main pagina anadirNiveles*/
-#configMensajes, /*Main pagina configMensajes*/
-#gestionNiveles, /*Main pagina configNiveles*/
-#movMsg,         /*Main pagina moverMEnsaje*/
-#niveles,        /*Main pagina niveles*/
+/*Main pagina anadirNiveles*/
+#configMensajes,
+#gestionNiveles,
+#movMsg,
+#niveles,
+#gestorPowerup,
 #gestor,
-#gestorM{
-    background-color: #326F1E;
-    font-size: 1.4em;
-    text-align: center;
-    border-radius: 30px;
-    border: solid 2px;
-    padding-bottom: 3%;
-    width: 55%;
-    margin: 0 auto;
-    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
-}
-
-#imagenMiniatura {
-    width:100px;
-    height:100px;
+#gestorM {
+  background-color: #326F1E;
+  font-size: 1.4em;
+  text-align: center;
+  border-radius: 30px;
+  border: solid 2px;
+  padding-bottom: 3%;
+  width: 55%;
+  margin: 0 auto;
+  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
 }
 
 #anadirNiveles,
-#configMensajes{
-    width: 50%;  /*Pongo un tamaño en específico para ocasiones determinadas como configMensajes y añadirNiveles en donde quedaba mucho espacio libre*/
+#configMensajes {
+  width: 50%; /*Pongo un tamaño en específico para ocasiones determinadas como configMensajes y añadirNiveles en donde quedaba mucho espacio libre*/
 }
 
 /* Estilos de los enlaces en las secciones */
-#botonMasConfigNiveles, /*Boton + de la pagina configNiveles*/
+#botonMasConfigNiveles,
 #anadirNiveles > a,
 #gestionNiveles > a,
 #niveles > a,
 #gestor > a,
 #gestorM > a,
+#gestorPowerup > a,
 #menu > a,
 nav > a,
-main > a{
-    text-decoration: none;
-    padding: 0.6%;
-    border: solid 1px black;
-    border-radius: 9px;
-    color: #EDC713;
-    background-color: #6D3916;
+main > a {
+  text-decoration: none;
+  padding: 0.6%;
+  border: solid 1px black;
+  border-radius: 9px;
+  color: #EDC713;
+  background-color: #6D3916;
+  transition: transform 0.7s ease;
 }
 
-
-
-/* Estilos específicos para enlaces en la sección "gestor" (boton +)*/
 #niveles > a:nth-child(2),
 #gestor > a:nth-child(2) {
-    left: 32.5%;
-    width:4%;
-    display: inline-block;
+  left: 32.5%;
+  width: 4%;
+  display: inline-block;
 }
 
 /* Posicionamiento relativo para los enlaces de las diferentes secciones */
 #niveles > a,
 #gestor > a,
-#gestorM > a{
-    position: relative;
+#gestorPowerup > a,
+#gestorM > a {
+  position: relative;
 }
 
-/*Boton Volver*/
+h1{
+  margin-top: 50px;
+  padding: 20px;
+}
+
 /* Posicionamiento específico de enlaces en la sección "gestor" (boton volver)*/
 #niveles > a,
+#gestorPowerup > a,
 #gestor > a {
-    right: 28.3%;
-    bottom: 20px;
+  right: 28.3%;
+  bottom: 20px;
 }
 
 /*Boton + pagina configuracionNiveles*/
-#botonMasConfigNiveles{
-    position: relative;
-    left: 32.5%;
-    width:4%;
-    display: inline-block;
-    right: 28.3%;
-    bottom: 20px;
+#botonMasConfigNiveles {
+  position: relative;
+  left: 32.5%;
+  width: 4%;
+  display: inline-block;
+  right: 28.3%;
+  bottom: 20px;
 }
 
 /*Quitar linea de enlace de los emoticonos (papelera, lapiz...) en las tablas*/
-#gestionNiveles  table a,
+#gestionNiveles table a,
 #niveles > table a,
+#gestorPowerup > table a,
 #gestor > table a {
-    text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
+  text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
 }
 
+/* 
+    --------------------------ESTILOS TABLAS-----------------------------------
+*/
+table {
+  background-color: #6D3916;
+  margin: 0 auto 5%;
+  border: solid 1px black;
+  border-collapse: collapse;
+  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
+  width: 85%;
+}
+
+th,
+td {
+  border: solid 1px black;
+  padding: 1.5%;
+  text-align: center;
+  vertical-align: middle;
+}
 #gestorM > a {
-    right: 42%;
-    top: 45px;
+  right: 42%;
+  top: 45px;
 }
 
-/* Estilos de tablas en las secciones "niveles" y "gestor" */
-
-#niveles > table,
-#gestor table {
-    background-color: #6D3916;
-    margin: 0 auto 5%;
-    border: solid 1px black;
-    border-collapse: collapse;
-    width: 60%;
+.btnQuitarFila {
+  background-color: transparent;
+  border: none;
 }
 
-#gestionNiveles  table{
-    background-color: #6D3916;
-    margin: 0 auto 5%;
-    border: solid 1px black;
-    border-collapse: collapse;
-    width: 80%;
+table img{
+  width: 60px;
 }
 
-/* Estilos para celdas de tablas en "gestor" */
-#gestor th,
-#gestor td {
-    border: solid 1px black;
-    padding: 2%;
-    text-align: center;
-}
-
-
-#niveles  th,
-#niveles  td{  /*Casillas de las tablas (th y td) con el id niveles*/
-    /*Aqui le ponemos un tamaño al width de la tabla, un borde, el padding y que el texto esté centrado*/
-    width: 20%;
-    border: solid 1px black;
-    padding: 2%;
-    text-align: center;
+label{
+  margin: 10px  ;
 }
 
 /*Tabla de la parte de mensajes de la página configNiveles*/
 #gestionNiveles th,
-#gestionNiveles td{
-    width: 20%;
-    border: solid 1px black;
-    padding: 2%;
-    text-align: center;
+#gestionNiveles td {
+  border: solid 1px black;
+  padding: 1%;
+  text-align: center;
 }
 
-/*Quiero que el pimer hijo de su contenedor (tr) sea un poco mas grnade puesto que como se van a ver los mensajes necesitara mas espacio*/
-#gestionNiveles th:first-child,
-#gestionNiveles td:first-child{
-    width: 30%;
-}
-/*Quiero que el tercer hijo de su contenedor (tr) sea un poco mas pequeño dado que como va a mostrar el tipo necesitara menso espacio*/
-#gestionNiveles th:nth-child(3),
-#gestionNiveles td:nth-child(3){
-    width: 10%;
+#tablaPowerup th:first-child {
+  width: 35%;
 }
 
+#tablaPowerup th:first-child{
+  width: 10%;
+}
+
+#tablaPowerup th:nth-child(2) {
+  width: 30%;
+}
+
+#tablaPowerup th:nth-child(3) {
+  width: 15%;
+}
+
+#tablaPowerup th:nth-child(5) {
+  width: 15%;
+}
+
+#tablaDinamica th:nth-child(2) > input[type=text] {
+  width: 15%;
+}
+
+#tablaDinamica th:nth-child(3) {
+  width: 40%;
+}
+
+#tablaDinamica td:nth-child(4) {
+  width: 15%;
+}
+
+#gestionNiveles th:first-child {
+  width: 45%;
+}
+
+#gestionNiveles th:nth-child(3) {
+  width: 20%;
+}
+
+#gestionNiveles th:nth-child(4) {
+  width: 15%;
+}
+
+#gestionNiveles td:nth-child(3) > input {
+  width: 30%;
+}
 
 /* Estilos para el juego */
 #juego {
-    background-color: rgb(54, 138, 233);
+  background-color: rgb(54, 138, 233);
 }
 
 /* Estilos para página conócenos */
-
 main {
-    background-color: #326F1E;
-    font-size: 1.2em;
-    text-align: center;
-    border-radius: 30px;
-    border: solid 2px;
-    padding-bottom: 5%;
-    width: 80%;
-    margin: 0 auto;
-    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+  background-color: #326F1E;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 30px;
+  border: solid 2px;
+  padding-bottom: 5%;
+  margin: 0 auto;
+  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
 }
-
-
 
 /* Estilo al pasar el cursor por encima de los enlaces*/
 #niveles > a:hover,
@@ -323,26 +358,26 @@ main {
 nav > a:hover,
 main > a:hover,
 #gestor > a:hover,
+#gestorPowerup > a:hover,
 #gestorM > a:hover {
-    background-color: #85471f;
+  background-color: #85471f;
 }
-
-
 
 /*
     MODO OSCURO
     Apartado en donde se pondran todos los atributos relacionados con el modo oscuro
 */
 header > img.darkmode {
-    border: 2px solid #deca65;
+  border: 2px solid #deca65;
 }
 
 select.darkmode,
 button.darkmode:hover,
 #gestor.darkmode,
+#gestorPowerup.darkmode,
 #gestorM.darkmode,
 #menu.darkmode {
-    background-color: #16330c;
+  background-color: #16330c;
 }
 
 main > a.darkmode,
@@ -351,8 +386,9 @@ select.darkmode,
 button.darkmode,
 form > input[type=submit].darkmode,
 #gestor > a.darkmode,
-#gestorM > a.darkmode{
-    color: #deca65;
+#gestorPowerup > a.darkmode,
+#gestorM > a.darkmode {
+  color: #deca65;
 }
 
 main > a.darkmode,
@@ -361,7 +397,7 @@ body.darkmode,
 #gestor > a.darkmode,
 #gestorM > a.darkmode,
 #gestor table.darkmode {
-    background-color: #0a1905;
+  background-color: #0a1905;
 }
 
 main > a.darkmode,
@@ -370,10 +406,9 @@ button.darkmode,
 form > input[type=submit].darkmode,
 #gestor > a.darkmode,
 #gestorM > a.darkmode,
-#gestor table.darkmode
-#gestor th.darkmode,
+#gestor table.darkmode #gestor th.darkmode,
 #gestor td.darkmode {
-    border: 1px solid #deca65;
+  border: 1px solid #deca65;
 }
 
 /*Color de los enlaces cuando pasas el cursor por encima de ellos en el modo oscuro*/
@@ -385,99 +420,87 @@ form > input[type=submit].darkmode:hover,
 select:hover.darkmode,
 #menu > a.darkmode:hover,
 #gestor > a.darkmode:hover,
-#gestorM > a.darkmode:hover{
-    background-color: #253d1d;
+#gestorM > a.darkmode:hover {
+  background-color: #253d1d;
 }
-
-
-
 
 /**
     MEDIAS QUERIES
     Implementado con Media Queries Level 4
  */
 @media (width <= 1804px) {
-    header > img {
-        width: 190px;
-    }
+  header > img {
+    width: 190px;
+  }
 }
-
 @media (width <= 1502px) {
-    header > img {
-        width: 185px;
-    }
+  header > img {
+    width: 185px;
+  }
 }
-
 @media (max-width <= 1352px) {
-    header > img {
-        width: 180px;
-    }
-
-    /*pagina indice admin*/
-    #menu > a{
-        width: 50%;
-    }
-
-    #niveles,
-    #gestor{
-        font-size: 1.1em; /*Cambiar tamaño de la letra*/
-    }
+  header > img {
+    width: 180px;
+  }
+  /*pagina indice admin*/
+  #menu > a {
+    width: 50%;
+  }
+  #niveles,
+  #gestor {
+    font-size: 1.1em; /*Cambiar tamaño de la letra*/
+  }
 }
-
 @media (width <= 1206px) {
-    header > img {
-        width: 120px;
-    }
-
-    nav > a{ /*Estilos de los enlaces del navegador*/
-        margin: 0% 1%;
-    }
-
-    /*Cambiar el tamaño de la letra de la tabla de gestion de niveles*/
-    #gestionNiveles  table{
-        font-size: 0.8em;
-    }
-
-    nav > a,
-    #gestor,
-    #niveles {
-        font-size: 1em; /*Cambiar tamaño de la letra*/
-    }
+  header > img {
+    width: 120px;
+  }
+  nav > a { /*Estilos de los enlaces del navegador*/
+    margin: 0% 1%;
+  }
+  /*Cambiar el tamaño de la letra de la tabla de gestion de niveles*/
+  #gestionNiveles table {
+    font-size: 0.8em;
+  }
+  nav > a,
+  #gestor,
+  #niveles {
+    font-size: 1em; /*Cambiar tamaño de la letra*/
+  }
 }
-
 @media (width <= 930px) {
-    header > img {
-        width: 80px;
-    }
-
-    /*Cambiar el tamaño de la letra y ancho de la tabla de gestion de niveles*/
-    #gestionNiveles  table{
-        width: 90%;
-    }
-
-    #gestorM > a {
-        right: 30%;
-    }
-
-    #menu > a{
-        width:70%;
-    }
-
-    main img {
-        width:150px;
-        height:150px;
-    }
-
-    /*Reducir el tamaño de funete a 1 em*/
-    #gestorM, #menu, #configMensajes, #gestionNiveles, #anadirNiveles, #movMsg {
-        font-size: 1em;
-    }
-
-    /*Modificacion del tamaño de la fuente a 0.5 em*/
-    nav > a,
-    #gestor,
-    #niveles,
-    #gestionNiveles  table{
-        font-size: 0.5em; /*Cambiar tamaño de la letra*/
-    }
+  header > img {
+    width: 80px;
+  }
+  /*Cambiar el tamaño de la letra y ancho de la tabla de gestion de niveles*/
+  #gestionNiveles table {
+    width: 90%;
+  }
+  #gestorM > a {
+    right: 30%;
+  }
+  #menu > a {
+    width: 70%;
+  }
+  main img {
+    width: 150px;
+    height: 150px;
+  }
+  /*Reducir el tamaño de funete a 1 em*/
+  #gestorM, #menu, #configMensajes, #gestionNiveles, #anadirNiveles, #movMsg {
+    font-size: 1em;
+  }
+  /*Modificacion del tamaño de la fuente a 0.5 em*/
+  nav > a,
+  #gestor,
+  #niveles,
+  #gestionNiveles table {
+    font-size: 0.5em; /*Cambiar tamaño de la letra*/
+  }
+}
+/* Si el usuario padece de problemas vesticulares o tiene problemas de sensibilidad, si tiene activada esta opción en el navegador, se quitan las transiciones */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none;
+  }
 }

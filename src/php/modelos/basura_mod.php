@@ -57,11 +57,13 @@ class Basura_Mod {
      */
     public function mostrar() {
         $this->establecerConexion();
-        $sql = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
+        $sql = "SELECT basura.id, item.nombre, item.imagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
+
         $result = $this->mysqli->query($sql);
 
         $basuras = array();
         while ($row = $result->fetch_assoc()) {
+            $row['imagen'] = base64_encode($row['imagen']); //Para modificar los datos de la imagen en base 64
             $basuras[] = $row;
         }
 
@@ -92,7 +94,11 @@ class Basura_Mod {
      */ 
     public function crear($nombre, $imagen, $valor) {
         $this->establecerConexion();
-        $sql = 'INSERT INTO item (nombre, nombreImagen) VALUES ("'.$nombre.'", "'.$imagen.'")';
+
+        //Para quitar comillas en la imagen
+        $img = $this->mysqli->real_escape_string($imagen);
+
+        $sql = 'INSERT INTO item (nombre, imagen) VALUES ("'.$nombre.'", "'.$img.'")';
         $result = $this->mysqli->query($sql);
         $id = $this->mysqli->insert_id;
 
@@ -117,12 +123,15 @@ class Basura_Mod {
      */
     public function buscarModificar($id) {
         $this->establecerConexion();
-        $sql = 'SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
+        $sql = 'SELECT basura.id, item.nombre, item.imagen, basura.valor FROM basura INNER JOIN item ON basura.id=item.id WHERE item.id='.$id;
         $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
 
         $fila = $result->fetch_assoc();
+
+        $fila['imagen'] = base64_encode($fila['imagen']); //Cambio datos recogidos de imagen en codificacion base64
+
         return $fila;
     }
 
@@ -136,8 +145,17 @@ class Basura_Mod {
      */
     public function modificar($id, $nombre, $imagen, $valor) {
         $this->establecerConexion();
-        $sql = 'UPDATE item SET nombre = "'.$nombre.'", nombreImagen = "'.$imagen.'" WHERE id = '.$id;
-        $result = $this->mysqli->query($sql);
+
+        //Para quitar comillas en la imagen
+        $img = $this->mysqli->real_escape_string($imagen);
+
+        try {
+            $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$img.'" WHERE id = '.$id;
+            $result = $this->mysqli->query($sql);
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
 
         $this->cerrarConexion();
 
@@ -154,38 +172,24 @@ class Basura_Mod {
     }
 
     /**
-     * Recoge datos de basuras y power-ups y los retorna al controlador en json.
+     * Recoge datos de basura y los retorna al controlador en json.
      */
-    public function ajax() {
+    public function ajaxDatosBasura() {
         $this->establecerConexion();
     
         // Consulta para obtener información de basuras
-        $sqlBasura = "SELECT basura.id, item.nombre, item.nombreImagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
+        $sqlBasura = "SELECT basura.id, item.nombre, item.imagen, basura.valor FROM basura INNER JOIN item ON basura.id = item.id";
         $resultBasura = $this->mysqli->query($sqlBasura);
     
         $basuras = array();
         while ($row = $resultBasura->fetch_assoc()) {
+            $row['imagen'] = base64_encode($row['imagen']);
             $basuras[] = $row;
-        }
-    
-        // Consulta para obtener información de power-ups
-        $sqlPowerup = "SELECT powerup.id, item.nombre, item.nombreImagen, powerup.aumento FROM powerup INNER JOIN item on powerup.id = item.id";
-        $resultPowerup = $this->mysqli->query($sqlPowerup);
-    
-        $powerups = array();
-        while ($row = $resultPowerup->fetch_assoc()) {
-            $powerups[] = $row;
         }
     
         $this->cerrarConexion();
     
-        // Combinar basuras y power-ups en un solo objeto
-        $resultado = array(
-            'basuras' => $basuras,
-            'powerups' => $powerups
-        );
-    
-        echo json_encode($resultado);
+        return json_encode($basuras);
     }    
 }
 ?>

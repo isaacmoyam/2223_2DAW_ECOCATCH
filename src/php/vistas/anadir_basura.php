@@ -12,7 +12,7 @@
 ?>
 <main id="gestorM">
     <a id="btnVolver" href="index.php?control=basura_con">Volver</a>
-    <form action="index.php?control=basura_con&metodo=crear" method="POST" id="formBasura">
+    <form id="formBasura" enctype="multipart/form-data" action="index.php?control=basura_con&metodo=crear" method="POST">
         <label for="nombre">(*) Nombre:</label>
         <input type="text" name="nombre" placeholder="Nombre basura">
         <label for="valor">(*) Valor:</label>

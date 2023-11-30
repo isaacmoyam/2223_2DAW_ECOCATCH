@@ -33,7 +33,7 @@
                 <tr>
                     <td><?php echo $fila['nombre']; ?></td>
                     <td><?php echo $fila['valor']; ?></td>
-                    <td><?php echo $fila['nombreImagen']; ?></td>
+                    <td><img src="data:image/png;base64,<?php echo $fila['imagen'];?>"></td>
                     <td>
                         <a id="botonBorrar" href="index.php?control=basura_con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
                         <a href="index.php?control=basura_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>

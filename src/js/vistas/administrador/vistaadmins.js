@@ -343,9 +343,15 @@ export class Vistaadmins {
     pMensaje.innerHTML = mensaje;
   }
 
-  validarNombreNivel(nombre) {
+  validarNombreBasura(nombre) {
     // Agrega tu lógica de validación para el campo de nombre
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/;
+    return regExp.test(nombre);
+  }
+
+  validarNombreNivel(nombre) {
+    // Agrega tu lógica de validación para el campo de nombre
+    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/;
     return regExp.test(nombre);
   }
 
@@ -355,7 +361,7 @@ export class Vistaadmins {
     iValor.onblur = (evento) => this.comprobacionValorBasura(evento, pMensaje)
   }
 
-  nombreArchivoValido(iImagen, nombreInput) {
+  nombreArchivoValido(iImagen) {
     if (iImagen && iImagen.files && iImagen.files.length > 0) {
         // iImagen no es nulo por lo que se ha seleccionado un archivo
         // Cogemos el archivo introducido del input type file
@@ -367,35 +373,28 @@ export class Vistaadmins {
         
         const partes = nombreArchivoExtension.split(".")
 
-        const nombreArchivo = partes[0]
-
         // Validamos la extensión del archivo
 
         const extensionArchivo = "." + partes[1]
 
-        const extensionesPermitidas = ['.jpg', '.jpeg', '.png'];
+        const extensionPermitida = '.png'
 
-        if (extensionesPermitidas.includes(extensionArchivo)) {
-          if(nombreArchivo === nombreInput) {
-            return true;
-          } else {
-            let mensajeError = 'La imagen no tiene el mismo nombre que el item.';
-            this.mostrarMensajeErrorBasura(iImagen, mensajeError);
-            return false;
-          }
+        if (extensionPermitida === extensionArchivo) {
+          return true;
         } else {
           let mensajeError = 'La imagen no tiene una extensión valida.';
           this.mostrarMensajeErrorBasura(iImagen, mensajeError);
           return false;
         }
     } else {
-        return false;
+      return false;
     }
+    
   }
 
   comprobacionNombreBasura (evento, pMensaje) {
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/
-    let mensaje = "El nombre debe tener máximo 20 caracteres"
+    let mensaje = "El nombre debe tener máximo 20 caracteres y no tener espacios"
     this.validarCampoBasura(evento, pMensaje, mensaje, regExp)
   }
 
