@@ -102,10 +102,11 @@ class Powerup_con
     public function restarurarValoresPowerup(){
         $this->vista = 'gestion_powerup';
 
-        $rutaImagenPorDefecto = __DIR__ . '/../../../img/velocidad1.png';
+        $rutaImagenPorDefecto = __DIR__ .'\musicaOn.png';
+    echo $rutaImagenPorDefecto;
         $imagenPorDefecto = file_get_contents($rutaImagenPorDefecto);
-
-        $this->obj->valoresPorDefecto($imagenPorDefecto);
+        $imagenCodificada = base64_encode($imagenPorDefecto);
+        $this->obj->valoresPorDefecto($imagenCodificada);
     }
 
     /**
