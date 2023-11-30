@@ -135,8 +135,80 @@ class Powerup_Mod
      * Para ello primero borra las filas existentes de powerup (si hay) y despues inserta los valores por defecto.
      * @return void
      */
-    public function valoresPorDefecto($imagen){
+    public function valoresPorDefecto($imagen) {
+        $this->establecerConexion();
+        /*
+         * En el contexto del WHERE 1, el 1 es una condición siempre verdadera lo que significa que todas las filas que cumplan la condicion seran eliminadas
+         * Por ello como no quiero borrar todas las filas de item y solo quiero borrar las filas de item que esten en power up
+         * hago el INNER JOIN powerup p ON i.id=p.id para que así solo me borren las filas de item que estan en powerup
+         * */
+        $sqlEliminarPowerup = 'DELETE i FROM item i INNER JOIN powerup p ON i.id=p.id WHERE 1';
+        $this->mysqli->query($sqlEliminarPowerup);
 
+        //Consulta Preparada para item
+        $sqlItem = 'INSERT INTO item (nombre, imagen) VALUES (?, ?)';
+        $consultaPrepardaItem = $this->mysqli->prepare($sqlItem);
+
+        //Consulta Preparada para powerup
+        $sqlPowerup = 'INSERT INTO powerup (id, aumento, descripcion) VALUES (?, ?, ?)';
+        $consultaPreparadaPowerup = $this->mysqli->prepare($sqlPowerup);
+
+        /*
+         * Preparo la imagen.
+         * Como va a ser la misma para todos con solo ponerlo una vez es suficiente
+         * */
+        $img = $this->mysqli->real_escape_string($imagen);
+
+        //COMIENZO INSERCCIONES
+        //Primera inserccion en item
+        $nombrePorDefecto = 'Velocidad1';
+
+        $consultaPrepardaItem->bind_param('ss', $nombrePorDefecto, $img);
+        $consultaPrepardaItem->execute();
+
+        //Y su respectiva inserccion en powerup
+        $idPorDefecto = $this->mysqli->insert_id; //Obtengo el id de la ultima consulta (insert de item)
+        $aumentoPorDefecto = 10; // Cambia esto según tus necesidades
+        $descripcionPorDefecto = 'WFEste powerup aumenta la velocidad del barco en 10'; // Cambia esto según tus necesidades
+
+        $consultaPreparadaPowerup->bind_param('iis', $idPorDefecto, $aumentoPorDefecto, $descripcionPorDefecto);
+        $consultaPreparadaPowerup->execute();
+
+
+        //Segunda inserccion en item
+        $nombrePorDefecto = 'Velocidad2';
+
+        $consultaPrepardaItem->bind_param('ss', $nombrePorDefecto, $img);
+        $consultaPrepardaItem->execute();
+
+        //Y su respectiva inserccion en powerup
+        $idPorDefecto = $this->mysqli->insert_id; //Obtengo el id de la ultima consulta (insert de item)
+        $aumentoPorDefecto = 20; // Cambia esto según tus necesidades
+        $descripcionPorDefecto = 'Este powerup aumenta la velocidad del barco en 20'; // Cambia esto según tus necesidades
+
+        $consultaPreparadaPowerup->bind_param('iis', $idPorDefecto, $aumentoPorDefecto, $descripcionPorDefecto);
+        $consultaPreparadaPowerup->execute();
+
+
+        //Tercera inserccion en item
+        $nombrePorDefecto = 'Velocidad3';
+
+        $consultaPrepardaItem->bind_param('ss', $nombrePorDefecto, $img);
+        $consultaPrepardaItem->execute();
+
+        //Y su respectiva inserccion en powerup
+        $idPorDefecto = $this->mysqli->insert_id; //Obtengo el id de la ultima consulta (insert de item)
+        $aumentoPorDefecto = 30; // Cambia esto según tus necesidades
+        $descripcionPorDefecto = 'Este powerup aumenta la velocidad del barco en 30'; // Cambia esto según tus necesidades
+
+        $consultaPreparadaPowerup->bind_param('iis', $idPorDefecto, $aumentoPorDefecto, $descripcionPorDefecto);
+        $consultaPreparadaPowerup->execute();
+
+        // Cerrar las declaraciones preparadas
+        $consultaPrepardaItem->close();
+        $consultaPreparadaPowerup->close();
+
+        $this->cerrarConexion();
     }
 
     /**

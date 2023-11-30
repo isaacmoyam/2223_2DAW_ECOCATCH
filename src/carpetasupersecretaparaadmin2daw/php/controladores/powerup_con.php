@@ -100,7 +100,12 @@ class Powerup_con
 
     /**/
     public function restarurarValoresPowerup(){
-        $this->obj->valoresPorDefecto();
+        $this->vista = 'gestion_powerup';
+
+        $rutaImagenPorDefecto = __DIR__ . '/../../../img/velocidad1.png';
+        $imagenPorDefecto = file_get_contents($rutaImagenPorDefecto);
+
+        $this->obj->valoresPorDefecto($imagenPorDefecto);
     }
 
     /**
