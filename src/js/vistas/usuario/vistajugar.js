@@ -5,7 +5,7 @@ export class Vistajugar extends Vistausuario {
     #score = 0
     #scoreElement = document.getElementById('scoreValue')
     #maxScore = 1000
-    #maxApples = 10
+    #maxApples = localStorage.getItem('items')
     #applesCreated = 0
 
     constructor(controlador, base) {
@@ -16,6 +16,10 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
         this.eventos()
         this.iniciarJuegoManzanas()
+        this.velocidad = localStorage.getItem('velocidad')
+        this.nombre = localStorage.getItem('nombreLvl')
+        const nombreNivel = document.getElementById("nombreNivel")
+        nombreNivel.innerHTML = this.nombre
     }
 
     /**
@@ -124,7 +128,7 @@ export class Vistajugar extends Vistausuario {
     eventos() {
         this.eventoBarco()
         this.crearBotonPausa()
-        this.audio();
+        this.audio()
     }
 
     audio() {
@@ -193,9 +197,11 @@ export class Vistajugar extends Vistausuario {
             const maxX = this.gameContainer.clientWidth - this.barco.clientWidth
 
             if (e.key === 'ArrowLeft') {
-                this.x = Math.max(0, this.x - 8)
+                this.x = Math.max(0, this.x - +this.velocidad)
+                console.log(this.x)
             } else if (e.key === 'ArrowRight') {
-                this.x = Math.min(maxX, this.x + 8)
+                this.x = Math.min(maxX, this.x + +this.velocidad)
+                console.log(this.x)
             }
 
             this.moveBarco(this.barco, this.x)

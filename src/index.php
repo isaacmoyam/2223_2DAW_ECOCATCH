@@ -46,7 +46,7 @@ $controlador = new $nombreClase();
 /* Ver si el método está definido */
 $datosVista["datos"] = array();
 if (method_exists($controlador, $nombreMetodo)) {
-    if($nombreMetodo == "ajaxNombreNivel"){
+    if($nombreMetodo == "ajaxNivel"){
         echo $controlador->{$nombreMetodo}();
         return;
     } else {

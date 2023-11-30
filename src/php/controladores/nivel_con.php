@@ -219,6 +219,10 @@ class Nivel_con {
         }
     }
 
+    public function ajaxNivel() {
+        return $this->obj->ajaxDatosNivel();
+    }
+
     public function ajaxNombreNivel() {
         return $this->obj->ajaxNombreNiveles();
     }

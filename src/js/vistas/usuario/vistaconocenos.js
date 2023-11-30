@@ -1,8 +1,6 @@
 import { Vistausuario } from './vistausuario.js'
 
-/**
- * Clase encargada de la Vista 3
- */
+
 export class Vistaconocenos extends Vistausuario {
   /**
      * Constructor de la clase. Inicializa los atributos correspondientes

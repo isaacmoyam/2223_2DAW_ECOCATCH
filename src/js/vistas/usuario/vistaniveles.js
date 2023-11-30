@@ -21,7 +21,7 @@ export class Vistaniveles extends Vistausuario {
   }
 
   llamarGET = () => {
-    Rest.getJSON('../../../src/index.php?control=nivel_con&metodo=ajaxNombreNivel', null, this.verResultadoGET);
+    Rest.getJSON('../../../src/index.php?control=nivel_con&metodo=ajaxNivel', null, this.verResultadoGET);
   }
 
   verResultadoGET = (respuesta) => {
@@ -30,6 +30,12 @@ export class Vistaniveles extends Vistausuario {
       let boton = document.createElement("button")
       boton.textContent = elemento.nombre
       boton.style.marginRight = "2%" 
+      boton.onclick = function() {
+        localStorage.setItem('nombreLvl', elemento.nombre);
+        localStorage.setItem('items', elemento.cantidadItems);
+        localStorage.setItem('velocidad', elemento.velocidadBarco);
+        window.location.href = '../jugar/jugar.html';
+      };
       contenedor.appendChild(boton)
     });
   }
