@@ -133,7 +133,6 @@ export class Vistajugar extends Vistausuario {
         this.crearBotonPausa()
         this.audio()
         this.llamarPOST()
-        
     }
 
     llamarPOST = () => {
@@ -141,13 +140,7 @@ export class Vistajugar extends Vistausuario {
     }
 
     verResultadoPOST = (respuesta) => {
-        if (Array.isArray(respuesta)) {
-            respuesta.forEach(function(elemento) {
-                console.log(elemento);
-            });
-        } else {
-            console.error('La respuesta no es un array:', respuesta);
-        }
+        this.verMensajes(respuesta) 
     }
 
     audio() {
@@ -217,10 +210,8 @@ export class Vistajugar extends Vistausuario {
 
             if (e.key === 'ArrowLeft') {
                 this.x = Math.max(0, this.x - +this.velocidad)
-                console.log(this.x)
             } else if (e.key === 'ArrowRight') {
                 this.x = Math.min(maxX, this.x + +this.velocidad)
-                console.log(this.x)
             }
 
             this.moveBarco(this.barco, this.x)
@@ -328,6 +319,18 @@ export class Vistajugar extends Vistausuario {
             cancelAnimationFrame(this.animationFrameId)
             this.animationFrameId = null
         }
+    }
+
+    verMensajes(mensajes) {
+        const contenedorMensaje = document.getElementById("mensajeP")
+        let arrayMensajes = []
+        for (let i = 0; i < mensajes.length; i++) {
+            arrayMensajes.push(mensajes[i].contenido);
+        }
+        this.intervalo = setInterval(() => {
+            let indiceAleatorio = Math.floor(Math.random() * arrayMensajes.length)
+            contenedorMensaje.innerHTML = arrayMensajes[indiceAleatorio]
+        }, 7000);
     }
 
     /**
