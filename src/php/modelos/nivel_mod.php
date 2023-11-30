@@ -291,5 +291,23 @@ class Nivel_Mod {
 
         return json_encode($nombreNivel);
     }
+
+    public function ajaxMensajesNiveles($idNivel) {
+        $this->establecerConexion();
+
+        //Consulta para obtener información de niveles
+        $sqlMensajes = 'SELECT m.contenido FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel="'.$idNivel.'";';
+        $resultMensajes = $this->mysqli->query($sqlMensajes);
+
+        $mensajes = array();
+        while ($row = $resultMensajes->fetch_assoc()) {
+            $mensajes[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return json_encode($mensajes);
+    }
+
 }
 ?>

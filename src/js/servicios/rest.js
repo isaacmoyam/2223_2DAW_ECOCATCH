@@ -39,7 +39,6 @@ export class Rest {
 
     static post(url, params, callback) {
         let parametros = new FormData();
-
         for (const param in params) {
             parametros.append(param, params[param]);
         }
@@ -50,10 +49,10 @@ export class Rest {
         };
 
         fetch(url, opciones)
-            .then(respuesta => respuesta.text())
-            .then(texto => {
+            .then(respuesta => respuesta.json())
+            .then(objeto => {
                 if (callback) {
-                    callback(texto);
+                    callback(objeto);
                 }
             });
     }

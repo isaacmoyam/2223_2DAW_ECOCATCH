@@ -2,18 +2,6 @@
  * Clase encargada de la Vista del administrador
  */
 export class Vistaadmins {
-  /**
-     * Creacion de Simbolos de las vistas del administrador
-     */
-  static {
-    Vistaadmins.VISTAMOSTRARBASURA = Symbol('Vistamostrarbasura')
-    Vistaadmins.VISTAANADIRBASURA = Symbol('Vistaanadirbasura')
-    Vistaadmins.VISTAMODIFICARBASURA = Symbol('Vistamodificarbasura')
-
-    Vistaadmins.VISTAMOSTRARNIVEL = Symbol('Vistamostrarnivel')
-    Vistaadmins.VISTAANADIRNIVEL = Symbol('Vistaanadirnivel')
-    Vistaadmins.VISTAMODIFICARNIVEL = Symbol('Vistamodificarnivel')
-  }
 
   /**
      * Constructor de la clase. Inicializa los atributos correspondientes
@@ -25,18 +13,6 @@ export class Vistaadmins {
     this.base = base
   }
 
-  /**
-     * Muestra u oculta tu consulta
-     * @param ver {Boolean} Indica si la vista debe mostrarse (true) u ocultarse (false)
-     */
-  mostrar (ver) {
-    if(!this.base){return}
-    if (ver) {
-      this.base.style.display = 'block'
-    } else {
-      this.base.style.display = 'none'
-    }
-  }
 
   // COMÚN
 

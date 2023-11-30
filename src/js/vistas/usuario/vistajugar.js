@@ -1,4 +1,5 @@
 import { Vistausuario } from './vistausuario.js'
+import { Rest } from '../../servicios/rest.js'
 
 export class Vistajugar extends Vistausuario {
 
@@ -14,13 +15,13 @@ export class Vistajugar extends Vistausuario {
         this.touchStartX = null
         this.animationFrameId = null
         this.juegoEnPausa = false
-        this.eventos()
-        this.iniciarJuegoManzanas()
         this.id = localStorage.getItem('id')
+        this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
         this.nombre = localStorage.getItem('nombreLvl')
         const nombreNivel = document.getElementById("nombreNivel")
         nombreNivel.innerHTML = this.nombre
+        this.eventos()
     }
 
     /**
@@ -131,6 +132,22 @@ export class Vistajugar extends Vistausuario {
         this.eventoBarco()
         this.crearBotonPausa()
         this.audio()
+        this.llamarPOST()
+        
+    }
+
+    llamarPOST = () => {
+        Rest.post('../../../src/index.php?control=nivel_con&metodo=ajaxMensajesNivel', {'parametros': this.id}, this.verResultadoPOST);
+    }
+
+    verResultadoPOST = (respuesta) => {
+        if (Array.isArray(respuesta)) {
+            respuesta.forEach(function(elemento) {
+                console.log(elemento);
+            });
+        } else {
+            console.error('La respuesta no es un array:', respuesta);
+        }
     }
 
     audio() {

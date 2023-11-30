@@ -226,5 +226,9 @@ class Nivel_con {
     public function ajaxNombreNivel() {
         return $this->obj->ajaxNombreNiveles();
     }
+
+    public function ajaxMensajesNivel() {
+        return $this->obj->ajaxMensajesNiveles($_POST["parametros"]);
+    }
 }
 ?>
