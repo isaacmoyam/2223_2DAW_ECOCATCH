@@ -42,5 +42,6 @@
         }
         ?>
     </table>
+    <button>Restaurar de fábrica</button>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>

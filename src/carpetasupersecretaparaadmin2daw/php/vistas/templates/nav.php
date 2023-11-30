@@ -10,8 +10,7 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 ?>
-<nav>
-    <a href="index.php">Inicio</a>
+<nav class="nav">
     <a href="index.php?control=nivel_con">Niveles</a>
     <a href="index.php?control=basura_con">Basura</a>
     <a href="index.php?control=powerup_con">PowerUp</a>
