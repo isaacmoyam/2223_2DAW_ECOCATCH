@@ -1,6 +1,10 @@
 import { Vistausuario } from './vistausuario.js'
 import { Rest } from '../../servicios/rest.js'
 
+/**
+ * Clase encargada de la Vista de juego, hereda de Vistausuario.
+ * @class
+ */
 export class Vistajugar extends Vistausuario {
 
     #score = 0
@@ -9,6 +13,12 @@ export class Vistajugar extends Vistausuario {
     #maxApples = localStorage.getItem('items')
     #applesCreated = 0
 
+    /**
+     * Constructor de la clase. Inicializa los atributos correspondientes.
+     * @constructor
+     * @param {ControladorUsuario} controlador - Controlador del Usuario.
+     * @param {Object} base - Objeto que es una referencia del interfaz.
+     */
     constructor(controlador, base) {
         super(controlador, base)
         this.x = 0
@@ -135,14 +145,27 @@ export class Vistajugar extends Vistausuario {
         this.llamarPOST()
     }
 
+    /**
+     * Realiza una llamada POST para obtener mensajes del nivel actual.
+     * @returns {void}
+     */
     llamarPOST = () => {
         Rest.post('../../../src/index.php?control=nivel_con&metodo=ajaxMensajesNivel', {'parametros': this.id}, this.verResultadoPOST);
     }
 
+    /**
+     * Muestra mensajes del nivel actual.
+     * @param {Array} mensajes - Array de mensajes del nivel.
+     * @returns {void}
+     */
     verResultadoPOST = (respuesta) => {
         this.verMensajes(respuesta) 
     }
 
+    /**
+     * Gestiona el audio del juego.
+     * @returns {void}
+     */
     audio() {
         const miAudio = document.getElementById('miAudio');
         const botonSilencio = document.getElementById('botonSilencio');
@@ -321,6 +344,11 @@ export class Vistajugar extends Vistausuario {
         }
     }
 
+    /**
+     * Muestra mensajes de manera aleatoria en un intervalo de tiempo.
+     * @param {Array} mensajes - Array de mensajes a mostrar.
+     * @returns {void}
+     */
     verMensajes(mensajes) {
         const contenedorMensaje = document.getElementById("mensajeP")
         let arrayMensajes = []
@@ -346,4 +374,7 @@ export class Vistajugar extends Vistausuario {
     }
 }
 
+/**
+ * Se ejecuta cuando la ventana ha cargado completamente.
+ */
 window.onload = () => { new Vistajugar() }

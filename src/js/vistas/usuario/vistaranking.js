@@ -1,25 +1,32 @@
 import { Vistausuario } from './vistausuario.js'
 
 /**
- * Clase encargada de la Vista 2
+ * Clase encargada de la Vista del ranking, hereda de Vistausuario.
+ * @class
  */
 export class Vistaranking extends Vistausuario {
+
   /**
-	 * Constructor de la clase. Inicializa los atributos correspondientes
-	 * @param controlador {ControladorUsuario} Controlador del Usuario
-	 * @param base {Object} Objeto que es una referencia del interfaz
-	 */
+   * Constructor de la clase. Inicializa los atributos correspondientes.
+   * @constructor
+   * @param {ControladorUsuario} controlador - Controlador del Usuario.
+   * @param {Object} base - Objeto que es una referencia del interfaz.
+   */
   constructor (controlador, base) {
     super(controlador, base)
     this.eventos()
   }
 
   /**
-	 * Asocia los eventos de la interfaz
-	 */
+   * Asocia los eventos de la interfaz, en este caso, activa el modo oscuro.
+   * @method
+   */
   eventos () {
     super.modoOscuro()
   }
 }
 
+/**
+ * Se ejecuta cuando la ventana ha cargado completamente.
+ */
 window.onload = () => { new Vistaranking() }

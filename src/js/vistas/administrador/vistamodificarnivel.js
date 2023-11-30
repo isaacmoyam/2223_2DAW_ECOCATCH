@@ -1,13 +1,14 @@
 import { Vistaadmins } from '../administrador/vistaadmins.js'
 
 /**
- * Clase encargada de la Vista 1 del administrador.
- * @extends VistaAdmins
+ * Clase encargada de la Vistamodificarnivel del administrador, hereda de Vistaadmins.
+ * @extends Vistaadmins
  */
 export class Vistamodificarnivel extends Vistaadmins {
 
   /**
    * Constructor de la clase. Inicializa los atributos correspondientes.
+   * @constructor
    * @param {ControladorUsuario} controlador - Controlador del Usuario.
    * @param {Object} base - Objeto que es una referencia del interfaz.
    */
@@ -17,7 +18,8 @@ export class Vistamodificarnivel extends Vistaadmins {
   }
 
   /**
-   * Asocia los eventos de la interfaz de la vista 1 del administrador.
+   * Asocia los eventos de la interfaz de la vistamodificarnivel del administrador.
+   * @method
    * @returns {void}
    */
   eventos() {
@@ -62,4 +64,7 @@ export class Vistamodificarnivel extends Vistaadmins {
   }
 }
 
+/**
+ * Se ejecuta cuando la ventana ha cargado completamente.
+ */
 window.onload = () => { new Vistamodificarnivel() }

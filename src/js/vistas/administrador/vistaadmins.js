@@ -1,13 +1,14 @@
 /**
- * Clase encargada de la Vista del administrador
+ * Clase base para las vistas de administrador.
+ * @class
  */
 export class Vistaadmins {
 
   /**
-     * Constructor de la clase. Inicializa los atributos correspondientes
-     * @param controlador {ControladorUsuario} Controlador del Usuario
-     * @param base {Object} Objeto que es una referencia del interfaz
-     */
+   * Constructor de la clase.
+   * @param {ControladorUsuario} controlador - Controlador del Usuario.
+   * @param {Object} base - Objeto que es una referencia del interfaz.
+   */
   constructor (controlador, base) {
     this.controlador = controlador
     this.base = base
@@ -16,6 +17,11 @@ export class Vistaadmins {
 
   // COMÚN
 
+  /**
+   * Maneja el evento de confirmación para borrar un elemento.
+   * @param {Event} event - Evento del botón de borrado.
+   * @returns {void}
+   */
   emergenteBorrar(event) {
     event.preventDefault();
 
@@ -29,6 +35,11 @@ export class Vistaadmins {
     }
   }
 
+  /**
+   * Realiza la validación de un valor según una expresión regular.
+   * @param {string} valor - Valor a validar.
+   * @returns {boolean} - True si el valor es válido, de lo contrario, False.
+   */
   validarValor(valor) {
     // Agrega tu lógica de validación para el campo de items
     const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
@@ -37,6 +48,10 @@ export class Vistaadmins {
 
   // NIVELES
 
+  /**
+   * Agrega una fila a la tabla dinámica.
+   * @returns {void}
+   */
   agregarFila() {
     const tablaDinamica = document.getElementById('tablaDinamica')
     const nuevaFila = tablaDinamica.insertRow()
@@ -91,11 +106,21 @@ export class Vistaadmins {
     puntosInput.onblur = (evento) => this.comprobacionPuntos(evento, mensaje);
   }
 
+  /**
+   * Elimina una fila específica de la tabla dinámica.
+   * @param {HTMLTableRowElement} fila - Fila HTML que se eliminará.
+   * @returns {void}
+   */
   quitarFila(fila) {
     const tablaDinamica = document.getElementById('tablaDinamica');
     tablaDinamica.deleteRow(fila.rowIndex);
   }
 
+  /**
+   * Valida el formulario para la creación/modificación de niveles.
+   * @param {Event} event - Evento del formulario.
+   * @returns {void}
+   */
   validarFormularioNivel(event) {
     event.preventDefault();
   
@@ -159,6 +184,10 @@ export class Vistaadmins {
     }
   }
 
+  /**
+   * Realiza la validación de todas las filas en la tabla dinámica.
+   * @returns {boolean[]} - Un array de booleanos indicando la validez de cada fila.
+   */
   validarFilas() {
       const filas = document.querySelectorAll('#tablaDinamica tbody tr');
       const validacionesFilas = [];
@@ -182,6 +211,12 @@ export class Vistaadmins {
       return validacionesFilas;
   }
   
+  /**
+   * Muestra un mensaje de error y cambia los estilos del campo de nivel correspondiente.
+   * @param {HTMLInputElement} input - Campo de nivel que contiene el error.
+   * @param {string} mensaje - Mensaje de error a mostrar.
+   * @returns {void}
+   */
   mostrarMensajeErrorNivel(input, mensaje) {
     const pMensaje = document.getElementById('msgCampos');
     if (pMensaje) {
@@ -191,24 +226,49 @@ export class Vistaadmins {
     }
   }
 
+  /**
+   * Valida el nombre de un nivel.
+   * @param {string} nombre - Nombre del nivel a validar.
+   * @returns {boolean} - True si el nombre es válido, de lo contrario, False.
+   */
   validarNombreNivel(nombre) {
     // Agrega tu lógica de validación para el campo de nombre
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/;
     return regExp.test(nombre);
   }
 
+  /**
+   * Valida el contenido de un nivel.
+   * @param {string} valor - Contenido del nivel a validar.
+   * @returns {boolean} - True si el contenido es válido, de lo contrario, False.
+   */
   validarContenido(valor) {
     // Agrega tu lógica de validación para el campo de items
     const regExp = /^[\s\S]{1,500}$/;
     return regExp.test(valor);
   }
 
+  /**
+   * Valida los puntos requeridos para un nivel.
+   * @param {string} valor - Puntos requeridos del nivel a validar.
+   * @returns {boolean} - True si los puntos son válidos, de lo contrario, False.
+   */
   validarPuntos(valor) {
     // Agrega tu lógica de validación para el campo de items
     const regExp = /^(?:[1-9]\d{0,3}|[1-5]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5]|65535)$/;
     return regExp.test(valor);
   }
 
+  /**
+   * Asigna funciones de comprobación a eventos onBlur para campos relacionados con niveles.
+   * @param {Object} pMensaje - Objeto del lugar donde se va a introducir los mensajes necesarios.
+   * @param {HTMLInputElement} nombreInput - Campo de entrada para el nombre del nivel.
+   * @param {HTMLInputElement} itemsInput - Campo de entrada para la cantidad de items del nivel.
+   * @param {HTMLInputElement} velocidadInput - Campo de entrada para la velocidad del barco del nivel.
+   * @param {HTMLInputElement} contenidoInput - Campo de entrada para el contenido del nivel.
+   * @param {HTMLInputElement} puntosInput - Campo de entrada para los puntos requeridos del nivel.
+   * @returns {void}
+   */
   eventosComprobacionNivel (pMensaje, nombreInput, itemsInput, velocidadInput, contenidoInput, puntosInput) {
     nombreInput.onblur = (evento) => this.comprobacionNombreNivel(evento, pMensaje)
     itemsInput.onblur = (evento) => this.comprobacionValorNivel(evento, pMensaje)
@@ -219,6 +279,12 @@ export class Vistaadmins {
     }
   }
 
+  /**
+   * Comprueba y valida el nombre de un nivel.
+   * @param {Object} evento - Objeto de evento que desencadenó la llamada a la función.
+   * @param {Object} pMensaje - Objeto del lugar donde se va a introducir los mensajes necesarios.
+   * @returns {void}
+   */
   comprobacionNombreNivel (evento, pMensaje) {
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/
     let mensaje = "El nombre debe tener máximo 50 caracteres y no tener espacios"
@@ -226,23 +292,36 @@ export class Vistaadmins {
   }
 
   /**
-     * LLama a una función encargada de comprobar si se valida el campo Valor mediante una expresión regular determinada.
-     * Se ejecuta con un evento onblur en el campoNombre
-     * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
-     * @param pMensaje {Object} Objeto del lugar donde se va a introducir los mensajes necesarios
-     */
+   * Comprueba y valida el campo Valor de un nivel mediante una expresión regular determinada.
+   * Se ejecuta con un evento onblur en el campo Nombre.
+   * @param {Object} evento - Objeto de evento que desencadenó la llamada a la función.
+   * @param {Object} pMensaje - Objeto del lugar donde se va a introducir los mensajes necesarios.
+   * @returns {void}
+   */
   comprobacionValorNivel (evento, pMensaje) {
     const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
     let mensaje = "Los valores numéricos deben ser un número entre 1 y 254"
     this.validarCampoNivel(evento, pMensaje, mensaje, regExp)
   }
 
+  /**
+   * Comprueba y valida el contenido del mensaje de un nivel.
+   * @param {Object} evento - Objeto de evento que desencadenó la llamada a la función.
+   * @param {Object} pMensaje - Objeto del lugar donde se va a introducir los mensajes necesarios.
+   * @returns {void}
+   */
   comprobacionContenido (evento, pMensaje) {
     const regExp = /^[\s\S]{1,500}$/;
     let mensaje = "El contenido del mensaje debe ser de máximo 500 caracteres"
     this.validarCampoNivel(evento, pMensaje, mensaje, regExp)
   }
 
+  /**
+   * Comprueba y valida los puntos requeridos para un nivel.
+   * @param {Object} evento - Objeto de evento que desencadenó la llamada a la función.
+   * @param {Object} pMensaje - Objeto del lugar donde se va a introducir los mensajes necesarios.
+   * @returns {void}
+   */
   comprobacionPuntos (evento, pMensaje) {
     const regExp = /^(?:[1-9]\d{0,3}|[1-5]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5]|65535)$/;
     let mensaje = "La puntuación requerida debe ser entre 1 y 65535"
@@ -250,11 +329,11 @@ export class Vistaadmins {
   }
 
   /**
-     *
-     * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
-     * @param pMensaje {Object} Objeto del lugar donde se va a introducir los mensajes necesarios
-     * @param regExp {Object} Expresión Regular
-     */
+   *
+   * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
+   * @param pMensaje {Object} Objeto del lugar donde se va a introducir los mensajes necesarios
+   * @param regExp {Object} Expresión Regular
+   */
   validarCampoNivel (evento, pMensaje, mensaje, regExp) {
     const input = evento.target 
     if (!regExp.test(input.value)) {
@@ -267,6 +346,11 @@ export class Vistaadmins {
 
   // BASURA
 
+  /**
+   * Valida el formulario para la creación/modificación de elementos de basura.
+   * @param {Event} event - Evento del formulario.
+   * @returns {void}
+   */
   validarFormularioBasura(event) {
     event.preventDefault();
   
@@ -308,6 +392,13 @@ export class Vistaadmins {
     }
   }
 
+  
+  /**
+   * Muestra un mensaje de error y cambia los estilos del campo de basura correspondiente.
+   * @param {HTMLInputElement} input - Campo de basura que contiene el error.
+   * @param {string} mensaje - Mensaje de error a mostrar.
+   * @returns {void}
+   */
   mostrarMensajeErrorBasura(input, mensaje) {
     const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
     if (pMensaje && (input.name==="nombre" || input.name==="valor")) {
@@ -319,24 +410,48 @@ export class Vistaadmins {
     pMensaje.innerHTML = mensaje;
   }
 
+  /**
+   * Valida el nombre para el campo de nombre en la sección de basura.
+   * @param {string} nombre - Nombre a validar.
+   * @returns {boolean} - Devuelve true si el nombre es válido, de lo contrario, devuelve false.
+   */
   validarNombreBasura(nombre) {
     // Agrega tu lógica de validación para el campo de nombre
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/;
     return regExp.test(nombre);
   }
 
+  /**
+   * Valida el nombre para el campo de nombre en la sección de niveles.
+   * @param {string} nombre - Nombre a validar.
+   * @returns {boolean} - Devuelve true si el nombre es válido, de lo contrario, devuelve false.
+   */
   validarNombreNivel(nombre) {
     // Agrega tu lógica de validación para el campo de nombre
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/;
     return regExp.test(nombre);
   }
 
+  /**
+   * Maneja los eventos de comprobación en la sección de basura.
+   * @param {Object} pMensaje - Objeto donde se mostrarán los mensajes necesarios.
+   * @param {Object} iNombre - Elemento de entrada para el nombre.
+   * @param {Object} iImagen - Elemento de entrada para la imagen.
+   * @param {Object} iValor - Elemento de entrada para el valor.
+   * @param {Object} imagenMiniatura - Elemento de imagen para la miniatura.
+   * @returns {void}
+   */
   eventosComprobacionBasura (pMensaje, iNombre, iImagen, iValor, imagenMiniatura) {
     iImagen.addEventListener('change', (event) => this.mostrarMiniatura(event, imagenMiniatura))
     iNombre.onblur = (evento) => this.comprobacionNombreBasura(evento, pMensaje)
     iValor.onblur = (evento) => this.comprobacionValorBasura(evento, pMensaje)
   }
 
+  /**
+   * Verifica si el nombre de archivo seleccionado es válido en la sección de basura.
+   * @param {Object} iImagen - Elemento de entrada para la imagen.
+   * @returns {boolean} - Devuelve true si el nombre del archivo es válido, de lo contrario, devuelve false.
+   */
   nombreArchivoValido(iImagen) {
     if (iImagen && iImagen.files && iImagen.files.length > 0) {
         // iImagen no es nulo por lo que se ha seleccionado un archivo
@@ -368,18 +483,38 @@ export class Vistaadmins {
     
   }
 
+  /**
+   * Comprueba y valida el campo de nombre en la sección de basura.
+   * @param {Object} evento - Objeto de evento que desencadenó la llamada a la función.
+   * @param {Object} pMensaje - Objeto del lugar donde se introducirán los mensajes necesarios.
+   * @returns {void}
+   */
   comprobacionNombreBasura (evento, pMensaje) {
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/
     let mensaje = "El nombre debe tener máximo 20 caracteres y no tener espacios"
     this.validarCampoBasura(evento, pMensaje, mensaje, regExp)
   }
 
+  /**
+   * Comprueba y valida el campo de valor en la sección de basura.
+   * @param {Object} evento - Objeto de evento que desencadenó la llamada a la función.
+   * @param {Object} pMensaje - Objeto del lugar donde se introducirán los mensajes necesarios.
+   * @returns {void}
+   */
   comprobacionValorBasura (evento, pMensaje) {
     const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
     let mensaje = "Los valores numéricos deben ser un número entre 1 y 254"
     this.validarCampoBasura(evento, pMensaje, mensaje, regExp)
   }
 
+  /**
+   * Valida el campo en la sección de basura y muestra mensajes de error si es necesario.
+   * @param {Object} evento - Objeto de evento que desencadenó la llamada a la función.
+   * @param {Object} pMensaje - Objeto del lugar donde se introducirán los mensajes necesarios.
+   * @param {string} mensaje - Mensaje a mostrar si la validación falla.
+   * @param {RegExp} regExp - Expresión regular para la validación del campo.
+   * @returns {void}
+   */
   validarCampoBasura (evento, pMensaje, mensaje, regExp) {
     const input = evento.target 
     if (!regExp.test(input.value)) {
@@ -390,6 +525,12 @@ export class Vistaadmins {
     }
   }
 
+  /**
+   * Muestra la miniatura de una imagen seleccionada.
+   * @param {Event} event - Evento del input de imagen.
+   * @param {HTMLImageElement} imagenMiniatura - Elemento de imagen para mostrar la miniatura.
+   * @returns {void}
+   */
   mostrarMiniatura (event, imagenMiniatura) {
     const file = event.target.files[0]
 

@@ -1,10 +1,13 @@
 /**
- * Clase encargada de la Vista
+ * Clase encargada de las Vistas del usuario.
+ * @class
  */
 export class Vistausuario {
+
   /**
-	 * Creacion de Simbolos de las vistas
-	 */
+   * Creación de símbolos para las vistas.
+   * @enum {Symbol}
+   */
   static {
     Vistausuario.VISTAMENU = Symbol('Index')
     Vistausuario.VISTARANKING = Symbol('Ranking')
@@ -16,15 +19,20 @@ export class Vistausuario {
   }
 
   /**
-	 * Constructor de la clase. Inicializa los atributos correspondientes
-	 * @param controlador {ControladorUsuario} Controlador del Usuario
-	 * @param base {Object} Objeto que es una referencia del interfaz
-	 */
+   * Constructor de la clase. Inicializa los atributos correspondientes.
+   * @constructor
+   * @param {ControladorUsuario} controlador - Controlador del Usuario.
+   * @param {Object} base - Objeto que es una referencia del interfaz.
+   */
   constructor (controlador, base) {
     this.controlador = controlador
     this.base = base
   }
 
+  /**
+   * Muestra u oculta la vista.
+   * @param {boolean} ver - True para mostrar, false para ocultar.
+   */
   mostrar (ver) {
     if(!this.base){return}
     if (ver) {
@@ -34,6 +42,9 @@ export class Vistausuario {
     }
   }
 
+  /**
+   * Activa el modo oscuro.
+   */
   modoOscuro() {
     const body = document.body;
     const isDarkModeEnabled = localStorage.getItem('darkmode') === 'enabled';
@@ -43,6 +54,10 @@ export class Vistausuario {
     }
   }
 
+  /**
+   * Aplica el modo oscuro a los elementos secundarios.
+   * @param {boolean} enableDarkMode - True para activar, false para desactivar.
+   */
   elementosHijos(enableDarkMode) {
     const elementos = document.querySelectorAll('*');
     elementos.forEach((elemento) => {
