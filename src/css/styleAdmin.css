@@ -46,22 +46,24 @@ form > input[type=submit]:hover {
 
 /*botones*/
 /*Estilo común para los botones*/
-button {
+
+a, button, input[type=submit] {
+  text-decoration: none;
+  padding: 0.6%;
   border: solid 1px black;
-  color: #EDC713;
   border-radius: 9px;
+  color: #EDC713;
   background-color: #6D3916;
-  cursor: pointer;
+  transition: transform 0.7s ease;
   font-family: Fredoka;
+}
+
+button {
+  cursor: pointer;
   font-size: 1.4em;
   width: 30%;
   padding: 2%;
-  
   display: inline-block;
-}
-
-a, button, input[type=submit]{
-  transition: transform 0.7s ease-in;
 }
 a:hover, button:hover, input[type=submit]:hover{
   transform: scale(1.2);
@@ -115,9 +117,6 @@ nav {
 
 nav > a { /*Estilos de los enlaces del navegador*/
   margin: 0% 2%;
-  /*Como en lineas posteriores hay otro sitio donde aparece nav > a y este sitio tiene un padding si no le pongo el important
-  el padding que hay aqui puesto no srive para nada por que el que es valido es el otro dado que se sobreescribe pero el que me interesa es este
-  por ese motivo se ha puesto el !important, para indicar que este es el padding que tiene que tener prioridad*/
   padding: 1% 2% !important;
   font-size: 1.4em;
   box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
@@ -259,63 +258,32 @@ main > a:hover {
   text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
 }
 
+/* 
+    --------------------------ESTILOS TABLAS-----------------------------------
+*/
+table {
+  background-color: #6D3916;
+  margin: 0 auto 5%;
+  border: solid 1px black;
+  border-collapse: collapse;
+  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
+  width: 85%;
+}
+
+th,
+td {
+  border: solid 1px black;
+  padding: 1.5%;
+  text-align: center;
+}
 #gestorM > a {
   right: 42%;
   top: 45px;
 }
 
-/* Estilos de tablas en las secciones "niveles" y "gestor" */
-#niveles > table,
-#gestor table,
-#tablaDinamica table {
-  background-color: #6D3916;
-  margin: 0 auto 5%;
-  border: solid 1px black;
-  border-collapse: collapse;
-  width: 70%;
-}
-
-#gestorPowerup > table,
-#tablaDinamica {
-  background-color: #6D3916;
-  margin: 0 auto 5%;
-  border: solid 1px black;
-  border-collapse: collapse;
-  width: 85%;
-  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
-}
-
-#gestionNiveles table {
-  background-color: #6D3916;
-  margin: 0 auto 5%;
-  border: solid 1px black;
-  border-collapse: collapse;
-  width: 90%;
-}
-
-/* Estilos para celdas de tablas en "gestor" */
-#gestor th,
-#gestorPowerup th,
-#gestorPowerup td,
-#tablaDinamica th,
-#tablaDinamica td,
-#gestor td {
-  border: solid 1px black;
-  padding: 1.5%;
-  text-align: center;
-}
-
 .btnQuitarFila {
   background-color: transparent;
   border: none;
-}
-
-#niveles th,
-#niveles td { /*Casillas de las tablas (th y td) con el id niveles*/
-  /*Aqui le ponemos un tamaño al width de la tabla, un borde, el padding y que el texto esté centrado*/
-  border: solid 1px black;
-  padding: 1.5%;
-  text-align: center;
 }
 
 /*Tabla de la parte de mensajes de la página configNiveles*/
@@ -354,12 +322,10 @@ main > a:hover {
   width: 15%;
 }
 
-/*Quiero que el pimer hijo de su contenedor (tr) sea un poco mas grnade puesto que como se van a ver los mensajes necesitara mas espacio*/
 #gestionNiveles th:first-child {
   width: 45%;
 }
 
-/*Quiero que el tercer hijo de su contenedor (tr) sea un poco mas pequeño dado que como va a mostrar el tipo necesitara menso espacio*/
 #gestionNiveles th:nth-child(3) {
   width: 20%;
 }
