@@ -20,7 +20,7 @@
         <label for="imagen">(*) Velocidad:</label>
         <input type="text" name="velocidadBarco" placeholder="Velocidad del barco">
         <p id="msgCampos"></p>
-        <h1>Añadir mensaje</h1>
+        <h1 id="tituloAnadirMensajes">Añadir mensaje</h1>
         <table id="tablaDinamica">
             <tr>
                 <th>Contenido</th>
