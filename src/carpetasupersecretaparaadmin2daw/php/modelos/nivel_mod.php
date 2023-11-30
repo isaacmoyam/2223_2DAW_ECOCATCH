@@ -282,9 +282,23 @@ class Nivel_Mod {
     /**
      * Recoge datos del contenido de los mensajes de un nivel determinado y los retorna al controlador en json.
      */
-    public function ajaxMensajesNiveles() {
+    public function ajaxMensajesNiveles($idNivel) {
+        $this->establecerConexion();
 
+        //Consulta para obtener información de niveles
+        $sqlMensajes = 'SELECT m.contenido FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel="'.$idNivel.'";';
+        $resultMensajes = $this->mysqli->query($sqlMensajes);
+
+        $mensajes = array();
+        while ($row = $resultMensajes->fetch_assoc()) {
+            $mensajes[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return json_encode($mensajes);
     }
+
 //SELECT m.contenido FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel=2;
     /**
      * Recoge datos del campo nombre del nivel y los retorna al controlador en json.

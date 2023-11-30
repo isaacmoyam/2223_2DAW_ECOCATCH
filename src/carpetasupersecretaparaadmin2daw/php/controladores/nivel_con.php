@@ -246,7 +246,7 @@ class Nivel_con {
      * @return mixed
      */
     public function ajaxMensajesNivel() {
-        return $this->obj->ajaxMensajesNiveles();
+        return $this->obj->ajaxMensajesNiveles($_POST["parametros"]);
     }
 
     /**
