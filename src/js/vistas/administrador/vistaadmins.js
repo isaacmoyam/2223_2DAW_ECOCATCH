@@ -432,5 +432,4 @@ export class Vistaadmins {
       imagenMiniatura.style.display = 'none'
     }
   }
-
 }
