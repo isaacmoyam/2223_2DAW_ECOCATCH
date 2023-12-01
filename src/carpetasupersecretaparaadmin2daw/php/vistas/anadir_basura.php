@@ -11,7 +11,7 @@
  */
 ?>
 <main id="gestorM">
-    <a id="btnVolver" href="index.php?control=basura_con">Volver</a>
+    
     <form enctype="multipart/form-data" action="index.php?control=basura_con&metodo=crear" method="POST" id="formBasura">
         <label for="nombre">(*) Nombre:</label>
         <input type="text" name="nombre" placeholder="Nombre basura">
@@ -21,7 +21,8 @@
         <input type="file" name="imagen">
         <img id="imagenMiniatura">
         <p id="msgCampos"></p>
-        <input type="submit" value="Añadir basura">
+        <input type="submit" value="Añadir basura"><a id="btnVolver" href="index.php?control=basura_con">Cancelar</a>
     </form>
+    
 </main>
-<script src="js/vistas/administrador/vista1.js" type="module"></script>
+<script src="../js/vistas/administrador/vista1.js" type="module"></script>

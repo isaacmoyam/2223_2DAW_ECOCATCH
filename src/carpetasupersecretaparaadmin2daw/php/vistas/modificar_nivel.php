@@ -54,8 +54,8 @@
                             </select>
                             </td>
                             <td>
-                                <a href="index.php?control=nivel_con&metodo=borrarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🗑️</a>
                                 <a href="index.php?control=nivel_con&metodo=buscarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🔄</a>
+                                <a href="index.php?control=nivel_con&metodo=borrarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🗑️</a>
                             </td>
                         </tr>
                         <?php
@@ -67,5 +67,5 @@
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
-<script src="js/controladores/controladorAdmin.js" type="module"></script>
+<script src="../js/controladores/controladorAdmin.js" type="module"></script>
 

@@ -252,8 +252,7 @@ form > input[type=submit] {
     border: 2px solid black;
     min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
     min-height: 600px;
-    background-image: url("../img/fondo_juego2.png");
-    background-size: cover;
+    
     background-repeat: no-repeat;
 }
 
@@ -262,6 +261,9 @@ form > input[type=submit] {
     position: relative; /* Añade posición relativa al contenedor para que el posición absoluta del barco sea relativa a este */
     width: 80%; /* Cambia el ancho según tus necesidades */
     margin: 0 auto; /* Centra el contenedor */
+    background-image: url("../img/fondo_juego2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 200px; /* Ajusta la altura según tus necesidades */
 }
 
@@ -482,14 +484,24 @@ button.darkmode,
     MEDIAS QUERIES
     Implementado con Media Queries Level 4
  */
+
+ @media (width <= 720px) {
+    body{
+      font-size: 12px;
+    }
+    #frame{
+      width: 95%;
+      max-height: 90%;
+    }
+    #gameContainer{
+        width: 95%;
+    }
+  }
+
 @media (width <= 2500px) {
     /*pagina jugar*/
     #hud {
         gap: 24%;
-    }
-
-    #ecocatch{
-        min-height: 900px;
     }
 }
 
@@ -550,9 +562,6 @@ button.darkmode,
     /*pagina jugar*/
     #hud {
         gap:23%; /*Cambia el espacio */
-    }
-    #ecocatch{
-        min-height: 500px;
     }
 }
 
@@ -626,9 +635,6 @@ button.darkmode,
         width:98%;
         font-size: 0.84em;
     }
-    #ecocatch{
-        min-height: 400px;
-    }
     #botones > button{
         padding: 5%;
     }
@@ -641,8 +647,5 @@ button.darkmode,
         gap:9%;
         width:98%;
         font-size: 0.8em;
-    }
-    #ecocatch{
-        min-height: 300px;
     }
 }

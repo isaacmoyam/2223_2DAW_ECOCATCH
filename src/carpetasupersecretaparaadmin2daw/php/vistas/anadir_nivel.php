@@ -11,7 +11,6 @@
  */
 ?>
 <main id="anadirNiveles">
-    <a id="btnVolver" href="index.php?control=nivel_con">Volver</a>
     <form id="formBasura" action="index.php?control=nivel_con&metodo=crear" method="POST">
         <label for="nombre">(*) Nombre:</label>
         <input type="text" name="nombre" placeholder="Nombre nivel">
@@ -41,7 +40,7 @@
             </tr>
         </table>
         <button type="button" id="btnAgregarFila">Agregar mensaje</button>
-        <input type="submit" value="Añadir nivel">
+        <input type="submit" value="Añadir nivel"><a id="btnVolver" href="index.php?control=nivel_con">Volver</a>
     </form>
 </main>
-<script src="js/controladores/controladorAdmin.js" type="module"></script>
+<script src="../js/controladores/controladorAdmin.js" type="module"></script>
