@@ -9,9 +9,8 @@ export class Vistajugar extends Vistausuario {
 
     #score = 0
     #scoreElement = document.getElementById('scoreValue')
-    #maxScore = 1000
-    #maxApples = localStorage.getItem('items')
-    #applesCreated = 0
+    #maxObjetos = localStorage.getItem('items')
+    #objetosCreados = 0
 
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -39,7 +38,7 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     crearManzana() {
-        if (this.#applesCreated < this.#maxApples && this.#score < this.#maxScore) {
+        if (this.#objetosCreados < this.#maxObjetos) {
             let apple = document.createElement('div')
             let imagenApple = document.createElement('img')
             imagenApple.src = "../../../src/img/basura.png"
@@ -54,7 +53,7 @@ export class Vistajugar extends Vistausuario {
             apple.style.zIndex = '1'
             this.gameContainer.appendChild(apple)
     
-            this.#applesCreated++
+            this.#objetosCreados++
         }
     }
 
@@ -68,7 +67,6 @@ export class Vistajugar extends Vistausuario {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
             if (appleTop >= this.gameContainer.clientHeight-20) {
                 this.gameContainer.removeChild(apple)
-                this.#applesCreated--
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 2 + 'px' // Ajusta la velocidad de caída aquí
@@ -114,7 +112,7 @@ export class Vistajugar extends Vistausuario {
         this.#score++
         this.#scoreElement.textContent = this.#score
     }
-
+    
     /**
      * Inicia el juego de las manzanas con animación.
      * @returns {void}
@@ -123,7 +121,7 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.01) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.008) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()
@@ -378,3 +376,9 @@ export class Vistajugar extends Vistausuario {
  * Se ejecuta cuando la ventana ha cargado completamente.
  */
 window.onload = () => { new Vistajugar() }
+
+/*
+if (this.#score >= this.#maxObjetos) {
+    window.location.href = "../ranking/formulario.html";
+}
+*/
