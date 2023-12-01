@@ -58,7 +58,6 @@ class Powerup_Mod
 
         $powerups = array();
         while ($row = $result->fetch_assoc()) {
-            //$row['imagen'] = base64_encode($row['imagen']); //Para modificar los datos de la imagen en base 64
             $powerups[] = $row;
         }
 
@@ -81,8 +80,6 @@ class Powerup_Mod
 
         $fila = $result->fetch_assoc();
 
-        //$fila['imagen'] = base64_encode($fila['imagen']); //Cambio datos recogidos de imagen en codificacion base64
-
         return $fila;
     }
 
@@ -97,17 +94,13 @@ class Powerup_Mod
     public function modificar($id, $nombre, $imagen, $aumento, $descripcion) {
         $this->establecerConexion();
 
-        //Quitar comillas en la imagen
-        //$img = $this->mysqli->real_escape_string($imagen);
-        $img = base64_encode($imagen); //Convierte los datos de textos binarios como una imagen en cadenas de texto para que se pueda almacenar la cadena de texto
         try {
-            $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$img.'" WHERE id = '.$id;
+            $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$imagen.'" WHERE id = '.$id;
             $result = $this->mysqli->query($sql);
         } catch(mysqli_sql_exception $e) {
             $error = true;
             return $error;
         }
-
 
         $this->cerrarConexion();
 
@@ -147,62 +140,36 @@ class Powerup_Mod
 
         //Consulta Preparada para item
         $sqlItem = 'INSERT INTO item (nombre, imagen) VALUES (?, ?)';
+
         $consultaPrepardaItem = $this->mysqli->prepare($sqlItem);
+        $consultaPrepardaItem->bind_param('ss', $nombrePorDefecto, $imagen);
 
         //Consulta Preparada para powerup
         $sqlPowerup = 'INSERT INTO powerup (id, aumento, descripcion) VALUES (?, ?, ?)';
+
         $consultaPreparadaPowerup = $this->mysqli->prepare($sqlPowerup);
-
-        /*
-         * Preparo la imagen.
-         * Como va a ser la misma para todos con solo ponerlo una vez es suficiente
-         * */
-        //$img = $this->mysqli->real_escape_string($imagen);
-
-        //COMIENZO INSERCCIONES
-        //Primera inserccion en item
-        $nombrePorDefecto = 'Velocidad1';
-
-        $consultaPrepardaItem->bind_param('ss', $nombrePorDefecto, $imagen);
-        $consultaPrepardaItem->execute();
-
-        //Y su respectiva inserccion en powerup
-        $idPorDefecto = $this->mysqli->insert_id; //Obtengo el id de la ultima consulta (insert de item)
-        $aumentoPorDefecto = 10; // Cambia esto según tus necesidades
-        $descripcionPorDefecto = 'Este powerup aumenta la velocidad del barco en 10'; // Cambia esto según tus necesidades
-
         $consultaPreparadaPowerup->bind_param('iis', $idPorDefecto, $aumentoPorDefecto, $descripcionPorDefecto);
-        $consultaPreparadaPowerup->execute();
 
+        //Preparo el array con los datosque quiero introducir
+        $arrayDatos = [
+            ['Velocidad1',10,'Este powerup aumenta la velocidad del barco en 10'],
+            ['Velocidad2',20,'Este powerup aumenta la velocidad del barco en 20'],
+            ['Velocidad3',30,'Este powerup aumenta la velocidad del barco en 30']
+        ];
 
-        //Segunda inserccion en item
-        $nombrePorDefecto = 'Velocidad2';
+        foreach ($arrayDatos as $dato){
+            //Dar valor a la variable para la consulta de item
+            $nombrePorDefecto = $dato[0];
 
-        $consultaPrepardaItem->bind_param('ss', $nombrePorDefecto, $imagen);
-        $consultaPrepardaItem->execute();
+            $consultaPrepardaItem->execute(); //Ejecutar consulta preparada item
 
-        //Y su respectiva inserccion en powerup
-        $idPorDefecto = $this->mysqli->insert_id; //Obtengo el id de la ultima consulta (insert de item)
-        $aumentoPorDefecto = 20; // Cambia esto según tus necesidades
-        $descripcionPorDefecto = 'Este powerup aumenta la velocidad del barco en 20'; // Cambia esto según tus necesidades
+            //Dar valor a las variables para la consulta de powerup
+            $idPorDefecto = $this->mysqli->insert_id; //Obtengo el id de la ultima consulta (insert de item)
+            $aumentoPorDefecto = $dato[1];
+            $descripcionPorDefecto = $dato[2];
 
-        $consultaPreparadaPowerup->bind_param('iis', $idPorDefecto, $aumentoPorDefecto, $descripcionPorDefecto);
-        $consultaPreparadaPowerup->execute();
-
-
-        //Tercera inserccion en item
-        $nombrePorDefecto = 'Velocidad3';
-
-        $consultaPrepardaItem->bind_param('ss', $nombrePorDefecto, $imagen);
-        $consultaPrepardaItem->execute();
-
-        //Y su respectiva inserccion en powerup
-        $idPorDefecto = $this->mysqli->insert_id; //Obtengo el id de la ultima consulta (insert de item)
-        $aumentoPorDefecto = 30; // Cambia esto según tus necesidades
-        $descripcionPorDefecto = 'Este powerup aumenta la velocidad del barco en 30'; // Cambia esto según tus necesidades
-
-        $consultaPreparadaPowerup->bind_param('iis', $idPorDefecto, $aumentoPorDefecto, $descripcionPorDefecto);
-        $consultaPreparadaPowerup->execute();
+            $consultaPreparadaPowerup->execute(); //Ejecutar consulta preparada powerup
+        }
 
         // Cerrar las declaraciones preparadas
         $consultaPrepardaItem->close();
@@ -226,7 +193,6 @@ class Powerup_Mod
 
         $powerups = array();
         while ($row = $resultPowerup->fetch_assoc()) {
-            $row['imagen'] = base64_encode($row['imagen']);
             $powerups[] = $row;
         }
 
