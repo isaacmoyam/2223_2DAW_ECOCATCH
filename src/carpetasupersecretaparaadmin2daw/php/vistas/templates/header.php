@@ -15,7 +15,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/styleAdmin.css">
+        <link rel="stylesheet" href="../css/style_admin.css">
         
         <!-- <link rel="stylesheet" href="css/menu.css"> -->
         <link rel="icon" href="../img/logo_fondo_transparente.png" type="image/x-icon">

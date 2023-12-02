@@ -61,7 +61,6 @@ form > input[type=submit]:hover {
   background-color: #85471f;
 }
 
-/*botones*/
 /*Estilo común para los botones*/
 
 button, input[type=submit] {
@@ -75,27 +74,15 @@ button, input[type=submit] {
   font-family: Fredoka;
 }
 
-button {
+a, input[type=submit], button {
   cursor: pointer;
   font-size: 1.4em;
   width: 30%;
   padding: 2%;
-  display: inline-block;
-}
-a:hover, button:hover, input[type=submit]:hover{
-  transform: scale(1.1);
-  cursor: pointer;
-  font-size: 1.4em;
-  width: 30%;
-  padding: 2%;
-  display: inline-block;
-}
-a:hover, button:hover, input[type=submit]:hover{
-  transform: scale(1.1);
+  display: inline;
 }
 
 button:hover {
-  background-color: #85471f;
   background-color: #85471f;
 }
 
@@ -157,17 +144,7 @@ nav {
   width: 50%;
   margin: 2% auto;
   text-align: center;
-nav {
-  width: 50%;
-  margin: 2% auto;
-  text-align: center;
 }
-
-nav > a { /*Estilos de los enlaces del navegador*/
-  margin: 0% 2%;
-  padding: 1% 2%;
-  font-size: 1.4em;
-  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
 
 nav > a { /*Estilos de los enlaces del navegador*/
   margin: 0% 2%;
@@ -206,16 +183,8 @@ nav > a { /*Estilos de los enlaces del navegador*/
   display: block;
   width: 40%;
   margin: 7% auto 0;
-#menu > a {
-  display: block;
-  width: 40%;
-  margin: 7% auto 0;
 }
 
-#volverMoverMensaje {
-  display: block;
-  width: 20%;
-  margin: 6% auto 0;
 #volverMoverMensaje {
   display: block;
   width: 20%;
@@ -224,12 +193,6 @@ nav > a { /*Estilos de los enlaces del navegador*/
 
 /*MAIN*/
 /* Estilos de las secciones main de la página */
-/*Main pagina anadirNiveles*/
-#configMensajes,
-#gestionNiveles,
-#movMsg,
-#niveles,
-#gestorPowerup,
 /*Main pagina anadirNiveles*/
 #configMensajes,
 #gestionNiveles,
@@ -247,21 +210,9 @@ nav > a { /*Estilos de los enlaces del navegador*/
   width: 55%;
   margin: 0 auto;
   box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
-#gestorM {
-  background-color: #326F1E;
-  font-size: 1.4em;
-  text-align: center;
-  border-radius: 30px;
-  border: solid 2px;
-  padding-bottom: 3%;
-  width: 55%;
-  margin: 0 auto;
-  box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
 }
 
 #anadirNiveles,
-#configMensajes {
-  width: 50%; /*Pongo un tamaño en específico para ocasiones determinadas como configMensajes y añadirNiveles en donde quedaba mucho espacio libre*/
 #configMensajes {
   width: 50%; /*Pongo un tamaño en específico para ocasiones determinadas como configMensajes y añadirNiveles en donde quedaba mucho espacio libre*/
 }
@@ -286,7 +237,6 @@ main > form > #btnVolver{
   border-radius: 9px;
   color: #EDC713;
   background-color: #6D3916;
-  transition: transform 0.7s ease;
 }
 
 #niveles > a:nth-child(2),
@@ -302,9 +252,6 @@ main > form > #btnVolver{
 /* Posicionamiento relativo para los enlaces de las diferentes secciones */
 #niveles > a,
 #gestor > a,
-#gestorPowerup > a,
-#gestorM > a {
-  position: relative;
 #gestorPowerup > a,
 #gestorM > a {
   position: relative;
@@ -339,13 +286,6 @@ h1{
   display: inline-block;
   right: 28.3%;
   bottom: 20px;
-#botonMasConfigNiveles {
-  position: relative;
-  left: 32.5%;
-  width: 4%;
-  display: inline-block;
-  right: 28.3%;
-  bottom: 20px;
 }
 
 /*Quitar linea de enlace de los emoticonos (papelera, lapiz...) en las tablas*/
@@ -358,7 +298,6 @@ h1{
   text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
   text-decoration: none; /*Usado para quitar la decoracion de un enlace*/
 }
-
 /* 
     --------------------------ESTILOS TABLAS-----------------------------------
 */
@@ -411,17 +350,14 @@ td {
 
 table img{
   width: 60px;
+}
+
 .btnQuitarFila {
   background-color: transparent;
   border: none;
 }
 
-table img{
-  width: 60px;
-}
 
-label{
-  margin: 10px  ;
 label{
   margin: 10px  ;
 }
@@ -432,23 +368,10 @@ label{
   border: solid 1px black;
   padding: 1%;
   text-align: center;
-#gestionNiveles td {
-  border: solid 1px black;
-  padding: 1%;
-  text-align: center;
 }
 
 #tablaPowerup th:first-child {
   width: 35%;
-#tablaPowerup th:first-child {
-  width: 35%;
-}
-
-#tablaPowerup th:first-child{
-  width: 10%;
-
-#tablaPowerup th:first-child{
-  width: 10%;
 }
 
 #tablaPowerup th:nth-child(2) {
@@ -520,72 +443,7 @@ main > a:hover,
 #gestorPowerup > a:hover,
 #gestorM > a:hover {
   background-color: #85471f;
-  background-color: #85471f;
 }
-
-
-
-/*
-    MODO OSCURO
-    Apartado en donde se pondran todos los atributos relacionados con el modo oscuro
-*/
-header > img.darkmode {
-    border: 2px solid #deca65;
-}
-
-select.darkmode,
-button.darkmode:hover,
-#gestor.darkmode,
-#gestorM.darkmode,
-#menu.darkmode {
-    background-color: #16330c;
-}
-
-main > a.darkmode,
-body.darkmode,
-select.darkmode,
-button.darkmode,
-form > input[type=submit].darkmode,
-#gestor > a.darkmode,
-#gestorM > a.darkmode{
-    color: #deca65;
-}
-
-main > a.darkmode,
-form > input[type=submit].darkmode,
-body.darkmode,
-#gestor > a.darkmode,
-#gestorM > a.darkmode,
-#gestor table.darkmode {
-    background-color: #0a1905;
-}
-
-main > a.darkmode,
-select.darkmode,
-button.darkmode,
-form > input[type=submit].darkmode,
-#gestor > a.darkmode,
-#gestorM > a.darkmode,
-#gestor table.darkmode
-#gestor th.darkmode,
-#gestor td.darkmode {
-    border: 1px solid #deca65;
-}
-
-/*Color de los enlaces cuando pasas el cursor por encima de ellos en el modo oscuro*/
-main > a.darkmode:hover,
-main.darkmode,
-nav.darkmode,
-button.darkmode,
-form > input[type=submit].darkmode:hover,
-select:hover.darkmode,
-#menu > a.darkmode:hover,
-#gestor > a.darkmode:hover,
-#gestorM > a.darkmode:hover{
-    background-color: #253d1d;
-}
-
-
 
 
 /**
@@ -672,7 +530,7 @@ select:hover.darkmode,
     nav > a,
     #gestor,
     #niveles,
-    #gestionNiveles  table{
+    #gestionNiveles > table{
         font-size: 0.5em; /*Cambiar tamaño de la letra*/
     }
 }
