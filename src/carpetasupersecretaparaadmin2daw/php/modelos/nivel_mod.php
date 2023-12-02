@@ -257,5 +257,67 @@ class Nivel_Mod {
 
         $this->cerrarConexion();
     }
+
+    /**
+     * Recoge datos de nivel y los retorna al controlador en json.
+     */
+    public function ajaxDatosNivel() {
+        $this->establecerConexion();
+
+        //Consulta para obtener información de niveles
+        $sqlNivel = "SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel;";
+        $resultNivel = $this->mysqli->query($sqlNivel);
+
+        $nivel = array();
+        while ($row = $resultNivel->fetch_assoc()) {
+            $nivel[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return json_encode($nivel);
+    }
+
+    /**
+     * Recoge datos del contenido de los mensajes de un nivel determinado y los retorna al controlador en json.
+     */
+    public function ajaxMensajesNiveles($idNivel) {
+        $this->establecerConexion();
+
+        //Consulta para obtener información de niveles
+        $sqlMensajes = 'SELECT m.contenido FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel="'.$idNivel.'";';
+        $resultMensajes = $this->mysqli->query($sqlMensajes);
+
+        $mensajes = array();
+        while ($row = $resultMensajes->fetch_assoc()) {
+            $mensajes[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return json_encode($mensajes);
+    }
+
+//SELECT m.contenido FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel=2;
+    /**
+     * Recoge datos del campo nombre del nivel y los retorna al controlador en json.
+     */
+    /*PENDIENTE DE SER QUITADO
+    public function ajaxNombreNiveles() {
+        $this->establecerConexion();
+
+        //Consulta para obtener la informacion del campo de nombre en la tabla niveles
+        $sqlNombreNivel = "SELECT nombre FROM nivel;";
+        $resultNombreNivel = $this->mysqli->query($sqlNombreNivel);
+
+        $nombreNivel = array();
+        while ($row = $resultNombreNivel->fetch_assoc()) {
+            $nombreNivel[] = $row;
+        }
+
+        $this->cerrarConexion();
+
+        return json_encode($nombreNivel);
+    }*/
 }
 ?>

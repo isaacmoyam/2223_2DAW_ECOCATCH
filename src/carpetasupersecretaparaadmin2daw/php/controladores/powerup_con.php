@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Controlador de poweup
+ *
+ *
+ * @category Controlador
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+
 require_once 'php/modelos/powerup_mod.php';
 
 /**
@@ -80,7 +89,9 @@ class Powerup_con
             $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
 
             if ($extensionArchivo == $extensionPermitida) {
-                $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["aumento"], $_POST["descripcion"]);
+                $imgCodificada = base64_encode($imgEnBinario); //Convierte los datos de textos binarios como una imagen en cadenas de texto para que se pueda almacenar la cadena de texto
+
+                $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgCodificada, $_POST["aumento"], $_POST["descripcion"]);
                 /*
                  * La funcion modificar solo devuelve true al ocurrir un error en el query.
                  * Si no hay error la funcion devuelve null por lo que la condicion !resultado la da como verdadera
@@ -98,6 +109,15 @@ class Powerup_con
         }
     }
 
+    /**/
+    public function restarurarValoresPowerup(){
+        $rutaImagenPorDefecto = __DIR__ .'/../../../img/Default/velocidad1.png';
+
+        $imagenPorDefecto = file_get_contents($rutaImagenPorDefecto);  //Obtiene el contenido
+        $imagenCodificada = base64_encode($imagenPorDefecto); //Convierte los datos de textos binarios como una imagen en cadenas de texto para que se pueda almacenar la cadena de texto
+
+        $this->obj->valoresPorDefecto($imagenCodificada);
+    }
 
     /**
      * Manda los datos de powerup a través de AJAX.

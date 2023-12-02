@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * Controlador de partida
+ *
+ *
+ * @category Controlador
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+
 require_once 'php/modelos/partida_mod.php';
 
 /**
@@ -42,11 +52,10 @@ class Partida_con
     }
 
     /**
-     * Manda los datos de partida a través de AJAX.
+     * Recibe los datos de la partida y los inserta en la base de datos.
      * @return mixed
      */
     public function ajaxAnadirPartida() {
-        //Hablar con isaac insertarPartida
-        return $this->obj->insertarPartida();
+        $this->obj->insertarPartida($_POST["nombre"], $_POST["correo"], $_POST["puntuacion"], $_POST["idNivel"]);
     }
 }

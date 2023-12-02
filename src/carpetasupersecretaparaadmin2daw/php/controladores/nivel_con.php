@@ -218,5 +218,30 @@ class Nivel_con {
             header("Location: index.php?control=nivel_con&mensaje=false");
         }
     }
+
+    /**
+     * Manda los datos de nivel a través de AJAX.
+     * @return mixed
+     */
+    public function ajaxNivel() {
+        return $this->obj->ajaxDatosNivel();
+    }
+
+    /**
+     * Manda todos los mensajes que tiene un nivel determinado.
+     * @return mixed
+     */
+    public function ajaxMensajesNivel() {
+        return $this->obj->ajaxMensajesNiveles($_POST["parametros"]);
+    }
+
+    /**
+     * Manda los datos de los nombres de los niveles a través de AJAX.
+     * @return mixed
+     */
+    /*PENDIENTE DE SER QUITADO
+    public function ajaxNombreNivel() {
+        return $this->obj->ajaxNombreNiveles();
+    }*/
 }
 ?>
