@@ -117,10 +117,15 @@ class Nivel_Mod {
      */ 
     public function crear($nombre, $items, $velocidad) {
         $this->establecerConexion();
-
-        $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
-        $result = $this->mysqli->query($sql);
-        $idNivel = $this->mysqli->insert_id;
+       
+        try {
+            $sql = 'INSERT INTO nivel (nombre, cantidadItems, velocidadBarco) VALUES ("'.$nombre.'", "'.$items.'", "'.$velocidad.'")';
+            $result = $this->mysqli->query($sql);
+            $idNivel = $this->mysqli->insert_id;
+        } catch(mysqli_sql_exception $e) {
+            $error = true;
+            return $error;
+        }
 
         $this->cerrarConexion();
 
@@ -247,56 +252,10 @@ class Nivel_Mod {
      */
     public function crearMensaje($tipo, $contenido, $puntosHasta, $idNivel) {
         $this->establecerConexion();
-
-        try {
-            $sql = 'INSERT INTO mensaje (tipo, contenido, puntosHasta, idNivel) VALUES ("'.$tipo.'", "'.$contenido.'", "'.$puntosHasta.'", "'.$idNivel.'")';
-            $result = $this->mysqli->query($sql);
-        } catch(mysqli_sql_exception $e) {
-            $error = true;
-            return $error; //Si hay un error devulve true
-        }
+        $sql = 'INSERT INTO mensaje (tipo, contenido, puntosHasta, idNivel) VALUES ("'.$tipo.'", "'.$contenido.'", "'.$puntosHasta.'", "'.$idNivel.'")';
+        $result = $this->mysqli->query($sql);
 
         $this->cerrarConexion();
-    }
-
-    /**
-     * Recoge datos de nivel y los retorna al controlador en json.
-     */
-    public function ajaxDatosNivel() {
-        $this->establecerConexion();
-
-        //Consulta para obtener información de niveles
-        $sqlNivel = "SELECT id,nombre,cantidadItems,velocidadBarco FROM nivel;";
-        $resultNivel = $this->mysqli->query($sqlNivel);
-
-        $nivel = array();
-        while ($row = $resultNivel->fetch_assoc()) {
-            $nivel[] = $row;
-        }
-
-        $this->cerrarConexion();
-
-        return json_encode($nivel);
-    }
-
-    /**
-     * Recoge datos del campo nombre del nivel y los retorna al controlador en json.
-     */
-    public function ajaxNombreNiveles() {
-        $this->establecerConexion();
-
-        //Consulta para obtener la informacion del campo de nombre en la tabla niveles
-        $sqlNombreNivel = "SELECT nombre FROM nivel;";
-        $resultNombreNivel = $this->mysqli->query($sqlNombreNivel);
-
-        $nombreNivel = array();
-        while ($row = $resultNombreNivel->fetch_assoc()) {
-            $nombreNivel[] = $row;
-        }
-
-        $this->cerrarConexion();
-
-        return json_encode($nombreNivel);
     }
 }
 ?>

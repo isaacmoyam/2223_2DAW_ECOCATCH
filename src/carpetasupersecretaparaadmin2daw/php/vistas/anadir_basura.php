@@ -25,4 +25,4 @@
     </form>
     
 </main>
-<script src="../js/vistas/administrador/vista1.js" type="module"></script>
+<script src="js/vistas/administrador/vistaanadirbasura.js" type="module"></script>

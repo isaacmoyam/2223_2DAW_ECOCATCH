@@ -2,46 +2,58 @@
  * Clase de Servicio para llamadas AJAX.
  * @class
  */
-export class Rest {
-
-    /**
-     * Realiza una solicitud GET y devuelve el resultado en texto.
-     * @param {string} url - URL de la solicitud.
-     * @param {Object} params - Parámetros de la solicitud.
-     * @param {function} callback - Función de retorno de llamada.
-     * @returns {void}
-     */
+export class Rest { 	
     static get(url, params, callback) {
-        // ... (código omitido para mayor claridad)
-    }
+        let paramsGET = '?';
 
-    /**
-     * Realiza una solicitud GET y devuelve el resultado en formato JSON.
-     * @param {string} url - URL de la solicitud.
-     * @param {Object} params - Parámetros de la solicitud.
-     * @param {function} callback - Función de retorno de llamada.
-     * @returns {void}
-     */
+        for (let param in params) {
+            paramsGET += param + '=';
+            paramsGET += params[param] + '&';
+        }
+
+        fetch(encodeURI(url + paramsGET.substring(0, paramsGET.length-1)))
+            .then(respuesta => respuesta.text())
+            .then(texto => {
+                if (callback) {
+                    callback(texto);
+                }
+            });
+    } 
+
     static getJSON(url, params, callback) {
-        // ... (código omitido para mayor claridad)
+        let paramsGET = '?';
+
+        for (let param in params) {
+            paramsGET += param + '=';
+            paramsGET += params[param] + '&';
+        }
+
+        fetch(encodeURI(url + paramsGET.substring(0, paramsGET.length-1)))
+            .then(texto => texto.json())
+            .then(objeto => {
+                if (callback) {
+                    callback(objeto);
+                }
+            });
     }
 
-    /**
-     * Realiza una solicitud POST y devuelve el resultado en texto.
-     * @param {string} url - URL de la solicitud.
-     * @param {Object} params - Parámetros de la solicitud.
-     * @param {function} callback - Función de retorno de llamada.
-     * @returns {void}
-     */
     static post(url, params, callback) {
-        // ... (código omitido para mayor claridad)
-    }
+        let parametros = new FormData();
+        for (const param in params) {
+            parametros.append(param, params[param]);
+        }
 
-    /**
-     * Consulta datos climatológicos diarios de AEMET.
-     * @returns {void}
-     */
-    static consultarAEMET() {
-        // ... (código omitido para mayor claridad)
+        const opciones = {
+            method: 'POST',
+            body: parametros
+        };
+
+        fetch(url, opciones)
+            .then(respuesta => respuesta.json())
+            .then(objeto => {
+                if (callback) {
+                    callback(objeto);
+                }
+            });
     }
 }
