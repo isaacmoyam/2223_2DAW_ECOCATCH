@@ -56,7 +56,9 @@ class Basura_con {
             $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
 
             if ($extensionArchivo == $extensionPermitida) {
-                $resultado = $this->obj->crear($_POST["nombre"],$imgEnBinario,$_POST["valor"]);
+                $imgCodificada = base64_encode($imgEnBinario); //Convierte los datos de textos binarios como una imagen en cadenas de texto para que se pueda almacenar la cadena de texto
+
+                $resultado = $this->obj->crear($_POST["nombre"],$imgCodificada,$_POST["valor"]);
                 if(!$resultado) {
                     header("Location: index.php?control=basura_con&mensaje=true");
                 } else {
@@ -101,7 +103,9 @@ class Basura_con {
             $extensionArchivo = strtolower($infoArchivo['extension']); //Obtiene la extension del archivo introducido para compararla
 
             if ($extensionArchivo == $extensionPermitida) {
-                $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgEnBinario, $_POST["valor"]);
+                $imgCodificada = base64_encode($imgEnBinario); //Convierte los datos de textos binarios como una imagen en cadenas de texto para que se pueda almacenar la cadena de texto
+
+                $resultado = $this->obj->modificar($_GET["id"], $_POST["nombre"], $imgCodificada, $_POST["valor"]);
                 if(!$resultado) {
                     header("Location: index.php?control=basura_con&mensaje=true");
                 } else {

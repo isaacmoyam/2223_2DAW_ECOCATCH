@@ -13,7 +13,7 @@
 // Sección HTML para la interfaz de modificación de basura.
 ?>
 <main id="gestorM">
-    <a href="index.php?control=basura_con">Volver</a>
+    <h1>Modificación Basura</h1>
     <?php
         $fila = $datosVista["datos"];
     ?>
@@ -27,6 +27,7 @@
         <img src="data:image/png;base64,<?php echo $fila['imagen'];?>" alt="Imagen Actual">
         <label>(*) Imagen:</label>
         <input type="file" name="imagen">
+        <img id="imagenMiniatura">
         <p id="msgCampos"></p>
         <input type="submit" value="Guardar cambios">
     </form>

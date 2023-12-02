@@ -63,7 +63,6 @@ class Basura_Mod {
 
         $basuras = array();
         while ($row = $result->fetch_assoc()) {
-            $row['imagen'] = base64_encode($row['imagen']); //Para modificar los datos de la imagen en base 64
             $basuras[] = $row;
         }
 
@@ -95,10 +94,7 @@ class Basura_Mod {
     public function crear($nombre, $imagen, $valor) {
         $this->establecerConexion();
 
-        //Para quitar comillas en la imagen
-        $img = $this->mysqli->real_escape_string($imagen);
-
-        $sql = 'INSERT INTO item (nombre, imagen) VALUES ("'.$nombre.'", "'.$img.'")';
+        $sql = 'INSERT INTO item (nombre, imagen) VALUES ("'.$nombre.'", "'.$imagen.'")';
         $result = $this->mysqli->query($sql);
         $id = $this->mysqli->insert_id;
 
@@ -130,8 +126,6 @@ class Basura_Mod {
 
         $fila = $result->fetch_assoc();
 
-        $fila['imagen'] = base64_encode($fila['imagen']); //Cambio datos recogidos de imagen en codificacion base64
-
         return $fila;
     }
 
@@ -146,11 +140,8 @@ class Basura_Mod {
     public function modificar($id, $nombre, $imagen, $valor) {
         $this->establecerConexion();
 
-        //Para quitar comillas en la imagen
-        $img = $this->mysqli->real_escape_string($imagen);
-
         try {
-            $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$img.'" WHERE id = '.$id;
+            $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$imagen.'" WHERE id = '.$id;
             $result = $this->mysqli->query($sql);
         } catch(mysqli_sql_exception $e) {
             $error = true;
@@ -183,7 +174,6 @@ class Basura_Mod {
     
         $basuras = array();
         while ($row = $resultBasura->fetch_assoc()) {
-            $row['imagen'] = base64_encode($row['imagen']);
             $basuras[] = $row;
         }
     
