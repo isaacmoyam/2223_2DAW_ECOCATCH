@@ -111,7 +111,7 @@ class Powerup_con
 
     /**/
     public function restarurarValoresPowerup(){
-        $rutaImagenPorDefecto = __DIR__ .'/../../img/Default/velocidad1.png';
+        $rutaImagenPorDefecto = __DIR__ .'/../../../img/Default/velocidad1.png';
 
         $imagenPorDefecto = file_get_contents($rutaImagenPorDefecto);  //Obtiene el contenido
         $imagenCodificada = base64_encode($imagenPorDefecto); //Convierte los datos de textos binarios como una imagen en cadenas de texto para que se pueda almacenar la cadena de texto

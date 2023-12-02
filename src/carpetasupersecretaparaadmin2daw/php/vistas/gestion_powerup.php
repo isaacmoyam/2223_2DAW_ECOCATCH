@@ -45,4 +45,4 @@
     <a id="botonPorDefecto" href="index.php?control=powerup_con&metodo=restarurarValoresPowerup">Restaurar valores por defecto</a>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>
-<script src="js/vistas/administrador/vistamostrarpowerup.js" type="module"></script>
+<script src="../js/vistas/administrador/vistamostrarpowerup.js" type="module"></script>

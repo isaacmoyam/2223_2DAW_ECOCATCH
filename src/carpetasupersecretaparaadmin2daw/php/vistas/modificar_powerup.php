@@ -20,4 +20,4 @@
         <input type="submit" value="Modificar Powerup">
     </form>
 </main>
-<script src="js/vistas/administrador/vistamodificarpowerup.js" type="module"></script>
+<script src="../js/vistas/administrador/vistamodificarpowerup.js" type="module"></script>

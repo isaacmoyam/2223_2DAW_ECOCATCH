@@ -239,7 +239,7 @@ form > input[type=submit] {
     border: 2px solid black;
     min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
     min-height: 600px;
-    background-image: url("../img/fondoJuego.png");
+    background-image: url("../img/fondo_juego.png");
     background-size: cover;
     background-repeat: no-repeat;
 }

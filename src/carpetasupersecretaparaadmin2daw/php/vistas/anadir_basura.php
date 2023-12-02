@@ -24,4 +24,4 @@
         <input type="submit" value="Añadir basura">
     </form>
 </main>
-<script src="js/vistas/administrador/vistaanadirbasura.js" type="module"></script>
+<script src="../js/vistas/administrador/vistaanadirbasura.js" type="module"></script>

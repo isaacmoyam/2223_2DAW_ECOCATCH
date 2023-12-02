@@ -32,7 +32,7 @@ export class Vistaniveles extends Vistausuario {
    * @method
    */
   llamarGET = () => {
-    Rest.getJSON('../../../src/index.php?control=nivel_con&metodo=ajaxNivel', null, this.verResultadoGET);
+    Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=nivel_con&metodo=ajaxNivel', null, this.verResultadoGET);
   }
 
   /**

@@ -32,4 +32,4 @@
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
-<script src="js/vistas/administrador/vistamodificarbasura.js" type="module"></script>
+<script src="../js/vistas/administrador/vistamodificarbasura.js" type="module"></script>

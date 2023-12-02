@@ -11,6 +11,7 @@ export class Vistajugar extends Vistausuario {
     #scoreElement = document.getElementById('scoreValue')
     #maxObjetos = localStorage.getItem('items')
     #objetosCreados = 0
+    #objetosDestruidos = 0
 
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -20,16 +21,6 @@ export class Vistajugar extends Vistausuario {
      */
     constructor(controlador, base) {
         super(controlador, base)
-        this.x = 0
-        this.touchStartX = null
-        this.animationFrameId = null
-        this.juegoEnPausa = false
-        this.id = localStorage.getItem('id')
-        this.iniciarJuegoManzanas()
-        this.velocidad = localStorage.getItem('velocidad')
-        this.nombre = localStorage.getItem('nombreLvl')
-        const nombreNivel = document.getElementById("nombreNivel")
-        nombreNivel.innerHTML = this.nombre
         this.eventos()
     }
 
@@ -67,6 +58,7 @@ export class Vistajugar extends Vistausuario {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
             if (appleTop >= this.gameContainer.clientHeight-20) {
                 this.gameContainer.removeChild(apple)
+                this.#objetosDestruidos++;
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 2 + 'px' // Ajusta la velocidad de caída aquí
@@ -101,6 +93,7 @@ export class Vistajugar extends Vistausuario {
         ) {
             this.gameContainer.removeChild(apple)
             this.aumentarPuntuacion()
+            this.#objetosDestruidos++;
         }
     }
 
@@ -121,12 +114,16 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.008) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.003) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()
             }
             requestAnimationFrame(update)
+            if(this.#maxObjetos == this.#objetosDestruidos) {
+                window.location.href = "../ranking/formulario.html";
+                localStorage.setItem('puntuacionFinal', this.#score)
+            }
         }
         update()
     }
@@ -136,6 +133,19 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     eventos() {
+        this.x = 0
+        this.touchStartX = null
+        this.animationFrameId = null
+        this.juegoEnPausa = false
+
+        this.id = localStorage.getItem('id')
+        this.iniciarJuegoManzanas()
+        this.velocidad = localStorage.getItem('velocidad')
+
+        this.nombre = localStorage.getItem('nombreLvl')
+        const nombreNivel = document.getElementById("nombreNivel")
+        nombreNivel.innerHTML = this.nombre
+
         super.modoOscuro()
         this.eventoBarco()
         this.crearBotonPausa()
@@ -148,7 +158,7 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     llamarPOST = () => {
-        Rest.post('../../../src/index.php?control=nivel_con&metodo=ajaxMensajesNivel', {'parametros': this.id}, this.verResultadoPOST);
+        Rest.post('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=nivel_con&metodo=ajaxMensajesNivel', {'parametros': this.id}, this.verResultadoPOST);
     }
 
     /**
