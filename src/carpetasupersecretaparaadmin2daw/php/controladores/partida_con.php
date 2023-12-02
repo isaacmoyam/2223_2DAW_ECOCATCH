@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * Controlador de partida
+ *
+ *
+ * @category Controlador
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+
 require_once 'php/modelos/partida_mod.php';
 
 /**

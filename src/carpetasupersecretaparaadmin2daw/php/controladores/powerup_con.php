@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Controlador de poweup
+ *
+ *
+ * @category Controlador
+ * @author   Equipo A
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+
 require_once 'php/modelos/powerup_mod.php';
 
 /**
