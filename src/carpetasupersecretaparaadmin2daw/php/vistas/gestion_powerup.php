@@ -14,34 +14,37 @@
 ?>
 <main id="gestor">
     <h1>PowerUps</h1>
-    <table>
-        <tr>
-            <th>Opción</th>
-            <th>Nombre</th>
-            <th>Aumento</th>
-            <th>Imagen</th>
-            <th>Descripcion</th>
-        </tr>
-        <?php
-        $obj = new $controlador();
-        $datos = $obj->mostrar();
-
-        // Iteración sobre los datos para mostrar en la tabla.
-        foreach ($datos as $fila) {
-            ?>
+    <form enctype="multipart/form-data" action="index.php?control=powerup_con&metodo=modificar" method="POST" id="formPowerup">
+        <table>
             <tr>
-                <td>
-                    <a href="index.php?control=powerup_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
-                </td>
-                <td><?php echo $fila['nombre']; ?></td>
-                <td><?php echo $fila['aumento']; ?></td>
-                <td><img src="data:image/png;base64,<?php echo $fila['imagen'];?>"></td>
-                <td><?php echo $fila['descripcion']; ?></td>
+                <th>Nombre</th>
+                <th>Aumento</th>
+                <th>Descripcion</th>
+                <th>Imagen</th>
+                <th>Cambiar Imagen</th>
             </tr>
             <?php
-        }
-        ?>
-    </table>
-    <a href="index.php?control=powerup_con&metodo=restarurarValoresPowerup">Restaurar valores por defecto</a>
+            $obj = new $controlador();
+            $datos = $obj->mostrar();
+
+            // Iteración sobre los datos para mostrar en la tabla.
+            foreach ($datos as $fila) {
+                ?>
+                <tr>
+                    <td><input type="text" name="nombre[]" value="<?php echo $fila['nombre'];?>" placeholder="Nombre Powerup" maxlength="20"></td>
+                    <td><input type="text" name="aumento[]" value="<?php echo $fila['aumento'];?>" placeholder="Aumento"></td>
+                    <td><input type="text" name="descripcion[]" value="<?php echo $fila['descripcion'];?>" maxlength="300"></td>
+                    <td><img src="data:image/png;base64,<?php echo $fila['imagen'];?>"></td>
+                    <td><input type="file" name="imagen[]"></td>
+                    <input type="hidden" name="id[]" value="<?php echo $fila['id'];?>">
+                    <input type="hidden" name="imagen_actual[]" value="<?php echo $fila['imagen'];?>" >
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+        <input type="submit" value="Modificar Powerup">
+    </form>
     <?php echo "<p>".$mensaje."</p>" ?>
+    <a href="index.php?control=powerup_con&metodo=restarurarValoresPowerup">Restaurar valores por defecto</a>
 </main>
