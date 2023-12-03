@@ -25,59 +25,60 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
-     * Crea una basura y la agrega al contenedor de juego.
+     * Crea una manzana y la agrega al contenedor de juego.
      * @returns {void}
      */
-    crearBasura() {
+    crearManzana() {
         if (this.#objetosCreados < this.#maxObjetos) {
-            let basura = document.createElement('div')
-            let imagenbasura = document.createElement('img')
-            imagenbasura.src = "../../../src/img/basura.png"
-            imagenbasura.style.width = "50px"
-            imagenbasura.style.height = "50px"
-            basura.appendChild(imagenbasura)
-            basura.classList.add('basura')
-            basura.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
-            basura.style.top = '-50px' // Posición inicial arriba del todo
-            basura.style.width = '50px' 
-            basura.style.height = '50px' 
-            basura.style.zIndex = '1'
-            this.gameContainer.appendChild(basura)
+            let apple = document.createElement('div')
+            let imagenApple = document.createElement('img')
+            imagenApple.src = "../../../src/img/basura.png"
+            imagenApple.style.width = "50px"
+            imagenApple.style.height = "50px"
+            apple.appendChild(imagenApple)
+            apple.classList.add('apple')
+            apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
+            apple.style.top = '-50px' // Posición inicial arriba del todo
+            apple.style.width = '50px' 
+            apple.style.height = '50px' 
+            apple.style.zIndex = '1'
+            this.gameContainer.appendChild(apple)
     
             this.#objetosCreados++
         }
     }
 
     /**
-     * Mueve las basuras hacia abajo en el contenedor de juego.
+     * Mueve las manzanas hacia abajo en el contenedor de juego.
      * @returns {void}
      */
-    moverBasura() {
-        let basuras = document.getElementsByClassName('basura')
-        for (let basura of basuras) {
-            let basuraTop = parseInt(window.getComputedStyle(basura).getPropertyValue('top'))
-            if (basuraTop >= this.gameContainer.clientHeight-20) {
-                this.gameContainer.removeChild(basura)
+    moverManzanas() {
+        let apples = document.getElementsByClassName('apple')
+        for (let apple of apples) {
+            let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
+            if (appleTop >= this.gameContainer.clientHeight-20) {
+                this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
+                this.basuraAlAgua();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                basura.style.top = basuraTop + 2 + 'px' // Ajusta la velocidad de caída aquí
-                this.verificarColisionBasura(basura)
+                apple.style.top = appleTop + 2 + 'px' // Ajusta la velocidad de caída aquí
+                this.verificarColisionManzana(apple)
             }
         }
     }
 
     /**
-     * Verifica si hay colisión entre una basura y el barco.
-     * @param {HTMLElement} basura - Elemento DOM representando la basura.
+     * Verifica si hay colisión entre una manzana y el barco.
+     * @param {HTMLElement} apple - Elemento DOM representando la manzana.
      * @returns {void}
      */
-    verificarColisionBasura(basura) {
+    verificarColisionManzana(apple) {
         let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'))
         let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'))
     
-        let basuraLeft = parseInt(window.getComputedStyle(basura).getPropertyValue('left'))
-        let basuraTop = parseInt(window.getComputedStyle(basura).getPropertyValue('top'))
+        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'))
+        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
     
         let barcoWidth = this.barco.clientWidth
         let barcoHeight = this.barco.clientHeight
@@ -86,27 +87,36 @@ export class Vistajugar extends Vistausuario {
         let distanciaColision = 30
     
         if (
-            basuraLeft < barcoLeft + barcoWidth - distanciaColision &&
-            basuraLeft + 50 > barcoLeft + distanciaColision &&
-            basuraTop < barcoTop + barcoHeight - distanciaColision &&
-            basuraTop + 50 > barcoTop + distanciaColision
+            appleLeft < barcoLeft + barcoWidth - distanciaColision &&
+            appleLeft + 50 > barcoLeft + distanciaColision &&
+            appleTop < barcoTop + barcoHeight - distanciaColision &&
+            appleTop + 50 > barcoTop + distanciaColision
         ) {
-            this.gameContainer.removeChild(basura)
+            this.gameContainer.removeChild(apple)
             this.aumentarPuntuacion()
             this.#objetosDestruidos++;
 
-            // Reproduce el sonido de la basura
-            this.recogerBasura();
+            // Reproduce el sonido de la manzana
+            this.reproducirSonidoManzana();
         }
     }
 
     /**
-     * Reproduce un sonido.
+     * Reproduce un sonido en la recogida de basura.
      * @returns {void}
      */
-    recogerBasura() {
-        const sonidoBasura = document.getElementById('sonidoBasura');
-        sonidoBasura.play();
+    reproducirSonidoManzana() {
+        const sonidoManzana = document.getElementById('sonidoBasura');
+        sonidoManzana.play();
+    }
+
+     /**
+     * Reproduce un sonido cuando fallas al recoger basura
+     * @returns {void}
+     */
+    basuraAlAgua() {
+        const sonidoAgua = document.getElementById('agua');
+        sonidoAgua.play();
     }
 
     /**
@@ -119,17 +129,17 @@ export class Vistajugar extends Vistausuario {
     }
     
     /**
-     * Inicia el juego de las basuras con animación.
+     * Inicia el juego de las manzanas con animación.
      * @returns {void}
      */
-    iniciarJuegoBasura() {
+    iniciarJuegoManzanas() {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.003) {  // Probabilidad de crear una basura(menor probabilidad = aparecen más lentamente)
-                    this.crearBasura()
+                if (Math.random() < 0.003) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                    this.crearManzana()
                 }
-                this.moverBasura()
+                this.moverManzanas()
             }
             requestAnimationFrame(update)
             if(this.#maxObjetos == this.#objetosDestruidos) {
@@ -151,7 +161,7 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
 
         this.id = localStorage.getItem('id')
-        this.iniciarJuegoBasura()
+        this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
 
         this.nombre = localStorage.getItem('nombreLvl')
@@ -404,3 +414,4 @@ export class Vistajugar extends Vistausuario {
  * Se ejecuta cuando la ventana ha cargado completamente.
  */
 window.onload = () => { new Vistajugar() }
+
