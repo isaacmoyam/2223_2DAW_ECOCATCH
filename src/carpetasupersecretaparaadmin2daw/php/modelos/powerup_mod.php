@@ -35,7 +35,6 @@ class Powerup_Mod
         $this->conexion = $dbObj->mysqli;
     }
 
-
     /**
      * Consulta la información del power up.
      * @return array
@@ -53,22 +52,6 @@ class Powerup_Mod
         $this->conexion->close(); //Cerrar conexion
 
         return $powerups;
-    }
-
-    /**
-     * Busca un powerup con un ID específico para modificar.
-     * @param int $id
-     * @return array
-     */
-    public function buscarModificar($id) {
-        $sql = 'SELECT p.id, i.nombre, i.imagen, p.aumento, p.descripcion FROM powerup p INNER JOIN item i ON p.id=i.id WHERE i.id='.$id;
-        $result = $this->conexion->query($sql);
-
-        $this->conexion->close(); //Cerrar conexion
-
-        $fila = $result->fetch_assoc();
-
-        return $fila;
     }
 
     /**
@@ -93,7 +76,7 @@ class Powerup_Mod
              * Se ha usado una expresion ternaria. En esta expresion se comprueba la condicion
              * $descripcion === "" que evalua si descripcion es una cadena vacia.
              * Esto esta separado por el caracter :, el cual separa
-             * si la condicion es verdadera devuelve null y en casso contrario devuelve '"'.$descripcion.'"'
+             * si la condicion es verdadera devuelve null y en caso contrario devuelve '"'.$descripcion.'"'
              * */
             $sql = 'UPDATE powerup SET aumento = '.$aumento.' ,descripcion = '.($descripcion === "" ? 'NULL' : '"'.$descripcion.'"').'  WHERE id = '.$id;
             $result = $this->conexion->query($sql);
@@ -102,7 +85,6 @@ class Powerup_Mod
             return $error; //Si hay un error devulve true
         }
 
-        $this->conexion->close(); //Cerrar conexion
     }
 
     /**
@@ -160,13 +142,10 @@ class Powerup_Mod
     }
 
     /**
-     * Recoge datos de power-ups y los retorna al controlador en json.
+     * Recoge datos de power-ups y los retorna al controlador en json. Se realiza una consulta para obtener información de powerups
      */
     public function ajaxDatosPowerup() {
-        /*
-         * Consulta para obtener información de power-ups
-         * Descripcion no se manda dado que no se necesitara para nada
-         * */
+        //Descripcion no se manda dado que no se necesitara para nada
         $sqlPowerup = "SELECT p.id, i.nombre, i.imagen, p.aumento FROM powerup p INNER JOIN item i on p.id = i.id";
         $resultPowerup = $this->conexion->query($sqlPowerup);
 
