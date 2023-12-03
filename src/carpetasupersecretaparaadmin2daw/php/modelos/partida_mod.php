@@ -59,13 +59,9 @@ class Partida_Mod
      */
     public function insertarPartida($nombre,$correo,$puntuacion,$idNivel) {
         //Consulta para obtener información de partida
-        try {
-            $sql = 'INSERT INTO partida (nombre, correo,puntuacion,idNivel) VALUES ("'.$nombre.'", "'.$correo.'", "'.$puntuacion.'", "'.$idNivel.'")';
-            $result = $this->mysqli->query($sql);
-        } catch(mysqli_sql_exception $e) {
-            $error = true;
-            return $error;
-        }
+        
+        $sql = 'INSERT INTO partida (nombre,correo,puntuacion,idNivel) VALUES ("'.$nombre.'", "'.$correo.'", "'.$puntuacion.'", "'.$idNivel.'")';
+        $result = $this->mysqli->query($sql);
 
         $this->conexion->close(); //Cerrar conexion
     }

@@ -1,7 +1,8 @@
 import { Vistausuario } from './vistausuario.js'
+import { Rest } from '../../servicios/rest.js'
 
 /**
- * Clase encargada de la Vista 7
+ * Clase encargada de la Vista del formulario ranking
  */
 export class Vistaformranking extends Vistausuario {
   /**
@@ -21,70 +22,129 @@ export class Vistaformranking extends Vistausuario {
    */
   eventos() {
     // Coger referencias del interfaz
-    let iNick, iCorreo, puntuacion
+    let iNick, iCorreo, puntuacion, idNivel
+
+    const mensaje = document.getElementById("msgCampos")
 
     iNick = document.querySelectorAll('input')[0]
     iCorreo = document.querySelectorAll('input')[1]
     puntuacion = document.getElementById("puntos")
+    this.idNivel = localStorage.getItem('id')
 
-    if(!iNick){return}
-
-    // Asociar eventos
-    iNick.onblur = this.comprobarNombre.bind(this) // Le tengo que pasar el contexto del this, por eso uso el bind
-    iCorreo.onblur = this.comprobarCorreo.bind(this)
+    console.log("Nivel: "+this.idNivel)
+    console.log("Puntuación: "+this.#puntos)
 
     // Insertar puntuación
     puntuacion.innerHTML = this.#puntos
+
+    document.getElementById('formRanking').addEventListener('submit', (event) => {
+      this.validarFormularioRanking(event);
+    });
+
+    this.eventosComprobacionRanking(mensaje, iNick, iCorreo);
   }
 
   /**
-   * LLama a una función encargada de comprobar si se valida el campo Nombre mediante una expresión regular determinada.
-   * Se ejecuta con un evento onblur en el campoNombre
-   * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
+   * Realiza una llamada POST para mandar datos de la partida.
+   * @returns {void}
    */
-  comprobarNombre (evento) {
-    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/
-
-    this.validarCampo(evento, regExp, 'NICK')
+  llamarPOST = () => {
+    Rest.post(
+      '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=partida_con&metodo=ajaxAnadirPartida',
+      { 'nombre': this.nick, 'correo': this.correo, 'puntuacion': this.#puntos, 'idNivel': this.idNivel },
+      this.verResultadoPOST
+    );
   }
 
   /**
-   * LLama a una función encargada de comprobar si se valida el campo Correo mediante una expresion regular determinada.
-   * Se ejecuta con un evento onblur en el campoNombre
-   * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
+   * Ver respuesta.
+   * @returns {void}
    */
-  comprobarCorreo (evento) {
-    // La expresion regular esta puesto entre parentesis con un simbolo ? para que admita campo vacio.
-    /*
-      Solo admite los correos:
-      @gmail.com,
-      .guadalupe@alumnado.fundacionloyola.net
-      .guadalupe@alumnado.fundacionloyola.es
-    */
-    const regExp = /^(\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))?$/
-
-    this.validarCampo(evento, regExp, 'CORREO')
+  verResultadoPOST = (respuesta) => {
+      console.log("ha ido perfecto: "+respuesta) 
   }
 
-  /**
-   * Se encarga de validar el campo mediante una Expresion Regular.
-   * Si es correcta el borde se pone de color amarillo, rojo en caso contrario
-   * @param evento {Object} Objeto de evento que desencadenó la llamada a la función.
-   * @param regExp {Object} Expresión Regular
-   * @param nombreCampo {String} String del nombre del campo que se ha validado
-   */
-  validarCampo (evento, regExp, nombreCampo) {
-    const input = evento.target
+  validarFormularioRanking(event) {
+    event.preventDefault();
+  
+    const nickInput = document.querySelector('input[name="nick"]');
+    const correoInput = document.querySelector('input[name="correo"]');
+    const formRanking = document.getElementById('formRanking')
 
-    const pMensaje = document.getElementById('msgCampos')
-    if (!regExp.test(input.value)) { // 3, 3 o mas
-      pMensaje.style.color = 'red'
-      pMensaje.innerHTML = `El campo ${nombreCampo} no es valido`
-    } else {
-      pMensaje.style.color = 'yellow'
-      pMensaje.innerHTML = `El campo ${nombreCampo} valido`
+    let mensajeError = null;
+    
+    if (!nickInput.value) {
+      mensajeError = 'Por favor, rellena el campo nick';
+      this.mostrarMensajeErrorRanking(nickInput, mensajeError);
+    }
+    
+    if (!correoInput.value) {
+      mensajeError = 'Por favor, rellena el campo correo';
+      this.mostrarMensajeErrorRanking(correoInput, mensajeError);
+    }
+
+    let urlForm = formRanking.action
+
+    // Realiza la lógica de validación aquí
+    if (this.validarNick(nickInput.value) && this.validarCorreo(correoInput.value)) {
+      // Envía el formulario al servidor
+      formRanking.action = urlForm
+      this.nick = nickInput.value
+      this.correo = correoInput.value
+      this.llamarPOST()
+      
     }
   }
-}
 
+  eventosComprobacionRanking (pMensaje, iNick, iCorreo) {
+    iNick.onblur = (evento) => this.comprobacionNick(evento, pMensaje)
+    iCorreo.onblur = (evento) => this.comprobacionCorreo(evento, pMensaje)
+  }
+
+  validarNick(nick) {
+    // Agrega tu lógica de validación para el campo de nombre
+    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/
+    return regExp.test(nick);
+  }
+
+  validarCorreo(correo) {
+    // Agrega tu lógica de validación para el campo de nombre
+    if (correo.trim() === "") {
+      return false;
+  }
+    const regExp = /^(|.*\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))$/
+    return regExp.test(correo);
+  }
+
+  comprobacionNick (evento, pMensaje) {
+    const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/
+    let mensaje = "El nick debe tener máximo 50 caracteres y no tener espacios"
+    this.validarCampoRanking(evento, pMensaje, mensaje, regExp)
+  }
+
+  comprobacionCorreo (evento, pMensaje) {
+    const regExp = /^(\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))?$/
+    let mensaje = "El correo debe ser válido"
+    this.validarCampoRanking(evento, pMensaje, mensaje, regExp)
+  }
+
+  validarCampoRanking (evento, pMensaje, mensaje, regExp) {
+    const input = evento.target 
+    if (!regExp.test(input.value) || input.value.trim() === "") {
+      this.mostrarMensajeErrorRanking(input,mensaje)
+    } else {
+      input.style.borderColor = 'yellow'
+      pMensaje.innerHTML = ""
+    }
+  }
+
+  mostrarMensajeErrorRanking(input, mensaje) {
+    const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
+    if (pMensaje) {
+      pMensaje.style.color = 'red';
+      input.style.borderColor = 'red';
+    }
+    pMensaje.innerHTML = mensaje;
+  }
+}
 window.onload = () => { new Vistaformranking() }
