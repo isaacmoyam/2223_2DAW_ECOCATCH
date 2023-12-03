@@ -25,59 +25,59 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
-     * Crea una manzana y la agrega al contenedor de juego.
+     * Crea una basura y la agrega al contenedor de juego.
      * @returns {void}
      */
-    crearManzana() {
+    crearBasura() {
         if (this.#objetosCreados < this.#maxObjetos) {
-            let apple = document.createElement('div')
-            let imagenApple = document.createElement('img')
-            imagenApple.src = "../../../src/img/basura.png"
-            imagenApple.style.width = "50px"
-            imagenApple.style.height = "50px"
-            apple.appendChild(imagenApple)
-            apple.classList.add('apple')
-            apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
-            apple.style.top = '-50px' // Posición inicial arriba del todo
-            apple.style.width = '50px' 
-            apple.style.height = '50px' 
-            apple.style.zIndex = '1'
-            this.gameContainer.appendChild(apple)
+            let basura = document.createElement('div')
+            let imagenbasura = document.createElement('img')
+            imagenbasura.src = "../../../src/img/basura.png"
+            imagenbasura.style.width = "50px"
+            imagenbasura.style.height = "50px"
+            basura.appendChild(imagenbasura)
+            basura.classList.add('basura')
+            basura.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
+            basura.style.top = '-50px' // Posición inicial arriba del todo
+            basura.style.width = '50px' 
+            basura.style.height = '50px' 
+            basura.style.zIndex = '1'
+            this.gameContainer.appendChild(basura)
     
             this.#objetosCreados++
         }
     }
 
     /**
-     * Mueve las manzanas hacia abajo en el contenedor de juego.
+     * Mueve las basuras hacia abajo en el contenedor de juego.
      * @returns {void}
      */
-    moverManzanas() {
-        let apples = document.getElementsByClassName('apple')
-        for (let apple of apples) {
-            let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
-            if (appleTop >= this.gameContainer.clientHeight-20) {
-                this.gameContainer.removeChild(apple)
+    moverBasura() {
+        let basuras = document.getElementsByClassName('basura')
+        for (let basura of basuras) {
+            let basuraTop = parseInt(window.getComputedStyle(basura).getPropertyValue('top'))
+            if (basuraTop >= this.gameContainer.clientHeight-20) {
+                this.gameContainer.removeChild(basura)
                 this.#objetosDestruidos++;
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                apple.style.top = appleTop + 2 + 'px' // Ajusta la velocidad de caída aquí
-                this.verificarColisionManzana(apple)
+                basura.style.top = basuraTop + 2 + 'px' // Ajusta la velocidad de caída aquí
+                this.verificarColisionBasura(basura)
             }
         }
     }
 
     /**
-     * Verifica si hay colisión entre una manzana y el barco.
-     * @param {HTMLElement} apple - Elemento DOM representando la manzana.
+     * Verifica si hay colisión entre una basura y el barco.
+     * @param {HTMLElement} basura - Elemento DOM representando la basura.
      * @returns {void}
      */
-    verificarColisionManzana(apple) {
+    verificarColisionBasura(basura) {
         let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'))
         let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'))
     
-        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'))
-        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
+        let basuraLeft = parseInt(window.getComputedStyle(basura).getPropertyValue('left'))
+        let basuraTop = parseInt(window.getComputedStyle(basura).getPropertyValue('top'))
     
         let barcoWidth = this.barco.clientWidth
         let barcoHeight = this.barco.clientHeight
@@ -86,15 +86,27 @@ export class Vistajugar extends Vistausuario {
         let distanciaColision = 30
     
         if (
-            appleLeft < barcoLeft + barcoWidth - distanciaColision &&
-            appleLeft + 50 > barcoLeft + distanciaColision &&
-            appleTop < barcoTop + barcoHeight - distanciaColision &&
-            appleTop + 50 > barcoTop + distanciaColision
+            basuraLeft < barcoLeft + barcoWidth - distanciaColision &&
+            basuraLeft + 50 > barcoLeft + distanciaColision &&
+            basuraTop < barcoTop + barcoHeight - distanciaColision &&
+            basuraTop + 50 > barcoTop + distanciaColision
         ) {
-            this.gameContainer.removeChild(apple)
+            this.gameContainer.removeChild(basura)
             this.aumentarPuntuacion()
             this.#objetosDestruidos++;
+
+            // Reproduce el sonido de la basura
+            this.recogerBasura();
         }
+    }
+
+    /**
+     * Reproduce un sonido.
+     * @returns {void}
+     */
+    recogerBasura() {
+        const sonidoBasura = document.getElementById('sonidoBasura');
+        sonidoBasura.play();
     }
 
     /**
@@ -107,17 +119,17 @@ export class Vistajugar extends Vistausuario {
     }
     
     /**
-     * Inicia el juego de las manzanas con animación.
+     * Inicia el juego de las basuras con animación.
      * @returns {void}
      */
-    iniciarJuegoManzanas() {
+    iniciarJuegoBasura() {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.003) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
-                    this.crearManzana()
+                if (Math.random() < 0.003) {  // Probabilidad de crear una basura(menor probabilidad = aparecen más lentamente)
+                    this.crearBasura()
                 }
-                this.moverManzanas()
+                this.moverBasura()
             }
             requestAnimationFrame(update)
             if(this.#maxObjetos == this.#objetosDestruidos) {
@@ -139,7 +151,7 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
 
         this.id = localStorage.getItem('id')
-        this.iniciarJuegoManzanas()
+        this.iniciarJuegoBasura()
         this.velocidad = localStorage.getItem('velocidad')
 
         this.nombre = localStorage.getItem('nombreLvl')
@@ -175,20 +187,26 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     audio() {
+        
         const miAudio = document.getElementById('miAudio');
         const botonSilencio = document.getElementById('botonSilencio');
-
+    
         // Evento de clic para el botón de silencio
         botonSilencio.addEventListener('click', function() {
             if (miAudio.paused) {
                 // Si está en pausa, reanudar
-                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOn.png)"
+                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOn.png)";
                 miAudio.play();
             } else {
                 // Si está reproduciendo, pausar
-                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOff.png)"
+                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOff.png)";
                 miAudio.pause();
             }
+        });
+    
+        // Inicia la reproducción del audio cuando la ventana se carga completamente
+        window.addEventListener('load', function() {
+            miAudio.play();
         });
     }
 
@@ -386,9 +404,3 @@ export class Vistajugar extends Vistausuario {
  * Se ejecuta cuando la ventana ha cargado completamente.
  */
 window.onload = () => { new Vistajugar() }
-
-/*
-if (this.#score >= this.#maxObjetos) {
-    window.location.href = "../ranking/formulario.html";
-}
-*/
