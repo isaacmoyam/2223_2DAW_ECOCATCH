@@ -72,37 +72,60 @@ export class Vistamostrarpowerup extends Vistaadmins {
   
     let mensajeError = null;
     let formularioValido = false;
+
     let contador = 0
-  
+    
+    let nombreOk = false
+    let aumentoOk = false
+    let descripcionOk = false
+    let hayImagen = false
+    let imagenOk = false
+
     for (let i = 0; i < nombreInputs.length; i++) {
+
+      nombreOk = false
+      aumentoOk = false
+      descripcionOk = false
+      hayImagen = false
+      imagenOk = false
   
-      if (!nombreInputs[i].value) {
+      if (!nombreInputs[i].value || !this.validarNombrePowerup(nombreInputs[i].value)) {
         mensajeError = 'Por favor, rellena el campo nombre';
         this.mostrarMensajeErrorPowerup(nombreInputs[i], mensajeError);
-        formularioValido = false;
+      } else {
+        nombreOk = true
       }
   
-      if (!aumentoInputs[i].value) {
+      if (!aumentoInputs[i].value || !this.validarAumentoPowerup(aumentoInputs[i].value)) {
         mensajeError = 'Por favor, rellena el campo aumento';
         this.mostrarMensajeErrorPowerup(aumentoInputs[i], mensajeError);
-        formularioValido = false;
+      } else {
+        aumentoOk = true
       }
-  
-      if (!descripcionInputs[i].value) {
+
+      if (!descripcionInputs[i].value || !this.validarDescripcion(descripcionInputs[i].value)) {
         mensajeError = 'Por favor, introduce una descripción';
         this.mostrarMensajeErrorPowerup(descripcionInputs[i], mensajeError);
-        formularioValido = false;
+      } else {
+        descripcionOk = true
       }
-  
+
+      console.log("imagen: "+imagenInputs[i].files.length)
       if (imagenInputs[i].files.length > 0) {
         // Validar nombre del archivo solo si se ha introducido una imagen
+        hayImagen = true
         if (this.nombreArchivoValido(imagenInputs[i])) {
-          contador++;
+          imagenOk = true
         }
-      } else {
-        contador++;
       }
-      console.log(contador)
+      if(!hayImagen && nombreOk && aumentoOk && descripcionOk) {
+        contador++
+      } else {
+        if(hayImagen && imagenOk && nombreOk && aumentoOk && descripcionOk){
+          contador++
+        }
+      }
+
       if (contador == 3) {
         formularioValido = true;
       }
@@ -141,6 +164,12 @@ export class Vistamostrarpowerup extends Vistaadmins {
     // Agrega tu lógica de validación para el campo de nombre
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,20}$/;
     return regExp.test(nombre);
+  }
+
+  validarAumentoPowerup(aumento) {
+    // Agrega tu lógica de validación para el campo de nombre
+    const regExp = /^(1?[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-4])$/;
+    return regExp.test(aumento);
   }
 
   /**
