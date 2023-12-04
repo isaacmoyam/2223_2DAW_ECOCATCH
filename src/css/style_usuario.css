@@ -13,12 +13,10 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    background-image: url("../img/fondoEcocatch.png");
+    background-image: url("../../src/img/fondoEcocatch.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
-
-
 
 /*
     HEADER
@@ -33,9 +31,13 @@ header {
 header > img {
     width: 200px;
     margin: 0 auto 1%;
-    box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
+    /* box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28); HA SIDO REEMPLAZADO AL HACER PNG EL LOGO Y NO PODER HACER LA SOMBRA ALREDEDOR DEL CANAL ALFA*/
+    transition: transform 0.5s ease;
 }
 
+header > img:active{
+    animation: imageChange 1s ease forwards;
+}
 
 
 /*
@@ -46,7 +48,7 @@ main {
     font-size: 1.2em;
     text-align: center;
     border-radius: 30px;
-    border: solid 2px;
+    border: solid 2px transparent;
     padding-bottom: 5%;
     width: 80%;
     margin: 0 auto;
@@ -64,9 +66,11 @@ main > a{
     text-decoration: none;
     padding: 0.6%;
     border: solid 1px black;
-    border-radius: 9px;
+    font-size: 1.7em;
+    border-radius: 7px;
     color: #EDC713;
     background-color: #6D3916;
+    transition: 0.5s;
 }
 
 #menu > a:hover,
@@ -81,26 +85,34 @@ main > a:hover { /*Cambio de color para cuando pase el cursor del raton por enci
 /*SELECT*/
 select {
     padding: 3%;
-    font-size: 0.7em;
+    font-size: 1.7em;
     color:#EDC713;
     border: 1px solid #000000;
     border-radius: 5px;
     background-color: #6D3916;
     cursor: pointer;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
 
 /*BOTONES*/
 button {
     border: solid 1px black;
+    font-size: 1.7em;
     color: #EDC713;
-    border-radius: 9px;
+    border-radius: 7px;
     background-color: #6D3916;
+    padding: 10px;
     cursor: pointer;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
+/*TITULOS*/
+h3{
+    font-size: 2em;
+}
 
 /*FORMULARIOS*/
 form {
@@ -128,6 +140,7 @@ form > input[type=submit] {
     cursor: pointer;
     font-size: 20px;
     font-family: Fredoka;
+    transition: 0.5s;
 }
 
 
@@ -239,17 +252,18 @@ form > input[type=submit] {
     border: 2px solid black;
     min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
     min-height: 600px;
-    background-image: url("../img/fondoJuego.png");
-    background-size: cover;
+
     background-repeat: no-repeat;
 }
 
 #gameContainer {
-    min-height: 300px;
+    height: 550px;
+    width: 1024px;
     position: relative; /* Añade posición relativa al contenedor para que el posición absoluta del barco sea relativa a este */
-    width: 80%; /* Cambia el ancho según tus necesidades */
     margin: 0 auto; /* Centra el contenedor */
-    height: 200px; /* Ajusta la altura según tus necesidades */
+    background-image: url("../img/fondo_juego.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #gameContainer > #barco {
@@ -266,16 +280,16 @@ form > input[type=submit] {
 /*Boton pausar*/
 #botonSilencio,
 #botonPausa{
-    background-image: url("../img/iconos/pausa.png");
+    background-image: url("../img/pausa.png");
     background-repeat: no-repeat;
     width: 42px;
     height: 50px;
     border: none;
-    background-color: transparent; /*Para quitar el color de fondo*/
+    background-color: transparent;
 }
 
 #botonSilencio{
-    background-image: url("../img/iconos/musicaOn.png");
+    background-image: url("../img/musicaOn.png");
 }
 
 /*
@@ -294,7 +308,9 @@ form > input[type=submit] {
 }
 /*El resto de elementos de la pagina formularios se ven afectados por el css para las etiquetas form*/
 
-
+/*
+    PAGINA NIVELES
+*/
 
 /*
     PAGINA RANKING
@@ -342,7 +358,7 @@ form > input[type=submit] {
 
 #conocenos img{
     width:280px;
-    height:280px;
+    border-radius: 20px;
 }
 
 #conocenos  div {
@@ -424,14 +440,6 @@ button.darkmode,
     border: solid 1px #deca65;
 }
 
-#gameContainer {
-    min-height: 300px;
-    position: relative; /* Añade posición relativa al contenedor para que el posición absoluta del barco sea relativa a este */
-    width: 90%; /* Cambia el ancho según tus necesidades */
-    margin: 0 auto; /* Centra el contenedor */
-    height: 500px; /* Ajusta la altura según tus necesidades */
-}
-
 #gameContainer > #barco {
     position: absolute;
     bottom: 0; /* Posiciona el barco en la parte inferior del contenedor */
@@ -440,21 +448,51 @@ button.darkmode,
 
 .apple {
     position: absolute;
-	z-index: 0;
+    z-index: 0;
+    animation: rotate 5s infinite linear;
+}
+
+/*
+    KEYFRAMES
+*/
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes imageChange {
+    to {
+        opacity: 0;
+    }
 }
 
 /**
     MEDIAS QUERIES
     Implementado con Media Queries Level 4
  */
+
+@media (width <= 720px) {
+    body{
+        font-size: 12px;
+    }
+    #frame{
+        width: 95%;
+        max-height: 90%;
+    }
+    #gameContainer{
+        width: 95%;
+    }
+}
+
 @media (width <= 2500px) {
     /*pagina jugar*/
     #hud {
         gap: 24%;
-    }
-
-    #ecocatch{
-        min-height: 900px;
     }
 }
 
@@ -516,9 +554,6 @@ button.darkmode,
     #hud {
         gap:23%; /*Cambia el espacio */
     }
-    #ecocatch{
-        min-height: 500px;
-    }
 }
 
 @media (width <= 1206px) {
@@ -555,7 +590,7 @@ button.darkmode,
 
     /*Cambio de fuentes a 1em*/
     #menu, #empezar, ranking{
-    font-size: 1em;
+        font-size: 1em;
     }
 
     /*pagina indice usuario*/
@@ -591,9 +626,6 @@ button.darkmode,
         width:98%;
         font-size: 0.84em;
     }
-    #ecocatch{
-        min-height: 400px;
-    }
     #botones > button{
         padding: 5%;
     }
@@ -606,8 +638,5 @@ button.darkmode,
         gap:9%;
         width:98%;
         font-size: 0.8em;
-    }
-    #ecocatch{
-        min-height: 300px;
     }
 }
