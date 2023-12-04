@@ -41,28 +41,28 @@ class Partida_Mod
      */
     public function ajaxDatosPartida() {
         //Consulta para obtener información de partida
-        $sqlPartida = "SELECT p.nombre, p.correo, p.puntuacion, n.nombre FROM partida p INNER JOIN nivel n on p.id = n.idNivel";
-        $resultPartida = $this->mysqli->query($sqlPartida);
-
+        $sqlPartida = "SELECT p.nombre, p.correo, p.puntuacion, n.nombre AS nombre_nivel FROM partida p INNER JOIN nivel n ON p.idNivel = n.id ORDER BY p.puntuacion DESC;";
+        $resultPartida = $this->conexion->query($sqlPartida);
+    
         $partida = array();
         while ($row = $resultPartida->fetch_assoc()) {
             $partida[] = $row;
         }
-
+    
         $this->conexion->close(); //Cerrar conexion
-
+    
         return json_encode($partida);
     }
+    
 
     /**
      * Inserta en la tabla partida los datos que han sido enviado por ajax.
      */
-    public function insertarPartida($nombre,$correo,$puntuacion,$idNivel) {
+    public function insertarPartida($nombre, $correo, $puntuacion, $idNivel) {
         //Consulta para obtener información de partida
-        
         $sql = 'INSERT INTO partida (nombre,correo,puntuacion,idNivel) VALUES ("'.$nombre.'", "'.$correo.'", "'.$puntuacion.'", "'.$idNivel.'")';
-        $result = $this->mysqli->query($sql);
-
+        $result = $this->conexion->query($sql);
+        
         $this->conexion->close(); //Cerrar conexion
     }
 }

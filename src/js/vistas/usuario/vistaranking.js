@@ -1,4 +1,5 @@
 import { Vistausuario } from './vistausuario.js'
+import { Rest } from '../../servicios/rest.js'
 
 /**
  * Clase encargada de la Vista del ranking, hereda de Vistausuario.
@@ -23,7 +24,40 @@ export class Vistaranking extends Vistausuario {
    */
   eventos () {
     super.modoOscuro()
+    this.llamarGET()
   }
+
+  /**
+   * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
+   * @method
+   */
+  llamarGET = () => {
+    Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=partida_con&metodo=ajaxPartida', null, this.verResultadoGET);
+  }
+
+  /**
+   * Muestra los resultados obtenidos de la llamada GET en la interfaz.
+   * @method
+   * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
+   */
+  verResultadoGET = (respuesta) => {
+    const tabla = document.getElementById("tablaRanking");
+    respuesta.forEach(function(elemento) {
+        let fila = document.createElement("tr");
+        let nombre = document.createElement("td");
+        let puntuacion = document.createElement("td");
+        let nivel = document.createElement("td");
+        
+        nombre.textContent = elemento.nombre;
+        puntuacion.textContent = elemento.puntuacion;
+        nivel.textContent = elemento.nombre_nivel;
+        
+        fila.appendChild(nombre);
+        fila.appendChild(puntuacion);
+        fila.appendChild(nivel);
+        tabla.appendChild(fila);
+    });
+}
 }
 
 /**

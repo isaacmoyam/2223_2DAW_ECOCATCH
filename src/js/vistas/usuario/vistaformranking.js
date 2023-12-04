@@ -21,6 +21,8 @@ export class Vistaformranking extends Vistausuario {
    * Método encargado de asociar los eventos a las referencias de la interfaz de la vista 7
    */
   eventos() {
+    super.modoOscuro()
+    
     // Coger referencias del interfaz
     let iNick, iCorreo, puntuacion, idNivel
 
@@ -30,9 +32,6 @@ export class Vistaformranking extends Vistausuario {
     iCorreo = document.querySelectorAll('input')[1]
     puntuacion = document.getElementById("puntos")
     this.idNivel = localStorage.getItem('id')
-
-    console.log("Nivel: "+this.idNivel)
-    console.log("Puntuación: "+this.#puntos)
 
     // Insertar puntuación
     puntuacion.innerHTML = this.#puntos
@@ -49,19 +48,9 @@ export class Vistaformranking extends Vistausuario {
    * @returns {void}
    */
   llamarPOST = () => {
-    Rest.post(
+    Rest.postForm(
       '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=partida_con&metodo=ajaxAnadirPartida',
-      { 'nombre': this.nick, 'correo': this.correo, 'puntuacion': this.#puntos, 'idNivel': this.idNivel },
-      this.verResultadoPOST
-    );
-  }
-
-  /**
-   * Ver respuesta.
-   * @returns {void}
-   */
-  verResultadoPOST = (respuesta) => {
-      console.log("ha ido perfecto: "+respuesta) 
+      { 'nombre': this.nick, 'correo': this.correo, 'puntuacion': this.#puntos, 'idNivel': this.idNivel });
   }
 
   validarFormularioRanking(event) {
@@ -92,7 +81,9 @@ export class Vistaformranking extends Vistausuario {
       this.nick = nickInput.value
       this.correo = correoInput.value
       this.llamarPOST()
-      
+      setTimeout(function() {
+        document.getElementById('formRanking').submit();
+      }, 1000);
     }
   }
 
