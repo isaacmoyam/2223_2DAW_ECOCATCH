@@ -64,6 +64,14 @@
                 <a href="packages/Gestin-Basura.html" class="">Basura</a>
                 
             </li>
+                    <li>
+                <a href="packages/Gestin-Nivel.html" class="">Nivel</a>
+                
+            </li>
+                    <li>
+                <a href="packages/Gestin-Mensaje.html" class="">Mensaje</a>
+                
+            </li>
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -77,17 +85,15 @@
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Gestion.html" class="">Gestion</a>
+    <a href="packages/Application.html" class="">Application</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Gestion-Basura.html" class="">Basura</a>
-                
-            </li>
-            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Application.html" class="">Application</a>
+    <a href="packages/Index.html" class="">Index</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/ConexionBD.html" class="">ConexionBD</a>
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -95,14 +101,26 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="packages/Basura-Con.html" class="">Con</a>
-                
-            </li>
-                    <li>
                 <a href="packages/Basura-Mod.html" class="">Mod</a>
                 
             </li>
             </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Menu.html" class="">Menu</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Nivel.html" class="">Nivel</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Footer.html" class="">Footer</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Header.html" class="">Header</a>
+</h4>
 
                         </section>
             
@@ -148,13 +166,14 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Clase modelo para la gestión de basura.</p>
+
 
 
 
@@ -183,8 +202,9 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Basura-Mod.html#property_mysqli">$mysqli</a>
     <span>
-                        &nbsp;: mixed            </span>
+                        &nbsp;: <abbr title="\mysqli">mysqli</abbr>            </span>
 </dt>
+<dd>Instancia de la conexión a la base de datos.</dd>
 
     </dl>
 
@@ -202,39 +222,60 @@
 <dd>Constructor de la clase Basura_Mod.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Basura-Mod.html#method_ajaxDatosBasura">ajaxDatosBasura()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Recoge datos de basura y los retorna al controlador en json.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Basura-Mod.html#method_borrar">borrar()</a>
     <span>
-                                &nbsp;: int|void    </span>
+                                &nbsp;: mixed    </span>
 </dt>
-<dd>Borra una basura específica de la base de datos.</dd>
+<dd>Borra la basura con un ID específico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Basura-Mod.html#method_buscarModificar">buscarModificar()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;|mixed    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Busca información de basura específica para modificar.</dd>
+<dd>Busca la basura con un ID específico para modificar.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Basura-Mod.html#method_cerrarConexion">cerrarConexion()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Cierra la conexión con la base de datos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Basura-Mod.html#method_crear">crear()</a>
     <span>
-                                &nbsp;: int|void    </span>
+                                &nbsp;: bool    </span>
 </dt>
-<dd>Crea un nuevo registro de basura en la base de datos.</dd>
+<dd>Crea una nueva basura.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Basura-Mod.html#method_establecerConexion">establecerConexion()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Establece la conexión con la base de datos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Basura-Mod.html#method_modificar">modificar()</a>
     <span>
-                                &nbsp;: int|void    </span>
+                                &nbsp;: bool    </span>
 </dt>
-<dd>Modifica la información de una basura en la base de datos.</dd>
+<dd>Modifica la basura con un ID específico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Basura-Mod.html#method_mostrar">mostrar()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;|mixed    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Obtiene y devuelve la información de todas las basuras.</dd>
+<dd>Muestra la información de basura.</dd>
 
     </dl>
 
@@ -265,16 +306,17 @@
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Instancia de la conexión a la base de datos.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\mysqli">mysqli</abbr></span>
     <span class="phpdocumentor-signature__name">$mysqli</span>
     </code>
 
@@ -303,9 +345,9 @@
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
@@ -313,51 +355,44 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$username</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$passwd</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbname</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$host</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Dirección del servidor de base de datos.</p>
-</section>
+    
+    
 
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$username</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Nombre de usuario de la base de datos.</p>
-</section>
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_ajaxDatosBasura">
+        ajaxDatosBasura()
+        <a href="classes/Basura-Mod.html#method_ajaxDatosBasura" class="headerlink"><i class="fas fa-link"></i></a>
 
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$passwd</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Contraseña de la base de datos.</p>
-</section>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">168</span>
 
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$dbname</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Nombre de la base de datos.</p>
-</section>
+    </aside>
 
-            </dd>
-            </dl>
+        <p class="phpdocumentor-summary">Recoge datos de basura y los retorna al controlador en json.</p>
 
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">ajaxDatosBasura</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
     
 
     
@@ -374,17 +409,17 @@
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Borra una basura específica de la base de datos.</p>
+        <p class="phpdocumentor-summary">Borra la basura con un ID específico.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">borrar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|void</span></code>
+                    <span class="phpdocumentor-signature__name">borrar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -393,26 +428,16 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ID de la basura a borrar.</p>
-</section>
-
+                
             </dd>
             </dl>
 
     
 
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|void</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Código de error o nada.</p>
-</section>
-
-            </section>
-
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -426,17 +451,17 @@
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Busca información de basura específica para modificar.</p>
+        <p class="phpdocumentor-summary">Busca la basura con un ID específico para modificar.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">buscarModificar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|mixed</span></code>
+                    <span class="phpdocumentor-signature__name">buscarModificar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -448,9 +473,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ID de la basura a modificar.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -458,13 +481,41 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|mixed</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo asociativo con la información de la basura o código de error.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_cerrarConexion">
+        cerrarConexion()
+        <a href="classes/Basura-Mod.html#method_cerrarConexion" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Cierra la conexión con la base de datos.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">cerrarConexion</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -478,17 +529,17 @@
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Crea un nuevo registro de basura en la base de datos.</p>
+        <p class="phpdocumentor-summary">Crea una nueva basura.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">crear</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nombre</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$imagen</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$valor</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|void</span></code>
+                    <span class="phpdocumentor-signature__name">crear</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nombre</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$imagen</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$valor</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -500,27 +551,21 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Nombre de la basura.</p>
-</section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$imagen</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Imagen asociada a la basura.</p>
-</section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$valor</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Valor/puntuación de la basura.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -528,13 +573,41 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|void</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Código de error o nada.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type">bool</span>
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_establecerConexion">
+        establecerConexion()
+        <a href="classes/Basura-Mod.html#method_establecerConexion" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">40</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Establece la conexión con la base de datos.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">establecerConexion</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -548,17 +621,17 @@
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">140</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Modifica la información de una basura en la base de datos.</p>
+        <p class="phpdocumentor-summary">Modifica la basura con un ID específico.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">modificar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nombre</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$imagen</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$valor</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|void</span></code>
+                    <span class="phpdocumentor-signature__name">modificar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nombre</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$imagen</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$valor</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -570,36 +643,28 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ID de la basura a modificar.</p>
-</section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$nombre</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Nuevo nombre de la basura.</p>
-</section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$imagen</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Nueva imagen asociada a la basura.</p>
-</section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$valor</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Nuevo valor/puntuación de la basura.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -607,11 +672,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|void</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Código de error o nada.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type">bool</span>
             </section>
 
 </article>
@@ -627,17 +688,17 @@
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/modelos/basura_mod.php"><a href="files/src-php-modelos-basura-mod.html"><abbr title="src/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-modelos-basura-mod.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php">basura_mod.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Obtiene y devuelve la información de todas las basuras.</p>
+        <p class="phpdocumentor-summary">Muestra la información de basura.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">mostrar</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|mixed</span></code>
+                    <span class="phpdocumentor-signature__name">mostrar</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -647,11 +708,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|mixed</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo asociativo con la información de las basuras o código de error.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -661,7 +718,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/php/modelos/basura_mod.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/carpetasupersecretaparaadmin2daw/php/modelos/basura_mod.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -776,9 +833,12 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/Basura-Mod.html#method___construct">__construct()</a></li>
+                                            <li><a href="classes/Basura-Mod.html#method_ajaxDatosBasura">ajaxDatosBasura()</a></li>
                                             <li><a href="classes/Basura-Mod.html#method_borrar">borrar()</a></li>
                                             <li><a href="classes/Basura-Mod.html#method_buscarModificar">buscarModificar()</a></li>
+                                            <li><a href="classes/Basura-Mod.html#method_cerrarConexion">cerrarConexion()</a></li>
                                             <li><a href="classes/Basura-Mod.html#method_crear">crear()</a></li>
+                                            <li><a href="classes/Basura-Mod.html#method_establecerConexion">establecerConexion()</a></li>
                                             <li><a href="classes/Basura-Mod.html#method_modificar">modificar()</a></li>
                                             <li><a href="classes/Basura-Mod.html#method_mostrar">mostrar()</a></li>
                                     </ul>

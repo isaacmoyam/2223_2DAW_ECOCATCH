@@ -1,109 +1,354 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\crear\u0028\u0029",
-            "name": "crear",
-            "summary": "Funci\u00F3n\u0020para\u0020crear\u0020una\u0020nueva\u0020basura.",
-            "url": "namespaces/default.html#function_crear"
+            "fqsen": "\\FlattedString",
+            "name": "FlattedString",
+            "summary": "",
+            "url": "classes/FlattedString.html"
         },                {
-            "fqsen": "\\borrar\u0028\u0029",
-            "name": "borrar",
-            "summary": "Funci\u00F3n\u0020para\u0020borrar\u0020una\u0020basura.",
-            "url": "namespaces/default.html#function_borrar"
+            "fqsen": "\\FlattedString\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/FlattedString.html#method___construct"
         },                {
-            "fqsen": "\\buscarModificar\u0028\u0029",
-            "name": "buscarModificar",
-            "summary": "Funci\u00F3n\u0020para\u0020buscar\u0020y\u0020obtener\u0020informaci\u00F3n\u0020de\u0020una\u0020basura\u0020para\u0020modificar.",
-            "url": "namespaces/default.html#function_buscarModificar"
+            "fqsen": "\\FlattedString\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/FlattedString.html#property_value"
         },                {
-            "fqsen": "\\modificar\u0028\u0029",
-            "name": "modificar",
-            "summary": "Funci\u00F3n\u0020para\u0020modificar\u0020una\u0020basura\u0020existente.",
-            "url": "namespaces/default.html#function_modificar"
+            "fqsen": "\\Flatted",
+            "name": "Flatted",
+            "summary": "",
+            "url": "classes/Flatted.html"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "",
+            "url": "classes/Flatted.html#method_parse"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Astringify\u0028\u0029",
+            "name": "stringify",
+            "summary": "",
+            "url": "classes/Flatted.html#method_stringify"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003AasString\u0028\u0029",
+            "name": "asString",
+            "summary": "",
+            "url": "classes/Flatted.html#method_asString"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/Flatted.html#method_index"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Akeys\u0028\u0029",
+            "name": "keys",
+            "summary": "",
+            "url": "classes/Flatted.html#method_keys"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Aloop\u0028\u0029",
+            "name": "loop",
+            "summary": "",
+            "url": "classes/Flatted.html#method_loop"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Arelate\u0028\u0029",
+            "name": "relate",
+            "summary": "",
+            "url": "classes/Flatted.html#method_relate"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Aref\u0028\u0029",
+            "name": "ref",
+            "summary": "",
+            "url": "classes/Flatted.html#method_ref"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Atransform\u0028\u0029",
+            "name": "transform",
+            "summary": "",
+            "url": "classes/Flatted.html#method_transform"
+        },                {
+            "fqsen": "\\Flatted\u003A\u003Awrap\u0028\u0029",
+            "name": "wrap",
+            "summary": "",
+            "url": "classes/Flatted.html#method_wrap"
         },                {
             "fqsen": "\\HOST",
             "name": "HOST",
-            "summary": "",
+            "summary": "Direcci\u00F3n\u0020del\u0020host\u0020de\u0020la\u0020base\u0020de\u0020datos.",
             "url": "namespaces/default.html#constant_HOST"
+        },                {
+            "fqsen": "\\BDNAME",
+            "name": "BDNAME",
+            "summary": "Nombre\u0020de\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "namespaces/default.html#constant_BDNAME"
         },                {
             "fqsen": "\\USERNAME",
             "name": "USERNAME",
-            "summary": "",
+            "summary": "Nombre\u0020de\u0020usuario\u0020para\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
             "url": "namespaces/default.html#constant_USERNAME"
         },                {
             "fqsen": "\\PASSWD",
             "name": "PASSWD",
-            "summary": "",
+            "summary": "Contrase\u00F1a\u0020para\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
             "url": "namespaces/default.html#constant_PASSWD"
         },                {
-            "fqsen": "\\BDNAME",
-            "name": "BDNAME",
-            "summary": "",
-            "url": "namespaces/default.html#constant_BDNAME"
+            "fqsen": "\\CONTROLADOR_DEFAULT",
+            "name": "CONTROLADOR_DEFAULT",
+            "summary": "Controlador\u0020por\u0020defecto.",
+            "url": "namespaces/default.html#constant_CONTROLADOR_DEFAULT"
         },                {
-            "fqsen": "\\Basura_Con",
-            "name": "Basura_Con",
-            "summary": "Clase\u0020Basura_Con\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020basura.",
-            "url": "classes/Basura-Con.html"
+            "fqsen": "\\METODO_DEFAULT",
+            "name": "METODO_DEFAULT",
+            "summary": "M\u00E9todo\u0020por\u0020defecto.",
+            "url": "namespaces/default.html#constant_METODO_DEFAULT"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Basura_con",
+            "name": "Basura_con",
+            "summary": "Clase\u0020controladora\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020basura.",
+            "url": "classes/Basura-con.html"
+        },                {
+            "fqsen": "\\Basura_con\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Basura_Con.",
-            "url": "classes/Basura-Con.html#method___construct"
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Basura_con.",
+            "url": "classes/Basura-con.html#method___construct"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003Acrear\u0028\u0029",
+            "fqsen": "\\Basura_con\u003A\u003Acrear\u0028\u0029",
             "name": "crear",
-            "summary": "Crea\u0020un\u0020nuevo\u0020registro\u0020de\u0020basura.",
-            "url": "classes/Basura-Con.html#method_crear"
+            "summary": "Crea\u0020una\u0020nueva\u0020basura.",
+            "url": "classes/Basura-con.html#method_crear"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003AbuscarModificar\u0028\u0029",
+            "fqsen": "\\Basura_con\u003A\u003AvistaCrear\u0028\u0029",
+            "name": "vistaCrear",
+            "summary": "Muestra\u0020la\u0020vista\u0020para\u0020crear\u0020basura.",
+            "url": "classes/Basura-con.html#method_vistaCrear"
+        },                {
+            "fqsen": "\\Basura_con\u003A\u003AbuscarModificar\u0028\u0029",
             "name": "buscarModificar",
-            "summary": "Busca\u0020informaci\u00F3n\u0020de\u0020basura\u0020para\u0020modificar.",
-            "url": "classes/Basura-Con.html#method_buscarModificar"
+            "summary": "Busca\u0020una\u0020basura\u0020para\u0020modificar\u0020y\u0020muestra\u0020la\u0020vista\u0020de\u0020modificaci\u00F3n.",
+            "url": "classes/Basura-con.html#method_buscarModificar"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003Amodificar\u0028\u0029",
+            "fqsen": "\\Basura_con\u003A\u003Amodificar\u0028\u0029",
             "name": "modificar",
-            "summary": "Modifica\u0020la\u0020informaci\u00F3n\u0020de\u0020una\u0020basura.",
-            "url": "classes/Basura-Con.html#method_modificar"
+            "summary": "Modifica\u0020una\u0020basura\u0020existente.",
+            "url": "classes/Basura-con.html#method_modificar"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003Aborrar\u0028\u0029",
+            "fqsen": "\\Basura_con\u003A\u003Aborrar\u0028\u0029",
             "name": "borrar",
-            "summary": "Borra\u0020una\u0020basura\u0020espec\u00EDfica.",
-            "url": "classes/Basura-Con.html#method_borrar"
+            "summary": "Borra\u0020una\u0020basura\u0020con\u0020un\u0020ID\u0020espec\u00EDfico.",
+            "url": "classes/Basura-con.html#method_borrar"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003Amostrar\u0028\u0029",
+            "fqsen": "\\Basura_con\u003A\u003Amostrar\u0028\u0029",
             "name": "mostrar",
-            "summary": "Muestra\u0020la\u0020informaci\u00F3n\u0020de\u0020todas\u0020las\u0020basuras.",
-            "url": "classes/Basura-Con.html#method_mostrar"
+            "summary": "Muestra\u0020la\u0020gesti\u00F3n\u0020de\u0020basura\u0020con\u0020todas\u0020las\u0020basura.",
+            "url": "classes/Basura-con.html#method_mostrar"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003A\u0024obj",
+            "fqsen": "\\Basura_con\u003A\u003AajaxBasura\u0028\u0029",
+            "name": "ajaxBasura",
+            "summary": "Manda\u0020los\u0020datos\u0020de\u0020basura\u0020a\u0020trav\u00E9s\u0020de\u0020AJAX.",
+            "url": "classes/Basura-con.html#method_ajaxBasura"
+        },                {
+            "fqsen": "\\Basura_con\u003A\u003A\u0024vista",
+            "name": "vista",
+            "summary": "Vista\u0020actual\u0020que\u0020se\u0020mostrar\u00E1\u0020en\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Basura-con.html#property_vista"
+        },                {
+            "fqsen": "\\Basura_con\u003A\u003A\u0024obj",
             "name": "obj",
-            "summary": "",
-            "url": "classes/Basura-Con.html#property_obj"
+            "summary": "Objeto\u0020encargado\u0020de\u0020la\u0020conexi\u00F3n\u0020con\u0020el\u0020modelo\u0020de\u0020basura.",
+            "url": "classes/Basura-con.html#property_obj"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003A\u0024host",
-            "name": "host",
-            "summary": "",
-            "url": "classes/Basura-Con.html#property_host"
+            "fqsen": "\\Basura_con\u003A\u003A\u0024pagina",
+            "name": "pagina",
+            "summary": "T\u00EDtulo\u0020de\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Basura-con.html#property_pagina"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003A\u0024username",
-            "name": "username",
-            "summary": "",
-            "url": "classes/Basura-Con.html#property_username"
+            "fqsen": "\\Menu_con",
+            "name": "Menu_con",
+            "summary": "Clase\u0020controladora\u0020para\u0020el\u0020men\u00FA\u0020de\u0020administrador.",
+            "url": "classes/Menu-con.html"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003A\u0024passwd",
-            "name": "passwd",
-            "summary": "",
-            "url": "classes/Basura-Con.html#property_passwd"
+            "fqsen": "\\Menu_con\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Menu_con.",
+            "url": "classes/Menu-con.html#method___construct"
         },                {
-            "fqsen": "\\Basura_Con\u003A\u003A\u0024bdname",
-            "name": "bdname",
-            "summary": "",
-            "url": "classes/Basura-Con.html#property_bdname"
+            "fqsen": "\\Menu_con\u003A\u003A\u0024vista",
+            "name": "vista",
+            "summary": "Vista\u0020actual\u0020que\u0020se\u0020mostrar\u00E1\u0020en\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Menu-con.html#property_vista"
+        },                {
+            "fqsen": "\\Menu_con\u003A\u003A\u0024pagina",
+            "name": "pagina",
+            "summary": "T\u00EDtulo\u0020de\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Menu-con.html#property_pagina"
+        },                {
+            "fqsen": "\\Nivel_con",
+            "name": "Nivel_con",
+            "summary": "Clase\u0020controladora\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020niveles.",
+            "url": "classes/Nivel-con.html"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Nivel_con.",
+            "url": "classes/Nivel-con.html#method___construct"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003Acrear\u0028\u0029",
+            "name": "crear",
+            "summary": "Crea\u0020un\u0020nuevo\u0020nivel\u0020con\u0020sus\u0020mensajes\u0020asociados.",
+            "url": "classes/Nivel-con.html#method_crear"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AvistaCrear\u0028\u0029",
+            "name": "vistaCrear",
+            "summary": "Muestra\u0020la\u0020vista\u0020para\u0020crear\u0020un\u0020nivel.",
+            "url": "classes/Nivel-con.html#method_vistaCrear"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AbuscarModificar\u0028\u0029",
+            "name": "buscarModificar",
+            "summary": "Busca\u0020un\u0020nivel\u0020para\u0020modificar\u0020y\u0020muestra\u0020la\u0020vista\u0020de\u0020modificaci\u00F3n.",
+            "url": "classes/Nivel-con.html#method_buscarModificar"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AmodificarNivelMensaje\u0028\u0029",
+            "name": "modificarNivelMensaje",
+            "summary": "Modifica\u0020niveles\u0020y\u0020mensajes\u0020asociados.",
+            "url": "classes/Nivel-con.html#method_modificarNivelMensaje"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003Aborrar\u0028\u0029",
+            "name": "borrar",
+            "summary": "Borra\u0020un\u0020nivel\u0020con\u0020un\u0020ID\u0020espec\u00EDfico.",
+            "url": "classes/Nivel-con.html#method_borrar"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003Amostrar\u0028\u0029",
+            "name": "mostrar",
+            "summary": "Muestra\u0020la\u0020gesti\u00F3n\u0020de\u0020niveles.",
+            "url": "classes/Nivel-con.html#method_mostrar"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AmostrarMensajes\u0028\u0029",
+            "name": "mostrarMensajes",
+            "summary": "Muestra\u0020los\u0020mensajes\u0020asociados\u0020a\u0020un\u0020nivel.",
+            "url": "classes/Nivel-con.html#method_mostrarMensajes"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AborrarMensaje\u0028\u0029",
+            "name": "borrarMensaje",
+            "summary": "Borra\u0020un\u0020mensaje\u0020asociado\u0020a\u0020un\u0020nivel.",
+            "url": "classes/Nivel-con.html#method_borrarMensaje"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AbuscarMensaje\u0028\u0029",
+            "name": "buscarMensaje",
+            "summary": "Busca\u0020un\u0020mensaje\u0020para\u0020modificar.",
+            "url": "classes/Nivel-con.html#method_buscarMensaje"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AmoverMensaje\u0028\u0029",
+            "name": "moverMensaje",
+            "summary": "Mueve\u0020un\u0020mensaje\u0020a\u0020otro\u0020nivel.",
+            "url": "classes/Nivel-con.html#method_moverMensaje"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AajaxNivel\u0028\u0029",
+            "name": "ajaxNivel",
+            "summary": "Manda\u0020los\u0020datos\u0020de\u0020nivel\u0020a\u0020trav\u00E9s\u0020de\u0020AJAX.",
+            "url": "classes/Nivel-con.html#method_ajaxNivel"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003AajaxMensajesNivel\u0028\u0029",
+            "name": "ajaxMensajesNivel",
+            "summary": "Manda\u0020todos\u0020los\u0020mensajes\u0020que\u0020tiene\u0020un\u0020nivel\u0020determinado.",
+            "url": "classes/Nivel-con.html#method_ajaxMensajesNivel"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003A\u0024vista",
+            "name": "vista",
+            "summary": "Vista\u0020actual\u0020que\u0020se\u0020mostrar\u00E1\u0020en\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Nivel-con.html#property_vista"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003A\u0024obj",
+            "name": "obj",
+            "summary": "Objeto\u0020encargado\u0020de\u0020la\u0020conexi\u00F3n\u0020con\u0020el\u0020modelo\u0020de\u0020nivel.",
+            "url": "classes/Nivel-con.html#property_obj"
+        },                {
+            "fqsen": "\\Nivel_con\u003A\u003A\u0024pagina",
+            "name": "pagina",
+            "summary": "T\u00EDtulo\u0020de\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Nivel-con.html#property_pagina"
+        },                {
+            "fqsen": "\\Partida_con",
+            "name": "Partida_con",
+            "summary": "Clase\u0020controladora\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020partida.",
+            "url": "classes/Partida-con.html"
+        },                {
+            "fqsen": "\\Partida_con\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Partida_con.",
+            "url": "classes/Partida-con.html#method___construct"
+        },                {
+            "fqsen": "\\Partida_con\u003A\u003AajaxPartida\u0028\u0029",
+            "name": "ajaxPartida",
+            "summary": "Manda\u0020los\u0020datos\u0020de\u0020partida\u0020a\u0020trav\u00E9s\u0020de\u0020AJAX.",
+            "url": "classes/Partida-con.html#method_ajaxPartida"
+        },                {
+            "fqsen": "\\Partida_con\u003A\u003AajaxAnadirPartida\u0028\u0029",
+            "name": "ajaxAnadirPartida",
+            "summary": "Recibe\u0020los\u0020datos\u0020de\u0020la\u0020partida\u0020y\u0020los\u0020inserta\u0020en\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Partida-con.html#method_ajaxAnadirPartida"
+        },                {
+            "fqsen": "\\Partida_con\u003A\u003A\u0024vista",
+            "name": "vista",
+            "summary": "Vista\u0020actual\u0020que\u0020se\u0020mostrar\u00E1\u0020en\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Partida-con.html#property_vista"
+        },                {
+            "fqsen": "\\Partida_con\u003A\u003A\u0024obj",
+            "name": "obj",
+            "summary": "Objeto\u0020encargado\u0020de\u0020la\u0020conexi\u00F3n\u0020con\u0020el\u0020modelo\u0020de\u0020partida.",
+            "url": "classes/Partida-con.html#property_obj"
+        },                {
+            "fqsen": "\\Partida_con\u003A\u003A\u0024pagina",
+            "name": "pagina",
+            "summary": "T\u00EDtulo\u0020de\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Partida-con.html#property_pagina"
+        },                {
+            "fqsen": "\\Powerup_con",
+            "name": "Powerup_con",
+            "summary": "Clase\u0020controladora\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020powerup.",
+            "url": "classes/Powerup-con.html"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Powerup_con.",
+            "url": "classes/Powerup-con.html#method___construct"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003Amostrar\u0028\u0029",
+            "name": "mostrar",
+            "summary": "Muestra\u0020la\u0020gesti\u00F3n\u0020de\u0020powerup\u0020con\u0020la\u0020informacion\u0020necesaria.",
+            "url": "classes/Powerup-con.html#method_mostrar"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003Amodificar\u0028\u0029",
+            "name": "modificar",
+            "summary": "Modifica\u0020los\u0020valores\u0020de\u0020la\u0020tabla\u0020powerup\u0020segun\u0020los\u0020datos\u0020introducidos\u0020por\u0020el\u0020usuario.",
+            "url": "classes/Powerup-con.html#method_modificar"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003ArestarurarValoresPowerup\u0028\u0029",
+            "name": "restarurarValoresPowerup",
+            "summary": "Restaura\u0020los\u0020valores\u0020de\u0020powerup\u0020a\u0020unos\u0020valores\u0020por\u0020defecto.",
+            "url": "classes/Powerup-con.html#method_restarurarValoresPowerup"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003AajaxPowerup\u0028\u0029",
+            "name": "ajaxPowerup",
+            "summary": "Manda\u0020los\u0020datos\u0020de\u0020powerup\u0020a\u0020trav\u00E9s\u0020de\u0020AJAX.",
+            "url": "classes/Powerup-con.html#method_ajaxPowerup"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003A\u0024vista",
+            "name": "vista",
+            "summary": "Vista\u0020actual\u0020que\u0020se\u0020mostrar\u00E1\u0020en\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Powerup-con.html#property_vista"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003A\u0024obj",
+            "name": "obj",
+            "summary": "Objeto\u0020encargado\u0020de\u0020la\u0020conexi\u00F3n\u0020con\u0020el\u0020modelo\u0020de\u0020powerup.",
+            "url": "classes/Powerup-con.html#property_obj"
+        },                {
+            "fqsen": "\\Powerup_con\u003A\u003A\u0024pagina",
+            "name": "pagina",
+            "summary": "T\u00EDtulo\u0020de\u0020la\u0020p\u00E1gina.",
+            "url": "classes/Powerup-con.html#property_pagina"
         },                {
             "fqsen": "\\Basura_Mod",
             "name": "Basura_Mod",
-            "summary": "",
+            "summary": "Clase\u0020modelo\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020basura.",
             "url": "classes/Basura-Mod.html"
         },                {
             "fqsen": "\\Basura_Mod\u003A\u003A__construct\u0028\u0029",
@@ -111,35 +356,235 @@ Search.appendIndex(
             "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Basura_Mod.",
             "url": "classes/Basura-Mod.html#method___construct"
         },                {
+            "fqsen": "\\Basura_Mod\u003A\u003AestablecerConexion\u0028\u0029",
+            "name": "establecerConexion",
+            "summary": "Establece\u0020la\u0020conexi\u00F3n\u0020con\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Basura-Mod.html#method_establecerConexion"
+        },                {
+            "fqsen": "\\Basura_Mod\u003A\u003AcerrarConexion\u0028\u0029",
+            "name": "cerrarConexion",
+            "summary": "Cierra\u0020la\u0020conexi\u00F3n\u0020con\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Basura-Mod.html#method_cerrarConexion"
+        },                {
             "fqsen": "\\Basura_Mod\u003A\u003Amostrar\u0028\u0029",
             "name": "mostrar",
-            "summary": "Obtiene\u0020y\u0020devuelve\u0020la\u0020informaci\u00F3n\u0020de\u0020todas\u0020las\u0020basuras.",
+            "summary": "Muestra\u0020la\u0020informaci\u00F3n\u0020de\u0020basura.",
             "url": "classes/Basura-Mod.html#method_mostrar"
         },                {
             "fqsen": "\\Basura_Mod\u003A\u003Aborrar\u0028\u0029",
             "name": "borrar",
-            "summary": "Borra\u0020una\u0020basura\u0020espec\u00EDfica\u0020de\u0020la\u0020base\u0020de\u0020datos.",
+            "summary": "Borra\u0020la\u0020basura\u0020con\u0020un\u0020ID\u0020espec\u00EDfico.",
             "url": "classes/Basura-Mod.html#method_borrar"
         },                {
             "fqsen": "\\Basura_Mod\u003A\u003Acrear\u0028\u0029",
             "name": "crear",
-            "summary": "Crea\u0020un\u0020nuevo\u0020registro\u0020de\u0020basura\u0020en\u0020la\u0020base\u0020de\u0020datos.",
+            "summary": "Crea\u0020una\u0020nueva\u0020basura.",
             "url": "classes/Basura-Mod.html#method_crear"
         },                {
             "fqsen": "\\Basura_Mod\u003A\u003AbuscarModificar\u0028\u0029",
             "name": "buscarModificar",
-            "summary": "Busca\u0020informaci\u00F3n\u0020de\u0020basura\u0020espec\u00EDfica\u0020para\u0020modificar.",
+            "summary": "Busca\u0020la\u0020basura\u0020con\u0020un\u0020ID\u0020espec\u00EDfico\u0020para\u0020modificar.",
             "url": "classes/Basura-Mod.html#method_buscarModificar"
         },                {
             "fqsen": "\\Basura_Mod\u003A\u003Amodificar\u0028\u0029",
             "name": "modificar",
-            "summary": "Modifica\u0020la\u0020informaci\u00F3n\u0020de\u0020una\u0020basura\u0020en\u0020la\u0020base\u0020de\u0020datos.",
+            "summary": "Modifica\u0020la\u0020basura\u0020con\u0020un\u0020ID\u0020espec\u00EDfico.",
             "url": "classes/Basura-Mod.html#method_modificar"
+        },                {
+            "fqsen": "\\Basura_Mod\u003A\u003AajaxDatosBasura\u0028\u0029",
+            "name": "ajaxDatosBasura",
+            "summary": "Recoge\u0020datos\u0020de\u0020basura\u0020y\u0020los\u0020retorna\u0020al\u0020controlador\u0020en\u0020json.",
+            "url": "classes/Basura-Mod.html#method_ajaxDatosBasura"
         },                {
             "fqsen": "\\Basura_Mod\u003A\u003A\u0024mysqli",
             "name": "mysqli",
-            "summary": "",
+            "summary": "Instancia\u0020de\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
             "url": "classes/Basura-Mod.html#property_mysqli"
+        },                {
+            "fqsen": "\\Db",
+            "name": "Db",
+            "summary": "Clase\u0020para\u0020gestionar\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Db.html"
+        },                {
+            "fqsen": "\\Db\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Db.",
+            "url": "classes/Db.html#method___construct"
+        },                {
+            "fqsen": "\\Db\u003A\u003A\u0024host",
+            "name": "host",
+            "summary": "Direcci\u00F3n\u0020del\u0020host\u0020de\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Db.html#property_host"
+        },                {
+            "fqsen": "\\Db\u003A\u003A\u0024bdname",
+            "name": "bdname",
+            "summary": "Nombre\u0020de\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Db.html#property_bdname"
+        },                {
+            "fqsen": "\\Db\u003A\u003A\u0024usuario",
+            "name": "usuario",
+            "summary": "Nombre\u0020de\u0020usuario\u0020para\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Db.html#property_usuario"
+        },                {
+            "fqsen": "\\Db\u003A\u003A\u0024passwd",
+            "name": "passwd",
+            "summary": "Contrase\u00F1a\u0020para\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Db.html#property_passwd"
+        },                {
+            "fqsen": "\\Db\u003A\u003A\u0024mysqli",
+            "name": "mysqli",
+            "summary": "Instancia\u0020de\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Db.html#property_mysqli"
+        },                {
+            "fqsen": "\\Nivel_Mod",
+            "name": "Nivel_Mod",
+            "summary": "Clase\u0020para\u0020gestionar\u0020los\u0020niveles\u0020y\u0020mensajes\u0020asociados.",
+            "url": "classes/Nivel-Mod.html"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Nivel_Mod.",
+            "url": "classes/Nivel-Mod.html#method___construct"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AestablecerConexion\u0028\u0029",
+            "name": "establecerConexion",
+            "summary": "Establece\u0020la\u0020conexi\u00F3n\u0020con\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Nivel-Mod.html#method_establecerConexion"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AcerrarConexion\u0028\u0029",
+            "name": "cerrarConexion",
+            "summary": "Cierra\u0020la\u0020conexi\u00F3n\u0020con\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Nivel-Mod.html#method_cerrarConexion"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003Amostrar\u0028\u0029",
+            "name": "mostrar",
+            "summary": "Muestra\u0020la\u0020lista\u0020de\u0020niveles.",
+            "url": "classes/Nivel-Mod.html#method_mostrar"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AmostrarMensajes\u0028\u0029",
+            "name": "mostrarMensajes",
+            "summary": "Muestra\u0020los\u0020mensajes\u0020asociados\u0020a\u0020un\u0020nivel\u0020espec\u00EDfico.",
+            "url": "classes/Nivel-Mod.html#method_mostrarMensajes"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003Aborrar\u0028\u0029",
+            "name": "borrar",
+            "summary": "Borra\u0020un\u0020nivel\u0020espec\u00EDfico.",
+            "url": "classes/Nivel-Mod.html#method_borrar"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003Acrear\u0028\u0029",
+            "name": "crear",
+            "summary": "Crea\u0020un\u0020nuevo\u0020nivel.",
+            "url": "classes/Nivel-Mod.html#method_crear"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AbuscarModificar\u0028\u0029",
+            "name": "buscarModificar",
+            "summary": "Busca\u0020un\u0020nivel\u0020espec\u00EDfico\u0020para\u0020su\u0020modificaci\u00F3n.",
+            "url": "classes/Nivel-Mod.html#method_buscarModificar"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003Amodificar\u0028\u0029",
+            "name": "modificar",
+            "summary": "Modifica\u0020un\u0020nivel\u0020espec\u00EDfico.",
+            "url": "classes/Nivel-Mod.html#method_modificar"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AborrarMensaje\u0028\u0029",
+            "name": "borrarMensaje",
+            "summary": "Borra\u0020un\u0020mensaje\u0020espec\u00EDfico.",
+            "url": "classes/Nivel-Mod.html#method_borrarMensaje"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AbuscarMensaje\u0028\u0029",
+            "name": "buscarMensaje",
+            "summary": "Busca\u0020un\u0020mensaje\u0020espec\u00EDfico\u0020para\u0020su\u0020modificaci\u00F3n.",
+            "url": "classes/Nivel-Mod.html#method_buscarMensaje"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AmoverMensaje\u0028\u0029",
+            "name": "moverMensaje",
+            "summary": "Mueve\u0020un\u0020mensaje\u0020a\u0020un\u0020nuevo\u0020nivel.",
+            "url": "classes/Nivel-Mod.html#method_moverMensaje"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AmodificarNivelMensaje\u0028\u0029",
+            "name": "modificarNivelMensaje",
+            "summary": "Modifica\u0020un\u0020mensaje\u0020espec\u00EDfico.",
+            "url": "classes/Nivel-Mod.html#method_modificarNivelMensaje"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AcrearMensaje\u0028\u0029",
+            "name": "crearMensaje",
+            "summary": "Crea\u0020un\u0020nuevo\u0020mensaje\u0020asociado\u0020a\u0020un\u0020nivel.",
+            "url": "classes/Nivel-Mod.html#method_crearMensaje"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AajaxDatosNivel\u0028\u0029",
+            "name": "ajaxDatosNivel",
+            "summary": "Recoge\u0020datos\u0020de\u0020nivel\u0020y\u0020los\u0020retorna\u0020al\u0020controlador\u0020en\u0020json.",
+            "url": "classes/Nivel-Mod.html#method_ajaxDatosNivel"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003AajaxMensajesNiveles\u0028\u0029",
+            "name": "ajaxMensajesNiveles",
+            "summary": "Recoge\u0020datos\u0020del\u0020contenido\u0020de\u0020los\u0020mensajes\u0020de\u0020un\u0020nivel\u0020determinado\u0020y\u0020los\u0020retorna\u0020al\u0020controlador\u0020en\u0020json.",
+            "url": "classes/Nivel-Mod.html#method_ajaxMensajesNiveles"
+        },                {
+            "fqsen": "\\Nivel_Mod\u003A\u003A\u0024mysqli",
+            "name": "mysqli",
+            "summary": "Instancia\u0020de\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Nivel-Mod.html#property_mysqli"
+        },                {
+            "fqsen": "\\Partida_Mod",
+            "name": "Partida_Mod",
+            "summary": "Clase\u0020para\u0020gestionar\u0020la\u0020tabla\u0020partida.",
+            "url": "classes/Partida-Mod.html"
+        },                {
+            "fqsen": "\\Partida_Mod\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Partida_Mod",
+            "url": "classes/Partida-Mod.html#method___construct"
+        },                {
+            "fqsen": "\\Partida_Mod\u003A\u003AajaxDatosPartida\u0028\u0029",
+            "name": "ajaxDatosPartida",
+            "summary": "Recoge\u0020datos\u0020de\u0020la\u0020tabla\u0020partida\u0020y\u0020los\u0020retorna\u0020al\u0020controlador\u0020en\u0020json.",
+            "url": "classes/Partida-Mod.html#method_ajaxDatosPartida"
+        },                {
+            "fqsen": "\\Partida_Mod\u003A\u003AinsertarPartida\u0028\u0029",
+            "name": "insertarPartida",
+            "summary": "Inserta\u0020en\u0020la\u0020tabla\u0020partida\u0020los\u0020datos\u0020que\u0020han\u0020sido\u0020enviado\u0020por\u0020ajax.",
+            "url": "classes/Partida-Mod.html#method_insertarPartida"
+        },                {
+            "fqsen": "\\Partida_Mod\u003A\u003A\u0024conexion",
+            "name": "conexion",
+            "summary": "Instancia\u0020de\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Partida-Mod.html#property_conexion"
+        },                {
+            "fqsen": "\\Powerup_Mod",
+            "name": "Powerup_Mod",
+            "summary": "Clase\u0020modelo\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020powerup.",
+            "url": "classes/Powerup-Mod.html"
+        },                {
+            "fqsen": "\\Powerup_Mod\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Powerup_Mod.",
+            "url": "classes/Powerup-Mod.html#method___construct"
+        },                {
+            "fqsen": "\\Powerup_Mod\u003A\u003Amostrar\u0028\u0029",
+            "name": "mostrar",
+            "summary": "Consulta\u0020la\u0020informaci\u00F3n\u0020del\u0020power\u0020up.",
+            "url": "classes/Powerup-Mod.html#method_mostrar"
+        },                {
+            "fqsen": "\\Powerup_Mod\u003A\u003Amodificar\u0028\u0029",
+            "name": "modificar",
+            "summary": "Modifica\u0020un\u0020powerup\u0020con\u0020un\u0020ID\u0020espec\u00EDfico.",
+            "url": "classes/Powerup-Mod.html#method_modificar"
+        },                {
+            "fqsen": "\\Powerup_Mod\u003A\u003AvaloresPorDefecto\u0028\u0029",
+            "name": "valoresPorDefecto",
+            "summary": "Establece\u0020unos\u0020valores\u0020por\u0020defecto\u0020en\u0020la\u0020base\u0020de\u0020datos\u0020para\u0020los\u0020powerup.",
+            "url": "classes/Powerup-Mod.html#method_valoresPorDefecto"
+        },                {
+            "fqsen": "\\Powerup_Mod\u003A\u003AajaxDatosPowerup\u0028\u0029",
+            "name": "ajaxDatosPowerup",
+            "summary": "Recoge\u0020datos\u0020de\u0020power\u002Dups\u0020y\u0020los\u0020retorna\u0020al\u0020controlador\u0020en\u0020json.\u0020Se\u0020realiza\u0020una\u0020consulta\u0020para\u0020obtener\u0020informaci\u00F3n\u0020de\u0020powerups",
+            "url": "classes/Powerup-Mod.html#method_ajaxDatosPowerup"
+        },                {
+            "fqsen": "\\Powerup_Mod\u003A\u003A\u0024conexion",
+            "name": "conexion",
+            "summary": "Instancia\u0020de\u0020la\u0020conexi\u00F3n\u0020a\u0020la\u0020base\u0020de\u0020datos.",
+            "url": "classes/Powerup-Mod.html#property_conexion"
         },                {
             "fqsen": "\\",
             "name": "\\",

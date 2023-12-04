@@ -8,10 +8,6 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once 'php/modelos/db.php';
 
 /**
@@ -33,6 +29,7 @@ class Powerup_Mod
     {
         $dbObj = new Db();
         $this->conexion = $dbObj->mysqli;
+
     }
 
     /**
@@ -60,6 +57,7 @@ class Powerup_Mod
      * @param string $nombre
      * @param string $imagen
      * @param int $aumento
+     * @param string $descripcion
      * @return bool
      */
     public function modificar($id, $nombre, $imagen, $aumento, $descripcion) {
