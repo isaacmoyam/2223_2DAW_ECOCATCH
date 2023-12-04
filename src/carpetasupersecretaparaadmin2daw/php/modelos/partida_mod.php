@@ -41,7 +41,7 @@ class Partida_Mod
      */
     public function ajaxDatosPartida() {
         //Consulta para obtener información de partida
-        $sqlPartida = "SELECT p.nombre, p.correo, p.puntuacion, n.nombre FROM partida p INNER JOIN nivel n on p.id = n.idNivel";
+        $sqlPartida = "SELECT p.nombre, p.correo, p.puntuacion, n.nombre AS nombre_nivel FROM partida p INNER JOIN nivel n ON p.idNivel = n.id ORDER BY p.puntuacion DESC;";
         $resultPartida = $this->conexion->query($sqlPartida);
     
         $partida = array();

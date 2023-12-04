@@ -21,6 +21,8 @@ export class Vistaformranking extends Vistausuario {
    * Método encargado de asociar los eventos a las referencias de la interfaz de la vista 7
    */
   eventos() {
+    super.modoOscuro()
+    
     // Coger referencias del interfaz
     let iNick, iCorreo, puntuacion, idNivel
 
