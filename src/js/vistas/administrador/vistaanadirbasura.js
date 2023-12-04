@@ -37,6 +37,12 @@ export class Vistaanadirbasura extends Vistaadmins {
 
     super.eventosComprobacionBasura(mensaje, nombreInput, imagenInput, valorInput, imagenMiniatura);
   }
+
+  eventosComprobacionBasura (pMensaje, iNombre, iImagen, iValor, imagenMiniatura) {
+    iImagen.addEventListener('change', (event) => this.mostrarMiniatura(event, imagenMiniatura))
+    iNombre.onblur = (evento) => this.comprobacionNombreBasura(evento, pMensaje)
+    iValor.onblur = (evento) => this.comprobacionValorBasura(evento, pMensaje)
+  }
 }
 
 /**

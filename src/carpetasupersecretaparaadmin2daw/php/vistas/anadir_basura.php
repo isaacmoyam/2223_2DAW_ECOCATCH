@@ -23,4 +23,4 @@
         <input type="submit" value="Añadir basura"><a id="btnVolver" href="index.php?control=basura_con">Cancelar</a>
     </form>
 </main>
-<script src="js/vistas/administrador/vistaanadirbasura.js" type="module"></script>
+<script src="../js/vistas/administrador/vistaanadirbasura.js" type="module"></script>

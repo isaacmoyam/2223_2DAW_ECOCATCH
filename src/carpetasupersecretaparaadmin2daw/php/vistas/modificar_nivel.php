@@ -68,5 +68,5 @@
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
-<script src="js/vistas/administrador/vistamodificarnivel.js" type="module"></script>
+<script src="../js/vistas/administrador/vistamodificarnivel.js" type="module"></script>
 

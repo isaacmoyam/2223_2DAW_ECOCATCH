@@ -12,8 +12,8 @@
             <img src="../../../src/img/logo_fondo_transparente.png" alt="Logo de la página EcoCatch">
         </header>
         <main id="formulario">
-            <h1>¡TU PUNTUACIÓN ES DE 302 PUNTOS!</h1>
-            <form action="" method="GET">
+            <h1>¡TU PUNTUACIÓN ES DE <span id="puntos"></span> PUNTOS!</h1>
+            <form action="ranking.html" method="POST" id="formRanking">
                 <label>(*) NICK:</label>
                 <input type="text" name="nick">
                 <label>CORREO:</label>
@@ -22,6 +22,6 @@
                 <input type="submit" value="Enviar">
             </form>
         </main>
-        <script type="module" src="../../../src/js/vistas/usuario/vista7.js"></script>
+        <script type="module" src="../../../src/js/vistas/usuario/vistaformranking.js"></script>
     </body>
 </html>

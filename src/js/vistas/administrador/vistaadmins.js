@@ -401,7 +401,7 @@ export class Vistaadmins {
    */
   mostrarMensajeErrorBasura(input, mensaje) {
     const pMensaje = document.getElementById('msgCampos'); // Reemplaza con el ID real de tu elemento
-    if (pMensaje && (input.name==="nombre" || input.name==="valor")) {
+    if (pMensaje && (input.name === "nombre" || input.name === "valor")) {
       pMensaje.style.color = 'red';
       input.style.borderColor = 'red';
     } else {
@@ -461,26 +461,31 @@ export class Vistaadmins {
 
         // Obtenemos el nombre del archivo
         const nombreArchivoExtension = selectedFile.name
-        
-        const partes = nombreArchivoExtension.split(".")
 
-        // Validamos la extensión del archivo
+        if(nombreArchivoExtension.length < 20) {
+            const partes = nombreArchivoExtension.split(".")
 
-        const extensionArchivo = "." + partes[1]
+            // Validamos la extensión del archivo
 
-        const extensionPermitida = '.png'
+            const extensionArchivo = "." + partes[1]
 
-        if (extensionPermitida === extensionArchivo) {
-          return true;
+            const extensionPermitida = '.png'
+
+            if (extensionPermitida === extensionArchivo) {
+                return true;
+            } else {
+                let mensajeError = 'La imagen no tiene una extensión valida.';
+                this.mostrarMensajeErrorBasura(iImagen, mensajeError);
+                return false;
+            }
         } else {
-          let mensajeError = 'La imagen no tiene una extensión valida.';
-          this.mostrarMensajeErrorBasura(iImagen, mensajeError);
-          return false;
+            let mensajeError = 'El nombre de la imagen no puede sobrepasar los 30 caracteres.';
+            this.mostrarMensajeErrorBasura(iImagen, mensajeError);
+            return false;
         }
     } else {
       return false;
     }
-    
   }
 
   /**

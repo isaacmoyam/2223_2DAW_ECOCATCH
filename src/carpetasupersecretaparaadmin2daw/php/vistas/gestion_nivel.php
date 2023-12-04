@@ -44,4 +44,4 @@
     </table>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>
-<script src="js/vistas/administrador/vistamostrarnivel.js" type="module"></script>
+<script src="../js/vistas/administrador/vistamostrarnivel.js" type="module"></script>
