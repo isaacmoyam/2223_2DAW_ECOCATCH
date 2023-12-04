@@ -24,10 +24,11 @@
         <label for="valor">Valor:</label>
         <input type="text" name="valor" value="<?php echo $fila['valor'];?>" placeholder="Puntuación">
         <label>Imagen Actual:</label>
-        <img src="data:image/png;base64,<?php echo $fila['imagen'];?>" alt="Imagen Actual">
+        <img id="imagenActual" src="data:image/png;base64,<?php echo $fila['imagen'];?>" alt="Imagen Actual">
         <label>(*) Imagen:</label>
         <input type="file" name="imagen">
         <img id="imagenMiniatura">
+        <input type="hidden" name="imagen_actual" value="<?php echo $fila['imagen'];?>">
         <p id="msgCampos"></p>
         <input type="submit" value="Guardar cambios">
     </form>

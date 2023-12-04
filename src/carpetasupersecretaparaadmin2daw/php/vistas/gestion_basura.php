@@ -35,7 +35,7 @@
                     <td><img src="data:image/png;base64,<?php echo $fila['imagen'];?>"></td>
                     <td>
                         <a href="index.php?control=basura_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
-                        <a href="index.php?control=basura_con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
+                        <a id="botonBorrar" href="index.php?control=basura_con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
                     </td>
                 </tr>
                 <?php

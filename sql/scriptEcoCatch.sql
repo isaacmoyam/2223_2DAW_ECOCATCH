@@ -13,7 +13,7 @@ CREATE TABLE partida(
     correo varchar(100) NULL,
     puntuacion smallint unsigned NOT NULL,
     idNivel tinyint unsigned NOT NULL,
-    CONSTRAINT nivelEnPartida FOREIGN KEY (idNivel) REFERENCES nivel(id)
+    CONSTRAINT nivelEnPartida FOREIGN KEY (idNivel) REFERENCES nivel(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 -- Creación de la tabla "mensaje"

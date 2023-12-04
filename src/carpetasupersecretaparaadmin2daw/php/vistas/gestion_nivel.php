@@ -35,7 +35,7 @@
                     <td><?php echo $fila['velocidadBarco']; ?></td>
                     <td>
                         <a href="index.php?control=nivel_con&metodo=buscarModificar&id=<?php echo $fila['id']; ?>">✏️</a>
-                        <a href="index.php?control=nivel_con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
+                        <a id="botonBorrar" href="index.php?control=nivel_con&metodo=borrar&id=<?php echo $fila['id']; ?>">🗑️</a>
                     </td>
                 </tr>
                 <?php

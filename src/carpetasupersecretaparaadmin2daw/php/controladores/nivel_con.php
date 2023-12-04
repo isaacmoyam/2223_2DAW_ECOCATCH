@@ -52,7 +52,7 @@ class Nivel_con {
         $arrayBidimensional = [];
         $this->pagina = "Crear nivel"; 
         if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["cantidadItems"]) && !empty($_POST["cantidadItems"]) && isset($_POST["velocidadBarco"]) && !empty($_POST["velocidadBarco"])
-        && isset($_POST["contenido"]) && !empty($_POST["contenido"]) && isset($_POST["puntosHasta"]) && !empty($_POST["puntosHasta"]) && isset($_POST["tipo"]) && !empty($_POST["tipo"])) {
+        && isset($_POST["contenido"]) && !empty($_POST["contenido"]) && isset($_POST["puntosHasta"]) && !empty($_POST["puntosHasta"]) && isset($_POST["tipo"]) && !empty($_POST["tipo"]) ) {
             
             $input1 = $_POST['contenido'];
             $input2 = $_POST['puntosHasta'];
@@ -60,9 +60,17 @@ class Nivel_con {
 
             // Iterar sobre los valores de input y construir el array bidimensional
             foreach ($input1 as $index => $value) {
+                $puntosHasta = isset($input2[$index]) ? $input2[$index] : null;
+
+                // Verificar que puntosHasta sea numérico y positivo
+                if (!is_numeric($puntosHasta) || $puntosHasta < 0) {
+                    header("Location: index.php?control=nivel_con&mensaje=false");
+                    exit();
+                }
+
                 $arrayBidimensional[$index] = [
                     'contenido' => $input1[$index],
-                    'puntosHasta' => isset($input2[$index]) ? $input2[$index] : null,
+                    'puntosHasta' => $puntosHasta,
                     'tipo' => isset($input3[$index]) ? $input3[$index] : null,
                 ];
             }
@@ -80,8 +88,14 @@ class Nivel_con {
                 $tipoMensaje = $mensaje['tipo'];
                 $contenidoMensaje = $mensaje['contenido'];
                 $puntosHastaMensaje = $mensaje['puntosHasta'];
-    
-                $this->obj->crearMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $idNivel);
+
+                $resultado = $this->obj->crearMensaje($tipoMensaje, $contenidoMensaje, $puntosHastaMensaje, $idNivel);
+
+                if(!$resultado) {
+                    header("Location: index.php?control=nivel_con&mensaje=true");
+                } else {
+                    header("Location: index.php?control=nivel_con&mensaje=false");
+                }
             }
 
             return $arrayBidimensional;
@@ -203,7 +217,7 @@ class Nivel_con {
      */
     public function buscarMensaje() {
         $this->pagina = "Modificar mensaje"; 
-        $this->vista = 'modificarMensaje';
+        $this->vista = 'modificar_mensaje';
         return $this->obj->buscarMensaje($_GET["id"]);
     }
 

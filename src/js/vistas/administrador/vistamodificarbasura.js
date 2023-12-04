@@ -32,7 +32,7 @@ export class Vistamodificarbasura extends Vistaadmins {
 
     // Agregamos la validación del formulario al evento submit
     document.getElementById('formBasura').addEventListener('submit', (event) => {
-      super.validarFormularioBasura(event);
+      super.validarFormularioModificarBasura(event);
     });
 
     super.eventosComprobacionBasura(mensaje, nombreInput, imagenInput, valorInput, imagenMiniatura);
