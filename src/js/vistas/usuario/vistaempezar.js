@@ -58,7 +58,7 @@ export class Vistaempezar extends Vistausuario {
       header.remove();
     }
     
-    window.location.href = '../../indexUsuario.html';
+    window.location.href = '../../index_usuario.html';
   }
 }
 

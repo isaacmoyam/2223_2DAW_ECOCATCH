@@ -96,7 +96,7 @@ class Nivel_con {
      */
     public function vistaCrear() { 
         $this->pagina = "Crear nivel"; 
-        $this->vista = 'anadirNivel';
+        $this->vista = 'anadir_nivel';
     }
 
     /**
@@ -105,7 +105,7 @@ class Nivel_con {
      */
     public function buscarModificar() { 
         $this->pagina = "Modificar nivel"; 
-        $this->vista = 'modificarNivel';
+        $this->vista = 'modificar_nivel';
         return $this->obj->buscarModificar($_GET["id"]);
     }
 
