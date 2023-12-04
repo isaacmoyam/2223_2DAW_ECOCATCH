@@ -64,6 +64,14 @@
                 <a href="packages/Gestin-Basura.html" class="">Basura</a>
                 
             </li>
+                    <li>
+                <a href="packages/Gestin-Nivel.html" class="">Nivel</a>
+                
+            </li>
+                    <li>
+                <a href="packages/Gestin-Mensaje.html" class="">Mensaje</a>
+                
+            </li>
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -77,17 +85,15 @@
             </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Gestion.html" class="">Gestion</a>
+    <a href="packages/Application.html" class="">Application</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/Gestion-Basura.html" class="">Basura</a>
-                
-            </li>
-            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Application.html" class="">Application</a>
+    <a href="packages/Index.html" class="">Index</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/ConexionBD.html" class="">ConexionBD</a>
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -95,14 +101,26 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="packages/Basura-Con.html" class="">Con</a>
-                
-            </li>
-                    <li>
                 <a href="packages/Basura-Mod.html" class="">Mod</a>
                 
             </li>
             </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Menu.html" class="">Menu</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Nivel.html" class="">Nivel</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Footer.html" class="">Footer</a>
+</h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Header.html" class="">Header</a>
+</h4>
 
                         </section>
             
@@ -143,7 +161,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Basura-Con.html"><abbr title="\Basura_Con">Basura_Con</abbr></a></dt><dd>Clase Basura_Con para la gestión de basura.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Basura-Mod.html"><abbr title="\Basura_Mod">Basura_Mod</abbr></a></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/FlattedString.html"><abbr title="\FlattedString">FlattedString</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Flatted.html"><abbr title="\Flatted">Flatted</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Basura-con.html"><abbr title="\Basura_con">Basura_con</abbr></a></dt><dd>Clase controladora para la gestión de basura.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Menu-con.html"><abbr title="\Menu_con">Menu_con</abbr></a></dt><dd>Clase controladora para el menú de administrador.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Nivel-con.html"><abbr title="\Nivel_con">Nivel_con</abbr></a></dt><dd>Clase controladora para la gestión de niveles.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Partida-con.html"><abbr title="\Partida_con">Partida_con</abbr></a></dt><dd>Clase controladora para la gestión de partida.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Powerup-con.html"><abbr title="\Powerup_con">Powerup_con</abbr></a></dt><dd>Clase controladora para la gestión de powerup.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Basura-Mod.html"><abbr title="\Basura_Mod">Basura_Mod</abbr></a></dt><dd>Clase modelo para la gestión de basura.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Db.html"><abbr title="\Db">Db</abbr></a></dt><dd>Clase para gestionar la conexión a la base de datos.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Nivel-Mod.html"><abbr title="\Nivel_Mod">Nivel_Mod</abbr></a></dt><dd>Clase para gestionar los niveles y mensajes asociados.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Partida-Mod.html"><abbr title="\Partida_Mod">Partida_Mod</abbr></a></dt><dd>Clase para gestionar la tabla partida.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Powerup-Mod.html"><abbr title="\Powerup_Mod">Powerup_Mod</abbr></a></dt><dd>Clase modelo para la gestión de powerup.</dd>    </dl>
 
 
 
@@ -156,67 +174,50 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_BDNAME">BDNAME</a>
     <span>
-        &nbsp;= &#039;user2daw_BD2-10&#039;                            </span>
+        &nbsp;= &#039;user2daw_ABP_GrupoA&#039;                            </span>
 </dt>
+<dd>Nombre de la base de datos.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/default.html#constant_CONTROLADOR_DEFAULT">CONTROLADOR_DEFAULT</a>
+    <span>
+        &nbsp;= &quot;menu_con&quot;                            </span>
+</dt>
+<dd>Controlador por defecto.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_HOST">HOST</a>
     <span>
-        &nbsp;= &#039;10.2daw.esvirgua.com&#039;                            </span>
+        &nbsp;= &#039;2daw.esvirgua.com&#039;                            </span>
 </dt>
+<dd>Dirección del host de la base de datos.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/default.html#constant_METODO_DEFAULT">METODO_DEFAULT</a>
+    <span>
+        &nbsp;= &quot;&quot;                            </span>
+</dt>
+<dd>Método por defecto.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_PASSWD">PASSWD</a>
     <span>
-        &nbsp;= &#039;$d.@V+9pQ*-t&#039;                            </span>
+        &nbsp;= &#039;L.=K#2AM^F7T&#039;                            </span>
 </dt>
+<dd>Contraseña para la conexión a la base de datos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_USERNAME">USERNAME</a>
     <span>
-        &nbsp;= &#039;user2daw_10&#039;                            </span>
+        &nbsp;= &#039;user2daw_ABP&#039;                            </span>
 </dt>
+<dd>Nombre de usuario para la conexión a la base de datos.</dd>
 
     </dl>
 
 
 
 
-<h4 id="toc-functions">
-    Functions
-    <a href="namespaces/default.html#toc-functions" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_crear">crear()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Función para crear una nueva basura.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_borrar">borrar()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Función para borrar una basura.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_buscarModificar">buscarModificar()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd>Función para buscar y obtener información de una basura para modificar.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_modificar">modificar()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Función para modificar una basura existente.</dd>
-
-    </dl>
 
         
     <section class="phpdocumentor-constants">
@@ -233,18 +234,48 @@
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/config/configdb.php"><a href="files/src-php-config-configdb.html"><abbr title="src/php/config/configdb.php">configdb.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-config-configdb.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php">configdb.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Nombre de la base de datos.</p>
+
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">BDNAME</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;user2daw_BD2-10&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;user2daw_ABP_GrupoA&#039;</span>
+</code>
+
+
+    
+    
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_CONTROLADOR_DEFAULT">
+        CONTROLADOR_DEFAULT
+        <a href="namespaces/default.html#constant_CONTROLADOR_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-config-configdb.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php">configdb.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">39</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Controlador por defecto.</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">CONTROLADOR_DEFAULT</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;menu_con&quot;</span>
 </code>
 
 
@@ -261,18 +292,48 @@
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/config/configdb.php"><a href="files/src-php-config-configdb.html"><abbr title="src/php/config/configdb.php">configdb.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-config-configdb.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php">configdb.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Dirección del host de la base de datos.</p>
+
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">HOST</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;10.2daw.esvirgua.com&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;2daw.esvirgua.com&#039;</span>
+</code>
+
+
+    
+    
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_METODO_DEFAULT">
+        METODO_DEFAULT
+        <a href="namespaces/default.html#constant_METODO_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-config-configdb.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php">configdb.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">44</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Método por defecto.</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">METODO_DEFAULT</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;&quot;</span>
 </code>
 
 
@@ -289,18 +350,19 @@
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/config/configdb.php"><a href="files/src-php-config-configdb.html"><abbr title="src/php/config/configdb.php">configdb.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-config-configdb.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php">configdb.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">4</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Contraseña para la conexión a la base de datos.</p>
+
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">PASSWD</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;$d.@V+9pQ*-t&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;L.=K#2AM^F7T&#039;</span>
 </code>
 
 
@@ -317,18 +379,19 @@
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/php/config/configdb.php"><a href="files/src-php-config-configdb.html"><abbr title="src/php/config/configdb.php">configdb.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php"><a href="files/src-carpetasupersecretaparaadmin2daw-php-config-configdb.html"><abbr title="src/carpetasupersecretaparaadmin2daw/php/config/configdb.php">configdb.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Nombre de usuario para la conexión a la base de datos.</p>
+
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">USERNAME</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;user2daw_10&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;user2daw_ABP&#039;</span>
 </code>
 
 
@@ -339,122 +402,7 @@
 </article>
             </section>
 
-            <section class="phpdocumentor-functions">
-        <h3 class="phpdocumentor-elements__header" id="functions">
-            Functions
-            <a href="namespaces/default.html#functions" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_crear">
-        crear()
-        <a href="namespaces/default.html#function_crear" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/index.php"><a href="files/src-index.html"><abbr title="src/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">40</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Función para crear una nueva basura.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">crear</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    
-    
-    
-
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_borrar">
-        borrar()
-        <a href="namespaces/default.html#function_borrar" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/index.php"><a href="files/src-index.html"><abbr title="src/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">59</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Función para borrar una basura.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">borrar</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    
-    
-    
-
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_buscarModificar">
-        buscarModificar()
-        <a href="namespaces/default.html#function_buscarModificar" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/index.php"><a href="files/src-index.html"><abbr title="src/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">76</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Función para buscar y obtener información de una basura para modificar.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">buscarModificar</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    
-    
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">mixed</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo asociativo con la información de la basura o nulo.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_modificar">
-        modificar()
-        <a href="namespaces/default.html#function_modificar" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/index.php"><a href="files/src-index.html"><abbr title="src/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">89</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Función para modificar una basura existente.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">modificar</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    
-    
-    
-
-    
-</article>
-            </section>
-
+        
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
@@ -560,29 +508,21 @@
                 <ul class="phpdocumentor-list -clean">
                                                                                                     <li><a href="namespaces/default.html#toc-classes">Classes</a></li>
                                                                                                     <li><a href="namespaces/default.html#toc-constants">Constants</a></li>
-                                                            <li><a href="namespaces/default.html#toc-functions">Functions</a></li>
-                                    </ul>
+                                                        </ul>
             </li>
 
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li><a href="namespaces/default.html#constant_BDNAME">BDNAME</a></li>
+                                                    <li><a href="namespaces/default.html#constant_CONTROLADOR_DEFAULT">CONTROLADOR_DEFAULT</a></li>
                                                     <li><a href="namespaces/default.html#constant_HOST">HOST</a></li>
+                                                    <li><a href="namespaces/default.html#constant_METODO_DEFAULT">METODO_DEFAULT</a></li>
                                                     <li><a href="namespaces/default.html#constant_PASSWD">PASSWD</a></li>
                                                     <li><a href="namespaces/default.html#constant_USERNAME">USERNAME</a></li>
                                             </ul>
                 </li>
             
-                            <li class="phpdocumentor-on-this-page-section__title">Functions</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="namespaces/default.html#function_borrar">borrar()</a></li>
-                                                    <li><a href="namespaces/default.html#function_buscarModificar">buscarModificar()</a></li>
-                                                    <li><a href="namespaces/default.html#function_crear">crear()</a></li>
-                                                    <li><a href="namespaces/default.html#function_modificar">modificar()</a></li>
-                                            </ul>
-                </li>
                     </ul>
     </section>
 

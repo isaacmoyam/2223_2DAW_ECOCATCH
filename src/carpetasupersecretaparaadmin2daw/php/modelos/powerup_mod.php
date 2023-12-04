@@ -57,6 +57,7 @@ class Powerup_Mod
      * @param string $nombre
      * @param string $imagen
      * @param int $aumento
+     * @param string $descripcion
      * @return bool
      */
     public function modificar($id, $nombre, $imagen, $aumento, $descripcion) {

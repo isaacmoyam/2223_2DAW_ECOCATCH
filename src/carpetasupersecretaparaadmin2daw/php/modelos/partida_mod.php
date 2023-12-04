@@ -36,8 +36,11 @@ class Partida_Mod
         $this->conexion = $dbObj->mysqli;
     }
 
+
     /**
      * Recoge datos de la tabla partida y los retorna al controlador en json.
+     *
+     * @return false|string
      */
     public function ajaxDatosPartida() {
         //Consulta para obtener información de partida
@@ -54,8 +57,15 @@ class Partida_Mod
         return json_encode($partida);
     }
 
+
     /**
      * Inserta en la tabla partida los datos que han sido enviado por ajax.
+     *
+     * @param string $nombre
+     * @param string $correo
+     * @param int $puntuacion
+     * @param int $idNivel
+     * @return true|void
      */
     public function insertarPartida($nombre,$correo,$puntuacion,$idNivel) {
         //Consulta para obtener información de partida
