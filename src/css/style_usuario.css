@@ -257,14 +257,13 @@ form > input[type=submit] {
 }
 
 #gameContainer {
-    min-height: 300px;
+    height: 550px;
+    width: 1024px;
     position: relative; /* Añade posición relativa al contenedor para que el posición absoluta del barco sea relativa a este */
-    width: 80%; /* Cambia el ancho según tus necesidades */
     margin: 0 auto; /* Centra el contenedor */
-    background-image: url("../img/fondo_juego2.png");
+    background-image: url("../img/fondo_juego.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 200px; /* Ajusta la altura según tus necesidades */
 }
 
 #gameContainer > #barco {
@@ -281,16 +280,16 @@ form > input[type=submit] {
 /*Boton pausar*/
 #botonSilencio,
 #botonPausa{
-    background-image: url("../img/iconos/pausa.png");
+    background-image: url("../img/pausa.png");
     background-repeat: no-repeat;
     width: 42px;
     height: 50px;
     border: none;
-    background-color: transparent; /*Para quitar el color de fondo*/
+    background-color: transparent;
 }
 
 #botonSilencio{
-    background-image: url("../img/iconos/musicaOn.png");
+    background-image: url("../img/musicaOn.png");
 }
 
 /*
@@ -439,14 +438,6 @@ button.darkmode,
 #ranking th.darkmode,
 #ranking td.darkmode{
     border: solid 1px #deca65;
-}
-
-#gameContainer {
-    min-height: 300px;
-    position: relative; /* Añade posición relativa al contenedor para que el posición absoluta del barco sea relativa a este */
-    width: 90%; /* Cambia el ancho según tus necesidades */
-    margin: 0 auto; /* Centra el contenedor */
-    height: 500px; /* Ajusta la altura según tus necesidades */
 }
 
 #gameContainer > #barco {

@@ -9,6 +9,7 @@ export class Vistajugar extends Vistausuario {
 
     #score = 0
     #scoreElement = document.getElementById('scoreValue')
+    #maxScore = document.getElementById('maxScore')
     #maxObjetos = localStorage.getItem('items')
     #objetosCreados = 0
     #objetosDestruidos = 0
@@ -127,6 +128,10 @@ export class Vistajugar extends Vistausuario {
         this.#score++
         this.#scoreElement.textContent = this.#score
     }
+
+    mostrarMaximo(){
+        
+    }
     
     /**
      * Inicia el juego de las manzanas con animación.
@@ -205,11 +210,11 @@ export class Vistajugar extends Vistausuario {
         botonSilencio.addEventListener('click', function() {
             if (miAudio.paused) {
                 // Si está en pausa, reanudar
-                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOn.png)";
+                botonSilencio.style.backgroundImage = "url(../../../src/img/musicaOn.png)";
                 miAudio.play();
             } else {
                 // Si está reproduciendo, pausar
-                botonSilencio.style.backgroundImage = "url(../../../src/img/iconos/musicaOff.png)";
+                botonSilencio.style.backgroundImage = "url(../../../src/img/musicaOff.png)";
                 miAudio.pause();
             }
         });

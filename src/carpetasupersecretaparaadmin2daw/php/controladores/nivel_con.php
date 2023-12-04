@@ -40,7 +40,7 @@ class Nivel_con {
      */
     public function __construct() {
         $this->pagina = "Gestión de niveles";        
-        $this->vista = 'gestionnivel';
+        $this->vista = 'gestion_nivel';
         $this->obj = new Nivel_Mod();
     }
 
