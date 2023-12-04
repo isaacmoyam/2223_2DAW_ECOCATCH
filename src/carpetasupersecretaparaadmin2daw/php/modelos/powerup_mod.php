@@ -8,10 +8,6 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once 'php/modelos/db.php';
 
 /**
@@ -33,6 +29,7 @@ class Powerup_Mod
     {
         $dbObj = new Db();
         $this->conexion = $dbObj->mysqli;
+
     }
 
     /**
@@ -67,6 +64,9 @@ class Powerup_Mod
             $sql = 'UPDATE item SET nombre = "'.$nombre.'", imagen = "'.$imagen.'" WHERE id = '.$id;
             $result = $this->conexion->query($sql);
         } catch(mysqli_sql_exception $e) {
+            $texto_error = $e->getMessage();
+            $num_error = $e->getCode();
+            echo "<br/> Error '.$num_error.': '.$texto_error.'";
             $error = true;
             return $error;
         }
@@ -81,6 +81,9 @@ class Powerup_Mod
             $sql = 'UPDATE powerup SET aumento = '.$aumento.' ,descripcion = '.($descripcion === "" ? 'NULL' : '"'.$descripcion.'"').'  WHERE id = '.$id;
             $result = $this->conexion->query($sql);
         } catch(mysqli_sql_exception $e) {
+            $texto_error = $e->getMessage();
+            $num_error = $e->getCode();
+            echo "<br/> Error '.$num_error.': '.$texto_error.'";
             $error = true;
             return $error; //Si hay un error devulve true
         }
