@@ -22,6 +22,8 @@ export class Vistaempezar extends Vistausuario {
    * @method
    */
   eventos() {
+    const btnVolver = document.getElementById("btnVolver")
+    btnVolver.addEventListener('click', (event) => this.borrarHeader(event));
     this.inicializarModoOscuro()
   }
 
@@ -45,6 +47,18 @@ export class Vistaempezar extends Vistausuario {
         localStorage.setItem('darkmode', enableDarkMode ? 'enabled' : 'disabled');
       });
     }
+  }
+
+  borrarHeader(event) {
+    event.preventDefault();
+    const header = document.getElementById("logo")
+
+    // Borra el header si existe
+    if(header){
+      header.remove();
+    }
+    
+    window.location.href = '../../indexUsuario.html';
   }
 }
 
