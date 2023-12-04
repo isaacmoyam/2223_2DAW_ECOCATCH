@@ -27,6 +27,7 @@
         <img src="data:image/png;base64,<?php echo $fila['imagen'];?>" alt="Imagen Actual">
         <label>(*) Imagen:</label>
         <input type="file" name="imagen">
+        <input type="hidden" name="imagen_actual" value="<?php echo $fila['imagen'];?>">
         <input type="submit" value="Guardar cambios">
     </form>
 </main>
