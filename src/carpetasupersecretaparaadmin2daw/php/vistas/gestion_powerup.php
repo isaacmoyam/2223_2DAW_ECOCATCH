@@ -15,7 +15,7 @@
 <main id="gestor">
     <h1>PowerUps</h1>
     <form enctype="multipart/form-data" action="index.php?control=powerup_con&metodo=modificar" method="POST" id="formPowerup">
-        <table>
+        <table id="tablaPowerup">
             <tr>
                 <th>Nombre</th>
                 <th>Aumento</th>
