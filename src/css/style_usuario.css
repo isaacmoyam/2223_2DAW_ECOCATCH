@@ -349,6 +349,7 @@ form > input[type=submit] {
 */
 #conocenos>article {
     display: flex;
+    justify-content: center;
     margin-bottom:2%;
     gap: 3%;
     width: 90%;
