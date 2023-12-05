@@ -9,10 +9,10 @@ export class Vistajugar extends Vistausuario {
 
     #score = 0
     #scoreElement = document.getElementById('scoreValue')
-    #maxScore = document.getElementById('maxScore')
     #maxObjetos = localStorage.getItem('items')
     #objetosCreados = 0
     #objetosDestruidos = 0
+    
 
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -128,10 +128,6 @@ export class Vistajugar extends Vistausuario {
         this.#score++
         this.#scoreElement.textContent = this.#score
     }
-
-    mostrarMaximo(){
-        
-    }
     
     /**
      * Inicia el juego de las manzanas con animación.
@@ -168,6 +164,7 @@ export class Vistajugar extends Vistausuario {
         this.id = localStorage.getItem('id')
         this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
+        this.imgBarco = document.getElementById("barco")
 
         this.nombre = localStorage.getItem('nombreLvl')
         const nombreNivel = document.getElementById("nombreNivel")
@@ -274,8 +271,10 @@ export class Vistajugar extends Vistausuario {
 
             if (e.key === 'ArrowLeft') {
                 this.x = Math.max(0, this.x - +this.velocidad)
+                this.imgBarco.src="../../../src/img/barco.png"
             } else if (e.key === 'ArrowRight') {
                 this.x = Math.min(maxX, this.x + +this.velocidad)
+                this.imgBarco.src="../../../src/img/barco2.png"
             }
 
             this.moveBarco(this.barco, this.x)
