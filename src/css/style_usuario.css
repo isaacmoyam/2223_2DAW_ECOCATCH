@@ -379,10 +379,6 @@ form > input[type=submit] {
 /*
     MODO OSCURO
 */
-/*Header*/
-header > img.darkmode {
-    border:solid 2px #deca65;
-}
 
 /*Select*/
 select.darkmode {
