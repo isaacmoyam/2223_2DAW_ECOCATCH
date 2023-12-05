@@ -12,7 +12,7 @@
 
 // Sección HTML para la interfaz de gestión de niveles.
 ?>
-<main>
+<main id="gestor">
     <h1>Niveles</h1>
     <a href="index.php?control=nivel_con&metodo=vistaCrear">+</a>
     <table>
