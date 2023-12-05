@@ -398,7 +398,6 @@ select.darkmode {
 #formulario.darkmode,  /*De la pagina formulario*/
 #ranking.darkmode,     /*De la pagina ranking*/
 #empezar.darkmode,    /*De la pagina empezar*/
-#conocenos  p.darkmode,  /*De la pagina conocenos*/
 button.darkmode:hover,
 select.darkmode{
     background-color: #16330c;
