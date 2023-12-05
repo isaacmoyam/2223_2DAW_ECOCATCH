@@ -81,9 +81,9 @@ export class Vistaformranking extends Vistausuario {
       this.nick = nickInput.value
       this.correo = correoInput.value
       this.llamarPOST()
-      setTimeout(function() {
-        document.getElementById('formRanking').submit();
-      }, 1000);
+      this.nick = ""
+      this.correo = ""
+      document.getElementById('formRanking').submit();
     }
   }
 
