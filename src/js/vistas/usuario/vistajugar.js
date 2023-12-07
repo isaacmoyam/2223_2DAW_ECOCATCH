@@ -33,6 +33,11 @@ export class Vistajugar extends Vistausuario {
         if (this.#objetosCreados < this.#maxObjetos) {
             let apple = document.createElement('div')
             let imagenApple = document.createElement('img')
+            let estrellita = document.createElement('div');
+            estrellita.classList.add('estrellita');
+            estrellita.style.left = apple.style.left;
+            estrellita.style.top = apple.style.top;
+            this.gameContainer.appendChild(estrellita);
             imagenApple.src = "../../../src/img/basura.png"
             imagenApple.style.width = "50px"
             imagenApple.style.height = "50px"
@@ -75,17 +80,17 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     verificarColisionManzana(apple) {
-        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'))
-        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'))
+        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'));
+        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'));
     
-        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'))
-        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
+        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'));
+        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'));
     
-        let barcoWidth = this.barco.clientWidth
-        let barcoHeight = this.barco.clientHeight
+        let barcoWidth = this.barco.clientWidth;
+        let barcoHeight = this.barco.clientHeight;
     
         // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
-        let distanciaColision = 30
+        let distanciaColision = 30;
     
         if (
             appleLeft < barcoLeft + barcoWidth - distanciaColision &&
@@ -93,12 +98,30 @@ export class Vistajugar extends Vistausuario {
             appleTop < barcoTop + barcoHeight - distanciaColision &&
             appleTop + 50 > barcoTop + distanciaColision
         ) {
-            this.gameContainer.removeChild(apple)
-            this.aumentarPuntuacion()
+            this.crearEstrella(appleLeft, appleTop);
+    
+            this.gameContainer.removeChild(apple);
+            this.aumentarPuntuacion();
             this.#objetosDestruidos++;
-
+    
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
+        }
+    }
+
+    crearEstrella(left, top) {
+        const numEstrellas = 5; // Estrelas a mostrar
+        for (let i = 0; i < numEstrellas; i++) {
+            let estrella = document.createElement('div');
+            estrella.classList.add('estrella');
+            estrella.style.left = left + Math.floor(Math.random() * 20) + 'px'; 
+            estrella.style.top = top + Math.floor(Math.random() * 20) + 'px'; 
+            this.gameContainer.appendChild(estrella);
+    
+            // Elimina la estrella después de la animación
+            setTimeout(() => {
+                this.gameContainer.removeChild(estrella);
+            }, 1000);
         }
     }
 

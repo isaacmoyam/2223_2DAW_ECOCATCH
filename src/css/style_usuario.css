@@ -248,6 +248,24 @@ form > input[type=submit] {
     font-size: 1em;
 }
 
+/* Agrega esto en tu archivo de estilos CSS */
+.estrella {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    content: "";
+    background: url("../../src/img/estrella.png") no-repeat center center;
+    background-size: cover;
+    border-radius: 100px;
+    box-shadow: 0 0 1px yellow, 0 0 2px yellow, 0 0 5px yellow; 
+    animation: estrellaAnimacion 1s ease-out;
+}
+
+@keyframes estrellaAnimacion {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
+}
+
 #ecocatch{
     border: 2px solid black;
     min-width: 96.8%;  /*96.% por que he tenido en cuenta el borde*/
