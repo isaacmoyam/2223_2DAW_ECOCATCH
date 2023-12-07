@@ -13,7 +13,7 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    background-image: url("../../src/img/fondoEcocatch.png");
+    background-image: url("../../src/img/fondo_titulo.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -627,6 +627,22 @@ button.darkmode,
     }
 }
 
+@media screen and (max-width: 834px) and (orientation: portrait) {
+    /* Estilos específicos para dispositivos en posición vertical */
+    header > img {
+        width:300px;
+    }
+    body {
+        background-image: url("../../src/img/fondo_titulo_v.png");
+    }
+}
+
+@media screen and (max-width: 430px) and (orientation: portrait) {
+    /* Estilos específicos para dispositivos en posición vertical */
+    header > img {
+        width:150px;
+    }
+}
 
 @media (width <= 682px) {
     /*pagina jugar*/
