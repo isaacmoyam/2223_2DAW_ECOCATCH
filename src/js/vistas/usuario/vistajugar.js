@@ -26,6 +26,29 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
+     * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
+     * @method
+     */
+    llamarGETBasura = () => {
+        Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura', null, this.obtenerDatosBasura);
+    }
+
+    /**
+     * Muestra los resultados obtenidos de la llamada GET en la interfaz.
+     * @method
+     * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
+     */
+    obtenerDatosBasura = (respuesta) => {
+        console.log(respuesta)
+        this.datosBasura = respuesta.map(elemento => ({
+            BasuraId: elemento.id,
+            BasuraNombre: elemento.nombre,
+            BasuraImagen: elemento.imagen,
+            BasuraValor: elemento.valor
+        }));
+    }
+
+    /**
      * Crea una manzana y la agrega al contenedor de juego.
      * @returns {void}
      */
@@ -33,7 +56,9 @@ export class Vistajugar extends Vistausuario {
         if (this.#objetosCreados < this.#maxObjetos) {
             let apple = document.createElement('div')
             let imagenApple = document.createElement('img')
-            imagenApple.src = "../../../src/img/basura.png"
+            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
+            this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
+            imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
             imagenApple.style.width = "50px"
             imagenApple.style.height = "50px"
             apple.appendChild(imagenApple)
@@ -43,6 +68,7 @@ export class Vistajugar extends Vistausuario {
             apple.style.width = '50px' 
             apple.style.height = '50px' 
             apple.style.zIndex = '1'
+            apple.id = this.datosBasura[indiceAleatorio].BasuraValor
             this.gameContainer.appendChild(apple)
     
             this.#objetosCreados++
@@ -68,6 +94,113 @@ export class Vistajugar extends Vistausuario {
             }
         }
     }
+
+
+    /**
+     * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
+     * @method
+     */
+    llamarGETPowerup = () => {
+        Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=powerup_con&metodo=ajaxPowerup', null, this.obtenerDatosPowerup);
+    }
+
+    /**
+     * Muestra los resultados obtenidos de la llamada GET en la interfaz.
+     * @method
+     * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
+     */
+    obtenerDatosPowerup = (respuesta) => {
+        console.log(respuesta)
+        this.datosPowerup = respuesta.map(elemento => ({
+            PowerupId: elemento.id,
+            PowerupNombre: elemento.nombre,
+            PowerupImagen: elemento.imagen,
+            PowerupAumento: elemento.aumento
+        }));
+    }
+
+    /**
+     * Crea un powerup y la agrega al contenedor de juego.
+     * @returns {void}
+     */
+    crearPowerup() {
+        if (this.#objetosCreados < this.#maxObjetos) {
+            let powerup = document.createElement('div')
+            let imagenPowerup = document.createElement('img')
+            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
+            this.aumentoVelocidadBarco = this.datosPowerup[indiceAleatorio].PowerupAumento
+            imagenPowerup.src = "data:image/png;base64,"+this.datosPowerup[indiceAleatorio].PowerupImagen+""
+            imagenPowerup.style.width = "50px"
+            imagenPowerup.style.height = "50px"
+            powerup.appendChild(imagenPowerup)
+            powerup.classList.add('powerup')
+            powerup.style.position = 'relative';
+            powerup.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
+            powerup.style.top = '-50px' // Posición inicial arriba del todo
+            powerup.style.width = '50px'
+            powerup.style.height = '50px'
+            powerup.style.zIndex = '1'
+
+            this.gameContainer.appendChild(powerup)
+
+            this.#objetosCreados++
+        }
+    }
+
+    /**
+     * Mueve el powerup hacia abajo en el contenedor de juego.
+     * @returns {void}
+     */
+    moverPowerup() {
+        let power = document.getElementsByClassName('powerup')
+        for (let powerup of power) {
+            let poweruptopTop = parseInt(window.getComputedStyle(powerup).getPropertyValue('top'))
+            if (poweruptopTop >= this.gameContainer.clientHeight-20) {
+                this.gameContainer.removeChild(powerup)
+                this.#objetosDestruidos++;
+                this.basuraAlAgua();
+            } else {
+                // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
+                powerup.style.top = poweruptopTop + 2 + 'px' // Ajusta la velocidad de caída aquí
+                this.verificarColisionPowerup(powerup)
+            }
+        }
+    }
+
+    /**
+     * Verifica si hay colisión entre una manzana y el barco.
+     * @param {HTMLElement} apple - Elemento DOM representando la manzana.
+     * @returns {void}
+     */
+    verificarColisionPowerup(powerup) {
+        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'))
+        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'))
+
+        let powerupLeft = parseInt(window.getComputedStyle(powerup).getPropertyValue('left'))
+        let powerupTop = parseInt(window.getComputedStyle(powerup).getPropertyValue('top'))
+
+        let barcoWidth = this.barco.clientWidth
+        let barcoHeight = this.barco.clientHeight
+
+        // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
+        let distanciaColision = 30
+
+        if (
+            powerupLeft < barcoLeft + barcoWidth - distanciaColision &&
+            powerupLeft + 50 > barcoLeft + distanciaColision &&
+            powerupTop < barcoTop + barcoHeight - distanciaColision &&
+            powerupTop + 50 > barcoTop + distanciaColision
+        ) {
+            this.gameContainer.removeChild(powerup)
+            this.#objetosDestruidos++;
+            //Aumenta la velocidad del barco
+            this.velocidad = parseInt(this.velocidad) + parseInt(this.aumentoVelocidadBarco)
+
+            // Reproduce el sonido de la manzana
+            this.reproducirSonidoPowerup    ();
+        }
+    }
+
 
     /**
      * Verifica si hay colisión entre una manzana y el barco.
@@ -111,6 +244,11 @@ export class Vistajugar extends Vistausuario {
         sonidoManzana.play();
     }
 
+    reproducirSonidoPowerup() {
+        const sonidoPowerup = document.getElementById('sonidoPowerup');
+        sonidoPowerup.play();
+    }
+
      /**
      * Reproduce un sonido cuando fallas al recoger basura
      * @returns {void}
@@ -125,7 +263,8 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     aumentarPuntuacion() {
-        this.#score++
+        this.#score = this.#score + parseInt(this.valorBasuraCogida)
+        //console.log(this.#score)
         this.#scoreElement.textContent = this.#score
     }
 
@@ -145,6 +284,12 @@ export class Vistajugar extends Vistausuario {
                     this.crearManzana()
                 }
                 this.moverManzanas()
+
+                if (!this.powerupCreado && Math.random() < 0.003) {  // Probabilidad de crear un powerup, solo si no se ha creado antes
+                    this.crearPowerup();
+                    this.powerupCreado = true; // Marcar que se ha creado el powerup
+                }
+                this.moverPowerup()
             }
             requestAnimationFrame(update)
             if(this.#maxObjetos == this.#objetosDestruidos) {
@@ -166,6 +311,10 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
 
         this.id = localStorage.getItem('id')
+
+        this.llamarGETBasura()
+        this.llamarGETPowerup()
+
         this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
 
