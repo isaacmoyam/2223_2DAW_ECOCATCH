@@ -54,8 +54,16 @@ export class Vistajugar extends Vistausuario {
      */
     crearManzana() {
         if (this.#objetosCreados < this.#maxObjetos) {
+            let estrellita = document.createElement('div');
+            estrellita.classList.add('estrellita')
+            estrellita.style.left = apple.style.left
+            estrellita.style.top = apple.style.top
+            this.gameContainer.appendChild(estrellita)
+
             let apple = document.createElement('div')
             let imagenApple = document.createElement('img')
+
+            imagenApple.src = "../../../src/img/basura.png"
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
             this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
             imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
@@ -64,7 +72,7 @@ export class Vistajugar extends Vistausuario {
             apple.appendChild(imagenApple)
             apple.classList.add('apple')
             apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
-            apple.style.top = '-50px' // Posición inicial arriba del todo
+            apple.style.top = '-10px' // Posición inicial arriba del todo
             apple.style.width = '50px' 
             apple.style.height = '50px' 
             apple.style.zIndex = '1'
@@ -83,13 +91,13 @@ export class Vistajugar extends Vistausuario {
         let apples = document.getElementsByClassName('apple')
         for (let apple of apples) {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
-            if (appleTop >= this.gameContainer.clientHeight-20) {
+            if (appleTop >= this.gameContainer.clientHeight-40) {
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                apple.style.top = appleTop + 2 + 'px' // Ajusta la velocidad de caída aquí
+                apple.style.top = appleTop + 5 + 'px' // Ajusta la velocidad de caída aquí
                 this.verificarColisionManzana(apple)
             }
         }
@@ -161,7 +169,7 @@ export class Vistajugar extends Vistausuario {
                 this.basuraAlAgua();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                powerup.style.top = poweruptopTop + 2 + 'px' // Ajusta la velocidad de caída aquí
+                powerup.style.top = poweruptopTop + 5 + 'px' // Ajusta la velocidad de caída aquí
                 this.verificarColisionPowerup(powerup)
             }
         }
@@ -193,11 +201,12 @@ export class Vistajugar extends Vistausuario {
         ) {
             this.gameContainer.removeChild(powerup)
             this.#objetosDestruidos++;
+
             //Aumenta la velocidad del barco
             this.velocidad = parseInt(this.velocidad) + parseInt(this.aumentoVelocidadBarco)
 
             // Reproduce el sonido de la manzana
-            this.reproducirSonidoPowerup    ();
+            this.reproducirSonidoPowerup();
         }
     }
 
@@ -226,12 +235,30 @@ export class Vistajugar extends Vistausuario {
             appleTop < barcoTop + barcoHeight - distanciaColision &&
             appleTop + 50 > barcoTop + distanciaColision
         ) {
-            this.gameContainer.removeChild(apple)
-            this.aumentarPuntuacion()
+            this.crearEstrella(appleLeft, appleTop);
+    
+            this.gameContainer.removeChild(apple);
+            this.aumentarPuntuacion();
             this.#objetosDestruidos++;
-
+    
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
+        }
+    }
+
+    crearEstrella(left, top) {
+        const numEstrellas = 5; // Estrelas a mostrar
+        for (let i = 0; i < numEstrellas; i++) {
+            let estrella = document.createElement('div');
+            estrella.classList.add('estrella');
+            estrella.style.left = left + Math.floor(Math.random() * 20) + 'px'; 
+            estrella.style.top = top + Math.floor(Math.random() * 20) + 'px'; 
+            this.gameContainer.appendChild(estrella);
+    
+            // Elimina la estrella después de la animación
+            setTimeout(() => {
+                this.gameContainer.removeChild(estrella);
+            }, 1000);
         }
     }
 
@@ -280,7 +307,7 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.003) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.008) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()
@@ -317,6 +344,7 @@ export class Vistajugar extends Vistausuario {
 
         this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
+        this.imgBarco = document.getElementById("barco")
 
         this.nombre = localStorage.getItem('nombreLvl')
         const nombreNivel = document.getElementById("nombreNivel")
@@ -418,18 +446,57 @@ export class Vistajugar extends Vistausuario {
         this.gameContainer.addEventListener('touchmove', (e) => this.handleTouchMove(e))
         this.gameContainer.addEventListener('touchend', () => this.handleTouchEnd())
 
+        let velocidadX = 0; 
+        let teclaIzquierdaPresionada = false;
+        let teclaDerechaPresionada = false;
+
         window.addEventListener('keydown', (e) => {
-            const maxX = this.gameContainer.clientWidth - this.barco.clientWidth
-
             if (e.key === 'ArrowLeft') {
-                this.x = Math.max(0, this.x - +this.velocidad)
+                teclaIzquierdaPresionada = true;
+                actualizarVelocidad();
             } else if (e.key === 'ArrowRight') {
-                this.x = Math.min(maxX, this.x + +this.velocidad)
+                teclaDerechaPresionada = true;
+                actualizarVelocidad();
             }
+        });
 
-            this.moveBarco(this.barco, this.x)
-        })
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft') {
+                teclaIzquierdaPresionada = false;
+                actualizarVelocidad();
+            } else if (e.key === 'ArrowRight') {
+                teclaDerechaPresionada = false;
+                actualizarVelocidad();
+            }
+        });
+
+        // Función para actualizar la velocidad basada en las teclas presionadas
+        const actualizarVelocidad = () => {
+            if (teclaIzquierdaPresionada && teclaDerechaPresionada) {
+                velocidadX = 0; 
+            } else if (teclaIzquierdaPresionada) {
+                velocidadX = -1; 
+                this.imgBarco.src = "../../../src/img/barco.png";
+            } else if (teclaDerechaPresionada) {
+                velocidadX = 1; 
+                this.imgBarco.src = "../../../src/img/barco2.png";
+            } else {
+                velocidadX = 0;
+            }
+        };
+
+        // Actualizar la posición del barco en cada fotograma de animación
+        const updateBarco = () => {
+            if (!this.juegoEnPausa) {
+                this.x = Math.max(0, Math.min(this.x + velocidadX * +this.velocidad, this.gameContainer.clientWidth - this.barco.clientWidth));
+                this.moveBarco(this.barco, this.x);
+            }
+            requestAnimationFrame(updateBarco);
+        }
+
+        updateBarco();
     }
+
 
     /**
      * Mueve el barco dentro del contenedor de juego.

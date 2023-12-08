@@ -13,7 +13,7 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    background-image: url("../../src/img/fondoEcocatch.png");
+    background-image: url("../../src/img/fondo_titulo.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -246,6 +246,24 @@ form > input[type=submit] {
 #botones > button {
     padding: 15px;
     font-size: 1em;
+}
+
+/* Agrega esto en tu archivo de estilos CSS */
+.estrella {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    content: "";
+    background: url("../../src/img/estrella.png") no-repeat center center;
+    background-size: cover;
+    border-radius: 100px;
+    box-shadow: 0 0 1px yellow, 0 0 2px yellow, 0 0 5px yellow; 
+    animation: estrellaAnimacion 1s ease-out;
+}
+
+@keyframes estrellaAnimacion {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
 }
 
 #ecocatch{
@@ -627,6 +645,22 @@ button.darkmode,
     }
 }
 
+@media screen and (max-width: 834px) and (orientation: portrait) {
+    /* Estilos específicos para dispositivos en posición vertical */
+    header > img {
+        width:300px;
+    }
+    body {
+        background-image: url("../../src/img/fondo_titulo_v.png");
+    }
+}
+
+@media screen and (max-width: 430px) and (orientation: portrait) {
+    /* Estilos específicos para dispositivos en posición vertical */
+    header > img {
+        width:150px;
+    }
+}
 
 @media (width <= 682px) {
     /*pagina jugar*/
