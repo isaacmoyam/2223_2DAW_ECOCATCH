@@ -225,7 +225,7 @@ form > input[type=submit] {
     PAGINA JUGAR
 */
 #jugar{
-    /*Con el backgound image: none quito la imagen de fondo especificamente para esta pagina
+    /*Con el background image: none quito la imagen de fondo especificamente para esta pagina
      dado que esta página del juego tendrá su propio fondo en un div*/
     background-image: none;
     background-size: auto;
@@ -248,7 +248,10 @@ form > input[type=submit] {
     font-size: 1em;
 }
 
-/* Agrega esto en tu archivo de estilos CSS */
+.brillo-azul {
+    filter: drop-shadow(0 0 10px rgb(85, 135, 241));
+}
+
 .estrella {
     position: absolute;
     width: 20px;

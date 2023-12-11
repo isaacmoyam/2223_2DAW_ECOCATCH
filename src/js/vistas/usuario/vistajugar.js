@@ -8,8 +8,10 @@ import { Rest } from '../../servicios/rest.js'
 export class Vistajugar extends Vistausuario {
 
     #score = 0
+    #objetosRecogidos = 0
     #scoreElement = document.getElementById('scoreValue')
-    #maxScore = document.getElementById('maxScore')
+    #objetosElement = document.getElementById("objetosRecogidos")
+
     #maxObjetos = localStorage.getItem('items')
     #objetosCreados = 0
     #objetosDestruidos = 0
@@ -152,6 +154,7 @@ export class Vistajugar extends Vistausuario {
 
             this.gameContainer.appendChild(powerup)
 
+            powerup.classList.add('brillo-azul');
             this.#objetosCreados++
         }
     }
@@ -190,6 +193,7 @@ export class Vistajugar extends Vistausuario {
 
         let barcoWidth = this.barco.clientWidth
         let barcoHeight = this.barco.clientHeight
+        const barco = document.querySelector('#gameContainer img');
 
         // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
         let distanciaColision = 30
@@ -203,12 +207,39 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.removeChild(powerup)
             this.#objetosDestruidos++;
 
+            barco.classList.add('brillo-azul');
             //Aumenta la velocidad del barco
             this.velocidad = parseInt(this.velocidad) + parseInt(this.aumentoVelocidadBarco)
+            setTimeout(() => {
+                this.velocidad = localStorage.getItem('velocidad')
+                this.perderPowerup()
+                this.parpadear();
+                barco.classList.remove('brillo-azul');
+            }, 4000);
 
             // Reproduce el sonido de la manzana
             this.reproducirSonidoPowerup();
         }
+    }
+
+    parpadear() {
+        const barco = document.querySelector('#gameContainer img');
+
+        const parpadeoInterval = setInterval(() => {
+            const estiloActual = window.getComputedStyle(barco);
+            const visibilidadActual = estiloActual.getPropertyValue('visibility');
+
+            if (visibilidadActual === 'visible') {
+                barco.style.visibility = 'hidden';
+            } else {
+                barco.style.visibility = 'visible';
+            }
+        }, 200);
+
+        setTimeout(() => {
+            clearInterval(parpadeoInterval);
+            barco.style.visibility = 'visible'; 
+        }, 2000);
     }
 
 
@@ -286,6 +317,11 @@ export class Vistajugar extends Vistausuario {
         sonidoPowerup.play();
     }
 
+    perderPowerup() {
+        const perderPowerup = document.getElementById('perdidaPowerup');
+        perderPowerup.play();
+    }
+
      /**
      * Reproduce un sonido cuando fallas al recoger basura
      * @returns {void}
@@ -301,8 +337,10 @@ export class Vistajugar extends Vistausuario {
      */
     aumentarPuntuacion() {
         this.#score = this.#score + parseInt(this.valorBasuraCogida)
-
         this.#scoreElement.textContent = this.#score
+
+        this.#objetosRecogidos++
+        this.#objetosElement.innerHTML = this.#objetosRecogidos+"/"+this.#maxObjetos
     }
     
     /**
@@ -349,7 +387,7 @@ export class Vistajugar extends Vistausuario {
 
         super.cambiarIdioma()
 
-        this.#scoreElement.innerHTML = this.#score+"/"+this.#maxObjetos
+        this.#objetosElement.innerHTML = this.#objetosRecogidos+"/"+this.#maxObjetos
         this.colorBarco = localStorage.getItem('colorBarco')
         this.imgBarco = document.getElementById("barco")
         switch(this.colorBarco){
