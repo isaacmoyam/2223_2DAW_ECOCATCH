@@ -30,8 +30,11 @@ export class Vistajugar extends Vistausuario {
      * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
      * @method
      */
+    
     llamarGETBasura = () => {
-        Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura', null, this.obtenerDatosBasura);
+        $(document).ready(function() {
+            Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura', null, this.obtenerDatosBasura)
+        })
     }
 
     /**
@@ -65,6 +68,7 @@ export class Vistajugar extends Vistausuario {
             let imagenApple = document.createElement('img')
 
             imagenApple.src = "../../../src/img/basura.png"
+            if(!this.datosBasura){}
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
             this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
             imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
