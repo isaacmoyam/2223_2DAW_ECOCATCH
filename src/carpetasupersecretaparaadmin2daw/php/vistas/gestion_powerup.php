@@ -33,7 +33,7 @@
                 <tr>
                     <td><input type="text" name="nombre[]" value="<?php echo $fila['nombre'];?>" placeholder="Nombre Powerup" maxlength="20"></td>
                     <td><input type="text" name="aumento[]" value="<?php echo $fila['aumento'];?>" placeholder="Aumento"></td>
-                    <td><input type="text" name="descripcion[]" value="<?php echo $fila['descripcion'];?>" maxlength="300"></td>
+                    <td><textarea name="descripcion[]" maxlength="300"><?php echo $fila['descripcion'];?></textarea>
                     <td><img src="data:image/png;base64,<?php echo $fila['imagen'];?>"></td>
                     <td>
                         <img class="imagenMiniatura[]">
@@ -53,4 +53,3 @@
     <a id="botonPorDefecto" href="index.php?control=powerup_con&metodo=restarurarValoresPowerup">Restaurar valores por defecto</a>
     <?php echo "<p>".$mensaje."</p>" ?>
 </main>
-<script src="../js/vistas/administrador/vistamostrarpowerup.js" type="module"></script>

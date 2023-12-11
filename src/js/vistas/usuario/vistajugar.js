@@ -239,10 +239,22 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     pausarJuego() {
+        let menuJuego = document.createElement('div')
+        document.getElementById('gameContainer').appendChild(menuJuego)
+        let texto = 'Prueba de div borroso'
         if (this.juegoEnPausa) {
+            menuJuego.style.display = 'hidden'
             this.reanudarJuego()
+            menuJuego.textContent = ''
+            document.getElementById('gameContainer').style.filter = 'none'
         } else {
+            menuJuego.style.display = 'block'
+            menuJuego.textContent = texto
+            menuJuego.style.width = '100%'
+            menuJuego.style.height = '100%'
+            document.getElementById('gameContainer').style.filter = 'blur(10px)'
             this.juegoEnPausa = true
+            
             this.cancelAnimationFrame()
         }
     }
