@@ -9,10 +9,10 @@ export class Vistajugar extends Vistausuario {
 
     #score = 0
     #scoreElement = document.getElementById('scoreValue')
+    #maxScore = document.getElementById('maxScore')
     #maxObjetos = localStorage.getItem('items')
     #objetosCreados = 0
     #objetosDestruidos = 0
-    
 
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -26,6 +26,29 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
+     * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
+     * @method
+     */
+    llamarGETBasura = () => {
+        Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura', null, this.obtenerDatosBasura);
+    }
+
+    /**
+     * Muestra los resultados obtenidos de la llamada GET en la interfaz.
+     * @method
+     * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
+     */
+    obtenerDatosBasura = (respuesta) => {
+        console.log(respuesta)
+        this.datosBasura = respuesta.map(elemento => ({
+            BasuraId: elemento.id,
+            BasuraNombre: elemento.nombre,
+            BasuraImagen: elemento.imagen,
+            BasuraValor: elemento.valor
+        }));
+    }
+
+    /**
      * Crea una manzana y la agrega al contenedor de juego.
      * @returns {void}
      */
@@ -34,11 +57,16 @@ export class Vistajugar extends Vistausuario {
             let apple = document.createElement('div')
             let imagenApple = document.createElement('img')
             let estrellita = document.createElement('div');
-            estrellita.classList.add('estrellita');
-            estrellita.style.left = apple.style.left;
-            estrellita.style.top = apple.style.top;
-            this.gameContainer.appendChild(estrellita);
+            estrellita.classList.add('estrellita')
+            estrellita.style.left = apple.style.left
+            estrellita.style.top = apple.style.top
+            this.gameContainer.appendChild(estrellita)
+
+
             imagenApple.src = "../../../src/img/basura.png"
+            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
+            this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
+            imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
             imagenApple.style.width = "50px"
             imagenApple.style.height = "50px"
             apple.appendChild(imagenApple)
@@ -48,6 +76,7 @@ export class Vistajugar extends Vistausuario {
             apple.style.width = '50px' 
             apple.style.height = '50px' 
             apple.style.zIndex = '1'
+            apple.id = this.datosBasura[indiceAleatorio].BasuraValor
             this.gameContainer.appendChild(apple)
     
             this.#objetosCreados++
@@ -69,8 +98,80 @@ export class Vistajugar extends Vistausuario {
                 this.fin();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                apple.style.top = appleTop + 5 + 'px' // Ajusta la velocidad de caída aquí
+                apple.style.top = appleTop + 3 + 'px' // Ajusta la velocidad de caída aquí
                 this.verificarColisionManzana(apple)
+            }
+        }
+    }
+
+
+    /**
+     * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
+     * @method
+     */
+    llamarGETPowerup = () => {
+        Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=powerup_con&metodo=ajaxPowerup', null, this.obtenerDatosPowerup);
+    }
+
+    /**
+     * Muestra los resultados obtenidos de la llamada GET en la interfaz.
+     * @method
+     * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
+     */
+    obtenerDatosPowerup = (respuesta) => {
+        console.log(respuesta)
+        this.datosPowerup = respuesta.map(elemento => ({
+            PowerupId: elemento.id,
+            PowerupNombre: elemento.nombre,
+            PowerupImagen: elemento.imagen,
+            PowerupAumento: elemento.aumento
+        }));
+    }
+
+    /**
+     * Crea un powerup y la agrega al contenedor de juego.
+     * @returns {void}
+     */
+    crearPowerup() {
+        if (this.#objetosCreados < this.#maxObjetos) {
+            let powerup = document.createElement('div')
+            let imagenPowerup = document.createElement('img')
+            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
+            this.aumentoVelocidadBarco = this.datosPowerup[indiceAleatorio].PowerupAumento
+            imagenPowerup.src = "data:image/png;base64,"+this.datosPowerup[indiceAleatorio].PowerupImagen+""
+            imagenPowerup.style.width = "50px"
+            imagenPowerup.style.height = "50px"
+            powerup.appendChild(imagenPowerup)
+            powerup.classList.add('powerup')
+            powerup.style.position = 'relative';
+            powerup.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
+            powerup.style.top = '-10px' // Posición inicial arriba del todo
+            powerup.style.width = '50px'
+            powerup.style.height = '50px'
+            powerup.style.zIndex = '1'
+
+            this.gameContainer.appendChild(powerup)
+
+            this.#objetosCreados++
+        }
+    }
+
+    /**
+     * Mueve el powerup hacia abajo en el contenedor de juego.
+     * @returns {void}
+     */
+    moverPowerup() {
+        let power = document.getElementsByClassName('powerup')
+        for (let powerup of power) {
+            let poweruptopTop = parseInt(window.getComputedStyle(powerup).getPropertyValue('top'))
+            if (poweruptopTop >= this.gameContainer.clientHeight-20) {
+                this.gameContainer.removeChild(powerup)
+                this.#objetosDestruidos++;
+                this.basuraAlAgua();
+            } else {
+                // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
+                powerup.style.top = poweruptopTop + 3 + 'px' // Ajusta la velocidad de caída aquí
+                this.verificarColisionPowerup(powerup)
             }
         }
     }
@@ -80,18 +181,54 @@ export class Vistajugar extends Vistausuario {
      * @param {HTMLElement} apple - Elemento DOM representando la manzana.
      * @returns {void}
      */
+    verificarColisionPowerup(powerup) {
+        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'))
+        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'))
+
+        let powerupLeft = parseInt(window.getComputedStyle(powerup).getPropertyValue('left'))
+        let powerupTop = parseInt(window.getComputedStyle(powerup).getPropertyValue('top'))
+
+        let barcoWidth = this.barco.clientWidth
+        let barcoHeight = this.barco.clientHeight
+
+        // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
+        let distanciaColision = 30
+
+        if (
+            powerupLeft < barcoLeft + barcoWidth - distanciaColision &&
+            powerupLeft + 50 > barcoLeft + distanciaColision &&
+            powerupTop < barcoTop + barcoHeight - distanciaColision &&
+            powerupTop + 50 > barcoTop + distanciaColision
+        ) {
+            this.gameContainer.removeChild(powerup)
+            this.#objetosDestruidos++;
+
+            //Aumenta la velocidad del barco
+            this.velocidad = parseInt(this.velocidad) + parseInt(this.aumentoVelocidadBarco)
+
+            // Reproduce el sonido de la manzana
+            this.reproducirSonidoPowerup();
+        }
+    }
+
+
+    /**
+     * Verifica si hay colisión entre una manzana y el barco.
+     * @param {HTMLElement} apple - Elemento DOM representando la manzana.
+     * @returns {void}
+     */
     verificarColisionManzana(apple) {
-        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'));
-        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'));
+        let barcoLeft = parseInt(window.getComputedStyle(this.barco).getPropertyValue('left'))
+        let barcoTop = parseInt(window.getComputedStyle(this.barco).getPropertyValue('top'))
     
-        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'));
-        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'));
+        let appleLeft = parseInt(window.getComputedStyle(apple).getPropertyValue('left'))
+        let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
     
-        let barcoWidth = this.barco.clientWidth;
-        let barcoHeight = this.barco.clientHeight;
+        let barcoWidth = this.barco.clientWidth
+        let barcoHeight = this.barco.clientHeight
     
         // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
-        let distanciaColision = 30;
+        let distanciaColision = 30
     
         if (
             appleLeft < barcoLeft + barcoWidth - distanciaColision &&
@@ -102,7 +239,7 @@ export class Vistajugar extends Vistausuario {
             this.crearEstrella(appleLeft, appleTop);
     
             this.gameContainer.removeChild(apple);
-            this.aumentarObjetos();
+            this.aumentarPuntuacion();
             this.#objetosDestruidos++;
             this.fin();
     
@@ -144,6 +281,11 @@ export class Vistajugar extends Vistausuario {
         sonidoManzana.play();
     }
 
+    reproducirSonidoPowerup() {
+        const sonidoPowerup = document.getElementById('sonidoPowerup');
+        sonidoPowerup.play();
+    }
+
      /**
      * Reproduce un sonido cuando fallas al recoger basura
      * @returns {void}
@@ -157,9 +299,10 @@ export class Vistajugar extends Vistausuario {
      * Aumenta la puntuación del juego.
      * @returns {void}
      */
-    aumentarObjetos() {
-        this.#score++
-        this.#scoreElement.textContent = this.#score+"/"+this.#maxObjetos
+    aumentarPuntuacion() {
+        this.#score = this.#score + parseInt(this.valorBasuraCogida)
+
+        this.#scoreElement.textContent = this.#score
     }
     
     /**
@@ -174,6 +317,12 @@ export class Vistajugar extends Vistausuario {
                     this.crearManzana()
                 }
                 this.moverManzanas()
+
+                if (!this.powerupCreado && Math.random() < 0.003) {  // Probabilidad de crear un powerup, solo si no se ha creado antes
+                    this.crearPowerup();
+                    this.powerupCreado = true; // Marcar que se ha creado el powerup
+                }
+                this.moverPowerup()
             }
             requestAnimationFrame(update)
         }
@@ -219,6 +368,10 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
 
         this.id = localStorage.getItem('id')
+
+        this.llamarGETBasura()
+        this.llamarGETPowerup()
+
         this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
 
@@ -251,24 +404,39 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
-     * Gestiona el audio del juego.
+     * Gestiona el audio del juego. Sirve para silenciar el audio del juego.
      * @returns {void}
      */
     audio() {
-        
+        //Referencias de los audios
         const miAudio = document.getElementById('miAudio');
+        const agua = document.getElementById('agua');
+        const sonidoPowerup = document.getElementById('sonidoPowerup');
+        const sonidoBasura = document.getElementById('sonidoBasura');
+
+        //Referencia del boton de silencio
         const botonSilencio = document.getElementById('botonSilencio');
     
         // Evento de clic para el botón de silencio
         botonSilencio.addEventListener('click', function() {
             if (miAudio.paused) {
-                // Si está en pausa, reanudar
+                //Si está en pausa, reanudar
                 botonSilencio.style.backgroundImage = "url(../../../src/img/musicaOn.png)";
-                miAudio.play();
+                miAudio.play()
+
+                //Y volver a activar los sonidos
+                agua.volume = 1
+                sonidoPowerup.volume = 1
+                sonidoBasura.volume = 1
             } else {
-                // Si está reproduciendo, pausar
+                //Si está reproduciendo, pausar cancion
                 botonSilencio.style.backgroundImage = "url(../../../src/img/musicaOff.png)";
-                miAudio.pause();
+                miAudio.pause()
+
+                //Y silenciar el sonido
+                agua.volume = 0
+                sonidoPowerup.volume = 0
+                sonidoBasura.volume = 0
             }
         });
     
@@ -288,13 +456,17 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
-     * Pausa el juego.
+     * Pausa el juego. Quitando tambien la cancion de fondo y renaudandola cuando el juego deje de estar pausado
      * @returns {void}
      */
     pausarJuego() {
+        const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
+
         if (this.juegoEnPausa) {
+            miAudio.play() //Reanuda el audio
             this.reanudarJuego()
         } else {
+            miAudio.pause() //Pausa el audio
             this.juegoEnPausa = true
             this.cancelAnimationFrame()
         }
@@ -308,6 +480,7 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
         this.requestAnimationFrame
     }
+
 
     /**
      * Asocia eventos al barco para manejar su movimiento.
