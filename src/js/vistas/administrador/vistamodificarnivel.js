@@ -25,6 +25,7 @@ export class Vistamodificarnivel extends Vistaadmins {
   eventos() {
 
     const botonesBorrar = document.querySelectorAll("#botonBorrar");
+    const botonesMover = document.querySelectorAll("#botonMover");
 
     const btnAgregarFila = document.getElementById('btnAgregarFila');
 
@@ -49,6 +50,15 @@ export class Vistamodificarnivel extends Vistaadmins {
         boton.addEventListener('click', (event) => super.emergenteBorrar(event));
       });
     }
+
+    if (botonesMover.length === 1) {
+      botonesMover[0].addEventListener('click', (event) => {
+        event.preventDefault(); // Evitar la redirección
+        mensaje.innerHTML = "El nivel debe tener al menos un mensaje"
+        mensaje.style.color = "red"
+      });
+    }
+
 
     // Agregar filas a la tabla dinámica
     if (!btnAgregarFila){}
