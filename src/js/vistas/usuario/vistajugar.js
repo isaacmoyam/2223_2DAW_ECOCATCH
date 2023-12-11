@@ -54,14 +54,14 @@ export class Vistajugar extends Vistausuario {
      */
     crearManzana() {
         if (this.#objetosCreados < this.#maxObjetos) {
+            let apple = document.createElement('div')
+            let imagenApple = document.createElement('img')
             let estrellita = document.createElement('div');
             estrellita.classList.add('estrellita')
             estrellita.style.left = apple.style.left
             estrellita.style.top = apple.style.top
             this.gameContainer.appendChild(estrellita)
 
-            let apple = document.createElement('div')
-            let imagenApple = document.createElement('img')
 
             imagenApple.src = "../../../src/img/basura.png"
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
@@ -97,7 +97,7 @@ export class Vistajugar extends Vistausuario {
                 this.basuraAlAgua();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                apple.style.top = appleTop + 5 + 'px' // Ajusta la velocidad de caída aquí
+                apple.style.top = appleTop + 3 + 'px' // Ajusta la velocidad de caída aquí
                 this.verificarColisionManzana(apple)
             }
         }
@@ -144,7 +144,7 @@ export class Vistajugar extends Vistausuario {
             powerup.classList.add('powerup')
             powerup.style.position = 'relative';
             powerup.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
-            powerup.style.top = '-50px' // Posición inicial arriba del todo
+            powerup.style.top = '-10px' // Posición inicial arriba del todo
             powerup.style.width = '50px'
             powerup.style.height = '50px'
             powerup.style.zIndex = '1'
@@ -169,7 +169,7 @@ export class Vistajugar extends Vistausuario {
                 this.basuraAlAgua();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
-                powerup.style.top = poweruptopTop + 5 + 'px' // Ajusta la velocidad de caída aquí
+                powerup.style.top = poweruptopTop + 3 + 'px' // Ajusta la velocidad de caída aquí
                 this.verificarColisionPowerup(powerup)
             }
         }
@@ -291,7 +291,7 @@ export class Vistajugar extends Vistausuario {
      */
     aumentarPuntuacion() {
         this.#score = this.#score + parseInt(this.valorBasuraCogida)
-        //console.log(this.#score)
+
         this.#scoreElement.textContent = this.#score
     }
 
@@ -375,24 +375,39 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
-     * Gestiona el audio del juego.
+     * Gestiona el audio del juego. Sirve para silenciar el audio del juego.
      * @returns {void}
      */
     audio() {
-        
+        //Referencias de los audios
         const miAudio = document.getElementById('miAudio');
+        const agua = document.getElementById('agua');
+        const sonidoPowerup = document.getElementById('sonidoPowerup');
+        const sonidoBasura = document.getElementById('sonidoBasura');
+
+        //Referencia del boton de silencio
         const botonSilencio = document.getElementById('botonSilencio');
     
         // Evento de clic para el botón de silencio
         botonSilencio.addEventListener('click', function() {
             if (miAudio.paused) {
-                // Si está en pausa, reanudar
+                //Si está en pausa, reanudar
                 botonSilencio.style.backgroundImage = "url(../../../src/img/musicaOn.png)";
-                miAudio.play();
+                miAudio.play()
+
+                //Y volver a activar los sonidos
+                agua.volume = 1
+                sonidoPowerup.volume = 1
+                sonidoBasura.volume = 1
             } else {
-                // Si está reproduciendo, pausar
+                //Si está reproduciendo, pausar cancion
                 botonSilencio.style.backgroundImage = "url(../../../src/img/musicaOff.png)";
-                miAudio.pause();
+                miAudio.pause()
+
+                //Y silenciar el sonido
+                agua.volume = 0
+                sonidoPowerup.volume = 0
+                sonidoBasura.volume = 0
             }
         });
     
@@ -412,13 +427,17 @@ export class Vistajugar extends Vistausuario {
     }
 
     /**
-     * Pausa el juego.
+     * Pausa el juego. Quitando tambien la cancion de fondo y renaudandola cuando el juego deje de estar pausado
      * @returns {void}
      */
     pausarJuego() {
+        const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
+
         if (this.juegoEnPausa) {
+            miAudio.play() //Reanuda el audio
             this.reanudarJuego()
         } else {
+            miAudio.pause() //Pausa el audio
             this.juegoEnPausa = true
             this.cancelAnimationFrame()
         }
@@ -432,6 +451,7 @@ export class Vistajugar extends Vistausuario {
         this.juegoEnPausa = false
         this.requestAnimationFrame
     }
+
 
     /**
      * Asocia eventos al barco para manejar su movimiento.
