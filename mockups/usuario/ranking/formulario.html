@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../../../src/css/style_usuario.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="../../../src/img/logo_fondo_transparente.png" type="image/x-icon">
-        <title>Añadir tu puntuación al ranking</title>
+        <title id="tituloweb">Añadir tu puntuación al ranking</title>
     </head>
     <audio src="../../../src/audio/terminar.mp3" autoplay></audio>
     <body>
@@ -13,14 +13,14 @@
             <img src="../../../src/img/logo_fondo_transparente.png" alt="Logo de la página EcoCatch">
         </header>
         <main id="formulario">
-            <h1>¡TU PUNTUACIÓN ES DE <span id="puntos"></span> PUNTOS!</h1>
+            <h1><span id="titulopts1">¡TU PUNTUACIÓN ES DE</span> <span id="puntos"></span> <span id="titulopts2">PUNTOS!</span></h1>
             <form action="ranking.html" method="POST" id="formRanking">
                 <label>(*) NICK:</label>
                 <input type="text" name="nick">
-                <label>CORREO:</label>
+                <label id="email">(*) CORREO:</label>
                 <input type="text" name="correo">
                 <p id="msgCampos"></p>
-                <input type="submit" value="Enviar">
+                <input id="enviar" type="submit" value="Enviar">
             </form>
         </main>
         <script type="module" src="../../../src/js/vistas/usuario/vistaformranking.js"></script>

@@ -22,6 +22,33 @@ export class Vistaformranking extends Vistausuario {
    */
   eventos() {
     super.modoOscuro()
+
+    this.idiomaSeleccionado = super.idioma()
+
+    this.traduccion = {
+      es: {
+        tituloweb: "Añadir tu puntuación al ranking",
+        titulopts1: "¡TU PUNTUACIÓN ES DE",
+        titulopts2: "PUNTOS!",
+        email: "(*) CORREO:"
+      },
+      en: {
+        tituloweb: "Add your score to the ranking",
+        titulopts1: "YOUR SCORE IS",
+        titulopts2: "POINTS!",
+        email: "(*) EMAIL:"
+      }
+    };
+
+    const enviar = document.getElementById("enviar")
+
+    if(this.idiomaSeleccionado === "en") {
+      enviar.value = "Submit"
+    } else {
+      enviar.value = "Enviar"
+    }
+
+    super.cambiarIdioma()
     
     // Coger referencias del interfaz
     let iNick, iCorreo, puntuacion
