@@ -13,6 +13,7 @@
     <audio id="agua" src="../../../src/audio/agua.mp3"></audio>
     <audio id="miAudio" src="../../../src/audio/musica.mp3" autoplay loop></audio>
     <body id="jugar">
+        <div class="loader"></div>
         <div id="frame">
             <div id="hud">
                 <div id="mensaje">
@@ -35,5 +36,11 @@
             </div>
         </div>
         <script src="../../../src/js/vistas/usuario/vistajugar.js" type="module"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(window).load(function() {
+                $(".loader").fadeOut("slow");
+            });
+            </script>
     </body>
 </html>

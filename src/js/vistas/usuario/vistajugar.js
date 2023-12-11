@@ -23,6 +23,7 @@ export class Vistajugar extends Vistausuario {
     constructor(controlador, base) {
         super(controlador, base)
         this.eventos()
+        this.menuJuego = null
     }
 
     /**
@@ -54,13 +55,13 @@ export class Vistajugar extends Vistausuario {
      */
     crearManzana() {
         if (this.#objetosCreados < this.#maxObjetos) {
+            let apple = document.createElement('div')
             let estrellita = document.createElement('div');
             estrellita.classList.add('estrellita')
             estrellita.style.left = apple.style.left
             estrellita.style.top = apple.style.top
             this.gameContainer.appendChild(estrellita)
 
-            let apple = document.createElement('div')
             let imagenApple = document.createElement('img')
 
             imagenApple.src = "../../../src/img/basura.png"
@@ -415,23 +416,46 @@ export class Vistajugar extends Vistausuario {
      * Pausa el juego.
      * @returns {void}
      */
+
     pausarJuego() {
-        let menuJuego = document.createElement('div')
-        document.getElementById('gameContainer').appendChild(menuJuego)
-        let texto = 'Prueba de div borroso'
+        let texto = 'Juego Pausado'
+
         if (this.juegoEnPausa) {
-            menuJuego.style.display = 'hidden'
+            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/pausa.png)"
+            // Ocultar el menú y reanudar el juego
+            if (this.menuJuego) {
+                this.menuJuego.style.display = 'none'
+                this.menuJuego.textContent = ''
+            }
             this.reanudarJuego()
-            menuJuego.textContent = ''
             document.getElementById('gameContainer').style.filter = 'none'
         } else {
-            menuJuego.style.display = 'block'
-            menuJuego.textContent = texto
-            menuJuego.style.width = '100%'
-            menuJuego.style.height = '100%'
-            document.getElementById('gameContainer').style.filter = 'blur(10px)'
+            // Crear un nuevo menú solo si no existe
+            if (!this.menuJuego) {
+                this.menuJuego = document.createElement('div')
+                document.getElementById('gameContainer').appendChild(this.menuJuego)
+            }
+
+            // Mostrar el menú y pausar el juego
+            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/reanudar.png)"
+
+            let contenidoPausa = document.createElement('div')
+            contenidoPausa.textContent = texto
+            this.menuJuego.appendChild(contenidoPausa)
+            this.menuJuego.style.display = 'inline-block'
+            this.menuJuego.style.width = '100%'
+            this.menuJuego.style.height = '100%'
+            this.menuJuego.style.zIndex = '10'
+
+            contenidoPausa.style.display = 'flex'
+            contenidoPausa.style.alignItems = 'center'
+            contenidoPausa.style.justifyContent = 'center'
+            contenidoPausa.style.width = '100%'
+            contenidoPausa.style.height = '100%'
+            //document.getElementById('gameContainer').style.filter = 'blur(10px)'
+            contenidoPausa.style.backgroundImage = "url(../../../src/img/borroso.png)"
+            contenidoPausa.style.back
             this.juegoEnPausa = true
-            
             this.cancelAnimationFrame()
         }
     }
