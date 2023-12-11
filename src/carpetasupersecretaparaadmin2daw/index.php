@@ -46,7 +46,7 @@ $controlador = new $nombreClase();
 /* Ver si el método está definido */
 $datosVista["datos"] = array();
 if (method_exists($controlador, $nombreMetodo)) {
-    if($nombreMetodo == "ajaxNivel" || $nombreMetodo == "ajaxMensajesNivel" || $nombreMetodo == "ajaxAnadirPartida" || $nombreMetodo == "ajaxPartida"){
+    if($nombreMetodo == "ajaxNivel" || $nombreMetodo == "ajaxMensajesNivel" || $nombreMetodo == "ajaxAnadirPartida" || $nombreMetodo == "ajaxPartida" || $nombreMetodo == "ajaxBasura" || $nombreMetodo == "ajaxPowerup"){
         echo $controlador->{$nombreMetodo}();
         return;
     } else {
