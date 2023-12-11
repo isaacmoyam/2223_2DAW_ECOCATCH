@@ -92,7 +92,7 @@ export class Vistajugar extends Vistausuario {
         let apples = document.getElementsByClassName('apple')
         for (let apple of apples) {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
-            if (appleTop >= this.gameContainer.clientHeight-40) {
+            if (appleTop >= this.gameContainer.clientHeight-10) {
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
@@ -133,7 +133,7 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     crearPowerup() {
-        if (this.#objetosCreados < this.#maxObjetos) {
+        if (this.#objetosCreados > this.#maxObjetos) {return}
             let powerup = document.createElement('div')
             let imagenPowerup = document.createElement('img')
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
@@ -153,7 +153,6 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.appendChild(powerup)
 
             this.#objetosCreados++
-        }
     }
 
     /**
@@ -308,7 +307,7 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.008) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.018) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()
@@ -319,11 +318,13 @@ export class Vistajugar extends Vistausuario {
                 }
                 this.moverPowerup()
             }
-            requestAnimationFrame(update)
             if(this.#maxObjetos == this.#objetosDestruidos) {
-                window.location.href = "../ranking/formulario.html";
+                window.location.href = "../ranking/formulario.html"
                 localStorage.setItem('puntuacionFinal', this.#score)
+                return
             }
+            requestAnimationFrame(update)
+            
         }
         update()
     }
