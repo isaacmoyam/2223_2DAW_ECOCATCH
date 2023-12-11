@@ -31,12 +31,14 @@ export class Vistaranking extends Vistausuario {
       es: {
         player: "Jugador",
         pts: "Puntuación",
-        lvl: "Nivel"
+        lvl: "Nivel",
+        btnVolver: "Volver"
       },
       en: {
         player: "Player",
         pts: "Score",
-        lvl: "Level"
+        lvl: "Level",
+        btnVolver: "Return"
       }
     };
 

@@ -23,6 +23,7 @@ export class Vistamenu extends Vistausuario {
    */
   eventos() {
     super.modoOscuro()
+    
     this.idiomaSeleccionado = super.idioma()
 
     this.traduccion = {
