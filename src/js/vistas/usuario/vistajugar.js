@@ -23,6 +23,7 @@ export class Vistajugar extends Vistausuario {
     constructor(controlador, base) {
         super(controlador, base)
         this.eventos()
+        this.menuJuego = null
     }
 
     /**
@@ -430,13 +431,49 @@ export class Vistajugar extends Vistausuario {
      * Pausa el juego. Quitando tambien la cancion de fondo y renaudandola cuando el juego deje de estar pausado
      * @returns {void}
      */
+
     pausarJuego() {
+        let texto = 'Juego Pausado'
+
         const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
 
         if (this.juegoEnPausa) {
+            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/pausa.png)"
+            // Ocultar el menú y reanudar el juego
+            if (this.menuJuego) {
+                this.menuJuego.style.display = 'none'
+                this.menuJuego.textContent = ''
+            }
             miAudio.play() //Reanuda el audio
             this.reanudarJuego()
+            document.getElementById('gameContainer').style.filter = 'none'
         } else {
+            // Crear un nuevo menú solo si no existe
+            if (!this.menuJuego) {
+                this.menuJuego = document.createElement('div')
+                document.getElementById('gameContainer').appendChild(this.menuJuego)
+            }
+
+            // Mostrar el menú y pausar el juego
+            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/reanudar.png)"
+
+            let contenidoPausa = document.createElement('div')
+            contenidoPausa.textContent = texto
+            this.menuJuego.appendChild(contenidoPausa)
+            this.menuJuego.style.display = 'inline-block'
+            this.menuJuego.style.width = '100%'
+            this.menuJuego.style.height = '100%'
+            this.menuJuego.style.zIndex = '10'
+
+            contenidoPausa.style.display = 'flex'
+            contenidoPausa.style.alignItems = 'center'
+            contenidoPausa.style.justifyContent = 'center'
+            contenidoPausa.style.width = '100%'
+            contenidoPausa.style.height = '100%'
+            //document.getElementById('gameContainer').style.filter = 'blur(10px)'
+            contenidoPausa.style.backgroundImage = "url(../../../src/img/borroso.png)"
+            contenidoPausa.style.back
+            
             miAudio.pause() //Pausa el audio
             this.juegoEnPausa = true
             this.cancelAnimationFrame()
