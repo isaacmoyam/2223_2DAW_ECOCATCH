@@ -183,7 +183,6 @@ nav > a { /*Estilos de los enlaces del navegador*/
 #gestorPowerup > a,
 #menu > a,
 nav > a,
-main > a,
 main > form > #btnVolver{
   text-decoration: none;
   padding: 0.6%;
@@ -193,14 +192,12 @@ main > form > #btnVolver{
   background-color: #6D3916;
 }
 
-#niveles > a:nth-child(2),
 #gestor > a:nth-child(2) {
   left: 32.5%;
   width: 4%;
   display: inline-block;
   left: 32.5%;
   width: 4%;
-  display: inline-block;
 }
 
 /* Posicionamiento relativo para los enlaces de las diferentes secciones */
