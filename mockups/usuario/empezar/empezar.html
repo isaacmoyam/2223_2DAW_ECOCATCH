@@ -5,25 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../../src/css/style_usuario.css">
         <link rel="icon" href="../../../src/img/logo_fondo_transparente.png" type="image/x-icon">
-        <title>Configurar partida</title>
+        <title id="tituloweb">Configurar partida</title>
     </head>
     <body>
         <header id="logo">
             <img src="../../../src/img/logo_fondo_transparente.png" alt="Logo de la página EcoCatch">
         </header>
         <main id="empezar">
-            <h3>Color del barco</h3>
+            <h3 id="titulocolor">Color del barco</h3>
             <select id="color">
-                <option value="" selected disabled>Selecciona un color...</option>
-                <option value="azul">Azul</option>
-                <option value="rojo">Rojo</option>
-                <option value="amarillo">Amarillo</option>
+                <option id="selectcolor" value="" selected disabled>Selecciona un color...</option>
+                <option id="azul" value="azul">Azul</option>
+                <option id="rojo" value="rojo">Rojo</option>
+                <option id="amarillo" value="amarillo">Amarillo</option>
             </select>
-            <h3>Opciones de accesibilidad</h3>
+            <h3 id="tituloajustes">Opciones de accesibilidad</h3>
             <select id="idioma">
-                <option value="" selected disabled>Idioma...</option>
-                <option value="espanol">Español</option>
-                <option value="ingles">Inglés</option>
+                <option id="selectidioma" value="" selected disabled>Idioma...</option>
+                <option id="es" value="es">Español</option>
+                <option id="en" value="en">Inglés</option>
             </select>
             <button id="dark">Modo Oscuro 🌙</button>
             <a id="btnJugar" href="../nivel/nivel.html">Jugar</a>

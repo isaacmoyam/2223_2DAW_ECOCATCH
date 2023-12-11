@@ -25,6 +25,22 @@ export class Vistaranking extends Vistausuario {
   eventos () {
     super.modoOscuro()
     this.llamarGET()
+    this.idiomaSeleccionado = super.idioma()
+
+    this.traduccion = {
+      es: {
+        player: "Jugador",
+        pts: "Puntuación",
+        lvl: "Nivel"
+      },
+      en: {
+        player: "Player",
+        pts: "Score",
+        lvl: "Level"
+      }
+    };
+
+    super.cambiarIdioma()
   }
 
   /**

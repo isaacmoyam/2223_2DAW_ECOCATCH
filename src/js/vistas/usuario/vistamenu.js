@@ -23,6 +23,22 @@ export class Vistamenu extends Vistausuario {
    */
   eventos() {
     super.modoOscuro()
+    this.idiomaSeleccionado = super.idioma()
+
+    this.traduccion = {
+      es: {
+        tituloweb: "Menú Principal",
+        empezarenlace: "Empezar Partida",
+        conocenosenlace: "Conócenos"
+      },
+      en: {
+        tituloweb: "Main Menu",
+        empezarenlace: "New Game",
+        conocenosenlace: "About us"
+      }
+    };
+
+    super.cambiarIdioma()
   }
 }
 
