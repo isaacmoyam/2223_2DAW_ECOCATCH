@@ -48,7 +48,7 @@ main {
     font-size: 1.2em;
     text-align: center;
     border-radius: 30px;
-    border: solid 2px transparent;
+    border: solid 2px #EDC713;
     padding-bottom: 5%;
     width: 80%;
     margin: 0 auto;
@@ -345,12 +345,23 @@ form > input[type=submit] {
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
 
-#ranking > table{
+#tablacontenedor {
+    max-height: 350px;
+    overflow-y: auto;
+    width:85%;
+    margin:0 auto 4% auto;
+}
+
+#ranking > section > table{
     background-color: #6D3916;
     margin: 0 auto 5%;
     border: solid 1px black;
     border-collapse: collapse;
     width: 60%;
+}
+
+#ranking th {
+    background-color:#3b1f0c;
 }
 
 #ranking th,
@@ -668,5 +679,21 @@ button.darkmode,
         gap:9%;
         width:98%;
         font-size: 0.8em;
+    }
+}
+
+@media (width <= 1140px) {
+    /*pagina jugar*/
+    #gameContainer {
+        width:800px;
+        height: 400px;
+    }
+}
+
+@media (width <= 1140px) {
+    /*pagina jugar*/
+    #gameContainer {
+        width:600px;
+        height: 300px;
     }
 }
