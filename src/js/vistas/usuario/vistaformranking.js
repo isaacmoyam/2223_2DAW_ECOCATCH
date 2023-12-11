@@ -24,7 +24,7 @@ export class Vistaformranking extends Vistausuario {
     super.modoOscuro()
     
     // Coger referencias del interfaz
-    let iNick, iCorreo, puntuacion, idNivel
+    let iNick, iCorreo, puntuacion
 
     const mensaje = document.getElementById("msgCampos")
 

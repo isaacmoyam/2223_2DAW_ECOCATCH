@@ -66,6 +66,7 @@ export class Vistajugar extends Vistausuario {
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
+                this.fin();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 5 + 'px' // Ajusta la velocidad de caída aquí
@@ -101,11 +102,20 @@ export class Vistajugar extends Vistausuario {
             this.crearEstrella(appleLeft, appleTop);
     
             this.gameContainer.removeChild(apple);
-            this.aumentarPuntuacion();
+            this.aumentarObjetos();
             this.#objetosDestruidos++;
+            this.fin();
     
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
+        }
+    }
+
+    fin(){
+        if(this.#maxObjetos == this.#objetosDestruidos) {
+            window.location.href = "../ranking/formulario.html";
+            localStorage.setItem('puntuacionFinal', this.#score)
+            return;
         }
     }
 
@@ -147,9 +157,9 @@ export class Vistajugar extends Vistausuario {
      * Aumenta la puntuación del juego.
      * @returns {void}
      */
-    aumentarPuntuacion() {
+    aumentarObjetos() {
         this.#score++
-        this.#scoreElement.textContent = this.#score
+        this.#scoreElement.textContent = this.#score+"/"+this.#maxObjetos
     }
     
     /**
@@ -166,10 +176,6 @@ export class Vistajugar extends Vistausuario {
                 this.moverManzanas()
             }
             requestAnimationFrame(update)
-            if(this.#maxObjetos == this.#objetosDestruidos) {
-                window.location.href = "../ranking/formulario.html";
-                localStorage.setItem('puntuacionFinal', this.#score)
-            }
         }
         update()
     }
@@ -179,6 +185,19 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     eventos() {
+        this.#scoreElement.innerHTML = this.#score+"/"+this.#maxObjetos
+        this.colorBarco = localStorage.getItem('colorBarco')
+        this.imgBarco = document.getElementById("barco")
+        switch(this.colorBarco){
+            case "azul":
+                this.imgBarco.src = "../../../src/img/azul2.png";
+                break;
+            case "rojo":
+                this.imgBarco.src = "../../../src/img/rojo2.png";
+                break;
+            case "amarillo":
+                this.imgBarco.src = "../../../src/img/amarillo2.png";
+        }
         this.x = 0
         this.touchStartX = null
         this.animationFrameId = null
@@ -187,7 +206,6 @@ export class Vistajugar extends Vistausuario {
         this.id = localStorage.getItem('id')
         this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
-        this.imgBarco = document.getElementById("barco")
 
         this.nombre = localStorage.getItem('nombreLvl')
         const nombreNivel = document.getElementById("nombreNivel")
@@ -319,10 +337,28 @@ export class Vistajugar extends Vistausuario {
                 velocidadX = 0; 
             } else if (teclaIzquierdaPresionada) {
                 velocidadX = -1; 
-                this.imgBarco.src = "../../../src/img/barco.png";
+                switch(this.colorBarco){
+                    case "azul":
+                        this.imgBarco.src = "../../../src/img/azul.png";
+                        break;
+                    case "rojo":
+                        this.imgBarco.src = "../../../src/img/rojo.png";
+                        break;
+                    case "amarillo":
+                        this.imgBarco.src = "../../../src/img/amarillo.png";
+                }
             } else if (teclaDerechaPresionada) {
                 velocidadX = 1; 
-                this.imgBarco.src = "../../../src/img/barco2.png";
+                switch(this.colorBarco){
+                    case "azul":
+                        this.imgBarco.src = "../../../src/img/azul2.png";
+                        break;
+                    case "rojo":
+                        this.imgBarco.src = "../../../src/img/rojo2.png";
+                        break;
+                    case "amarillo":
+                        this.imgBarco.src = "../../../src/img/amarillo2.png";
+                }
             } else {
                 velocidadX = 0;
             }

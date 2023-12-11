@@ -23,8 +23,48 @@ export class Vistaempezar extends Vistausuario {
    */
   eventos() {
     const btnVolver = document.getElementById("btnVolver")
+
     btnVolver.addEventListener('click', (event) => this.borrarHeader(event));
+
+    document.getElementById('btnJugar').addEventListener('click', (event) => {
+      this.validarEmpezar(event);
+    });
+
     this.inicializarModoOscuro()
+
+  }
+
+  validarEmpezar(event) {
+    event.preventDefault();
+    let color = document.getElementById("color");
+    let idioma = document.getElementById("idioma");
+    let formulario = 0;
+  
+    if (color.value.trim() !== "") {
+      localStorage.setItem("colorBarco", color.value)
+      formulario++
+    } else {
+      const mensaje = "El color del barco no ha sido seleccionado"
+      this.mensajeAviso(mensaje)
+    }
+
+    if(idioma.value.trim() !== "") {
+      localStorage.setItem("idioma", idioma.value)
+      formulario++
+    } else {
+      const mensaje = "El idioma no ha sido seleccionado"
+      this.mensajeAviso(mensaje)
+    }
+
+    if(formulario === 2) {
+      window.location.href = "../nivel/nivel.html"
+    }
+  }
+
+  mensajeAviso(mensaje) {
+    const avisoContenedor = document.getElementById("msgCampos")
+    avisoContenedor.style.color = "red"
+    avisoContenedor.innerHTML = mensaje
   }
 
   /**
