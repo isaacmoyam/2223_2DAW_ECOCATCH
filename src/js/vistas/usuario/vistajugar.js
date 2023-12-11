@@ -185,6 +185,21 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     eventos() {
+        this.idiomaSeleccionado = super.idioma()
+
+        this.traduccion = {
+            es: {
+                obj: "Objetos recogidos:",
+                nvl: "Nivel:"
+            },
+            en: {
+                obj: "Collected Items:",
+                nvl: "Level:"
+            }
+        };
+
+        super.cambiarIdioma()
+
         this.#scoreElement.innerHTML = this.#score+"/"+this.#maxObjetos
         this.colorBarco = localStorage.getItem('colorBarco')
         this.imgBarco = document.getElementById("barco")

@@ -25,6 +25,22 @@ export class Vistaniveles extends Vistausuario {
   eventos () {
     super.modoOscuro()
     this.llamarGET()
+    this.idiomaSeleccionado = super.idioma()
+
+    this.traduccion = {
+      es: {
+        tituloweb: "Selección de niveles",
+        seleccionanivel: "Selecciona un nivel",
+        btnVolver: "Volver"
+      },
+      en: {
+        tituloweb: "Level Selection",
+        seleccionanivel: "Select a level",
+        btnVolver: "Return"
+      }
+    };
+
+    super.cambiarIdioma()
   }
 
   /**
