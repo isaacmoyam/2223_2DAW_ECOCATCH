@@ -377,11 +377,13 @@ export class Vistajugar extends Vistausuario {
         this.traduccion = {
             es: {
                 obj: "Objetos recogidos:",
-                nvl: "Nivel:"
+                nvl: "Nivel:",
+                pts: "Puntuación:"
             },
             en: {
                 obj: "Collected Items:",
-                nvl: "Level:"
+                nvl: "Level:",
+                pts: "Score:"
             }
         };
 
