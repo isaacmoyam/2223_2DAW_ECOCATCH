@@ -32,7 +32,11 @@ export class Vistajugar extends Vistausuario {
      * @method
      */
     llamarGETBasura = () => {
-        Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura', null, this.obtenerDatosBasura);
+        Rest.getJSON(
+                '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
+                null,
+                this.obtenerDatosBasura.bind(this)
+            );
     }
 
     /**
@@ -41,7 +45,6 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
      */
     obtenerDatosBasura = (respuesta) => {
-        console.log(respuesta)
         this.datosBasura = respuesta.map(elemento => ({
             BasuraId: elemento.id,
             BasuraNombre: elemento.nombre,
@@ -121,7 +124,6 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
      */
     obtenerDatosPowerup = (respuesta) => {
-        console.log(respuesta)
         this.datosPowerup = respuesta.map(elemento => ({
             PowerupId: elemento.id,
             PowerupNombre: elemento.nombre,
