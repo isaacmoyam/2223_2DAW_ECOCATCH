@@ -23,9 +23,9 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} base - Objeto que es una referencia del interfaz.
      */
     constructor(controlador, base) {
-        super(controlador, base)
-        this.eventos()
-        this.menuJuego = null
+        super(controlador, base);
+        this.eventos();
+        this.menuJuego = null;
     }
 
     /**
