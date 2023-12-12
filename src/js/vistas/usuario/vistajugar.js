@@ -33,10 +33,10 @@ export class Vistajugar extends Vistausuario {
      */
     llamarGETBasura = () => {
         Rest.getJSON(
-                '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
-                null,
-                this.obtenerDatosBasura.bind(this)
-            );
+            '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
+            null,
+            this.obtenerDatosBasura.bind(this)
+        );
     }
 
     /**
@@ -51,6 +51,7 @@ export class Vistajugar extends Vistausuario {
             BasuraImagen: elemento.imagen,
             BasuraValor: elemento.valor
         }));
+        this.iniciarJuegoManzanas();
     }
 
     /**
@@ -414,7 +415,6 @@ export class Vistajugar extends Vistausuario {
         this.llamarGETBasura()
         this.llamarGETPowerup()
 
-        this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
 
         this.nombre = localStorage.getItem('nombreLvl')
