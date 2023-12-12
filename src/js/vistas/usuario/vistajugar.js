@@ -433,7 +433,7 @@ export class Vistajugar extends Vistausuario {
      */
 
     pausarJuego() {
-        let texto = 'Renaudar Juego'
+        let texto = 'Reanudar Juego'
         const gameContainer = document.getElementById('gameContainer')
         const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
 
