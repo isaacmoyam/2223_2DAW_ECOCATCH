@@ -111,6 +111,8 @@ export class Vistaformranking extends Vistausuario {
 
     // Realiza la lógica de validación aquí
     if (this.validarNick(nickInput.value) && this.validarCorreo(correoInput.value)) {
+      const enviar = document.getElementById("enviar")
+      const mensaje = document.getElementById("msgCampos")
       // Envía el formulario al servidor
       formRanking.action = urlForm
       this.nick = nickInput.value
@@ -118,7 +120,12 @@ export class Vistaformranking extends Vistausuario {
       this.llamarPOST()
       this.nick = ""
       this.correo = ""
-      document.getElementById('formRanking').submit();
+      enviar.remove()
+      mensaje.innerHTML = "Subiendo..."
+      mensaje.style.color = "yellow"
+      setTimeout(function() {
+        document.getElementById('formRanking').submit();
+      }, 2000);
     }
   }
 
