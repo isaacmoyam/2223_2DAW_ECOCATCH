@@ -32,9 +32,11 @@ export class Vistajugar extends Vistausuario {
      */
     
     llamarGETBasura = () => {
-        $(document).ready(function() {
-            Rest.getJSON('../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura', null, this.obtenerDatosBasura)
-        })
+            Rest.getJSON(
+                '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
+                null,
+                this.obtenerDatosBasura.bind(this)
+            );
     }
 
     /**
