@@ -10,8 +10,9 @@
     </head>
     <audio id="sonidoBasura" src="../../../src/audio/basura.mp3"></audio>
     <audio id="sonidoPowerup" src="../../../src/audio/powerup.mp3"></audio>
+    <audio id="perdidaPowerup" src="../../../src/audio/lose.mp3"></audio>
     <audio id="agua" src="../../../src/audio/agua.mp3"></audio>
-    <audio id="miAudio" src="../../../src/audio/musica.mp3" autoplay loop></audio>
+    <audio id="miAudio" src="../../../src/audio/pokemon.mp3" autoplay loop></audio>
     <body id="jugar">
         <div class="loader"></div>
         <div id="frame">
@@ -20,10 +21,11 @@
                     <p id="mensajeP"></p>
                 </div>
                 <div id="score">
-                    <p>Puntuación: <span id="scoreValue">0</span><span id="maxScore"></span></p>
+                    <p><span id="obj">Objetos recogidos:</span> <span id="objetosRecogidos">0</span></p>
+                    <p><span id="pts">Puntuación:</span> <span id="scoreValue">0</span></p>
                 </div>
                 <div id="nivel">
-                    <p>Nivel: <span id="nombreNivel"></span></p>
+                    <p><span id="nvl">Nivel:</span> <span id="nombreNivel"></span></p>
                 </div>
                 <div id="botones">
                     <button id="botonPausa"></button>
@@ -31,7 +33,7 @@
                 </div>
             </div>
                 <div id="gameContainer">
-                    <img src="../../../src/img/barco.png" alt="barco" id="barco">
+                    <img alt="barco" id="barco">
                 </div>
             </div>
         </div>

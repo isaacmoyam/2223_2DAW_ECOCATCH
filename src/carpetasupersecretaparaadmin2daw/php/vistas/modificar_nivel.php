@@ -56,7 +56,7 @@
                             </td>
                             <td>
                                 <a id="botonBorrar" href="index.php?control=nivel_con&metodo=borrarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🗑️</a>
-                                <a href="index.php?control=nivel_con&metodo=buscarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🔄</a>
+                                <a id="botonMover" href="index.php?control=nivel_con&metodo=buscarMensaje&idNivel=<?php echo $fila['id']; ?>&id=<?php echo $mensaje['id']; ?>">🔄</a>
                             </td>
                         </tr>
                         <?php

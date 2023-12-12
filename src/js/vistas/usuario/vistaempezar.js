@@ -22,9 +22,115 @@ export class Vistaempezar extends Vistausuario {
    * @method
    */
   eventos() {
+    this.idiomaSeleccionado = super.idioma()
+
     const btnVolver = document.getElementById("btnVolver")
+
     btnVolver.addEventListener('click', (event) => this.borrarHeader(event));
+
+    document.getElementById('btnJugar').addEventListener('click', (event) => {
+      this.validarEmpezar(event);
+    });
+
     this.inicializarModoOscuro()
+
+    this.traduccion = {
+      es: {
+        tituloweb: "Configurar Partida",
+        titulocolor: "Color del barco",
+        selectcolor: "Selecciona un color...",
+        azul: "Azul",
+        rojo: "Rojo",
+        amarillo: "Amarillo",
+        tituloajustes: "Opciones de accesibilidad",
+        selectidioma: "Idioma...",
+        es: "Español",
+        en: "Inglés",
+        dark: "Modo Oscuro 🌙",
+        btnVolver: "Volver",
+        btnJugar: "Jugar"
+      },
+      en: {
+        tituloweb: "Game Settings",
+        titulocolor: "Boat Color",
+        selectcolor: "Select a color...",
+        azul: "Blue",
+        rojo: "Red",
+        amarillo: "Yellow",
+        tituloajustes: "Accessibility settings",
+        selectidioma: "Language...",
+        es: "Spanish",
+        en: "English",
+        dark: "Dark Mode 🌙",
+        btnVolver: "Return",
+        btnJugar: "Play"
+      }
+    };
+
+    super.cambiarIdioma()
+
+    const idiomaSelect = document.getElementById("idioma");
+
+    idiomaSelect.addEventListener("change", () => {
+      this.cambiarIdioma();
+    });
+  }
+
+  cambiarIdioma() {
+    this.idiomaSeleccionado = document.getElementById("idioma").value;
+    localStorage.setItem('language', this.idiomaSeleccionado)
+    const elementosTraducir = document.querySelectorAll("[id]");
+  
+    elementosTraducir.forEach(elemento => {
+      const id = elemento.id;
+      if (this.traduccion[this.idiomaSeleccionado][id]) {
+        elemento.innerHTML = this.traduccion[this.idiomaSeleccionado][id];
+      }
+    });
+  }
+
+  validarEmpezar(event) {
+    event.preventDefault();
+    let color = document.getElementById("color");
+    let idioma = document.getElementById("idioma");
+    let formulario = 0;
+  
+    if (color.value.trim() !== "") {
+      localStorage.setItem("colorBarco", color.value)
+      formulario++
+    } else {
+      if(this.idiomaSeleccionado === "es") {
+        const mensaje = "El color del barco no ha sido seleccionado"
+        this.mensajeAviso(mensaje)
+      } else {
+        const mensaje = "The color of the boat has not been selected"
+        this.mensajeAviso(mensaje)
+      }
+      
+    }
+
+    if(idioma.value.trim() !== "") {
+      localStorage.setItem("idioma", idioma.value)
+      formulario++
+    } else {
+      if(this.idiomaSeleccionado === "es") {
+        const mensaje = "El idioma no ha sido seleccionado"
+        this.mensajeAviso(mensaje)
+      } else {
+        const mensaje = "The language has not been selected"
+        this.mensajeAviso(mensaje)
+      }
+    }
+
+    if(formulario === 2) {
+      window.location.href = "../nivel/nivel.html"
+    }
+  }
+
+  mensajeAviso(mensaje) {
+    const avisoContenedor = document.getElementById("msgCampos")
+    avisoContenedor.style.color = "red"
+    avisoContenedor.innerHTML = mensaje
   }
 
   /**
