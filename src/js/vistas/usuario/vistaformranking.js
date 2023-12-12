@@ -138,7 +138,7 @@ export class Vistaformranking extends Vistausuario {
     if (correo.trim() === "") {
       return false;
   }
-    const regExp = /^(|.*\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))$/
+    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     return regExp.test(correo);
   }
 
@@ -155,7 +155,7 @@ export class Vistaformranking extends Vistausuario {
   }
 
   comprobacionCorreo (evento, pMensaje) {
-    const regExp = /^(\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))?$/
+    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     let mensaje
     if(this.idiomaSeleccionado === "en") {
       mensaje = "The email must be valid"
