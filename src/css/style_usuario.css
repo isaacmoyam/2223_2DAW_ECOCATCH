@@ -248,6 +248,17 @@ form > input[type=submit] {
     font-size: 1em;
 }
 
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../../src/img/.png') 50% 50% no-repeat rgb(0,0,0);
+    opacity: .8;
+}
+
 .brillo-azul {
     filter: drop-shadow(0 0 10px rgb(85, 135, 241));
 }

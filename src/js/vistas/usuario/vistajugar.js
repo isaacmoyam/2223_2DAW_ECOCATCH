@@ -25,6 +25,7 @@ export class Vistajugar extends Vistausuario {
     constructor(controlador, base) {
         super(controlador, base)
         this.eventos()
+        this.menuJuego = null
     }
 
     /**
@@ -154,7 +155,7 @@ export class Vistajugar extends Vistausuario {
             powerup.style.width = '50px'
             powerup.style.height = '50px'
             powerup.style.zIndex = '1'
-
+            powerup.id = 'powerup'
             this.gameContainer.appendChild(powerup)
 
             powerup.classList.add('brillo-azul');
@@ -501,16 +502,113 @@ export class Vistajugar extends Vistausuario {
      * Pausa el juego. Quitando tambien la cancion de fondo y renaudandola cuando el juego deje de estar pausado
      * @returns {void}
      */
+
     pausarJuego() {
+        let texto = 'Renaudar Juego'
+        const gameContainer = document.getElementById('gameContainer')
         const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
 
+        //Crear un nuevo menú solo si no existe
+        if (!this.menuJuego) {
+            this.menuJuego = document.createElement('div')
+        }else{
+            this.menuJuego.remove()
+        }
+
+        //PAUSA
         if (this.juegoEnPausa) {
-            miAudio.play() //Reanuda el audio
-            this.reanudarJuego()
+            this.quitarPausa(miAudio)
         } else {
+            this.aplicarFiltroEnElementos(gameContainer, 'blur(10px)');
+            gameContainer.appendChild(this.menuJuego)
+
+            //Cambiar imagen del boton de la pausa
+            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/reanudar.png)"
+
+            const contenidoPausa = document.createElement('div')
+            const boton = document.createElement('button');
+            boton.textContent = texto;
+
+            //Agrega el botón como hijo del div
+            contenidoPausa.appendChild(boton);
+
+            //Añadir evento oclick para el nuevo boton
+            boton.addEventListener('click', () => {
+                this.quitarPausa(miAudio)
+            });
+
+            this.menuJuego.appendChild(contenidoPausa)
+            this.menuJuego.style.display = 'block'
+            this.menuJuego.style.width = '100%'
+            this.menuJuego.style.height = '100%'
+            contenidoPausa.style.zIndex = '10'
+
+            contenidoPausa.style.display = 'flex'
+            contenidoPausa.style.alignItems = 'center'
+            contenidoPausa.style.justifyContent = 'center'
+            contenidoPausa.style.width = '100%'
+            contenidoPausa.style.height = '100%'
+            contenidoPausa.style.backgroundImage = "url(../../../src/img/borroso.png)"
+            contenidoPausa.style.backgroundSize = 'cover'
+
             miAudio.pause() //Pausa el audio
             this.juegoEnPausa = true
             this.cancelAnimationFrame()
+        }
+    }
+
+    /**
+     * Metodo que quita la pausa
+     * @param miAudio {Object} Referenci del audio que se va a poner a play
+     */
+    quitarPausa(miAudio){
+        //Establece la imagen de fondo
+        document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/pausa.png)"
+
+        if (this.menuJuego) {
+            this.menuJuego.style.display = 'none'
+            this.menuJuego.textContent = ''
+        }
+
+        this.menuJuego.remove() //Elimina el menu
+        //Quitar el filtro a los elementos del gameContainer
+        this.quitarFiltroEnElementos(document.getElementById('gameContainer'))
+
+        miAudio.play(); // Reanuda el audio
+        this.reanudarJuego() //Reanuda el juego
+    }
+
+    /**
+     * Aplica el filtro concreto a todos los elementos dentro de gameContainer
+     * @param gameContainer {Object} Contenedor referencia del contenedor html
+     * @param filtro {String} Propiedad css del filtro que se quiere implementar
+     */
+    aplicarFiltroEnElementos(gameContainer, filtro) {
+        const elementos = gameContainer.children
+
+        for (let i = 0; i < elementos.length; i++) {
+            const elemento = elementos[i]
+            elemento.style.filter = filtro
+            elemento.style.animation = 'none'
+        }
+    }
+
+    /**
+     * Quita los filtros a todos los elementos dentro de gameContainer
+     * @param gameContainer {Object} Contenedor referencia del contenedor html
+     */
+    quitarFiltroEnElementos(gameContainer) {
+        const elementos = gameContainer.children
+        gameContainer.style.filter = 'none'
+
+        for (let i = 0; i < elementos.length; i++) {
+            const elemento = elementos[i]
+            elemento.style.filter = 'none'
+            if (elemento.id === "barco" || elemento.id === 'powerup') {
+                elemento.style.animation = 'none'
+            }else{
+                elemento.style.animation = 'rotate 5s infinite linear'
+            }
         }
     }
 
