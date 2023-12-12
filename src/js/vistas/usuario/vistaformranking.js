@@ -121,7 +121,11 @@ export class Vistaformranking extends Vistausuario {
       this.nick = ""
       this.correo = ""
       enviar.remove()
-      mensaje.innerHTML = "Subiendo..."
+      if(this.idiomaSeleccionado === "en") {
+        mensaje.innerHTML = "Uploading..."
+      } else {
+        mensaje.innerHTML = "Subiendo..."
+      }
       mensaje.style.color = "yellow"
       setTimeout(function() {
         document.getElementById('formRanking').submit();
