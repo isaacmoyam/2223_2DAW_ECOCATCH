@@ -22,9 +22,36 @@ export class Vistaformranking extends Vistausuario {
    */
   eventos() {
     super.modoOscuro()
+
+    this.idiomaSeleccionado = super.idioma()
+
+    this.traduccion = {
+      es: {
+        tituloweb: "Añadir tu puntuación al ranking",
+        titulopts1: "¡TU PUNTUACIÓN ES DE",
+        titulopts2: "PUNTOS!",
+        email: "(*) CORREO:"
+      },
+      en: {
+        tituloweb: "Add your score to the ranking",
+        titulopts1: "YOUR SCORE IS",
+        titulopts2: "POINTS!",
+        email: "(*) EMAIL:"
+      }
+    };
+
+    const enviar = document.getElementById("enviar")
+
+    if(this.idiomaSeleccionado === "en") {
+      enviar.value = "Submit"
+    } else {
+      enviar.value = "Enviar"
+    }
+
+    super.cambiarIdioma()
     
     // Coger referencias del interfaz
-    let iNick, iCorreo, puntuacion, idNivel
+    let iNick, iCorreo, puntuacion
 
     const mensaje = document.getElementById("msgCampos")
 
@@ -63,12 +90,20 @@ export class Vistaformranking extends Vistausuario {
     let mensajeError = null;
     
     if (!nickInput.value) {
-      mensajeError = 'Por favor, rellena el campo nick';
+      if(this.idiomaSeleccionado === "en") {
+        mensajeError = 'Please, fill in the nickname field';
+      } else {
+        mensajeError = 'Por favor, rellena el campo nick';
+      }
       this.mostrarMensajeErrorRanking(nickInput, mensajeError);
     }
     
     if (!correoInput.value) {
-      mensajeError = 'Por favor, rellena el campo correo';
+      if(this.idiomaSeleccionado === "en") {
+        mensajeError = 'Please, fill in the email field';
+      } else {
+        mensajeError = 'Por favor, rellena el campo correo';
+      }
       this.mostrarMensajeErrorRanking(correoInput, mensajeError);
     }
 
@@ -76,6 +111,8 @@ export class Vistaformranking extends Vistausuario {
 
     // Realiza la lógica de validación aquí
     if (this.validarNick(nickInput.value) && this.validarCorreo(correoInput.value)) {
+      const enviar = document.getElementById("enviar")
+      const mensaje = document.getElementById("msgCampos")
       // Envía el formulario al servidor
       formRanking.action = urlForm
       this.nick = nickInput.value
@@ -83,7 +120,16 @@ export class Vistaformranking extends Vistausuario {
       this.llamarPOST()
       this.nick = ""
       this.correo = ""
-      document.getElementById('formRanking').submit();
+      enviar.remove()
+      if(this.idiomaSeleccionado === "en") {
+        mensaje.innerHTML = "Uploading..."
+      } else {
+        mensaje.innerHTML = "Subiendo..."
+      }
+      mensaje.style.color = "yellow"
+      setTimeout(function() {
+        document.getElementById('formRanking').submit();
+      }, 2000);
     }
   }
 
@@ -103,19 +149,31 @@ export class Vistaformranking extends Vistausuario {
     if (correo.trim() === "") {
       return false;
   }
-    const regExp = /^(|.*\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))$/
+    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     return regExp.test(correo);
   }
 
   comprobacionNick (evento, pMensaje) {
     const regExp = /^[A-z0-9áéíóúÁÉÍÓÚñÑüÜçÇ]{1,50}$/
-    let mensaje = "El nick debe tener máximo 50 caracteres y no tener espacios"
+    let mensaje 
+    if(this.idiomaSeleccionado === "en") {
+      mensaje = "The nickname must have a maximum of 50 characters and cannot have spaces"
+    } else {
+      mensaje = "El nick debe tener máximo 50 caracteres y no tener espacios"
+    }
+    
     this.validarCampoRanking(evento, pMensaje, mensaje, regExp)
   }
 
   comprobacionCorreo (evento, pMensaje) {
-    const regExp = /^(\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))?$/
-    let mensaje = "El correo debe ser válido"
+    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+    let mensaje
+    if(this.idiomaSeleccionado === "en") {
+      mensaje = "The email must be valid"
+    } else {
+      mensaje = "El correo debe ser válido"
+    }
+    
     this.validarCampoRanking(evento, pMensaje, mensaje, regExp)
   }
 

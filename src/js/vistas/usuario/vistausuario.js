@@ -55,6 +55,29 @@ export class Vistausuario {
   }
 
   /**
+   * Checkea el idioma.
+   */
+  idioma() {
+    let idiomaSeleccionado
+    if(localStorage.getItem('language')) {
+      idiomaSeleccionado = localStorage.getItem('language');
+    } else {
+      idiomaSeleccionado = "es"
+    }
+    return idiomaSeleccionado;
+  }
+
+  cambiarIdioma() {
+    const elementosTraducir = document.querySelectorAll("[id]");
+    elementosTraducir.forEach(elemento => {
+      const id = elemento.id;
+      if (this.traduccion[this.idioma()][id]) {
+        elemento.innerHTML = this.traduccion[this.idioma()][id];
+      }
+    });
+  }
+
+  /**
    * Aplica el modo oscuro a los elementos secundarios.
    * @param {boolean} enableDarkMode - True para activar, false para desactivar.
    */

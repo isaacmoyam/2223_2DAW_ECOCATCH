@@ -8,8 +8,10 @@ import { Rest } from '../../servicios/rest.js'
 export class Vistajugar extends Vistausuario {
 
     #score = 0
+    #objetosRecogidos = 0
     #scoreElement = document.getElementById('scoreValue')
-    #maxScore = document.getElementById('maxScore')
+    #objetosElement = document.getElementById("objetosRecogidos")
+
     #maxObjetos = localStorage.getItem('items')
     #objetosCreados = 0
     #objetosDestruidos = 0
@@ -21,9 +23,9 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} base - Objeto que es una referencia del interfaz.
      */
     constructor(controlador, base) {
-        super(controlador, base)
-        this.eventos()
-        this.menuJuego = null
+        super(controlador, base);
+        this.eventos();
+        this.menuJuego = null;
     }
 
     /**
@@ -32,11 +34,11 @@ export class Vistajugar extends Vistausuario {
      */
     
     llamarGETBasura = () => {
-            Rest.getJSON(
-                '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
-                null,
-                this.obtenerDatosBasura.bind(this)
-            );
+        Rest.getJSON(
+            '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
+            null,
+            this.obtenerDatosBasura.bind(this)
+        );
     }
 
     /**
@@ -45,13 +47,13 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
      */
     obtenerDatosBasura = (respuesta) => {
-        console.log(respuesta)
         this.datosBasura = respuesta.map(elemento => ({
             BasuraId: elemento.id,
             BasuraNombre: elemento.nombre,
             BasuraImagen: elemento.imagen,
             BasuraValor: elemento.valor
         }));
+        this.iniciarJuegoManzanas();
     }
 
     /**
@@ -69,7 +71,6 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.appendChild(estrellita)
 
 
-            imagenApple.src = "../../../src/img/basura.png"
             if(!this.datosBasura){}
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
             this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
@@ -102,6 +103,7 @@ export class Vistajugar extends Vistausuario {
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
+                this.fin();
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 3 + 'px' // Ajusta la velocidad de caída aquí
@@ -125,7 +127,6 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
      */
     obtenerDatosPowerup = (respuesta) => {
-        console.log(respuesta)
         this.datosPowerup = respuesta.map(elemento => ({
             PowerupId: elemento.id,
             PowerupNombre: elemento.nombre,
@@ -158,6 +159,7 @@ export class Vistajugar extends Vistausuario {
             powerup.id = 'powerup'
             this.gameContainer.appendChild(powerup)
 
+            powerup.classList.add('brillo-azul');
             this.#objetosCreados++
     }
 
@@ -195,6 +197,7 @@ export class Vistajugar extends Vistausuario {
 
         let barcoWidth = this.barco.clientWidth
         let barcoHeight = this.barco.clientHeight
+        const barco = document.querySelector('#gameContainer img');
 
         // Ajusta este valor para controlar la distancia de colisión (mayor valor = más fácil)
         let distanciaColision = 30
@@ -208,12 +211,39 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.removeChild(powerup)
             this.#objetosDestruidos++;
 
+            barco.classList.add('brillo-azul');
             //Aumenta la velocidad del barco
             this.velocidad = parseInt(this.velocidad) + parseInt(this.aumentoVelocidadBarco)
+            setTimeout(() => {
+                this.velocidad = localStorage.getItem('velocidad')
+                this.perderPowerup()
+                this.parpadear();
+                barco.classList.remove('brillo-azul');
+            }, 4000);
 
             // Reproduce el sonido de la manzana
             this.reproducirSonidoPowerup();
         }
+    }
+
+    parpadear() {
+        const barco = document.querySelector('#gameContainer img');
+
+        const parpadeoInterval = setInterval(() => {
+            const estiloActual = window.getComputedStyle(barco);
+            const visibilidadActual = estiloActual.getPropertyValue('visibility');
+
+            if (visibilidadActual === 'visible') {
+                barco.style.visibility = 'hidden';
+            } else {
+                barco.style.visibility = 'visible';
+            }
+        }, 200);
+
+        setTimeout(() => {
+            clearInterval(parpadeoInterval);
+            barco.style.visibility = 'visible'; 
+        }, 2000);
     }
 
 
@@ -246,9 +276,18 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.removeChild(apple);
             this.aumentarPuntuacion();
             this.#objetosDestruidos++;
+            this.fin();
     
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
+        }
+    }
+
+    fin(){
+        if(this.#maxObjetos == this.#objetosDestruidos) {
+            window.location.href = "../ranking/formulario.html";
+            localStorage.setItem('puntuacionFinal', this.#score)
+            return;
         }
     }
 
@@ -282,6 +321,11 @@ export class Vistajugar extends Vistausuario {
         sonidoPowerup.play();
     }
 
+    perderPowerup() {
+        const perderPowerup = document.getElementById('perdidaPowerup');
+        perderPowerup.play();
+    }
+
      /**
      * Reproduce un sonido cuando fallas al recoger basura
      * @returns {void}
@@ -297,12 +341,10 @@ export class Vistajugar extends Vistausuario {
      */
     aumentarPuntuacion() {
         this.#score = this.#score + parseInt(this.valorBasuraCogida)
-
         this.#scoreElement.textContent = this.#score
-    }
 
-    mostrarMaximo(){
-        
+        this.#objetosRecogidos++
+        this.#objetosElement.innerHTML = this.#objetosRecogidos+"/"+this.#maxObjetos
     }
     
     /**
@@ -324,13 +366,7 @@ export class Vistajugar extends Vistausuario {
                 }
                 this.moverPowerup()
             }
-            if(this.#maxObjetos == this.#objetosDestruidos) {
-                window.location.href = "../ranking/formulario.html"
-                localStorage.setItem('puntuacionFinal', this.#score)
-                return
-            }
             requestAnimationFrame(update)
-            
         }
         update()
     }
@@ -340,6 +376,36 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     eventos() {
+        this.idiomaSeleccionado = super.idioma()
+
+        this.traduccion = {
+            es: {
+                obj: "Objetos recogidos:",
+                nvl: "Nivel:",
+                pts: "Puntuación:"
+            },
+            en: {
+                obj: "Collected Items:",
+                nvl: "Level:",
+                pts: "Score:"
+            }
+        };
+
+        super.cambiarIdioma()
+
+        this.#objetosElement.innerHTML = this.#objetosRecogidos+"/"+this.#maxObjetos
+        this.colorBarco = localStorage.getItem('colorBarco')
+        this.imgBarco = document.getElementById("barco")
+        switch(this.colorBarco){
+            case "azul":
+                this.imgBarco.src = "../../../src/img/azul2.png";
+                break;
+            case "rojo":
+                this.imgBarco.src = "../../../src/img/rojo2.png";
+                break;
+            case "amarillo":
+                this.imgBarco.src = "../../../src/img/amarillo2.png";
+        }
         this.x = 0
         this.touchStartX = null
         this.animationFrameId = null
@@ -350,9 +416,7 @@ export class Vistajugar extends Vistausuario {
         this.llamarGETBasura()
         this.llamarGETPowerup()
 
-        this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
-        this.imgBarco = document.getElementById("barco")
 
         this.nombre = localStorage.getItem('nombreLvl')
         const nombreNivel = document.getElementById("nombreNivel")
@@ -601,10 +665,28 @@ export class Vistajugar extends Vistausuario {
                 velocidadX = 0; 
             } else if (teclaIzquierdaPresionada) {
                 velocidadX = -1; 
-                this.imgBarco.src = "../../../src/img/barco.png";
+                switch(this.colorBarco){
+                    case "azul":
+                        this.imgBarco.src = "../../../src/img/azul.png";
+                        break;
+                    case "rojo":
+                        this.imgBarco.src = "../../../src/img/rojo.png";
+                        break;
+                    case "amarillo":
+                        this.imgBarco.src = "../../../src/img/amarillo.png";
+                }
             } else if (teclaDerechaPresionada) {
                 velocidadX = 1; 
-                this.imgBarco.src = "../../../src/img/barco2.png";
+                switch(this.colorBarco){
+                    case "azul":
+                        this.imgBarco.src = "../../../src/img/azul2.png";
+                        break;
+                    case "rojo":
+                        this.imgBarco.src = "../../../src/img/rojo2.png";
+                        break;
+                    case "amarillo":
+                        this.imgBarco.src = "../../../src/img/amarillo2.png";
+                }
             } else {
                 velocidadX = 0;
             }
