@@ -17,7 +17,8 @@ export class Vistajugar extends Vistausuario {
     #objetosDestruidos = 0
 
     #mostradoA = false
-    #tipoC = "¡Genial!"
+
+    #fin = false
 
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -27,6 +28,13 @@ export class Vistajugar extends Vistausuario {
      */
     constructor(controlador, base) {
         super(controlador, base);
+
+        if(super.idioma() === "en") {
+            this.tipoC = "Great!"
+        } else {
+            this.tipoC = "¡Genial!"
+        }
+
         this.eventos();
         this.menuJuego = null;
     }
@@ -72,8 +80,6 @@ export class Vistajugar extends Vistausuario {
             estrellita.style.top = apple.style.top
             this.gameContainer.appendChild(estrellita)
 
-
-            imagenApple.src = "../../../src/img/basura.png"
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
             this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
             imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
@@ -102,12 +108,16 @@ export class Vistajugar extends Vistausuario {
         for (let apple of apples) {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
             if (appleTop >= this.gameContainer.clientHeight-40) {
+                
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
-                setTimeout(() => {
-                    this.fin();
-                }, 500);
+
+                if(!this.#fin) {
+                    setTimeout(() => {
+                        this.fin();
+                    }, 500);   
+                }
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 3 + 'px' // Ajusta la velocidad de caída aquí
@@ -147,11 +157,13 @@ export class Vistajugar extends Vistausuario {
         if (this.#objetosCreados < this.#maxObjetos) {
             let powerup = document.createElement('div')
             let imagenPowerup = document.createElement('img')
-            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
+            let indiceAleatorio = Math.floor(Math.random() * this.datosPowerup.length);
+
             this.aumentoVelocidadBarco = this.datosPowerup[indiceAleatorio].PowerupAumento
             imagenPowerup.src = "data:image/png;base64,"+this.datosPowerup[indiceAleatorio].PowerupImagen+""
             imagenPowerup.style.width = "50px"
             imagenPowerup.style.height = "50px"
+
             powerup.appendChild(imagenPowerup)
             powerup.classList.add('powerup')
             powerup.style.position = 'relative';
@@ -161,6 +173,7 @@ export class Vistajugar extends Vistausuario {
             powerup.style.height = '50px'
             powerup.style.zIndex = '1'
             powerup.id = 'powerup'
+
             this.gameContainer.appendChild(powerup)
 
             powerup.classList.add('brillo-azul');
@@ -281,9 +294,12 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.removeChild(apple);
             this.aumentarPuntuacion();
             this.#objetosDestruidos++;
-            setTimeout(() => {
-                this.fin();
-            }, 500);
+
+            if(!this.#fin) {
+                setTimeout(() => {
+                    this.fin();
+                }, 500);   
+            }
     
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
@@ -291,38 +307,52 @@ export class Vistajugar extends Vistausuario {
     }
 
     fin() {
-        if (this.#maxObjetos == this.#objetosDestruidos) {
-            const frame = document.getElementById("frame");
-            frame.remove();
-    
-            const div = document.createElement("div");
-            div.style.width = "50%";
-            div.style.margin = "0 auto";
-            div.style.textAlign = "center";
-            div.style.padding = "20%";
-    
-            const msg = document.createElement("p");
-            msg.textContent = this.#tipoC; 
-            msg.style.color = "#EDC713"; 
-    
-            const botonForm = document.createElement("button");
-            if (this.idiomaSeleccionado === "en") {
-                botonForm.textContent = "Save Score";
-            } else {
-                botonForm.textContent = "Subir tu puntuación";
+        if(!this.#fin) {
+            if (this.#maxObjetos == this.#objetosDestruidos) {
+                this.#fin = true
+                if(this.#score === 0) {
+                    if(super.idioma() === "en") {
+                        this.tipoC = "You haven't picked up the trash!"
+                    } else {
+                        this.tipoC = "¡No has recogido la basura!"
+                    }
+                }
+
+                const frame = document.getElementById("frame");
+
+                if(frame) {
+                frame.remove(); 
+                }
+                
+                const div = document.createElement("div");
+                div.style.width = "50%";
+                div.style.margin = "0 auto";
+                div.style.textAlign = "center";
+                div.style.padding = "20%";
+        
+                const msg = document.createElement("p");
+                msg.textContent = this.tipoC; 
+                msg.style.color = "#EDC713"; 
+        
+                const botonForm = document.createElement("button");
+                if (this.idiomaSeleccionado === "en") {
+                    botonForm.textContent = "Save Score";
+                } else {
+                    botonForm.textContent = "Subir tu puntuación";
+                }
+        
+                botonForm.style.margin = "10px auto"; // Cambié el valor de margin para separar el botón del mensaje
+                botonForm.addEventListener("click", this.redirect.bind(this));
+        
+                // Agregar el mensaje y el botón al div
+                div.appendChild(msg);
+                div.appendChild(botonForm);
+        
+                // Agregar el div al cuerpo del documento
+                document.body.appendChild(div);
+        
+                localStorage.setItem('puntuacionFinal', this.#score);
             }
-    
-            botonForm.style.margin = "10px auto"; // Cambié el valor de margin para separar el botón del mensaje
-            botonForm.addEventListener("click", this.redirect.bind(this));
-    
-            // Agregar el mensaje y el botón al div
-            div.appendChild(msg);
-            div.appendChild(botonForm);
-    
-            // Agregar el div al cuerpo del documento
-            document.body.appendChild(div);
-    
-            localStorage.setItem('puntuacionFinal', this.#score);
         }
     }
     
@@ -901,11 +931,13 @@ export class Vistajugar extends Vistausuario {
                     } else {
                         boton.textContent = "Comenzar Juego";
                     }
-                    
+                
+                    contenedor.style.textAlign = "center";
+                    boton.style.display = "inline-block";
                 
                     // Agrega el botón al contenedor
                     contenedor.appendChild(boton);
-                
+                    
                     // Agrega el contenedor al elemento padre (pantallaMsg)
                     pantallaMsg.appendChild(contenedor);
                     
@@ -919,7 +951,7 @@ export class Vistajugar extends Vistausuario {
                 }
                 if (this.#score >= mensajes[i].puntosHasta && mensajes[i].tipo === "C" && this.#maxObjetos == this.#objetosDestruidos) {
                     // Muestra el mensaje en el contenedor
-                    this.#tipoC = mensajes[i].contenido
+                    this.tipoC = mensajes[i].contenido
                 }
             }
             requestAnimationFrame(update);
