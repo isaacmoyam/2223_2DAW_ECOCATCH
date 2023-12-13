@@ -108,7 +108,7 @@ export class Vistajugar extends Vistausuario {
         for (let apple of apples) {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
             if (appleTop >= this.gameContainer.clientHeight-40) {
-                
+
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
@@ -323,12 +323,21 @@ export class Vistajugar extends Vistausuario {
                 if(frame) {
                 frame.remove(); 
                 }
+
+                const musica = document.getElementById("miAudio")
+                musica.pause()
+
+                const terminar = document.getElementById("terminar")
+                terminar.play()
                 
                 const div = document.createElement("div");
                 div.style.width = "50%";
                 div.style.margin = "0 auto";
                 div.style.textAlign = "center";
                 div.style.padding = "20%";
+                div.style.border = "solid 1px black"
+                div.style.backgroundColor = "#326F1E"
+                div.style.borderRadius = "15px"
         
                 const msg = document.createElement("p");
                 msg.textContent = this.tipoC; 
