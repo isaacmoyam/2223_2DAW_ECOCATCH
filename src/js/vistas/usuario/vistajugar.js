@@ -17,6 +17,7 @@ export class Vistajugar extends Vistausuario {
     #objetosDestruidos = 0
 
     #mostradoA = false
+    #tipoC = "¡Genial!"
 
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
@@ -294,20 +295,27 @@ export class Vistajugar extends Vistausuario {
             div.style.width = "50%";
             div.style.margin = "0 auto";
             div.style.textAlign = "center";
-            div.style.padding = "20%"
+            div.style.padding = "20%";
+    
+            const msg = document.createElement("p");
+            msg.textContent = this.#tipoC; 
+            msg.style.color = "#EDC713"; 
     
             const botonForm = document.createElement("button");
-            if(this.idiomaSeleccionado === "en") {
-                botonForm.textContent = "Save Score"
+            if (this.idiomaSeleccionado === "en") {
+                botonForm.textContent = "Save Score";
             } else {
-               botonForm.textContent = "Subir tu puntuación"; 
+                botonForm.textContent = "Subir tu puntuación";
             }
-            
-            botonForm.style.margin = "0 auto"; // Corregido aquí
+    
+            botonForm.style.margin = "10px auto"; // Cambié el valor de margin para separar el botón del mensaje
             botonForm.addEventListener("click", this.redirect.bind(this));
     
-            // Agregar el botón al cuerpo del documento
+            // Agregar el mensaje y el botón al div
+            div.appendChild(msg);
             div.appendChild(botonForm);
+    
+            // Agregar el div al cuerpo del documento
             document.body.appendChild(div);
     
             localStorage.setItem('puntuacionFinal', this.#score);
@@ -907,6 +915,7 @@ export class Vistajugar extends Vistausuario {
                 }
                 if (this.#score >= mensajes[i].puntosHasta && mensajes[i].tipo === "C" && this.#maxObjetos == this.#objetosDestruidos) {
                     // Muestra el mensaje en el contenedor
+                    this.#tipoC = mensajes[i].contenido
                 }
             }
             requestAnimationFrame(update);
