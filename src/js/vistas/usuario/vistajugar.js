@@ -43,6 +43,7 @@ export class Vistajugar extends Vistausuario {
      * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
      * @method
      */
+    
     llamarGETBasura = () => {
         Rest.getJSON(
             '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
@@ -154,7 +155,7 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     crearPowerup() {
-        if (this.#objetosCreados < this.#maxObjetos) {
+        if (this.#objetosCreados > this.#maxObjetos) {return}
             let powerup = document.createElement('div')
             let imagenPowerup = document.createElement('img')
             let indiceAleatorio = Math.floor(Math.random() * this.datosPowerup.length);
@@ -178,7 +179,6 @@ export class Vistajugar extends Vistausuario {
 
             powerup.classList.add('brillo-azul');
             this.#objetosCreados++
-        }
     }
 
     /**
@@ -433,7 +433,7 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.008) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.018) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()

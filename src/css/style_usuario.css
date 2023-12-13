@@ -50,7 +50,7 @@ main {
     border-radius: 30px;
     border: solid 2px #EDC713;
     padding-bottom: 5%;
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
@@ -161,7 +161,6 @@ form > input[type=submit] {
 }
 
 
-
 /*
     PAGINA EMPEZAR
 */
@@ -171,20 +170,16 @@ form > input[type=submit] {
 
 #menu > a, #empezar > a{
     display: block;
-    width:40%;
-    margin: 7% auto 0;
+    width: 60%;
+    margin: 6% auto 0;
+}
+
+#empezar > a{
+    width: 25%;
 }
 
 #empezar > a:nth-child(4) {
     width:68%;
-}
-
-#empezar > a:last-child {
-    position:relative;
-    bottom: 350px;
-    right: 40%;
-    width:11.3%;
-    display: inline;
 }
 
 #empezar > button {
@@ -225,27 +220,35 @@ form > input[type=submit] {
     PAGINA JUGAR
 */
 #jugar{
-    /*Con el background image: none quito la imagen de fondo especificamente para esta pagina
-     dado que esta página del juego tendrá su propio fondo en un div*/
-    background-image: none;
-    background-size: auto;
+    background-size: cover;
 }
+
+
 #frame{
     border: solid 1px black;
     width:90%;
     margin: 0 auto;
     box-shadow: 2px 7px 16px 5px rgba(0,0,0,0.28);
 }
+
 #hud {
     background-color: #326F1E;
     display: flex;
-    gap:34%;
+    gap:20%;
     padding:1%;
+    font-size: 1.4em;
+}
+#hud > div{
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+#hud > #mensaje{
+    width: 40%;
 }
 
 #botones > button {
     padding: 15px;
-    font-size: 1em;
 }
 
 .loader {
@@ -586,7 +589,8 @@ button.darkmode,
 
     /*pagina indice usuario*/
     #menu > a{
-        width: 50%; /*cambio de tamaño del enlace*/
+        width: 60%; /*cambio de tamaño del enlace*/
+        font-size: 1em;
     }
 
     /*pagina jugar*/
@@ -604,6 +608,10 @@ button.darkmode,
     /*pagina jugar*/
     #hud {
         gap:17%;
+        font-size: 0.9em;
+    }
+    #hud > div{
+        width: 30%;
     }
     #botones > button{
         padding: 10%;
