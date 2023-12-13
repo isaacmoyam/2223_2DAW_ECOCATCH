@@ -105,7 +105,9 @@ export class Vistajugar extends Vistausuario {
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
-                this.fin();
+                setTimeout(() => {
+                    this.fin();
+                }, 500);
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 3 + 'px' // Ajusta la velocidad de caída aquí
@@ -279,7 +281,9 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.removeChild(apple);
             this.aumentarPuntuacion();
             this.#objetosDestruidos++;
-            this.fin();
+            setTimeout(() => {
+                this.fin();
+            }, 500);
     
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
