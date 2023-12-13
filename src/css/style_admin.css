@@ -15,7 +15,7 @@ body {
 
 /* Estilos del formulario de datos del ranking */
 form {
-  margin-top: 50px;
+  margin-top: 4%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +27,7 @@ form > input[type="text"], form > input[type="file"] {
 }
 
 form > input[type=submit] , #btnVolver{
-  margin-top: 40px;
+  margin-top: 2%;
   border: solid 1px black;
   border-radius: 9px;
   color: #EDC713;
@@ -249,7 +249,7 @@ h1{
 */
 table {
   background-color: #6D3916;
-  margin: 0 auto 5%;
+  margin: 0 auto 2%;
   border: solid 1px black;
   border-collapse: collapse;
   box-shadow: 2px 7px 16px 5px rgba(0, 0, 0, 0.28);
@@ -403,6 +403,10 @@ main > a:hover,
   }
   table {
     width: 90%; 
+  }
+  #tablaPowerup{
+    width: 60%; /*NO SE CAMBIA*/
+    font-size: 0.7em;
   }
 }
 
