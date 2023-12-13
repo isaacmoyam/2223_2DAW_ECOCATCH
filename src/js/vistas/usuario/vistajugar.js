@@ -16,6 +16,8 @@ export class Vistajugar extends Vistausuario {
     #objetosCreados = 0
     #objetosDestruidos = 0
 
+    #mostradoA = false
+
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
      * @constructor
@@ -283,12 +285,37 @@ export class Vistajugar extends Vistausuario {
         }
     }
 
-    fin(){
-        if(this.#maxObjetos == this.#objetosDestruidos) {
-            window.location.href = "../ranking/formulario.html";
-            localStorage.setItem('puntuacionFinal', this.#score)
-            return;
+    fin() {
+        if (this.#maxObjetos == this.#objetosDestruidos) {
+            const frame = document.getElementById("frame");
+            frame.remove();
+    
+            const div = document.createElement("div");
+            div.style.width = "50%";
+            div.style.margin = "0 auto";
+            div.style.textAlign = "center";
+            div.style.padding = "20%"
+    
+            const botonForm = document.createElement("button");
+            if(this.idiomaSeleccionado === "en") {
+                botonForm.textContent = "Save Score"
+            } else {
+               botonForm.textContent = "Subir tu puntuación"; 
+            }
+            
+            botonForm.style.margin = "0 auto"; // Corregido aquí
+            botonForm.addEventListener("click", this.redirect.bind(this));
+    
+            // Agregar el botón al cuerpo del documento
+            div.appendChild(botonForm);
+            document.body.appendChild(div);
+    
+            localStorage.setItem('puntuacionFinal', this.#score);
         }
+    }
+    
+    redirect() {
+        window.location.href = "../ranking/formulario.html";
     }
 
     crearEstrella(left, top) {
@@ -504,7 +531,7 @@ export class Vistajugar extends Vistausuario {
      */
 
     pausarJuego() {
-        let texto = 'Renaudar Juego'
+        let texto = 'Reanudar Juego'
         const gameContainer = document.getElementById('gameContainer')
         const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
 
@@ -526,8 +553,10 @@ export class Vistajugar extends Vistausuario {
             document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/reanudar.png)"
 
             const contenidoPausa = document.createElement('div')
+            contenidoPausa.id = "pausaMenu"
             const boton = document.createElement('button');
             boton.textContent = texto;
+            boton.id = "botonReanudar"
 
             //Agrega el botón como hijo del div
             contenidoPausa.appendChild(boton);
@@ -619,6 +648,7 @@ export class Vistajugar extends Vistausuario {
     reanudarJuego() {
         this.juegoEnPausa = false
         this.requestAnimationFrame
+        this.llamarPOST()
     }
 
 
@@ -815,14 +845,73 @@ export class Vistajugar extends Vistausuario {
      */
     verMensajes(mensajes) {
         const contenedorMensaje = document.getElementById("mensajeP")
-        let arrayMensajes = []
+        // Saca los mensajes tipo a y los mete en un array para mostrarlos aleatoriamente al principio del nivel
+        let tipoA = []
         for (let i = 0; i < mensajes.length; i++) {
-            arrayMensajes.push(mensajes[i].contenido);
+            if(mensajes[i].tipo === "A") {
+                tipoA.push(mensajes[i].contenido) 
+            }  
         }
-        this.intervalo = setInterval(() => {
-            let indiceAleatorio = Math.floor(Math.random() * arrayMensajes.length)
-            contenedorMensaje.innerHTML = arrayMensajes[indiceAleatorio]
-        }, 7000);
+        const update = () => {
+            for (let i = 0; i < mensajes.length; i++) {
+                // Si no se ha mostrado mensaje inicial, se muestra uno aleatorio
+                if (mensajes[i].tipo === "A" && this.#mostradoA == false) {
+                    this.#mostradoA = true
+                    this.juegoEnPausa = false;
+                    this.pausarJuego();
+                    
+                    let indiceAleatorio = Math.floor(Math.random() * tipoA.length);
+
+                    // Obtén elementos necesarios
+                    const pantallaMsg = document.getElementById("pausaMenu");
+                    const boton = document.getElementById("botonReanudar");
+                
+                    // Crea un contenedor div
+                    const contenedor = document.createElement("div");
+                
+                    // Crea el mensaje y configura sus propiedades
+                    const msg = document.createElement("p");
+                    msg.style.borderRadius = "10px";
+                    msg.style.textAlign = "center"
+                    msg.style.padding = "10%";
+                    msg.style.marginBottom = "2%";
+                    msg.style.border = "solid 1px black"
+                    msg.id = "msgTipoA";
+                    msg.textContent = tipoA[indiceAleatorio];
+                    msg.style.backgroundColor = "#6d3916a4";
+                
+                    // Agrega el mensaje al contenedor
+                    contenedor.appendChild(msg);
+                
+                    // Configura el botón
+                    if(this.idiomaSeleccionado === "en") {
+                        boton.textContent = "Start Game"; 
+                    } else {
+                        boton.textContent = "Comenzar Juego";
+                    }
+                    
+                
+                    // Agrega el botón al contenedor
+                    contenedor.appendChild(boton);
+                
+                    // Agrega el contenedor al elemento padre (pantallaMsg)
+                    pantallaMsg.appendChild(contenedor);
+                    
+                    return;
+                }
+
+                // Verifica la condición para mostrar el mensaje durante el juego
+                if (this.#score >= mensajes[i].puntosHasta && mensajes[i].tipo === "B") {
+                    // Muestra el mensaje en el contenedor
+                    contenedorMensaje.innerHTML = mensajes[i].contenido;
+                }
+                if (this.#score >= mensajes[i].puntosHasta && mensajes[i].tipo === "C" && this.#maxObjetos == this.#objetosDestruidos) {
+                    // Muestra el mensaje en el contenedor
+                }
+            }
+            requestAnimationFrame(update);
+        }
+        update();
     }
 
     /**

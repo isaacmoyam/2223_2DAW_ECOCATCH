@@ -285,7 +285,7 @@ class Nivel_Mod {
         $this->establecerConexion();
 
         //Consulta para obtener información de niveles
-        $sqlMensajes = 'SELECT m.contenido FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel="'.$idNivel.'";';
+        $sqlMensajes = 'SELECT m.contenido, m.tipo, m.puntosHasta FROM mensaje m INNER JOIN nivel n ON m.idNivel=n.id WHERE m.idNivel="'.$idNivel.'";';
         $resultMensajes = $this->mysqli->query($sqlMensajes);
 
         $mensajes = array();
