@@ -149,8 +149,8 @@ export class Vistaformranking extends Vistausuario {
     if (correo.trim() === "") {
       return false;
   }
-    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-    return regExp.test(correo);
+  const regExp = /^(|.*\w{1,61})?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es)))/
+  return regExp.test(correo);
   }
 
   comprobacionNick (evento, pMensaje) {
@@ -166,7 +166,7 @@ export class Vistaformranking extends Vistausuario {
   }
 
   comprobacionCorreo (evento, pMensaje) {
-    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+    const regExp = /^(|.*\w{1,61})?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es)))/
     let mensaje
     if(this.idiomaSeleccionado === "en") {
       mensaje = "The email must be valid"
