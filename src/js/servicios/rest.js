@@ -45,7 +45,7 @@ export class Rest {
 
         const opciones = {
             method: 'POST',
-            body: parametros
+            body: parametros,
         };
 
         fetch(url, opciones)
@@ -66,7 +66,7 @@ export class Rest {
         const opciones = {
             method: 'POST',
             body: parametros
-        };
+        }
 
         fetch(url, opciones)
         .then(response => {

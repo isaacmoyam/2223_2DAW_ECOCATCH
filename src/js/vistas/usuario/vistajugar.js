@@ -43,7 +43,6 @@ export class Vistajugar extends Vistausuario {
      * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
      * @method
      */
-    
     llamarGETBasura = () => {
         Rest.getJSON(
             '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
@@ -81,6 +80,8 @@ export class Vistajugar extends Vistausuario {
             estrellita.style.top = apple.style.top
             this.gameContainer.appendChild(estrellita)
 
+
+            imagenApple.src = "../../../src/img/basura.png"
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
             this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
             imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
@@ -155,7 +156,7 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     crearPowerup() {
-        if (this.#objetosCreados > this.#maxObjetos) {return}
+        if (this.#objetosCreados < this.#maxObjetos) {
             let powerup = document.createElement('div')
             let imagenPowerup = document.createElement('img')
             let indiceAleatorio = Math.floor(Math.random() * this.datosPowerup.length);
@@ -179,6 +180,7 @@ export class Vistajugar extends Vistausuario {
 
             powerup.classList.add('brillo-azul');
             this.#objetosCreados++
+        }
     }
 
     /**
@@ -433,7 +435,7 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.018) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.008) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()
@@ -580,7 +582,6 @@ export class Vistajugar extends Vistausuario {
      * Pausa el juego. Quitando tambien la cancion de fondo y renaudandola cuando el juego deje de estar pausado
      * @returns {void}
      */
-
     pausarJuego() {
         let texto = 'Reanudar Juego'
         const gameContainer = document.getElementById('gameContainer')
@@ -985,4 +986,3 @@ export class Vistajugar extends Vistausuario {
  * Se ejecuta cuando la ventana ha cargado completamente.
  */
 window.onload = () => { new Vistajugar() }
-
