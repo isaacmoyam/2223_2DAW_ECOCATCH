@@ -22,6 +22,8 @@ export class Vistamenu extends Vistausuario {
    * @method
    */
   eventos() {
+    this.enlace = false
+
     super.modoOscuro()
     
     this.idiomaSeleccionado = super.idioma()
@@ -40,6 +42,47 @@ export class Vistamenu extends Vistausuario {
     };
 
     super.cambiarIdioma()
+
+    const img = document.querySelector("img");
+
+    img.addEventListener('mousedown', () => {
+      this.iniciarTemporizador();
+    });
+
+    img.addEventListener('mouseup', () => {
+      this.limpiarTemporizador();
+    });
+
+    img.addEventListener('mouseout', () => {
+      this.limpiarTemporizador();
+    });
+  }
+
+  iniciarTemporizador() {
+    this.temporizador = setTimeout(() => {
+      if(this.enlace == false) {
+        this.enlace = true
+        const menu = document.getElementById("menu")
+        const enlace = document.createElement("a")
+        
+        if(this.idiomaSeleccionado === "en") {
+          enlace.textContent = "Admin Mode"
+        } else {
+          enlace.textContent = "Modo administrador"
+        }
+
+        enlace.href = "usuario/administrador/administrador.html"
+        menu.appendChild(enlace)
+      }
+    }, 5000);
+  }
+
+  /**
+   * Limpia el temporizador.
+   * @method
+   */
+  limpiarTemporizador() {
+    clearTimeout(this.temporizador);
   }
 }
 

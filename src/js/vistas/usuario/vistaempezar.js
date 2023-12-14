@@ -22,6 +22,8 @@ export class Vistaempezar extends Vistausuario {
    * @method
    */
   eventos() {
+    this.contador = 0
+    
     this.idiomaSeleccionado = super.idioma()
 
     const btnVolver = document.getElementById("btnVolver")
@@ -74,6 +76,42 @@ export class Vistaempezar extends Vistausuario {
     idiomaSelect.addEventListener("change", () => {
       this.cambiarIdioma();
     });
+
+    const img = document.querySelector("img");
+
+    img.addEventListener('mousedown', () => {
+      this.iniciarTemporizador();
+    });
+
+    img.addEventListener('mouseup', () => {
+      this.limpiarTemporizador();
+    });
+
+    img.addEventListener('mouseout', () => {
+      this.limpiarTemporizador();
+    });
+
+  }
+
+   /**
+   * Inicia el temporizador al mantener pulsado el clic.
+   * @method
+   */
+   iniciarTemporizador() {
+    this.temporizador = setTimeout(() => {
+      this.contador++
+      if(this.contador == 3) {
+        window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0" 
+      }
+    }, 1000);
+  }
+
+  /**
+   * Limpia el temporizador.
+   * @method
+   */
+  limpiarTemporizador() {
+    clearTimeout(this.temporizador);
   }
 
   cambiarIdioma() {
