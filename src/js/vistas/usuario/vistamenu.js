@@ -73,6 +73,7 @@ export class Vistamenu extends Vistausuario {
 
         enlace.href = "usuario/administrador/administrador.html"
         menu.appendChild(enlace)
+        super.modoOscuro()
       }
     }, 5000);
   }
