@@ -68,7 +68,7 @@ export class Vistaconocenos extends Vistausuario {
         scorreo: "Email: smosqueramarin.guadalupe@alumnado.fundacionloyola.net",
 
         alocation: "Born in Badajoz",
-        anacimiento: "Nacimiento: 06/06/2000",
+        anacimiento: "Birth: 06/06/2000",
         aestudios: "Completed studies: Secondary Education and High School.",
         aencurso: "In progress: Second year of Web Application Development at Virgen de Guadalupe School in Badajoz.",
         acorreo: "Email: alfonsodavidreciocalderon.guadalupe@alumnado.fundacionloyola.net",

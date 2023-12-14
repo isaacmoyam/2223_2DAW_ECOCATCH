@@ -16,6 +16,10 @@ export class Vistajugar extends Vistausuario {
     #objetosCreados = 0
     #objetosDestruidos = 0
 
+    #mostradoA = false
+
+    #fin = false
+
     /**
      * Constructor de la clase. Inicializa los atributos correspondientes.
      * @constructor
@@ -23,8 +27,16 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} base - Objeto que es una referencia del interfaz.
      */
     constructor(controlador, base) {
-        super(controlador, base)
-        this.eventos()
+        super(controlador, base);
+
+        if(super.idioma() === "en") {
+            this.tipoC = "Great!"
+        } else {
+            this.tipoC = "¡Genial!"
+        }
+
+        this.eventos();
+        this.menuJuego = null;
     }
 
     /**
@@ -98,10 +110,16 @@ export class Vistajugar extends Vistausuario {
         for (let apple of apples) {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
             if (appleTop >= this.gameContainer.clientHeight-40) {
+
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
-                this.fin();
+
+                if(!this.#fin) {
+                    setTimeout(() => {
+                        this.fin();
+                    }, 500);   
+                }
             } else {
                 // Ajusta este valor para controlar la velocidad de caída (menos píxeles = más lento)
                 apple.style.top = appleTop + 3 + 'px' // Ajusta la velocidad de caída aquí
@@ -141,11 +159,13 @@ export class Vistajugar extends Vistausuario {
         if (this.#objetosCreados < this.#maxObjetos) {
             let powerup = document.createElement('div')
             let imagenPowerup = document.createElement('img')
-            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
+            let indiceAleatorio = Math.floor(Math.random() * this.datosPowerup.length);
+
             this.aumentoVelocidadBarco = this.datosPowerup[indiceAleatorio].PowerupAumento
             imagenPowerup.src = "data:image/png;base64,"+this.datosPowerup[indiceAleatorio].PowerupImagen+""
             imagenPowerup.style.width = "50px"
             imagenPowerup.style.height = "50px"
+
             powerup.appendChild(imagenPowerup)
             powerup.classList.add('powerup')
             powerup.style.position = 'relative';
@@ -154,6 +174,7 @@ export class Vistajugar extends Vistausuario {
             powerup.style.width = '50px'
             powerup.style.height = '50px'
             powerup.style.zIndex = '1'
+            powerup.id = 'powerup'
 
             this.gameContainer.appendChild(powerup)
 
@@ -275,19 +296,79 @@ export class Vistajugar extends Vistausuario {
             this.gameContainer.removeChild(apple);
             this.aumentarPuntuacion();
             this.#objetosDestruidos++;
-            this.fin();
+
+            if(!this.#fin) {
+                setTimeout(() => {
+                    this.fin();
+                }, 500);   
+            }
     
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
         }
     }
 
-    fin(){
-        if(this.#maxObjetos == this.#objetosDestruidos) {
-            window.location.href = "../ranking/formulario.html";
-            localStorage.setItem('puntuacionFinal', this.#score)
-            return;
+    fin() {
+        if(!this.#fin) {
+            if (this.#maxObjetos == this.#objetosDestruidos) {
+                this.#fin = true
+                if(this.#score === 0) {
+                    if(super.idioma() === "en") {
+                        this.tipoC = "You haven't picked up the trash!"
+                    } else {
+                        this.tipoC = "¡No has recogido la basura!"
+                    }
+                }
+
+                const frame = document.getElementById("frame");
+
+                if(frame) {
+                frame.remove(); 
+                }
+
+                const musica = document.getElementById("miAudio")
+                musica.pause()
+
+                const terminar = document.getElementById("terminar")
+                terminar.play()
+                
+                const div = document.createElement("div");
+                div.style.width = "50%";
+                div.style.margin = "0 auto";
+                div.style.textAlign = "center";
+                div.style.padding = "20%";
+                div.style.border = "solid 1px black"
+                div.style.backgroundColor = "#326F1E"
+                div.style.borderRadius = "15px"
+        
+                const msg = document.createElement("p");
+                msg.textContent = this.tipoC; 
+                msg.style.color = "#EDC713"; 
+        
+                const botonForm = document.createElement("button");
+                if (this.idiomaSeleccionado === "en") {
+                    botonForm.textContent = "Save Score";
+                } else {
+                    botonForm.textContent = "Subir tu puntuación";
+                }
+        
+                botonForm.style.margin = "10px auto"; // Cambié el valor de margin para separar el botón del mensaje
+                botonForm.addEventListener("click", this.redirect.bind(this));
+        
+                // Agregar el mensaje y el botón al div
+                div.appendChild(msg);
+                div.appendChild(botonForm);
+        
+                // Agregar el div al cuerpo del documento
+                document.body.appendChild(div);
+        
+                localStorage.setItem('puntuacionFinal', this.#score);
+            }
         }
+    }
+    
+    redirect() {
+        window.location.href = "../ranking/formulario.html";
     }
 
     crearEstrella(left, top) {
@@ -502,15 +583,113 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     pausarJuego() {
+        let texto = 'Reanudar Juego'
+        const gameContainer = document.getElementById('gameContainer')
         const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
 
+        //Crear un nuevo menú solo si no existe
+        if (!this.menuJuego) {
+            this.menuJuego = document.createElement('div')
+        }else{
+            this.menuJuego.remove()
+        }
+
+        //PAUSA
         if (this.juegoEnPausa) {
-            miAudio.play() //Reanuda el audio
-            this.reanudarJuego()
+            this.quitarPausa(miAudio)
         } else {
+            this.aplicarFiltroEnElementos(gameContainer, 'blur(10px)');
+            gameContainer.appendChild(this.menuJuego)
+
+            //Cambiar imagen del boton de la pausa
+            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/reanudar.png)"
+
+            const contenidoPausa = document.createElement('div')
+            contenidoPausa.id = "pausaMenu"
+            const boton = document.createElement('button');
+            boton.textContent = texto;
+            boton.id = "botonReanudar"
+
+            //Agrega el botón como hijo del div
+            contenidoPausa.appendChild(boton);
+
+            //Añadir evento oclick para el nuevo boton
+            boton.addEventListener('click', () => {
+                this.quitarPausa(miAudio)
+            });
+
+            this.menuJuego.appendChild(contenidoPausa)
+            this.menuJuego.style.display = 'block'
+            this.menuJuego.style.width = '100%'
+            this.menuJuego.style.height = '100%'
+            contenidoPausa.style.zIndex = '10'
+
+            contenidoPausa.style.display = 'flex'
+            contenidoPausa.style.alignItems = 'center'
+            contenidoPausa.style.justifyContent = 'center'
+            contenidoPausa.style.width = '100%'
+            contenidoPausa.style.height = '100%'
+            contenidoPausa.style.backgroundImage = "url(../../../src/img/borroso.png)"
+            contenidoPausa.style.backgroundSize = 'cover'
+
             miAudio.pause() //Pausa el audio
             this.juegoEnPausa = true
             this.cancelAnimationFrame()
+        }
+    }
+
+    /**
+     * Metodo que quita la pausa
+     * @param miAudio {Object} Referenci del audio que se va a poner a play
+     */
+    quitarPausa(miAudio){
+        //Establece la imagen de fondo
+        document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/pausa.png)"
+
+        if (this.menuJuego) {
+            this.menuJuego.style.display = 'none'
+            this.menuJuego.textContent = ''
+        }
+
+        this.menuJuego.remove() //Elimina el menu
+        //Quitar el filtro a los elementos del gameContainer
+        this.quitarFiltroEnElementos(document.getElementById('gameContainer'))
+
+        miAudio.play(); // Reanuda el audio
+        this.reanudarJuego() //Reanuda el juego
+    }
+
+    /**
+     * Aplica el filtro concreto a todos los elementos dentro de gameContainer
+     * @param gameContainer {Object} Contenedor referencia del contenedor html
+     * @param filtro {String} Propiedad css del filtro que se quiere implementar
+     */
+    aplicarFiltroEnElementos(gameContainer, filtro) {
+        const elementos = gameContainer.children
+
+        for (let i = 0; i < elementos.length; i++) {
+            const elemento = elementos[i]
+            elemento.style.filter = filtro
+            elemento.style.animation = 'none'
+        }
+    }
+
+    /**
+     * Quita los filtros a todos los elementos dentro de gameContainer
+     * @param gameContainer {Object} Contenedor referencia del contenedor html
+     */
+    quitarFiltroEnElementos(gameContainer) {
+        const elementos = gameContainer.children
+        gameContainer.style.filter = 'none'
+
+        for (let i = 0; i < elementos.length; i++) {
+            const elemento = elementos[i]
+            elemento.style.filter = 'none'
+            if (elemento.id === "barco" || elemento.id === 'powerup') {
+                elemento.style.animation = 'none'
+            }else{
+                elemento.style.animation = 'rotate 5s infinite linear'
+            }
         }
     }
 
@@ -521,6 +700,7 @@ export class Vistajugar extends Vistausuario {
     reanudarJuego() {
         this.juegoEnPausa = false
         this.requestAnimationFrame
+        this.llamarPOST()
     }
 
 
@@ -717,14 +897,76 @@ export class Vistajugar extends Vistausuario {
      */
     verMensajes(mensajes) {
         const contenedorMensaje = document.getElementById("mensajeP")
-        let arrayMensajes = []
+        // Saca los mensajes tipo a y los mete en un array para mostrarlos aleatoriamente al principio del nivel
+        let tipoA = []
         for (let i = 0; i < mensajes.length; i++) {
-            arrayMensajes.push(mensajes[i].contenido);
+            if(mensajes[i].tipo === "A") {
+                tipoA.push(mensajes[i].contenido) 
+            }  
         }
-        this.intervalo = setInterval(() => {
-            let indiceAleatorio = Math.floor(Math.random() * arrayMensajes.length)
-            contenedorMensaje.innerHTML = arrayMensajes[indiceAleatorio]
-        }, 7000);
+        const update = () => {
+            for (let i = 0; i < mensajes.length; i++) {
+                // Si no se ha mostrado mensaje inicial, se muestra uno aleatorio
+                if (mensajes[i].tipo === "A" && this.#mostradoA == false) {
+                    this.#mostradoA = true
+                    this.juegoEnPausa = false;
+                    this.pausarJuego();
+                    
+                    let indiceAleatorio = Math.floor(Math.random() * tipoA.length);
+
+                    // Obtén elementos necesarios
+                    const pantallaMsg = document.getElementById("pausaMenu");
+                    const boton = document.getElementById("botonReanudar");
+                
+                    // Crea un contenedor div
+                    const contenedor = document.createElement("div");
+                
+                    // Crea el mensaje y configura sus propiedades
+                    const msg = document.createElement("p");
+                    msg.style.borderRadius = "10px";
+                    msg.style.textAlign = "center"
+                    msg.style.padding = "10%";
+                    msg.style.marginBottom = "2%";
+                    msg.style.border = "solid 1px black"
+                    msg.id = "msgTipoA";
+                    msg.textContent = tipoA[indiceAleatorio];
+                    msg.style.backgroundColor = "#6d3916a4";
+                
+                    // Agrega el mensaje al contenedor
+                    contenedor.appendChild(msg);
+                
+                    // Configura el botón
+                    if(this.idiomaSeleccionado === "en") {
+                        boton.textContent = "Start Game"; 
+                    } else {
+                        boton.textContent = "Comenzar Juego";
+                    }
+                
+                    contenedor.style.textAlign = "center";
+                    boton.style.display = "inline-block";
+                
+                    // Agrega el botón al contenedor
+                    contenedor.appendChild(boton);
+                    
+                    // Agrega el contenedor al elemento padre (pantallaMsg)
+                    pantallaMsg.appendChild(contenedor);
+                    
+                    return;
+                }
+
+                // Verifica la condición para mostrar el mensaje durante el juego
+                if (this.#score >= mensajes[i].puntosHasta && mensajes[i].tipo === "B") {
+                    // Muestra el mensaje en el contenedor
+                    contenedorMensaje.innerHTML = mensajes[i].contenido;
+                }
+                if (this.#score >= mensajes[i].puntosHasta && mensajes[i].tipo === "C" && this.#maxObjetos == this.#objetosDestruidos) {
+                    // Muestra el mensaje en el contenedor
+                    this.tipoC = mensajes[i].contenido
+                }
+            }
+            requestAnimationFrame(update);
+        }
+        update();
     }
 
     /**
