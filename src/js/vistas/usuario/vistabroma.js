@@ -32,13 +32,13 @@ export class Vistabroma extends Vistausuario {
         tituloweb: "Menú Administrador",
         adminMenu: "Menú Administrador",
         cancion: "Reproducir 'Tanto la quería' de Andy y Lucas",
-        borrarDatos: "Borrar todos los datos [PULSAR EN CASO DE EMERGENCIA]"
+        borrarDatos: "[PULSAR EN CASO DE EMERGENCIA]"
       },
       en: {
         tituloweb: "Admin Menu",
         adminMenu: "Admin Menu",
         cancion: "Play 'Tanto la quería' by Andy y Lucas.",
-        borrarDatos: "Delete all data [PRESS IN CASE OF EMERGENCY]"
+        borrarDatos: "[PRESS IN CASE OF EMERGENCY]"
       }
     };
 
