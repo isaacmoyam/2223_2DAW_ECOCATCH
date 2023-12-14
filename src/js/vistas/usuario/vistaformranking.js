@@ -111,6 +111,8 @@ export class Vistaformranking extends Vistausuario {
 
     // Realiza la lógica de validación aquí
     if (this.validarNick(nickInput.value) && this.validarCorreo(correoInput.value)) {
+      const enviar = document.getElementById("enviar")
+      const mensaje = document.getElementById("msgCampos")
       // Envía el formulario al servidor
       formRanking.action = urlForm
       this.nick = nickInput.value
@@ -118,7 +120,16 @@ export class Vistaformranking extends Vistausuario {
       this.llamarPOST()
       this.nick = ""
       this.correo = ""
-      document.getElementById('formRanking').submit();
+      enviar.remove()
+      if(this.idiomaSeleccionado === "en") {
+        mensaje.innerHTML = "Uploading..."
+      } else {
+        mensaje.innerHTML = "Subiendo..."
+      }
+      mensaje.style.color = "yellow"
+      setTimeout(function() {
+        document.getElementById('formRanking').submit();
+      }, 2000);
     }
   }
 
@@ -138,7 +149,7 @@ export class Vistaformranking extends Vistausuario {
     if (correo.trim() === "") {
       return false;
   }
-    const regExp = /^(|.*\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))$/
+    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     return regExp.test(correo);
   }
 
@@ -155,7 +166,7 @@ export class Vistaformranking extends Vistausuario {
   }
 
   comprobacionCorreo (evento, pMensaje) {
-    const regExp = /^(\w{1,61}(\.guadalupe)?@((gmail\.com)|(alumnado\.fundacionloyola\.(net|es))|(fundacionloyola\.(net|es))))?$/
+    const regExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     let mensaje
     if(this.idiomaSeleccionado === "en") {
       mensaje = "The email must be valid"

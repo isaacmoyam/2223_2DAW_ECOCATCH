@@ -25,20 +25,18 @@ export class Vistajugar extends Vistausuario {
     constructor(controlador, base) {
         super(controlador, base)
         this.eventos()
-        this.menuJuego = null
     }
 
     /**
      * Realiza una llamada GET para obtener la lista de niveles y los muestra en la interfaz.
      * @method
      */
-    
     llamarGETBasura = () => {
-            Rest.getJSON(
-                '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
-                null,
-                this.obtenerDatosBasura.bind(this)
-            );
+        Rest.getJSON(
+            '../../../src/carpetasupersecretaparaadmin2daw/index.php?control=basura_con&metodo=ajaxBasura',
+            null,
+            this.obtenerDatosBasura.bind(this)
+        );
     }
 
     /**
@@ -47,13 +45,13 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
      */
     obtenerDatosBasura = (respuesta) => {
-        console.log(respuesta)
         this.datosBasura = respuesta.map(elemento => ({
             BasuraId: elemento.id,
             BasuraNombre: elemento.nombre,
             BasuraImagen: elemento.imagen,
             BasuraValor: elemento.valor
         }));
+        this.iniciarJuegoManzanas();
     }
 
     /**
@@ -72,7 +70,6 @@ export class Vistajugar extends Vistausuario {
 
 
             imagenApple.src = "../../../src/img/basura.png"
-            if(!this.datosBasura){}
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
             this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
             imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
@@ -100,7 +97,7 @@ export class Vistajugar extends Vistausuario {
         let apples = document.getElementsByClassName('apple')
         for (let apple of apples) {
             let appleTop = parseInt(window.getComputedStyle(apple).getPropertyValue('top'))
-            if (appleTop >= this.gameContainer.clientHeight-10) {
+            if (appleTop >= this.gameContainer.clientHeight-40) {
                 this.gameContainer.removeChild(apple)
                 this.#objetosDestruidos++;
                 this.basuraAlAgua();
@@ -128,7 +125,6 @@ export class Vistajugar extends Vistausuario {
      * @param {Object} respuesta - Respuesta obtenida de la llamada GET.
      */
     obtenerDatosPowerup = (respuesta) => {
-        console.log(respuesta)
         this.datosPowerup = respuesta.map(elemento => ({
             PowerupId: elemento.id,
             PowerupNombre: elemento.nombre,
@@ -142,7 +138,7 @@ export class Vistajugar extends Vistausuario {
      * @returns {void}
      */
     crearPowerup() {
-        if (this.#objetosCreados > this.#maxObjetos) {return}
+        if (this.#objetosCreados < this.#maxObjetos) {
             let powerup = document.createElement('div')
             let imagenPowerup = document.createElement('img')
             let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
@@ -163,6 +159,7 @@ export class Vistajugar extends Vistausuario {
 
             powerup.classList.add('brillo-azul');
             this.#objetosCreados++
+        }
     }
 
     /**
@@ -357,7 +354,7 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.018) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.008) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()
@@ -368,13 +365,7 @@ export class Vistajugar extends Vistausuario {
                 }
                 this.moverPowerup()
             }
-            if(this.#maxObjetos == this.#objetosDestruidos) {
-                window.location.href = "../ranking/formulario.html"
-                localStorage.setItem('puntuacionFinal', this.#score)
-                return
-            }
             requestAnimationFrame(update)
-            
         }
         update()
     }
@@ -424,7 +415,6 @@ export class Vistajugar extends Vistausuario {
         this.llamarGETBasura()
         this.llamarGETPowerup()
 
-        this.iniciarJuegoManzanas()
         this.velocidad = localStorage.getItem('velocidad')
 
         this.nombre = localStorage.getItem('nombreLvl')
@@ -511,48 +501,13 @@ export class Vistajugar extends Vistausuario {
      * Pausa el juego. Quitando tambien la cancion de fondo y renaudandola cuando el juego deje de estar pausado
      * @returns {void}
      */
-
     pausarJuego() {
-        let texto = 'Juego Pausado'
-
         const miAudio = document.getElementById('miAudio') //Coge el audio para despues quitarle o ponerle el volumen
 
         if (this.juegoEnPausa) {
-            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/pausa.png)"
-            // Ocultar el menú y reanudar el juego
-            if (this.menuJuego) {
-                this.menuJuego.style.display = 'none'
-                this.menuJuego.textContent = ''
-            }
             miAudio.play() //Reanuda el audio
             this.reanudarJuego()
-            document.getElementById('gameContainer').style.filter = 'none'
         } else {
-            // Crear un nuevo menú solo si no existe
-            if (!this.menuJuego) {
-                this.menuJuego = document.createElement('div')
-                document.getElementById('gameContainer').appendChild(this.menuJuego)
-            }
-
-            // Mostrar el menú y pausar el juego
-            document.getElementById('botonPausa').style.backgroundImage = "url(../../../src/img/reanudar.png)"
-
-            let contenidoPausa = document.createElement('div')
-            contenidoPausa.textContent = texto
-            this.menuJuego.appendChild(contenidoPausa)
-            this.menuJuego.style.display = 'inline-block'
-            this.menuJuego.style.width = '100%'
-            this.menuJuego.style.height = '100%'
-            this.menuJuego.style.zIndex = '10'
-
-            contenidoPausa.style.display = 'flex'
-            contenidoPausa.style.alignItems = 'center'
-            contenidoPausa.style.justifyContent = 'center'
-            contenidoPausa.style.width = '100%'
-            contenidoPausa.style.height = '100%'
-            //document.getElementById('gameContainer').style.filter = 'blur(10px)'
-            contenidoPausa.style.backgroundImage = "url(../../../src/img/borroso.png)"
-            contenidoPausa.style.back
             miAudio.pause() //Pausa el audio
             this.juegoEnPausa = true
             this.cancelAnimationFrame()
@@ -789,4 +744,3 @@ export class Vistajugar extends Vistausuario {
  * Se ejecuta cuando la ventana ha cargado completamente.
  */
 window.onload = () => { new Vistajugar() }
-
