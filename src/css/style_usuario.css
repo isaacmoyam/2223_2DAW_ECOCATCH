@@ -16,6 +16,7 @@ body {
     background-image: url("../../src/img/fondo_titulo.png");
     background-size: cover;
     background-repeat: no-repeat;
+    transition: background-image 0.3s ease;
 }
 
 /*
@@ -480,6 +481,10 @@ main > a.darkmode,
 button.darkmode,
 #menu > a.darkmode{
     color: #deca65;
+}
+
+body.darkmode {
+    background-image: url("../../src/img/fondo_tituloNoche.png");
 }
 
 body.darkmode,
