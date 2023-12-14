@@ -62,6 +62,7 @@ export class Vistabroma extends Vistausuario {
     const audioP = document.getElementById("emerg")
     const audio = document.getElementById("andy")
     audioP.pause()
+    audio.currentTime = 0;
     audio.play()
   }
 
@@ -69,6 +70,7 @@ export class Vistabroma extends Vistausuario {
     const audioP = document.getElementById("andy")
     const audio = document.getElementById("emerg")
     audioP.pause()
+    audio.currentTime = 0;
     audio.play()
   }
 }
