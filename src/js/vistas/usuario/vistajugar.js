@@ -307,7 +307,7 @@ export class Vistajugar extends Vistausuario {
                 this.#basuras.splice(basuraIndex, 1);
             }
 
-            this.crearEstrella(appleLeft, appleTop);
+            this.crearEstrella(appleLeft, appleTop, basura.valor);
     
             this.gameContainer.removeChild(apple);
             this.#objetosDestruidos++;
@@ -386,13 +386,14 @@ export class Vistajugar extends Vistausuario {
         window.location.href = "../ranking/formulario.html";
     }
 
-    crearEstrella(left, top) {
-        const numEstrellas = 5; // Estrelas a mostrar
+    crearEstrella(left, top, valor) {
+        const numEstrellas = 1; // Estrellas a mostrar
         for (let i = 0; i < numEstrellas; i++) {
             let estrella = document.createElement('div');
             estrella.classList.add('estrella');
-            estrella.style.left = left + Math.floor(Math.random() * 20) + 'px'; 
-            estrella.style.top = top + Math.floor(Math.random() * 20) + 'px'; 
+            estrella.textContent = "+"+valor; // Utiliza el parámetro valor directamente
+            estrella.style.left = left + Math.floor(Math.random() * 20) + 'px';
+            estrella.style.top = top + Math.floor(Math.random() * 20) + 'px';
             this.gameContainer.appendChild(estrella);
     
             // Elimina la estrella después de la animación
