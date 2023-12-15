@@ -13,12 +13,12 @@
             <img src="../../../src/img/logo_fondo_transparente.png" alt="Logo de la página EcoCatch">
         </header>
         <main id="formulario">
-            <h1><span id="titulopts1">¡TU PUNTUACIÓN ES DE</span> <span id="puntos"></span> <span id="titulopts2">PUNTOS!</span></h1>
+            <h1 id="tituloRanking"><span id="titulopts1">¡TU PUNTUACIÓN ES DE</span> <span id="puntos"></span> <span id="titulopts2">PUNTOS!</span></h1>
             <form action="ranking.html" method="POST" id="formRanking">
                 <label>(*) NICK:</label>
-                <input type="text" name="nick">
+                <input id="nick" type="text" name="nick">
                 <label id="email">(*) CORREO:</label>
-                <input type="text" name="correo">
+                <input id="correo" type="text" name="correo">
                 <p id="msgCampos"></p>
                 <input id="enviar" type="submit" value="Enviar">
             </form>
