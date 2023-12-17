@@ -297,6 +297,19 @@ label{
 #tablaPowerup{
   width: 95%;
 }
+#tablaPowerup textarea,
+#tablaPowerup input,
+#tablaPowerup img ,
+#tablaPowerup th{
+    max-width: 100%;
+    box-sizing: border-box; /* Evita que el padding afecte al ancho máximo */
+}
+
+#tablaPowerup textarea,
+#tablaPowerup th {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
 #tablaPowerup th:first-child {
   width: 15%;

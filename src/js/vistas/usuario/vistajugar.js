@@ -89,6 +89,7 @@ export class Vistajugar extends Vistausuario {
             });
             imagenApple.style.width = "50px";
             imagenApple.style.height = "50px";
+            imagenApple.style.filter = "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))";
             apple.appendChild(imagenApple);
             apple.classList.add('apple');
             apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px';
@@ -392,14 +393,20 @@ export class Vistajugar extends Vistausuario {
             let estrella = document.createElement('div');
             estrella.classList.add('estrella');
             estrella.textContent = "+"+valor; // Utiliza el parámetro valor directamente
+            estrella.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
+            estrella.style.transition = "opacity 0.5s ease-in-out";
             estrella.style.left = left + Math.floor(Math.random() * 20) + 'px';
             estrella.style.top = top + Math.floor(Math.random() * 20) + 'px';
             this.gameContainer.appendChild(estrella);
     
             // Elimina la estrella después de la animación
             setTimeout(() => {
+                estrella.style.opacity = "0";
+            }, 1000)
+    
+            setTimeout(() => {
                 this.gameContainer.removeChild(estrella);
-            }, 1000);
+            }, 1500)
         }
     }
 
