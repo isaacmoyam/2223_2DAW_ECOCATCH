@@ -618,6 +618,10 @@ export class Vistajugar extends Vistausuario {
                 this.quitarPausa(miAudio)
             });
 
+            boton.addEventListener('touchstart', () => {
+                this.quitarPausa(miAudio)
+            });
+
             this.menuJuego.appendChild(contenidoPausa)
             this.menuJuego.style.display = 'block'
             this.menuJuego.style.width = '100%'
@@ -640,7 +644,7 @@ export class Vistajugar extends Vistausuario {
 
     /**
      * Metodo que quita la pausa
-     * @param miAudio {Object} Referenci del audio que se va a poner a play
+     * @param miAudio {Object} Referencia del audio que se va a poner a play
      */
     quitarPausa(miAudio){
         //Establece la imagen de fondo
@@ -917,7 +921,13 @@ export class Vistajugar extends Vistausuario {
                     // Obtén elementos necesarios
                     const pantallaMsg = document.getElementById("pausaMenu");
                     const boton = document.getElementById("botonReanudar");
-                
+
+                    /*QUITAR*/
+                    boton.addEventListener('touchstart', () => {
+                        const miAudio = document.getElementById('miAudio')
+                        this.quitarPausa(miAudio)
+                    });
+
                     // Crea un contenedor div
                     const contenedor = document.createElement("div");
                 
