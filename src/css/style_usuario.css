@@ -632,3 +632,10 @@ button.darkmode,
 
     }
   }
+  @media (width < 1280px){
+    #gameContainer{
+        height: 423.0769px;
+        width: 787.6923px;
+
+    }
+  }
