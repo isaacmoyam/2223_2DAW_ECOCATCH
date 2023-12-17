@@ -16,6 +16,8 @@ export class Vistajugar extends Vistausuario {
     #objetosCreados = 0
     #objetosDestruidos = 0
 
+    #basuras = [];
+
     #mostradoA = false
 
     #fin = false
@@ -28,7 +30,6 @@ export class Vistajugar extends Vistausuario {
      */
     constructor(controlador, base) {
         super(controlador, base);
-
         if(super.idioma() === "en") {
             this.tipoC = "Great!"
         } else {
@@ -73,29 +74,32 @@ export class Vistajugar extends Vistausuario {
      */
     crearManzana() {
         if (this.#objetosCreados < this.#maxObjetos) {
-            let apple = document.createElement('div')
-            let imagenApple = document.createElement('img')
+            let apple = document.createElement('div');
+            let imagenApple = document.createElement('img');
             
-
-            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
-            this.valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor
-            imagenApple.src = "data:image/png;base64,"+this.datosBasura[indiceAleatorio].BasuraImagen+""
-            imagenApple.alt = this.datosBasura[indiceAleatorio].BasuraValor
-            apple.id = 
-            imagenApple.style.width = "50px"
-            imagenApple.style.height = "50px"
-            apple.appendChild(imagenApple)
-            apple.classList.add('apple')
-            apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px'
-            apple.style.top = '-10px' // Posición inicial arriba del todo
-            apple.style.width = '50px' 
-            apple.style.height = '50px' 
-            apple.style.zIndex = '1'
-            
-            this.gameContainer.appendChild(apple)
     
-            this.#objetosCreados++
-            indiceAleatorio = 0
+            let indiceAleatorio = Math.floor(Math.random() * this.datosBasura.length);
+    
+            // Accede al valor de la basura directamente desde el objeto datosBasura
+            let valorBasuraCogida = this.datosBasura[indiceAleatorio].BasuraValor;
+    
+            imagenApple.src = "data:image/png;base64," + this.datosBasura[indiceAleatorio].BasuraImagen + "";
+            this.#basuras.push({
+                valor: valorBasuraCogida,
+            });
+            imagenApple.style.width = "50px";
+            imagenApple.style.height = "50px";
+            apple.appendChild(imagenApple);
+            apple.classList.add('apple');
+            apple.style.left = Math.floor(Math.random() * (this.gameContainer.clientWidth - 50)) + 'px';
+            apple.style.top = '-10px'; // Posición inicial arriba del todo
+            apple.style.width = '50px';
+            apple.style.height = '50px';
+            apple.style.zIndex = '1';
+            apple.id = this.datosBasura[indiceAleatorio].BasuraValor;
+            this.gameContainer.appendChild(apple);
+    
+            this.#objetosCreados++;
         }
     }
 
@@ -288,10 +292,24 @@ export class Vistajugar extends Vistausuario {
             appleTop < barcoTop + barcoHeight - distanciaColision &&
             appleTop + 50 > barcoTop + distanciaColision
         ) {
-            this.crearEstrella(appleLeft, appleTop);
+            let basura = this.#basuras.find(b => b.valor === apple.id);
+
+            // Realiza las acciones necesarias con la basura.
+            // Por ejemplo, sumar el valor al puntaje del jugador.
+            if (basura) {
+                this.aumentarPuntuacion(basura.valor);
+            }
+            
+            // Eliminar la basura del array y del DOM si es necesario.
+            let basuraIndex = this.#basuras.indexOf(basura);
+
+            if (basuraIndex !== -1) {
+                this.#basuras.splice(basuraIndex, 1);
+            }
+
+            this.crearEstrella(appleLeft, appleTop, basura.valor);
     
             this.gameContainer.removeChild(apple);
-            this.aumentarPuntuacion();
             this.#objetosDestruidos++;
 
             if(!this.#fin) {
@@ -370,16 +388,15 @@ export class Vistajugar extends Vistausuario {
         window.location.href = "../ranking/formulario.html"
     }
 
-    crearEstrella(left, top) {
-        const numEstrellas = 5; // Estrelas a mostrar
-        
+    crearEstrella(left, top, valor) {
+        const numEstrellas = 1; // Estrellas a mostrar
         for (let i = 0; i < numEstrellas; i++) {
-            let estrellita = document.createElement('div')
-            estrellita.classList.add('estrellita')
-            this.gameContainer.appendChild(estrellita)
-            estrellita.classList.add('estrella')
-            estrellita.style.left = left + Math.floor(Math.random() * 20) + 'px'
-            estrellita.style.top = top + Math.floor(Math.random() * 20) + 'px'
+            let estrella = document.createElement('div');
+            estrella.classList.add('estrella');
+            estrella.textContent = "+"+valor; // Utiliza el parámetro valor directamente
+            estrella.style.left = left + Math.floor(Math.random() * 20) + 'px';
+            estrella.style.top = top + Math.floor(Math.random() * 20) + 'px';
+            this.gameContainer.appendChild(estrella);
     
             // Elimina la estrella después de la animación
             setTimeout(() => {
@@ -420,12 +437,16 @@ export class Vistajugar extends Vistausuario {
      * Aumenta la puntuación del juego.
      * @returns {void}
      */
-    aumentarPuntuacion() {
-        this.#score = this.#score + parseInt(this.valorBasuraCogida)
-        this.#scoreElement.textContent = this.#score
-
-        this.#objetosRecogidos++
-        this.#objetosElement.innerHTML = this.#objetosRecogidos+"/"+this.#maxObjetos
+    aumentarPuntuacion(valorBasuraCogida) {
+        // Verifica si se pasa un valorBasuraCogida y es un número válido
+        if (valorBasuraCogida && !isNaN(valorBasuraCogida)) {
+            this.#score = this.#score + parseInt(valorBasuraCogida);
+        }
+    
+        this.#scoreElement.textContent = this.#score;
+    
+        this.#objetosRecogidos++;
+        this.#objetosElement.innerHTML = this.#objetosRecogidos + "/" + this.#maxObjetos;
     }
     
     /**

@@ -326,14 +326,12 @@ marquee{
 
 .estrella {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    content: "";
-    background: url("../../src/img/estrella.png") no-repeat center center;
-    background-size: cover;
+    width: 80px;
+    height: 80px;
+    font-size: 2em;
+    color: yellow;
     border-radius: 100px;
-    box-shadow: 0 0 1px yellow, 0 0 2px yellow, 0 0 5px yellow; 
-    animation: estrellaAnimacion 1s ease-out;
+    box-shadow: 0 0 1px rgb(0, 0, 0), 0 rgb(0, 0, 0)yellow, 0 rgb(0, 0, 0)yellow; 
 }
 
 @keyframes estrellaAnimacion {
