@@ -320,7 +320,6 @@ export class Vistajugar extends Vistausuario {
     
             // Reproduce el sonido de la manzana
             this.reproducirSonidoManzana();
-            
         }
     }
 
@@ -349,7 +348,7 @@ export class Vistajugar extends Vistausuario {
                 terminar.play()
                 
                 const div = document.createElement("div");
-                div.style.width = "30%";
+                div.style.width = "50%";
                 div.style.margin = "0 auto";
                 div.style.textAlign = "center";
                 div.style.padding = "20%";
@@ -357,35 +356,34 @@ export class Vistajugar extends Vistausuario {
                 div.style.backgroundColor = "#326F1E"
                 div.style.borderRadius = "15px"
         
-                const msg = document.createElement("h1")
-                msg.textContent = this.tipoC
-                msg.style.color = "#EDC713"
-                msg.style.fontSize = "3em"
+                const msg = document.createElement("p");
+                msg.textContent = this.tipoC; 
+                msg.style.color = "#EDC713"; 
         
-                const botonForm = document.createElement("button")
+                const botonForm = document.createElement("button");
                 if (this.idiomaSeleccionado === "en") {
-                    botonForm.textContent = "Save Score"
+                    botonForm.textContent = "Save Score";
                 } else {
-                    botonForm.textContent = "Subir tu puntuación"
+                    botonForm.textContent = "Subir tu puntuación";
                 }
         
                 botonForm.style.margin = "10px auto"; // Cambié el valor de margin para separar el botón del mensaje
-                botonForm.addEventListener("click", this.redirect.bind(this))
+                botonForm.addEventListener("click", this.redirect.bind(this));
         
                 // Agregar el mensaje y el botón al div
-                div.appendChild(msg)
-                div.appendChild(botonForm)
+                div.appendChild(msg);
+                div.appendChild(botonForm);
         
                 // Agregar el div al cuerpo del documento
-                document.body.appendChild(div)
+                document.body.appendChild(div);
         
-                localStorage.setItem('puntuacionFinal', this.#score)
+                localStorage.setItem('puntuacionFinal', this.#score);
             }
         }
     }
     
     redirect() {
-        window.location.href = "../ranking/formulario.html"
+        window.location.href = "../ranking/formulario.html";
     }
 
     crearEstrella(left, top, valor) {
@@ -400,8 +398,8 @@ export class Vistajugar extends Vistausuario {
     
             // Elimina la estrella después de la animación
             setTimeout(() => {
-                this.gameContainer.removeChild(estrellita)
-            }, 1000)
+                this.gameContainer.removeChild(estrella);
+            }, 1000);
         }
     }
 
@@ -411,17 +409,17 @@ export class Vistajugar extends Vistausuario {
      */
     reproducirSonidoManzana() {
         const sonidoManzana = document.getElementById('sonidoBasura');
-        sonidoManzana.play()
+        sonidoManzana.play();
     }
 
     reproducirSonidoPowerup() {
         const sonidoPowerup = document.getElementById('sonidoPowerup');
-        sonidoPowerup.play()
+        sonidoPowerup.play();
     }
 
     perderPowerup() {
         const perderPowerup = document.getElementById('perdidaPowerup');
-        perderPowerup.play()
+        perderPowerup.play();
     }
 
      /**
@@ -457,7 +455,7 @@ export class Vistajugar extends Vistausuario {
         const update = () => {
             if (!this.juegoEnPausa) {
                 // Ajusta estos valores según tus preferencias
-                if (Math.random() < 0.014) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
+                if (Math.random() < 0.018) {  // Probabilidad de crear una manzana (menor probabilidad = aparecen más lentamente)
                     this.crearManzana()
                 }
                 this.moverManzanas()
